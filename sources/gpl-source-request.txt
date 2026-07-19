@@ -1,0 +1,22 @@
+Subject: Source request — Cisco RV220W firmware 1.0.3.x, reference 78EE117C99-17964455
+
+Hello,
+
+I am requesting the complete corresponding source code for the Cisco RV220W firmware 1.0.3.x under the applicable open-source licenses. The source-reference number in the Cisco notice is:
+
+78EE117C99-17964455
+
+Please include, where covered by the applicable licenses:
+
+- the exact Linux kernel source and configuration;
+- Cavium/OCTEON and RV220W board patches;
+- build scripts and toolchain configuration;
+- flash/MTD partition definitions and BootBus setup;
+- Ethernet MAC and Broadcom BCM53115 initialization code;
+- GPIO, LED, button, reset, and watchdog support;
+- all GPL/LGPL-covered kernel modules and user-space modifications;
+- scripts and information required to reproduce the shipped binaries.
+
+The product is discontinued, but the source would be valuable for preservation, security research, and continued operation of owned hardware.
+
+Thank you.

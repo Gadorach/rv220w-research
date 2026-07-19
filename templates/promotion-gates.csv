@@ -1,0 +1,14 @@
+stage,name,required_equipment,primary_output,exit_criterion,status
+P0,Preservation,camera; DMM; OEM PSU,identity and photo baseline,normal baseline recorded,open
+P1,Power/clock/reset,DMM; oscilloscope,rail and timing maps,logic levels and resets known,open
+P2,UART,adjustable UART; analyzer,boot log and pinout,repeatable passive console,open
+P3,Stock Linux inventory,UART/Ethernet,system inventory,kernel/MTD/interfaces documented,open
+P4,Flash preservation,software dump path,two full images,byte-identical verified dumps,open
+P5,Recovery,parallel programmer; JTAG; rework,tested restore process,spare/noncritical restore demonstrated,open
+P6,RAM boot,UART; TFTP host,volatile boot path,reboots to stock with no writes,open
+P7,Minimal Linux,cross toolchain,initramfs shell,stable RAM-booted Linux,open
+P8,NOR storage,P7 baseline,read-only MTD,image matches preserved flash,open
+P9,Ethernet/switch,2 hosts; capture,all ports forwarding,repeatable sustained traffic,open
+P10,Board control,analyzer,GPIO/watchdog map,watchdog and reset tested,open
+P11,WLAN,Mini PCI cards,WLAN decision/driver,functional or replacement path,open
+P12,Hardening,automated power/traffic,qualification report,repeatable recoverable system,open

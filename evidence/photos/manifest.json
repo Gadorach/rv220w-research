@@ -1,0 +1,44 @@
+{
+  "entries": [
+    {
+      "path": "evidence/photos/annotated/board-overview-labelled.jpg",
+      "size_bytes": 656578,
+      "sha256": "e51615892925b0854e6d28777620ffa231803c4a3eaf9d32bf5a4081f79b5dee"
+    },
+    {
+      "path": "evidence/photos/original/board-overview.jpg",
+      "size_bytes": 589535,
+      "sha256": "a874077d5efb2a50d2d13e0ea0a8d740d7a2d74dc89c339fcffad7ecab819ab3"
+    },
+    {
+      "path": "evidence/photos/original/jp1-jp2-closeup.jpg",
+      "size_bytes": 408341,
+      "sha256": "6a2b40ce21975b2f2404c3630d3f607ae259e5a003372bb7d69159bebdbd2276"
+    },
+    {
+      "path": "evidence/photos/original/ram-and-j2-closeup.jpg",
+      "size_bytes": 500766,
+      "sha256": "8a501fef4dbc7556f1130777ed2a1841a2b6132d511ea4d2bd6b8a63075e4243"
+    },
+    {
+      "path": "evidence/photos/original/u11-ics840-125-closeup.jpg",
+      "size_bytes": 359326,
+      "sha256": "262e06c94f46f49c7adba94b87bc6904881c24445cfd8be2840c3eea6d11f534"
+    },
+    {
+      "path": "evidence/photos/original/u23-ame8809-closeup.jpg",
+      "size_bytes": 353588,
+      "sha256": "cd2d5f94aaea2cc4a0f98c14521eabe364801ddb8959b212e4a15880d95a8ccc"
+    },
+    {
+      "path": "evidence/photos/original/u4-flash-and-u3-latch-closeup.jpg",
+      "size_bytes": 466109,
+      "sha256": "afdd67dfc10119f3d981ca14de5e4833a25ef46defe1c327eb8996cb225b0502"
+    },
+    {
+      "path": "evidence/photos/public/board-overview-redacted.jpg",
+      "size_bytes": 572191,
+      "sha256": "81cb7da701f0ad9bb904e41bc3f585e98a14cdccca6d048f0043891027c2eff8"
+    }
+  ]
+}

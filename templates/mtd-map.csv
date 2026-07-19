@@ -1,0 +1,1 @@
+mtd,name,offset_hex,size_hex,erase_size_hex,read_only,filesystem_or_format,sha256,contains_unique_data,notes

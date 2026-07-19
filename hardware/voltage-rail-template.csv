@@ -1,0 +1,1 @@
+rail_id,test_point,regulator_or_inductor,power_off_ohms_to_gnd,startup_voltage,steady_voltage,ripple_mv_pp,startup_delay_ms,suspected_consumers,confidence,evidence_file

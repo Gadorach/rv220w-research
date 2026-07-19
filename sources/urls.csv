@@ -1,0 +1,20 @@
+title,url,purpose,authority
+Cisco open-source notice,https://device.report/m/f6723f558228d9192b556080c69f59b23f7f2aa6f3e62239ceddb34092fcd5e7.pdf,Open Source Used In RV220W v1.0.3.x; contains package/version inventory and source-request reference,secondary mirror of Cisco document
+Cisco RV220W retirement page,https://www.cisco.com/c/fr_ca/obsolete/routers/cisco-rv220w-wireless-network-security-firewall.html,Official end-of-sale/end-of-support dates,official
+Cisco 1.0.6.6 release-note reference,https://www.cisco.com/c/dam/en/us/td/docs/routers/csbr/rv220w/release/notes/rv220w-1-0-6-6-rn.pdf,Firmware release notes referenced by Cisco Community,official URL; availability may vary
+Cavium CN50XX product brief,https://lafibre.info/images/doc/200710_Cavium_Networks_Octeon_Plus_CN5000F.pdf,CN50XX feature summary,public mirror
+CN50XX Hardware Reference Manual mirror,https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/hactive/CN50XX-HRM-V0.99E.pdf,"Chip-level register, package, BootBus, GPIO and interface documentation",public archive mirror
+Broadcom BCM53115 product page,https://www.broadcom.com/products/ethernet-connectivity/switching/roboswitch/bcm53115,Official overview,official
+Broadcom BCM53115 product brief,https://docs.broadcom.com/docs/12381552,Official product brief,official
+BCM53115S data sheet,https://www.mouser.com/datasheet/2/678/AVGO_S_A0007196089_1-2574662.pdf,Detailed switch information,distributor mirror
+Linux B53 DSA documentation,https://docs.kernel.org/networking/dsa/b53.html,Mainline support and 531x5 managed-mode notes,official
+Linux OCTEON boot info,https://github.com/torvalds/linux/blob/master/arch/mips/include/asm/octeon/cvmx-bootinfo.h,Boot handoff structure,upstream source
+Linux OCTEON platform tree,https://github.com/torvalds/linux/tree/master/arch/mips/cavium-octeon,Current upstream platform code,upstream source
+OpenWrt Octeon target,https://github.com/openwrt/openwrt/tree/main/target/linux/octeon,Current OpenWrt target reference,upstream source
+Macronix MX29GL256E data sheet index,https://www.alldatasheet.com/datasheet-pdf/pdf/934283/MCNIX/MX29GL256EHT2I-90Q.html,Parallel NOR geometry and command set,data-sheet mirror
+Etron EM68B16CWQ data sheet index,https://www.alldatasheet.com/view_datasheet.jsp?Searchword=EM68B16CWQD-25H,DDR2 geometry,data-sheet mirror
+TI SN74LVC373A data sheet,https://www.ti.com/lit/ds/scas295t/scas295t.pdf,Candidate U3 latch,official
+ICS840-125 data sheet index,https://www.alldatasheet.com/datasheet-pdf/pdf/133728/ICST/ICS840-125.html,Candidate U11 clock device,data-sheet mirror
+AME8809 data sheet,https://www.ame.com.tw/datasheet/12-AME8806%208809%208842_112408_H.02.pdf,Candidate U23 LDO,manufacturer
+Independent RV220W inventory,https://deviwiki.com/wiki/Cisco_RV220W,Board component and header inventory,community
+Independent teardown/review,https://www.smallnetbuilder.com/wireless/wireless-reviews/cisco-rv220w-wireless-network-security-firewall-reviewed/,Board hardware summary,review
