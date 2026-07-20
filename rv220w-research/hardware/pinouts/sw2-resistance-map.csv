@@ -1,0 +1,3 @@
+pad_group,pad_count,resistance_to_ground,candidate_role,confidence,notes
+A,2,0 ohm,GND,confirmed,"Two pads form the grounded side of an unpopulated four-leg tactile-switch footprint"
+B,2,16 kohm,ACTIVE_LOW_CONTROL,medium,"Likely one common signal duplicated across two pads; exact function may be reset, factory reset, boot mode, WPS, or manufacturing input"

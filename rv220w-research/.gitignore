@@ -1,0 +1,22 @@
+# Local configuration and build outputs
+openwrt/config/toolkit.env.fish
+openwrt/work/
+work/
+build/
+artifacts/
+*.tmp
+*.log
+__pycache__/
+.pytest_cache/
+
+# Large archival payloads are distributed separately from the core Git bundle
+firmware/images/*.bin
+firmware/images/*.img
+firmware/partitions/*.bin
+firmware/derived/*.bin
+firmware/derived/*.elf
+firmware/filesystems/rootfs/
+firmware/filesystems/data-jffs2/
+evidence/photos/original/
+evidence/photos/stitched/
+evidence/photos/annotated/

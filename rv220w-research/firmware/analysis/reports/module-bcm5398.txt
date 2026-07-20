@@ -1,0 +1,215 @@
+FILE: lib/modules/swdrv/bcm5398.ko
+/mnt/data/rv220w-analysis-v0.9.0/extracted/rootfs/lib/modules/swdrv/bcm5398.ko: ELF 64-bit MSB relocatable, MIPS, MIPS64 rel2 version 1 (SYSV), not stripped
+
+ELF Header:
+  Magic:   7f 45 4c 46 02 02 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, big endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           MIPS R3000
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          15624 (bytes into file)
+  Flags:                             0x808b0001, noreorder, octeon, mips64r2
+  Size of this header:               64 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           64 (bytes)
+  Number of section headers:         28
+  Section header string table index: 25
+
+
+Symbol table '.symtab' contains 58 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 .text
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 .exit.text
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 .init.text
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 .rodata
+     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    9 .rodata.str1.8
+     6: 0000000000000000     0 SECTION LOCAL  DEFAULT   15 __ksymtab_strings
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT   16 .data
+     8: 0000000000000000     0 SECTION LOCAL  DEFAULT   20 .bss
+     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 .MIPS.options
+    10: 0000000000000000     0 SECTION LOCAL  DEFAULT   10 __ksymtab
+    11: 0000000000000000     0 SECTION LOCAL  DEFAULT   12 .modinfo
+    12: 0000000000000000     0 SECTION LOCAL  DEFAULT   13 __param
+    13: 0000000000000000     0 SECTION LOCAL  DEFAULT   18 .gnu.linkonce.this_module
+    14: 0000000000000000     0 SECTION LOCAL  DEFAULT   21 .comment
+    15: 0000000000000000     0 SECTION LOCAL  DEFAULT   22 .pdr
+    16: 0000000000000000     0 SECTION LOCAL  DEFAULT   24 .mdebug.abi64
+    17: 0000000000000e38   136 FUNC    GLOBAL DEFAULT    2 wanportCheck
+    18: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND alloc_chrdev_region
+    19: 0000000000000098   152 FUNC    GLOBAL DEFAULT    2 bcm5398VlanEnable
+    20: 00000000000001a0    72 FUNC    GLOBAL DEFAULT    2 bcm5398PortEntrySet
+    21: 0000000000000000   768 OBJECT  GLOBAL DEFAULT   18 __this_module
+    22: 00000000000027f8   572 FUNC    GLOBAL DEFAULT    2 miiSwitchRegisterRead
+    23: 0000000000000618    88 FUNC    GLOBAL DEFAULT    2 bcm5398PortEntryGet
+    24: 00000000000025c0   568 FUNC    GLOBAL DEFAULT    2 miiSwitchRegisterWrite
+    25: 0000000000000000   132 FUNC    GLOBAL DEFAULT    4 cleanup_module
+    26: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND param_set_charp
+    27: 0000000000000000   936 FUNC    GLOBAL DEFAULT    6 init_module
+    28: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND mii_phy_read
+    29: 0000000000002ad8    80 FUNC    GLOBAL DEFAULT    2 miiSwitchRegisterRead32
+    30: 0000000000000530    88 FUNC    GLOBAL DEFAULT    2 bcm5398PortLinkStatusQuery
+    31: 0000000000000000   152 FUNC    GLOBAL DEFAULT    2 bcm5398VlanDisable
+    32: 0000000000000978   656 FUNC    GLOBAL DEFAULT    2 bcm5398VlanEntrySet
+    33: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND cdev_add
+    34: 0000000000002570    72 FUNC    GLOBAL DEFAULT    2 bcm5398CompatIoctl
+    35: 0000000000000130   112 FUNC    GLOBAL DEFAULT    2 bcm5398PortDefaultTagSet
+    36: 0000000000000670   212 FUNC    GLOBAL DEFAULT    2 bcm5398PortConfigGet
+    37: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND printk
+    38: 0000000000002a88    80 FUNC    GLOBAL DEFAULT    2 miiSwitchRegisterRead16
+    39: 0000000000000c08   556 FUNC    GLOBAL DEFAULT    2 bcm5398VlanEntryGet
+    40: 0000000000000470   192 FUNC    GLOBAL DEFAULT    2 bcm5398VlanNon8021QSet
+    41: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND param_get_charp
+    42: 00000000000001e8   644 FUNC    GLOBAL DEFAULT    2 configWanPort
+    43: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __copy_user
+    44: 0000000000000748   176 FUNC    GLOBAL DEFAULT    2 bcm5398PortStateSet
+    45: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND strcmp
+    46: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND jiffies
+    47: 0000000000000588   140 FUNC    GLOBAL DEFAULT    2 bcm5398PortDefaultTagGet
+    48: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND param_set_int
+    49: 0000000000000ec0  1352 FUNC    GLOBAL DEFAULT    2 bcm5398PortMirrorSet
+    50: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND unregister_chrdev_region
+    51: 0000000000001410  4444 FUNC    GLOBAL DEFAULT    2 bcm5398Ioctl
+    52: 0000000000002a38    80 FUNC    GLOBAL DEFAULT    2 miiSwitchRegisterRead8
+    53: 00000000000007f8   380 FUNC    GLOBAL DEFAULT    2 bcm5398PortConfigSet
+    54: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND param_get_int
+    55: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND mii_phy_write
+    56: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND cdev_init
+    57: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND cdev_del
+
+0-0C
+0E @
+` -<
+(-4B 
+ 0-<
+(-2f
+@(-<
+ (-<
+|BBC
+  -g
+4bS	
+r4bS
+  -g
+  -g
+  -<
+  -<
+n4bS
+  -<
+  -<
+  -g
+  -g
+  -g
+  -g
+  -$
+  -g
+  -g
+  -<
+  -g
+@0-<
+`0-$
+`0-$
+`0-$
+`0-$
+rb:2$
+rF:24
+@(-$
+miiSwitchRegisterWrite
+miiSwitchRegisterRead
+<6>using bcm switch %s
+bcm5398
+bcm5395
+<6>privlegedID %d wanporttNo: %d
+<6>ERROR#%d in alloc_chrdev_region
+<6>ERROR#%d in cdev_add
+bcm53115
+<3>Invalid IOCTL %#08x
+<3>ERROR: %s: Timeout at page %#0x addr %#0x value 0x%08x%08x
+<3>ERROR: %s: Timeout at page %#0x addr %#0x
+parm=wanportNo:
+port that has to be given for WAN
+parmtype=wanportNo:int
+parm=privlegedID:
+Vlan ID of wan port
+parmtype=privlegedID:int
+parm=bcmswitch:
+broadcom switch version
+parmtype=bcmswitch:charp
+depends=
+vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+miiSwitchRegisterWrite
+miiSwitchRegisterRead
+wanportNo
+privlegedID
+bcmswitch
+bcm5398
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+.symtab
+.strtab
+.shstrtab
+.MIPS.options
+.rela.text
+.rela.exit.text
+.rela.init.text
+.rodata
+.rodata.str1.8
+.rela__ksymtab
+.modinfo
+.rela__param
+__ksymtab_strings
+.rela.data
+.rela.gnu.linkonce.this_module
+.bss
+.comment
+.rela.pdr
+.mdebug.abi64
+wanportCheck
+alloc_chrdev_region
+bcm5398VlanEnable
+bcm5398PortEntrySet
+__this_module
+miiSwitchRegisterRead
+bcm5398PortEntryGet
+miiSwitchRegisterWrite
+cleanup_module
+param_set_charp
+init_module
+mii_phy_read
+miiSwitchRegisterRead32
+bcm5398PortLinkStatusQuery
+bcm5398VlanDisable
+bcm5398VlanEntrySet
+cdev_add
+bcm5398CompatIoctl
+bcm5398PortDefaultTagSet
+bcm5398PortConfigGet
+printk
+miiSwitchRegisterRead16
+bcm5398VlanEntryGet
+bcm5398VlanNon8021QSet
+param_get_charp
+configWanPort
+__copy_user
+bcm5398PortStateSet
+strcmp
+jiffies
+bcm5398PortDefaultTagGet
+param_set_int
+bcm5398PortMirrorSet
+unregister_chrdev_region
+bcm5398Ioctl
+miiSwitchRegisterRead8
+bcm5398PortConfigSet
+param_get_int
+mii_phy_write
+cdev_init
+cdev_del

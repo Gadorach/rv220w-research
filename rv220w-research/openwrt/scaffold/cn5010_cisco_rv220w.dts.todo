@@ -1,0 +1,22 @@
+// Documentation scaffold only; intentionally not installed by the build scripts.
+// Do not promote this to a boot DTB until runtime evidence has established the
+// Octeon interface numbers, BootBus timings, GPIOs, MAC source and BCM53115 CPU
+// port wiring.
+/dts-v1/;
+
+/ {
+    #address-cells = <2>;
+    #size-cells = <2>;
+
+    model = "Cisco RV220W";
+    compatible = "cisco,rv220w", "cavium,octeon-5010";
+
+    chosen {
+        bootargs = "console=ttyS0,115200";
+    };
+
+    memory@700000 {
+        device_type = "memory";
+        reg = <0x0 0x00700000 0x0 0x07800000>;
+    };
+};

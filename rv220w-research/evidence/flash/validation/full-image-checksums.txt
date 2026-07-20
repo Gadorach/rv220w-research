@@ -1,0 +1,3 @@
+rv220w-flash-32MiB-read1.bin  size=33554432  crc32=ce96f3e0  sha256=03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5
+rv220w-flash-32MiB-read2.bin  size=33554432  crc32=ce96f3e0  sha256=03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5
+cmp_result=identical

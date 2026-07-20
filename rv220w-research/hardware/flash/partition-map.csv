@@ -1,0 +1,9 @@
+name,offset,size,end,linux_visible,notes
+boot-stub,0x00000000,0x00030000,0x00030000,yes,"pre-U-Boot stage; first three 128 KiB sectors"
+u-boot,0x00030000,0x00050000,0x00080000,yes,"U-Boot proper; protected sectors at boot"
+kernel,0x00080000,0x00600000,0x00680000,yes,"512-byte vendor header, ELF64 kernel, padding"
+rootfs,0x00680000,0x01000000,0x01680000,yes,"big-endian SquashFS 3.0"
+data,0x01680000,0x00100000,0x01780000,yes,"big-endian JFFS2; device-sensitive configuration/logs/TLS material"
+linux-named-bootload-env,0x01780000,0x00020000,0x017a0000,yes,"erased in captured unit; not the actual U-Boot env_addr"
+unmapped-vendor-tail,0x017a0000,0x00840000,0x01fe0000,no,"erased in captured unit"
+actual-u-boot-environment,0x01fe0000,0x00020000,0x02000000,no,"env_addr=0xbfbe0000; bad CRC so compiled defaults used; final 16 bytes non-FF"

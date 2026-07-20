@@ -1,0 +1,5 @@
+survey_row_from_refdes_end,JP1_physical_pin,JP1_resistance_to_ground,JP1_confirmed_role,JP2_resistance_to_ground,cross_header_relationship,notes
+1,4,"0 ohm",GND,"0 ohm",common ground,"The original worksheet began at the refdes end; this is physical JP1 pin 4"
+2,3,"approximately 600 kohm",RX,"approximately 600 kohm","approximately 1.2 Mohm between independent nodes","JP2 physical numbering not yet promoted"
+3,2,"approximately 8 kohm",TX,"approximately 8 kohm","approximately 16 kohm between independent nodes","JP2 physical numbering not yet promoted"
+4,1,"approximately 346 ohm",VCC_OR_VREF,"approximately 346 ohm",probable common rail,"Physical JP1 pin 1 is square and furthest from refdes; leave adapter VCC disconnected"

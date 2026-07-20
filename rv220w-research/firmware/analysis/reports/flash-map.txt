@@ -1,0 +1,22 @@
+Cisco RV220W 32 MiB NOR flash map
+
+Full image SHA-256: 03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5
+Full image CRC32:   ce96f3e0
+
+Offset range                 Size       Role
+---------------------------  ---------  -----------------------------------------------
+0x00000000-0x0002ffff       0x30000    boot stub / stage-1
+0x00030000-0x0007ffff       0x50000    U-Boot proper
+0x00080000-0x0067ffff       0x600000   kernel partition (vendor header + ELF + padding)
+0x00680000-0x0167ffff       0x1000000  SquashFS 3.0 big-endian rootfs
+0x01680000-0x0177ffff       0x100000   JFFS2 big-endian data/config
+0x01780000-0x0179ffff       0x20000    Linux-named bootload-env (erased)
+0x017a0000-0x01fdffff       0x840000   unmapped/erased vendor tail
+0x01fe0000-0x01ffffff       0x20000    actual U-Boot env sector (bad CRC/default env)
+
+Derived objects:
+- Complete Linux ELF: flash 0x00080200, size 0x573160
+- Recovered stock .img: flash 0x00080000, size 0x1528080
+- Firmware trailer magic: flash 0x015a8000
+
+WARNING: 03-data.jffs2-be.bin and its extracted tree contain device-specific TLS key material and logs. Treat as sensitive.

@@ -1,0 +1,11 @@
+{
+  "linux_named_env_all_ff": true,
+  "unmapped_tail_size": 8650752,
+  "unmapped_tail_non_ff_bytes": 0,
+  "actual_env_offset": "0x01fe0000",
+  "actual_env_size": "0x20000",
+  "actual_env_non_ff_bytes": 16,
+  "last_16_flash_bytes_hex": "00 00 c0 7f 10 00 90 f7 65 52 63 4f 6d 4d 00 00",
+  "last_16_flash_bytes_ascii": "........eRcOmM..",
+  "u_boot_bad_crc_observed": true
+}

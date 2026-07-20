@@ -1,0 +1,5 @@
+header,geometry,hypothesis,pin1_marker,logic_voltage,status,warning
+J2,2x7 test pads,high-confidence standard MIPS14 EJTAG candidate,square/boxed upper-left likely pin 1,unknown,resistance topology mapped; active signals unconfirmed,Do not attach adapter until powered VREF and signal assignments are confirmed
+JP1,1x4 through holes,confirmed primary UART,"square pad; furthest from JP1 refdes",unknown,"pin 1 VCC/VREF (NC); pin 2 target TX to adapter RX; pin 3 target RX to adapter TX; pin 4 GND; 115200 8N1",USB-UART VCC must remain disconnected
+JP2,1x4 through holes,independent secondary UART or manufacturing interface candidate,physical numbering not yet promoted,unknown,"two signal nets are separate from JP1; powered characterization pending",Probe passively; USB-UART VCC must remain disconnected
+SW2,4-pad unpopulated tactile-switch footprint,active-low control input; reset/recovery/boot-mode candidate,n/a,unknown,resistance mapped; not identified by populated hardware-reset observation,Do not hard-short until powered signal voltage and behavior are observed

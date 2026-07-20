@@ -1,0 +1,86 @@
+FILE: lib/modules/swdrv/mii.ko
+/mnt/data/rv220w-analysis-v0.9.0/extracted/rootfs/lib/modules/swdrv/mii.ko: ELF 64-bit MSB relocatable, MIPS, MIPS64 rel2 version 1 (SYSV), not stripped
+
+ELF Header:
+  Magic:   7f 45 4c 46 02 02 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, big endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           MIPS R3000
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          2136 (bytes into file)
+  Flags:                             0x808b0001, noreorder, octeon, mips64r2
+  Size of this header:               64 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           64 (bytes)
+  Number of section headers:         24
+  Section header string table index: 21
+
+
+Symbol table '.symtab' contains 23 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 .text
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 .exit.text
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 .init.text
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 .rodata.str1.8
+     5: 0000000000000000     0 SECTION LOCAL  DEFAULT   11 __ksymtab_strings
+     6: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 .MIPS.options
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    9 __ksymtab
+     8: 0000000000000000     0 SECTION LOCAL  DEFAULT   12 .modinfo
+     9: 0000000000000000     0 SECTION LOCAL  DEFAULT   13 .data
+    10: 0000000000000000     0 SECTION LOCAL  DEFAULT   14 .gnu.linkonce.this_module
+    11: 0000000000000000     0 SECTION LOCAL  DEFAULT   16 .bss
+    12: 0000000000000000     0 SECTION LOCAL  DEFAULT   17 .comment
+    13: 0000000000000000     0 SECTION LOCAL  DEFAULT   18 .pdr
+    14: 0000000000000000     0 SECTION LOCAL  DEFAULT   20 .mdebug.abi64
+    15: 0000000000000000   768 OBJECT  GLOBAL DEFAULT   14 __this_module
+    16: 0000000000000000    56 FUNC    GLOBAL DEFAULT    4 cleanup_module
+    17: 0000000000000000    80 FUNC    GLOBAL DEFAULT    6 init_module
+    18: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND local_bh_enable
+    19: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND local_bh_disable
+    20: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND printk
+    21: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND cvm_oct_mdio_write
+    22: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND TF1_cvm_oct_mdio_read
+
+ 0-<
+@8-<
+<6>Unloading mii
+<6>Loading mii
+mii_phy_write
+mii_phy_read
+depends=cavium-ethernet
+vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+.symtab
+.strtab
+.shstrtab
+.MIPS.options
+.rela.text
+.rela.exit.text
+.rela.init.text
+.rodata.str1.8
+.rela__ksymtab
+__ksymtab_strings
+.modinfo
+.data
+.rela.gnu.linkonce.this_module
+.bss
+.comment
+.rela.pdr
+.mdebug.abi64
+__this_module
+cleanup_module
+init_module
+local_bh_enable
+local_bh_disable
+printk
+cvm_oct_mdio_write
+TF1_cvm_oct_mdio_read

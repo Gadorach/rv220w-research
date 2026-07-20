@@ -1,0 +1,6 @@
+#!/bin/sh
+# Keep the initial image serial-first and avoid assuming a physical port map.
+uci -q set system.@system[0].hostname='rv220w-validation'
+uci -q commit system
+logger -t rv220w 'RAM-validation image: no persistent-flash workflow enabled'
+exit 0

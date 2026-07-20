@@ -1,0 +1,44 @@
+[
+  {
+    "path": "tmp",
+    "type": "dir",
+    "size": 140,
+    "mode": "0o755",
+    "sha256": ""
+  },
+  {
+    "path": "tmp/bonjourInterfaceList",
+    "type": "file",
+    "size": 5,
+    "mode": "0o644",
+    "sha256": "32371bed9cece3656b62e4bb71abc103c8c2b458831ff508153f665ee5ef425e"
+  },
+  {
+    "path": "tmp/factoryDefault",
+    "type": "file",
+    "size": 2,
+    "mode": "0o644",
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+  },
+  {
+    "path": "tmp/https.crt",
+    "type": "file",
+    "size": 794,
+    "mode": "0o644",
+    "sha256": "08868152f28e8e3e7dd5f7f129b9b40e36db47780273042071d259ed72b835d0"
+  },
+  {
+    "path": "tmp/https.key",
+    "type": "file",
+    "size": 887,
+    "mode": "0o644",
+    "sha256": "e792e821c8462255d0dfdb89be68b639eb8dd1c27e9ab49219509387a095b124"
+  },
+  {
+    "path": "tmp/logs.ascii",
+    "type": "file",
+    "size": 60827,
+    "mode": "0o644",
+    "sha256": "6a6abc14d8cd3c1596145c2c404dc03f269b50ce6feea894010068e5accc0284"
+  }
+]

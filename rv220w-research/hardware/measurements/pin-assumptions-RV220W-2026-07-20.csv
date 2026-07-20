@@ -1,0 +1,24 @@
+Tested from GND,,,Assumed Links,
+J2 – 1,J2 – 2,,J2 – 1,J2 – 2
+975 ohm,gnd,,,gnd
+1.314K ohm,gnd,,,gnd
+OL,gnd,,,gnd
+1.315k ohm,gnd,,,gnd
+1.325k ohm,gnd,,,gnd
+4.979k ohm,OL,,,
+OL,346ohm,,,vcc
+,,,,
+,,,,
+JP2,JP1,,JP2,JP1
+gnd,gnd,,gnd,gnd
+600k,600k,,rx2,rx1
+8k,8k,,tx2,tx1
+346ohm,346ohm,,vcc,vcc
+,,,,
+,,,"Pin names denote 0ohm link between named pins, even if they are not the same functions as assumed",
+,,,,
+,,,,
+,,,,
+SW2,unpopulted switch,,SW2,unpopulted switch
+gnd,gnd,,gnd,gnd
+16k,16k,,reset,reset

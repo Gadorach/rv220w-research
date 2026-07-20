@@ -1,0 +1,22 @@
+{
+  "header_flash_offset": "0x00080000",
+  "header_size": "0x200",
+  "field_0x04": "0x00011d7a",
+  "field_0x08_unknown": "0xc3e6e6ab",
+  "header_used_length_field_0x0c": 148,
+  "image_size_field_0x10": 22184064,
+  "image_size_hex": "0x1528080",
+  "additive_byte_checksum_field_0x14": "0x9ca9c3e0",
+  "additive_byte_checksum_recomputed_with_field_zero": "0x9ca9c3e0",
+  "checksum_field_matches": true,
+  "field_0x18": 1,
+  "firmware_version": "1.0.4.17",
+  "hardware_version": "1.0",
+  "image_family": "RV220W-Firmware",
+  "build_time": "Thu Jul 12 12:04:51 2012",
+  "image_name": "RV220W-Firmware-1.0.4.17.img",
+  "trailer_magic_flash_offset": "0x015a8000",
+  "trailer_magic": "FWCHKADDISABABA\\n",
+  "image_crc32": "1472ab27",
+  "image_sha256": "46d79f3c6a6e15c57882f9e3c11b86b44cb1585f5e087def39ec7b350b95bb83"
+}

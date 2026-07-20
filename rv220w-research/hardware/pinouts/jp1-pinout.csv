@@ -1,0 +1,5 @@
+physical_pin,pad_or_position,confirmed_target_role,usb_uart_connection,resistance_to_ground,confidence,notes
+1,"square pad; furthest from JP1 refdes",VCC_OR_VREF,NC,"approximately 346 ohm",confirmed rail position; powered voltage not yet recorded,"Never connect adapter VCC"
+2,"round pad",TX,adapter_RX,"approximately 8 kohm",confirmed,"Produced boot/U-Boot output"
+3,"round pad",RX,adapter_TX,"approximately 600 kohm",confirmed,"Accepted Ctrl-C and interactive commands"
+4,"round pad; nearest JP1 refdes",GND,adapter_GND,"0 ohm",confirmed,"Common ground"

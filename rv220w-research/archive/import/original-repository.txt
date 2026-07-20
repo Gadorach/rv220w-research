@@ -1,0 +1,5 @@
+Imported from: rv220w-research(1).7z
+Original root: rv220w-research/
+Original Git commit: b95c6f6eed0b22a4c98d0ff166a2b19284e760d2
+Original repository had one commit plus a large uncommitted working tree assembled from chat artifacts.
+Normalization removed nested release archives, duplicate scripts, stale apply notes, and broken references.

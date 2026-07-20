@@ -1,0 +1,115 @@
+ELF Header:
+  Magic:   7f 45 4c 46 02 02 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, big endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           MIPS R3000
+  Version:                           0x1
+  Entry point address:               0xffffffff804b0000
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          5712160 (bytes into file)
+  Flags:                             0x808b0001, noreorder, octeon, mips64r2
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         1
+  Size of section headers:           64 (bytes)
+  Number of section headers:         33
+  Section header string table index: 32
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .text             PROGBITS         ffffffff80100000  00004000
+       000000000030de48  0000000000000000  AX       0     0     128
+  [ 2] __ex_table        PROGBITS         ffffffff8040de50  00311e50
+       0000000000005ea0  0000000000000000   A       0     0     8
+  [ 3] __dbe_table       PROGBITS         ffffffff80413cf0  00317cf0
+       0000000000000000  0000000000000000   A       0     0     1
+  [ 4] .rodata           PROGBITS         ffffffff80414000  00318000
+       0000000000048b48  0000000000000000   A       0     0     16
+  [ 5] .pci_fixup        PROGBITS         ffffffff8045cb48  00360b48
+       0000000000000b20  0000000000000000   A       0     0     8
+  [ 6] .rio_route        PROGBITS         ffffffff8045d668  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [ 7] __ksymtab         PROGBITS         ffffffff8045d668  00361668
+       0000000000008ea0  0000000000000000   A       0     0     8
+  [ 8] __ksymtab_gpl     PROGBITS         ffffffff80466508  0036a508
+       0000000000002580  0000000000000000   A       0     0     8
+  [ 9] __ksymtab_unused  PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [10] __ksymtab_un[...] PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [11] __ksymtab_gp[...] PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [12] __kcrctab         PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [13] __kcrctab_gpl     PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [14] __kcrctab_unused  PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [15] __kcrctab_un[...] PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [16] __kcrctab_gp[...] PROGBITS         ffffffff80468a88  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [17] __ksymtab_strings PROGBITS         ffffffff80468a88  0036ca88
+       000000000000eba8  0000000000000000   A       0     0     8
+  [18] __param           PROGBITS         ffffffff80477630  0037b630
+       00000000000006e0  0000000000000000   A       0     0     8
+  [19] .data             PROGBITS         ffffffff80478000  0037c000
+       000000000002fc40  0000000000000000  WA       0     0     16384
+  [20] .data.cachel[...] PROGBITS         ffffffff804a8000  003ac000
+       0000000000007280  0000000000000000  WA       0     0     128
+  [21] .init.text        PROGBITS         ffffffff804b0000  003b4000
+       0000000000031210  0000000000000000  AX       0     0     32
+  [22] .init.data        PROGBITS         ffffffff804e1210  003e5210
+       0000000000003708  0000000000000000  WA       0     0     8
+  [23] .init.setup       PROGBITS         ffffffff804e4920  003e8920
+       00000000000005b8  0000000000000000  WA       0     0     8
+  [24] .initcall.init    PROGBITS         ffffffff804e4ed8  003e8ed8
+       00000000000006d8  0000000000000000  WA       0     0     8
+  [25] .con_initcal[...] PROGBITS         ffffffff804e55b0  003e95b0
+       0000000000000010  0000000000000000  WA       0     0     8
+  [26] .security_in[...] PROGBITS         ffffffff804e55c0  00572774
+       0000000000000000  0000000000000000   W       0     0     1
+  [27] .exit.text        PROGBITS         ffffffff804e55c0  003e95c0
+       00000000000030c0  0000000000000000  AX       0     0     8
+  [28] .init.ramfs       PROGBITS         ffffffff804e9000  003ed000
+       0000000000185774  0000000000000000   A       0     0     1
+  [29] .sbss             NOBITS           ffffffff8066f000  00572774
+       0000000000000000  0000000000000000 WAp       0     0     8
+  [30] .bss              NOBITS           ffffffff80670000  00572774
+       000000000003aef0  0000000000000000  WA       0     0     8192
+  [31] .cvmx_shared_bss  NOBITS           ffffffff806aaef0  00572774
+       0000000000000310  0000000000000000  WA       0     0     8
+  [32] .shstrtab         STRTAB           0000000000000000  00572774
+       00000000000001a7  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), p (processor specific)
+
+There are no section groups in this file.
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  LOAD           0x0000000000004000 0xffffffff80100000 0xffffffff80100000
+                 0x000000000056e774 0x00000000005ab200  RWE    0x4000
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .text __ex_table __dbe_table .rodata .pci_fixup __ksymtab __ksymtab_gpl __ksymtab_strings __param .data .data.cacheline_aligned .init.text .init.data .init.setup .initcall.init .con_initcall.init .exit.text .init.ramfs .sbss .bss .cvmx_shared_bss 
+
+There is no dynamic section in this file.
+
+There are no relocations in this file.
+
+The decoding of unwind sections for machine type MIPS R3000 is not currently supported.
+
+No version information found in this file.

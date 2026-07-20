@@ -1,4 +1,0 @@
-header,geometry,hypothesis,pin1_marker,logic_voltage,status,warning
-J2,2x7 test pads,probable MIPS EJTAG,square/boxed upper-left likely pin 1,unknown,unmapped,Do not attach adapter until GND/VREF/TCK/TMS/TDI/TDO/reset are confirmed
-JP1,1x4 through holes,UART or manufacturing header,square lower pad likely pin 1,unknown,unmapped,Probe passively; USB-UART VCC must remain disconnected
-JP2,1x4 through holes,UART or manufacturing header,square lower pad likely pin 1,unknown,unmapped,Probe passively; USB-UART VCC must remain disconnected

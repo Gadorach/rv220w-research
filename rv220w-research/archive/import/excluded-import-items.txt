@@ -1,0 +1,9 @@
+Items deliberately not copied into the normalized tree:
+
+- rv220w-research.zip — nested duplicate release archive.
+- evidence/dumps/*.zip and *.tar.* — unpacked into canonical firmware directories.
+- promotion-toolkit/scripts/host/dump_uboot_flash_uart.py — byte-identical duplicate of canonical UART tool.
+- promotion-toolkit/scripts/host/extract_jffs2_be.py — byte-identical duplicate of canonical JFFS2 tool.
+- evidence/photos/public/board-overview-redacted.jpg — obsolete redacted derivative; unredacted evidence retained.
+- APPLY.md / APPLY-README.md — obsolete patch-install notes.
+- .github issue templates deleted in the imported working tree — not reconstructed.

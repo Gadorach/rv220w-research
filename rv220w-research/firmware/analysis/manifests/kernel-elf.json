@@ -1,0 +1,20 @@
+{
+  "flash_offset": "0x00080200",
+  "size": 5714272,
+  "size_hex": "0x573160",
+  "class": "ELF64",
+  "byte_order": "big-endian",
+  "type": 2,
+  "machine": 8,
+  "entry": "0xffffffff804b0000",
+  "program_header_offset": 64,
+  "program_header_entry_size": 56,
+  "program_header_count": 1,
+  "section_header_offset": 5712160,
+  "section_header_entry_size": 64,
+  "section_header_count": 33,
+  "section_name_index": 32,
+  "flags": "0x808b0001",
+  "crc32": "a6c93616",
+  "sha256": "b75746a2d1a856edd4aa6f24dccf72e7afe54ed9c2f2b530d826f1e05b4a29c8"
+}

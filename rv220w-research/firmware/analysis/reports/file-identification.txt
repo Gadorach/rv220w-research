@@ -1,0 +1,14 @@
+/mnt/data/rv220w-flash-32MiB-read1(1).bin:                                             Targa image data - Map 65536 x 65536 x 16 +16 +15617 "\002\020"
+/mnt/data/rv220w-analysis-v0.9.0/partitions/00-bootloader-combined.bin:                Targa image data - Map 65536 x 65536 x 16 +16 +15617 "\002\020"
+/mnt/data/rv220w-analysis-v0.9.0/partitions/00a-boot-stub.bin:                         Targa image data - Map 65536 x 65536 x 16 +16 +15617 "\002\020"
+/mnt/data/rv220w-analysis-v0.9.0/partitions/00b-u-boot.bin:                            data
+/mnt/data/rv220w-analysis-v0.9.0/partitions/01-kernel-partition.bin:                   data
+/mnt/data/rv220w-analysis-v0.9.0/partitions/01a-firmware-header.bin:                   data
+/mnt/data/rv220w-analysis-v0.9.0/partitions/01b-linux-kernel.elf:                      ELF 64-bit MSB executable, MIPS, MIPS64 rel2 version 1 (SYSV), statically linked, stripped
+/mnt/data/rv220w-analysis-v0.9.0/partitions/01c-kernel-boot-copy.bin:                  data
+/mnt/data/rv220w-analysis-v0.9.0/partitions/02-rootfs.squashfs3-be.bin:                Squashfs filesystem, big endian, version 3.0, uncompressed, 15891706 bytes, 4060 inodes, blocksize: 65536 bytes, created: Thu Jul 12 06:34:50 2012
+/mnt/data/rv220w-analysis-v0.9.0/partitions/03-data.jffs2-be.bin:                      Linux jffs2 filesystem data big endian
+/mnt/data/rv220w-analysis-v0.9.0/partitions/04-linux-named-bootload-env.bin:           ISO-8859 text, with very long lines (65536), with no line terminators
+/mnt/data/rv220w-analysis-v0.9.0/partitions/05-unmapped-vendor-tail.bin:               ISO-8859 text, with very long lines (65536), with no line terminators
+/mnt/data/rv220w-analysis-v0.9.0/partitions/06-u-boot-env-actual.bin:                  ISO-8859 text, with very long lines (65536), with no line terminators
+/mnt/data/rv220w-analysis-v0.9.0/partitions/07-RV220W-Firmware-1.0.4.17-recovered.img: data
