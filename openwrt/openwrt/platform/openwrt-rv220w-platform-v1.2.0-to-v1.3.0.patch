@@ -1,0 +1,53 @@
+diff --git a/target/linux/octeon/files/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts b/target/linux/octeon/files/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts
+--- a/target/linux/octeon/files/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts	2026-07-24 22:25:19.868886875 +0000
++++ b/target/linux/octeon/files/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts	2026-07-24 22:25:19.868886875 +0000
+@@ -2,9 +2,9 @@
+ /*
+  * Cisco RV220W conservative RAM-validation device tree.
+  *
+- * Only hardware established by U-Boot, stock modules, and the successful
+- * generic OpenWrt RAM boot is represented.  Linux switch and reset-button
+- * control remain disabled so the proven U-Boot configuration is retained.
++ * Only hardware established by U-Boot, stock modules, and successful
++ * OpenWrt RAM boots is represented. Linux switch and reset-button control
++ * remain disabled so the proven U-Boot configuration is retained.
+  */
+ 
+ /include/ "octeon_3xxx.dtsi"
+@@ -20,6 +20,8 @@
+ 	};
+ 
+ 	aliases {
++		/* Octeon early DT fixup scans uartN aliases to supply the I/O clock. */
++		uart0 = &uart0;
+ 		serial0 = &uart0;
+ 		pip = &pip;
+ 		smi0 = &smi0;
+@@ -89,10 +91,23 @@
+ };
+ 
+ /*
+- * Keep the DT BootBus description disabled for the first board-specific boot.
+- * The legacy Octeon phys_mapped_flash path preserves U-Boot timing and has
+- * already produced stable, byte-accurate reads of the 32 MiB x16 NOR.
++ * Populate only the CS0 CFI child. The Octeon flash driver reads the active
++ * BootBus CS0 hardware register established by U-Boot and derives the true
++ * 0x1dc00000 base, 32 MiB size, and x16 bank width from that register. The
++ * unrelated generic-board timing, display, and CompactFlash children are
++ * deleted so Linux cannot reconfigure or probe them.
+  */
+ &bootbus {
+-	status = "disabled";
++	status = "okay";
++
++	/delete-node/ cavium,cs-config@0;
++	/delete-node/ cavium,cs-config@4;
++	/delete-node/ cavium,cs-config@5;
++	/delete-node/ cavium,cs-config@6;
++	/delete-node/ led-display@4,0;
++	/delete-node/ compact-flash@5,0;
++
++	nor@0,0 {
++		status = "okay";
++	};
+ };

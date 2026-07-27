@@ -1,76 +1,53 @@
 # OpenWrt promotion plan
 
-## Principle
+## Completed
 
-All development begins as RAM-only boot. NOR remains unchanged until recovery, board support, and installation are independently proven.
+### Preservation and recovery baseline
 
-## P0 — preservation — complete
+- Two matching complete NOR captures.
+- Stock partitions, kernel, root filesystems, and environment preserved.
+- JP1 console and U-Boot interruption proven.
 
-- Two identical full-flash captures.
-- Bootloader, partitions, stock ELF, rootfs, and data extracted.
-- JP1 console confirmed.
+### Reproducible build and RAM boot
 
-## P1 — reproducible build environment
+- CachyOS/fish host workflow with Ubuntu 24.04 Distrobox.
+- Pinned OpenWrt v25.12.5 source baseline.
+- Automated build, artifact validation, TFTP service, serial interruption, and `bootoctlinux` launch.
+- Complete OpenWrt boot from RAM proven on hardware.
 
-- CachyOS host with fish, Podman, and Distrobox.
-- Ubuntu 24.04 build container.
-- Pinned OpenWrt, Linux, and reference repository revisions.
-- Build logs and source-lock manifest.
+### RV220W platform and wired networking
 
-## P1.5 — TFTP transport proof
+- RV220W device tree and board profile.
+- Read-only CFI NOR partition exposure.
+- Octeon `eth0`/`eth1` mapping.
+- BCM53115 at pseudo-PHY `0x1e`.
+- LAN DSA path through CPU port 8.
+- WAN DSA path through CPU port 5.
+- All five RJ45 ports operational.
+- Full wired-router `rj45-full` policy in RAM.
 
-TFTP the recovered stock ELF into RAM and boot it using `bootoctlinux`. This separates network transport and physical-port issues from OpenWrt kernel issues.
+## Current boundary
 
-## P2 — generic Octeon initramfs
+The project is still a RAM-only experimental firmware. No persistent installation has been attempted, and no claim is made that flash installation or recovery after an interrupted write is safe.
 
-Build a minimal OpenWrt Octeon ELF with serial console, BusyBox, proc/sysfs/devtmpfs, and no persistent storage. Success is a stable shell over JP1.
+## Next gates
 
-## P3 — RV220W board support
+### P7 — board services
 
-Add board identity and a device tree or equivalent Octeon board description for:
+Map and promote status LEDs, reset input, and watchdog behavior. Destructive reset or factory-erase semantics must remain disabled until explicitly qualified.
 
-- CN5010 and 128 MiB RAM,
-- UART,
-- PCI/Mini PCI,
-- clocks and reset,
-- read-only BootBus NOR,
-- MAC-address source.
+### P8 — optional user interface and package budget
 
-## P4 — read-only NOR
+Evaluate LuCI only after recording the size and memory budget of the proven no-LuCI image. LuCI must remain optional so the minimal recovery/test image stays small.
 
-Expose the 32 MiB CFI device and verified partition map. Reject writes in the first bring-up configuration.
+### P9 — WLAN
 
-## P5 — native Ethernet
+Validate BCM4322 SPROM/calibration, choose `b43` firmware, and test radio behavior, or qualify a replacement Mini PCI card.
 
-Determine `octeth0/1/2` mapping, RGMII mode, MAC addresses, and whether any path can operate without external-switch configuration.
+### P10 — persistent layout design
 
-## P6 — BCM53115
+Design a recovery-preserving partition and image format. Keep the stock boot chain and actual final U-Boot environment sector untouched.
 
-Identify MDIO/pseudo-PHY address, CPU/IMP port, RGMII delays, VLAN defaults, and tag behavior. Establish one untagged forwarding path, then promote toward B53/DSA.
+### P11 — installation and recovery qualification
 
-## P7 — board services
-
-Map reset button, LEDs, watchdog, and any GPIO-controlled resets or power enables.
-
-## P8 — RAM-only SquashFS live root
-
-Embed a generated SquashFS inside an initramfs launcher, mount it read-only, add a tmpfs overlay, and `switch_root`. Reboot must discard all changes.
-
-## P9 — persistent layout
-
-Preserve at minimum:
-
-```text
-0x00000000–0x0007ffff  stock boot chain
-0x01fe0000–0x01ffffff  actual environment/footer
-```
-
-Use only the middle application area after RAM-only validation and recovery qualification.
-
-## P10 — installation/recovery qualification
-
-Test interrupted writes, bad images, serial recovery, full restoration, and repeated cold boots before calling a sysupgrade path safe.
-
-## P11 — WLAN
-
-Bring up PCI and wired routing first. Prefer an ath9k-compatible replacement Mini PCI card over reconstructing the old proprietary BCM4322 stack.
+Before any installer is offered, prove complete restoration, interrupted-write behavior, bad-image rejection, repeated cold boots, and recovery on more than one unit where possible.

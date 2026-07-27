@@ -1,0 +1,34 @@
+{
+  "input": "/mnt/data/rv220w-stage/rv220w-openwrt-build-environment-v1.3.2/promotion-toolkit/openwrt/reference/octeon_3xxx-v25.12.5.dtb",
+  "input_sha256": "7e8437557ac5ea20f5b50e01e37f0e8f7ee4233b78255894aa315510ee869a90",
+  "output": "/mnt/data/rv220w-stage/rv220w-openwrt-build-environment-v1.3.2/promotion-toolkit/openwrt/reference/cn5010_cisco_rv220w-reference.dtb",
+  "output_sha256": "c80e5d88bdb97c914388ec45cd6ad617c6a0c1ade5ec1a94105f438f275a6efe",
+  "output_size": 4095,
+  "model": "Cisco RV220W",
+  "compatible": [
+    "cisco,rv220w",
+    "cavium,octeon-3860"
+  ],
+  "usb": "disabled",
+  "dt_bootbus": "v1.3.0 arrangement restored; inherited nor@0,0 enabled as legacy Octeon phys_mapped_flash trigger; redundant generic probe accepted",
+  "switch": {
+    "compatible": "brcm,bcm53115",
+    "mdio_address": "0x1e",
+    "status": "disabled"
+  },
+  "reset": {
+    "gpio": 1,
+    "active_low": true,
+    "status": "disabled"
+  },
+  "ethernet": {
+    "interface": 0,
+    "ports": [
+      0,
+      1,
+      2
+    ],
+    "link_policy": "legacy Octeon board helper retained; no speculative fixed-link"
+  },
+  "validation": "FDT v17 serialized and parsed back successfully"
+}

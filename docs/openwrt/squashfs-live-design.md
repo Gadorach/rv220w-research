@@ -1,26 +1,22 @@
 # RAM-only SquashFS live design
 
-## Purpose
+The toolkit retains a `squashfs-live` mode that embeds a generated SquashFS root inside a small initramfs launcher, copies it into RAM, mounts it read-only, adds a tmpfs overlay, and switches root without touching NOR.
 
-Validate a SquashFS-based userspace without writing NOR and without requiring the modern kernel to understand the stock flash layout during the first boot.
+```fish
+cd openwrt
+./rv220w.fish build squashfs-live
+./rv220w.fish tftp-boot --profile squashfs-live --interface <host-interface> --configure-interface
+```
 
-## Boot sequence
+## Current qualification boundary
 
-1. U-Boot TFTP-loads a big-endian Octeon ELF.
-2. The kernel starts with a minimal initramfs.
-3. The initramfs copies the embedded SquashFS image into tmpfs.
-4. It loop-mounts the SquashFS read-only.
-5. It creates tmpfs-backed overlay upper/work directories.
-6. It mounts overlayfs and preserves the read-only lower tree as `/rom`.
-7. It uses `switch_root` into the live OpenWrt system.
+The proven complete wired profile is the `rj45-full` initramfs image. This document does not claim that a persistent SquashFS/sysupgrade layout has been tested on the onboard flash.
 
 ## Safety properties
 
-- No NOR root mount.
-- No persistent overlay.
-- Reboot discards all changes.
-- Failure returns to the initramfs emergency shell rather than writing storage.
+- no NOR root mount;
+- no persistent overlay;
+- reboot discards changes;
+- failed root transition returns to a RAM-resident recovery shell rather than writing storage.
 
-## Memory budget
-
-The board has 128 MiB installed and roughly 120 MiB available to the stock kernel. Keep the kernel, initramfs launcher, embedded SquashFS, copied SquashFS, tmpfs overlay, and runtime memory comfortably below that limit. Strip LuCI, WLAN, VPN suites, and nonessential packages from the first image.
+LuCI, WLAN, VPN suites, and other large packages should remain excluded from minimal RAM validation images until memory use is measured.

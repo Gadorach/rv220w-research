@@ -1,0 +1,155 @@
+#!/bin/sh
+# RV220W RAM-only discovery snapshot. This script performs reads only.
+set -u
+
+label=${1:-snapshot}
+label=$(printf '%s' "$label" | tr -c 'A-Za-z0-9._-' '_')
+stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || echo unknown-time)
+out="/tmp/rv220w-discovery-${label}-${stamp}.txt"
+
+# Preserve a clean stdout channel for the output pathname used by the host helper.
+exec 3>&1
+exec >"$out" 2>&1
+
+section() {
+    printf '\n=== %s ===\n' "$1"
+}
+
+read_text_property() {
+    path=$1
+    name=$2
+    [ -r "$path" ] || return 0
+    printf '%s=' "$name"
+    tr -d '\000' <"$path" 2>/dev/null || true
+    echo
+}
+
+echo 'RV220W discovery snapshot'
+echo "label=$label"
+echo "time=$stamp"
+echo 'policy=read-only; no flash or MDIO writes'
+
+section SYSTEM
+uname -a 2>/dev/null || true
+cat /etc/openwrt_release 2>/dev/null || true
+cat /etc/rv220w-build 2>/dev/null || true
+cat /proc/cmdline 2>/dev/null || true
+read_text_property /sys/firmware/devicetree/base/model model
+read_text_property /sys/firmware/devicetree/base/compatible compatible
+printf 'uptime='; cat /proc/uptime 2>/dev/null || true
+printf 'loadavg='; cat /proc/loadavg 2>/dev/null || true
+
+section COMMANDS
+for command_name in ip bridge ethtool tcpdump mdio mvls; do
+    if command -v "$command_name" >/dev/null 2>&1; then
+        printf '%s=' "$command_name"
+        command -v "$command_name"
+    else
+        printf '%s=(missing)\n' "$command_name"
+    fi
+done
+command -v ip >/dev/null 2>&1 && ip -Version 2>&1 || true
+command -v bridge >/dev/null 2>&1 && bridge -Version 2>&1 || true
+command -v ethtool >/dev/null 2>&1 && ethtool --version 2>&1 || true
+command -v tcpdump >/dev/null 2>&1 && tcpdump --version 2>&1 | head -4 || true
+# Listing MDIO buses is read-only. Do not add an object/data argument here.
+command -v mdio >/dev/null 2>&1 && mdio 2>&1 || true
+
+section INTERFACES
+ip -s -d link show 2>&1 || ip link show 2>&1 || true
+ip -details address show 2>&1 || ip address show 2>&1 || true
+ip route show table all 2>&1 || true
+ip neigh show 2>&1 || true
+
+for n in lo eth0 eth1 eth2 br-lan; do
+    [ -d "/sys/class/net/$n" ] || continue
+    echo
+    echo "--- $n sysfs ---"
+    for item in carrier operstate address mtu ifindex type; do
+        if [ -r "/sys/class/net/$n/$item" ]; then
+            printf '%s=' "$item"
+            cat "/sys/class/net/$n/$item"
+        fi
+    done
+    for item in rx_packets tx_packets rx_bytes tx_bytes rx_errors tx_errors rx_dropped tx_dropped multicast collisions; do
+        if [ -r "/sys/class/net/$n/statistics/$item" ]; then
+            printf '%s=' "$item"
+            cat "/sys/class/net/$n/statistics/$item"
+        fi
+    done
+    if [ -L "/sys/class/net/$n/phydev" ]; then
+        printf 'phydev='; readlink "/sys/class/net/$n/phydev" 2>/dev/null || true
+    else
+        echo 'phydev=(none)'
+    fi
+    echo "--- $n ethtool ---"
+    ethtool "$n" 2>&1 || true
+    ethtool -i "$n" 2>&1 || true
+    ethtool -k "$n" 2>&1 || true
+    ethtool -S "$n" 2>&1 || true
+done
+
+section BRIDGE
+bridge -d link show 2>&1 || true
+bridge -d fdb show 2>&1 || true
+bridge -d vlan show 2>&1 || true
+bridge -d mdb show 2>&1 || true
+
+section MDIO
+ls -la /sys/class/mdio_bus 2>/dev/null || true
+ls -la /sys/bus/mdio_bus/devices 2>/dev/null || true
+for d in /sys/bus/mdio_bus/devices/*; do
+    [ -e "$d" ] || continue
+    echo "device=$d"
+    ls -la "$d" 2>/dev/null || true
+    for f in modalias phy_id uevent; do
+        if [ -r "$d/$f" ]; then
+            echo "[$f]"
+            cat "$d/$f"
+        fi
+    done
+done
+
+section DSA_B53_AVAILABILITY
+lsmod 2>/dev/null || true
+for module in dsa_core b53_common b53_mdio tag_brcm mdio_netlink; do
+    if [ -d "/sys/module/$module" ]; then
+        echo "$module=loaded"
+    else
+        echo "$module=not-loaded"
+    fi
+done
+find /lib/modules -type f \( -name '*b53*.ko*' -o -name 'dsa_core.ko*' -o -name 'tag_brcm.ko*' -o -name '*mdio*netlink*.ko*' \) -print 2>/dev/null || true
+
+section MTD
+cat /proc/mtd 2>/dev/null || true
+for d in /sys/class/mtd/mtd*; do
+    [ -d "$d" ] || continue
+    echo "--- $d ---"
+    for f in name size erasesize writesize subpagesize numeraseregions flags; do
+        if [ -r "$d/$f" ]; then
+            printf '%s=' "$f"
+            cat "$d/$f"
+        fi
+    done
+done
+ls -l /dev/mtd* 2>/dev/null || true
+
+section DEVICE_TREE
+for node in \
+    /sys/firmware/devicetree/base/soc@0/bootbus@1180000000000 \
+    /sys/firmware/devicetree/base/soc@0/pip@11800a0000000 \
+    /sys/firmware/devicetree/base/soc@0/serial@1180000000800 \
+    /sys/firmware/devicetree/base/soc@0/mdio@1180000001800; do
+    [ -e "$node" ] || continue
+    echo "node=$node"
+    find "$node" -maxdepth 2 -type f -print 2>/dev/null | sort
+ done
+
+section RELEVANT_DMESG
+dmesg 2>/dev/null | grep -E 'octeon|ethernet|eth[0-9]|RGMII|MDIO|mdio|PHY|phy|B53|b53|BCM|bcm|53115|DSA|dsa|Bootbus|phys_mapped_flash|physmap|MTD|mtd|ttyS0|serial|fdt' || true
+
+section END
+echo "output=$out"
+printf '%s\n' "$out" >&3
+printf 'RV220W discovery snapshot: %s\n' "$out" >/dev/console 2>/dev/null || true

@@ -1,0 +1,86 @@
+#!/bin/sh
+# Normalize the standard OpenWrt DHCP and firewall policy around the RV220W
+# network section names.  Existing stock allow rules are preserved.
+
+find_section_by_option() {
+	config=$1
+	type=$2
+	option=$3
+	value=$4
+	uci -q show "$config" | sed -n "s/^\($config\.@$type\[[0-9][0-9]*\]\)\.$option='$value'$/\1/p" | head -n 1
+}
+
+# DHCP server on LAN; never serve DHCP on WAN.
+uci -q delete dhcp.lan
+uci set dhcp.lan='dhcp'
+uci set dhcp.lan.interface='lan'
+uci set dhcp.lan.start='100'
+uci set dhcp.lan.limit='150'
+uci set dhcp.lan.leasetime='12h'
+uci set dhcp.lan.dhcpv4='server'
+uci set dhcp.lan.dhcpv6='server'
+uci set dhcp.lan.ra='server'
+uci set dhcp.lan.ra_slaac='1'
+
+uci -q delete dhcp.wan
+uci set dhcp.wan='dhcp'
+uci set dhcp.wan.interface='wan'
+uci set dhcp.wan.ignore='1'
+uci commit dhcp
+
+# Reuse the normal OpenWrt firewall rule set, but make the zone binding and
+# forwarding policy deterministic for this board profile.
+defaults=$(uci -q show firewall | sed -n "s/^\(firewall\.@defaults\[[0-9][0-9]*\]\)=defaults$/\1/p" | head -n 1)
+if [ -z "$defaults" ]; then
+	defaults=$(uci add firewall defaults)
+	defaults="firewall.$defaults"
+fi
+uci set "$defaults.input=REJECT"
+uci set "$defaults.output=ACCEPT"
+uci set "$defaults.forward=REJECT"
+uci set "$defaults.synflood_protect=1"
+
+lan_zone=$(find_section_by_option firewall zone name lan)
+if [ -z "$lan_zone" ]; then
+	lan_zone=$(uci add firewall zone)
+	lan_zone="firewall.$lan_zone"
+	uci set "$lan_zone.name=lan"
+fi
+uci -q delete "$lan_zone.network"
+uci add_list "$lan_zone.network=lan"
+uci set "$lan_zone.input=ACCEPT"
+uci set "$lan_zone.output=ACCEPT"
+uci set "$lan_zone.forward=ACCEPT"
+
+wan_zone=$(find_section_by_option firewall zone name wan)
+if [ -z "$wan_zone" ]; then
+	wan_zone=$(uci add firewall zone)
+	wan_zone="firewall.$wan_zone"
+	uci set "$wan_zone.name=wan"
+fi
+uci -q delete "$wan_zone.network"
+uci add_list "$wan_zone.network=wan"
+uci add_list "$wan_zone.network=wan6"
+uci set "$wan_zone.input=REJECT"
+uci set "$wan_zone.output=ACCEPT"
+uci set "$wan_zone.forward=REJECT"
+uci set "$wan_zone.masq=1"
+uci set "$wan_zone.mtu_fix=1"
+
+forwarding=
+for candidate in $(uci -q show firewall | sed -n "s/^\(firewall\.@forwarding\[[0-9][0-9]*\]\)=forwarding$/\1/p"); do
+	[ "$(uci -q get "$candidate.src")" = lan ] || continue
+	[ "$(uci -q get "$candidate.dest")" = wan ] || continue
+	forwarding=$candidate
+	break
+done
+if [ -z "$forwarding" ]; then
+	forwarding=$(uci add firewall forwarding)
+	forwarding="firewall.$forwarding"
+	uci set "$forwarding.src=lan"
+	uci set "$forwarding.dest=wan"
+fi
+
+uci commit firewall
+logger -t rv220w 'full RJ45 services: LAN DHCP enabled; firewall4 zones lan/wan and LAN-to-WAN NAT forwarding enabled'
+exit 0

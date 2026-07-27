@@ -1,0 +1,126 @@
+#!/bin/sh
+# Assign RV220W DSA user ports to their hardware-wired CPU conduits.
+# Uses the standard DSA rtnetlink API; performs no raw switch or MDIO writes.
+set -u
+
+mode=${1:-apply}
+timeout=${RV220W_DSA_AFFINITY_TIMEOUT:-30}
+lock=/tmp/rv220w-dsa-affinity.lock
+status=/tmp/rv220w-dsa-affinity.status
+
+have_port() { [ -e "/sys/class/net/$1" ]; }
+
+decode_conduit() {
+	awk '
+		{
+			for (i = 1; i <= NF - 2; i++) {
+				if ($i == "dsa" &&
+				    ($(i + 1) == "conduit" || $(i + 1) == "master")) {
+					print $(i + 2)
+					exit
+				}
+			}
+			for (i = 1; i <= NF - 1; i++) {
+				if ($i == "conduit") {
+					print $(i + 1)
+					exit
+				}
+			}
+		}'
+}
+
+current_conduit() {
+	ip -d link show dev "$1" 2>/dev/null | decode_conduit
+}
+
+
+if [ "$mode" = --decode-link ]; then
+	decode_conduit
+	exit $?
+fi
+
+all_correct() {
+	[ "$(current_conduit wan)" = eth1 ] || return 1
+	for port in lan1 lan2 lan3 lan4; do
+		[ "$(current_conduit "$port")" = eth0 ] || return 1
+	done
+	return 0
+}
+
+wait_for_ports() {
+	left=$timeout
+	while [ "$left" -gt 0 ]; do
+		ready=1
+		for dev in eth0 eth1 wan lan1 lan2 lan3 lan4; do
+			have_port "$dev" || ready=0
+		done
+		[ "$ready" -eq 1 ] && return 0
+		sleep 1
+		left=$((left - 1))
+	done
+	return 1
+}
+
+set_conduit() {
+	port=$1
+	conduit=$2
+	was_up=0
+	ip link show dev "$port" 2>/dev/null | grep -qE '<([^>]*,)?UP(,|>)' && was_up=1
+
+	ip link set dev "$port" down 2>/dev/null || true
+	if ip link set dev "$port" type dsa master "$conduit" 2>/dev/null; then
+		:
+	elif ip link set dev "$port" type dsa conduit "$conduit" 2>/dev/null; then
+		:
+	else
+		echo "failed to assign $port to DSA conduit $conduit" >&2
+		return 1
+	fi
+
+	[ "$(current_conduit "$port")" = "$conduit" ] || {
+		echo "DSA conduit verification failed for $port: expected $conduit, got $(current_conduit "$port")" >&2
+		return 1
+	}
+	[ "$was_up" -eq 1 ] && ip link set dev "$port" up 2>/dev/null || true
+}
+
+if [ "$mode" = check ] || [ "$mode" = --check ]; then
+	all_correct
+	exit $?
+fi
+
+if ! mkdir "$lock" 2>/dev/null; then
+	# Another hotplug/init invocation is already applying the mapping.
+	exit 0
+fi
+trap 'rmdir "$lock" 2>/dev/null || true' EXIT INT TERM
+
+wait_for_ports || {
+	echo 'timed out waiting for eth0, eth1, wan and lan1-lan4' >&2
+	logger -t rv220w-dsa-affinity 'timed out waiting for dual-conduit DSA netdevs'
+	exit 1
+}
+
+if ! all_correct; then
+	# Port 5 is the numerically first CPU port, so DSA initially assigns all
+	# user ports to eth1. Move the proven LAN group before netifd raises it.
+	set_conduit wan eth1
+	for port in lan1 lan2 lan3 lan4; do
+		set_conduit "$port" eth0
+	done
+fi
+
+all_correct || exit 1
+{
+	echo 'status=ok'
+	echo 'wan=eth1'
+	echo 'lan1=eth0'
+	echo 'lan2=eth0'
+	echo 'lan3=eth0'
+	echo 'lan4=eth0'
+	for port in wan lan1 lan2 lan3 lan4; do
+		ip -d link show dev "$port" 2>/dev/null | head -n 2
+	done
+} > "$status"
+logger -t rv220w-dsa-affinity 'applied dual-conduit mapping: wan -> eth1; lan1-lan4 -> eth0'
+exit 0

@@ -1,13 +1,14 @@
 {
   "name": "rv220w-research",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "organized_from": "rv220w-research(1).7z",
-  "snapshot_date": "2026-07-20",
+  "snapshot_date": "2026-07-27",
   "product": "Cisco RV220W Wireless-N Network Security Firewall",
   "pcb_revision": "YK910A-1.6",
   "full_flash_size": 33554432,
   "full_flash_crc32": "ce96f3e0",
   "full_flash_sha256": "03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5",
   "stock_firmware": "1.0.4.17",
-  "status": "verified preservation baseline; OpenWrt RAM-boot promotion pending"
+  "status": "hardware-proven OpenWrt TFTP RAM boot with all five RJ45 ports operational; no LuCI, WLAN, or persistent flash attempt",
+  "openwrt_toolkit_version": "1.9.0"
 }

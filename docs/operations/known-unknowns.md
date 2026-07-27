@@ -2,32 +2,27 @@
 
 ## Boot and flash
 
-- Header fields at offsets `0x04` and `0x08`.
+- Meaning of firmware header fields at offsets `0x04` and `0x08`.
 - Meaning of the final 16 non-erased bytes in the actual environment sector.
 - Exact stage-1 boot-stub responsibilities.
-- Whether all stock image-validation paths use the same additive checksum.
+- A safe persistent OpenWrt partition, image, installer, and rollback design.
+- Interrupted-write and power-loss behavior for any future installer.
 
-## Debug and controls
+## Debug and board services
 
 - JP2 protocol and powered behavior.
-- J2 VREF voltage and active EJTAG confirmation.
-- Exact SW2 function.
-- Complete reset/watchdog topology.
+- Active confirmation of all J2 EJTAG signals.
+- Complete status-LED and GPIO map.
+- Safe Linux reset-button semantics.
+- Watchdog timeout, enable, and recovery behavior.
 
 ## Ethernet
 
-- Physical jack-to-Octeon interface mapping.
-- BCM53115 MDIO address, CPU port, RGMII delays, and tag mode.
-- U-Boot switch state required for TFTP.
-
-## Board services
-
-- Complete GPIO/LED map.
-- MAC-address storage and board identity source.
-- Power-enable/reset GPIOs for switch and Mini PCI.
+The front-panel topology, B53 address, CPU ports, RGMII timing, and five-port operation are now proven. Remaining work is primarily long-duration regression, tagged-WAN cases, performance characterization, and upstream-quality patch review.
 
 ## WLAN
 
+- Exact BCM4322 SPROM/calibration source and required firmware set.
 - Antenna-chain mapping.
-- Calibration/SPROM location.
-- Exact identity of the SiGe-marked front-end devices.
+- Practical `b43` stability and performance on this board.
+- Best electrically compatible replacement Mini PCI card, if replacement is preferred.

@@ -1,0 +1,458 @@
+#!/bin/sh
+# RV220W passive BCM53115/B53 topology snapshot.
+#
+# Safety model:
+#   - Clause 22 writes are restricted to pseudo-PHY 0x1e selector registers
+#     0x10 (page) and 0x11 (address/read command).
+#   - Data registers 0x18..0x1b are read only.
+#   - No switch data register, PHY control register, reset, DSA, VLAN/ARL,
+#     MIB-control, or flash write is performed.
+set -u
+
+label=${1:-topology}
+bus=${2:-8001180000001800}
+label=$(printf '%s' "$label" | tr -c 'A-Za-z0-9._-' '_')
+bus_label=$(printf '%s' "$bus" | tr -c 'A-Za-z0-9._-' '_')
+stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || echo unknown-time)
+out="/tmp/rv220w-b53-${label}-${bus_label}-${stamp}.txt"
+
+pseudo_phy=30
+reg_page=16
+reg_addr=17
+reg_data0=24
+reg_data1=25
+reg_data2=26
+reg_data3=27
+selector_saved=0
+initial_page=
+initial_addr=
+
+exec 3>&1
+exec >"$out" 2>&1
+
+section() {
+    printf '\n=== %s ===\n' "$1"
+}
+
+c22_read() {
+    mdio "$bus" phy "$pseudo_phy" raw "$1" 2>/dev/null | tail -n 1
+}
+
+# This is the only MDIO-write primitive in this script. Callers may use it
+# only for pseudo-PHY selector registers 0x10 and 0x11.
+selector_write() {
+    selector_reg=$1
+    selector_value=$2
+    case "$selector_reg" in
+        16|17) ;;
+        *)
+            echo "ERROR: refused non-selector MDIO write reg=$selector_reg" >&2
+            return 90
+            ;;
+    esac
+    mdio "$bus" phy "$pseudo_phy" raw "$selector_reg" "$selector_value" >/dev/null 2>&1
+}
+
+restore_selectors() {
+    [ "$selector_saved" -eq 1 ] || return 0
+    [ -n "$initial_page" ] && selector_write "$reg_page" "$initial_page" >/dev/null 2>&1 || true
+    if [ -n "$initial_addr" ]; then
+        initial_addr_num=$((initial_addr))
+        if [ $((initial_addr_num & 3)) -eq 0 ]; then
+            selector_write "$reg_addr" "$initial_addr" >/dev/null 2>&1 || true
+        fi
+    fi
+}
+trap 'restore_selectors' EXIT HUP INT TERM
+
+b53_select_read() {
+    page=$1
+    reg=$2
+    page_value=$(printf '0x%04x' $(((page & 255) << 8 | 1)))
+    addr_value=$(printf '0x%04x' $(((reg & 255) << 8 | 2)))
+
+    selector_write "$reg_page" "$page_value" || return 1
+    selector_write "$reg_addr" "$addr_value" || return 1
+
+    tries=0
+    while [ "$tries" -lt 20 ]; do
+        status=$(c22_read "$reg_addr") || return 1
+        case "$status" in
+            0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) ;;
+            *) return 1 ;;
+        esac
+        status_num=$((status))
+        [ $((status_num & 3)) -eq 0 ] && return 0
+        tries=$((tries + 1))
+        usleep 100 2>/dev/null || sleep 0.01
+    done
+    return 1
+}
+
+b53_read8() {
+    page=$1
+    reg=$2
+    if ! b53_select_read "$page" "$reg"; then
+        echo ERROR
+        return 1
+    fi
+    d0=$(c22_read "$reg_data0") || d0=
+    case "$d0" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+            printf '0x%02x\n' $((d0 & 255))
+            ;;
+        *)
+            echo ERROR
+                return 1
+            ;;
+    esac
+}
+
+b53_read16() {
+    page=$1
+    reg=$2
+    if ! b53_select_read "$page" "$reg"; then
+        echo ERROR
+        return 1
+    fi
+    d0=$(c22_read "$reg_data0") || d0=
+    case "$d0" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+            printf '0x%04x\n' $((d0 & 65535))
+            ;;
+        *)
+            echo ERROR
+                return 1
+            ;;
+    esac
+}
+
+b53_read32() {
+    page=$1
+    reg=$2
+    if ! b53_select_read "$page" "$reg"; then
+        echo ERROR
+        return 1
+    fi
+    d0=$(c22_read "$reg_data0") || d0=
+    d1=$(c22_read "$reg_data1") || d1=
+    case "$d0:$d1" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+            value=$(((d0 & 65535) | ((d1 & 65535) << 16)))
+            printf '0x%08x\n' "$value"
+            ;;
+        *)
+            echo ERROR
+                return 1
+            ;;
+    esac
+}
+
+b53_read48() {
+    page=$1
+    reg=$2
+    if ! b53_select_read "$page" "$reg"; then
+        echo ERROR
+        return 1
+    fi
+    d0=$(c22_read "$reg_data0") || d0=
+    d1=$(c22_read "$reg_data1") || d1=
+    d2=$(c22_read "$reg_data2") || d2=
+    case "$d0:$d1:$d2" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+            value=$(((d0 & 65535) | ((d1 & 65535) << 16) | ((d2 & 65535) << 32)))
+            printf '0x%012x\n' "$value"
+            ;;
+        *)
+            echo ERROR
+                return 1
+            ;;
+    esac
+}
+
+b53_read64_parts() {
+    page=$1
+    reg=$2
+    if ! b53_select_read "$page" "$reg"; then
+        return 1
+    fi
+    r64_d0=$(c22_read "$reg_data0") || r64_d0=
+    r64_d1=$(c22_read "$reg_data1") || r64_d1=
+    r64_d2=$(c22_read "$reg_data2") || r64_d2=
+    r64_d3=$(c22_read "$reg_data3") || r64_d3=
+    case "$r64_d0:$r64_d1:$r64_d2:$r64_d3" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+eap_mode_name() {
+    case "$1" in
+        0) echo basic ;;
+        3) echo simplified ;;
+        1) echo reserved-1 ;;
+        2) echo reserved-2 ;;
+        *) echo unavailable ;;
+    esac
+}
+
+read_named8() {
+    name=$1 page=$2 reg=$3
+    value=$(b53_read8 "$page" "$reg")
+    printf '%s=%s\n' "$name" "$value"
+    eval "$name=\$value"
+}
+
+read_named16() {
+    name=$1 page=$2 reg=$3
+    value=$(b53_read16 "$page" "$reg")
+    printf '%s=%s\n' "$name" "$value"
+    eval "$name=\$value"
+}
+
+read_named32() {
+    name=$1 page=$2 reg=$3
+    value=$(b53_read32 "$page" "$reg")
+    printf '%s=%s\n' "$name" "$value"
+    eval "$name=\$value"
+}
+
+read_named48() {
+    name=$1 page=$2 reg=$3
+    value=$(b53_read48 "$page" "$reg")
+    printf '%s=%s\n' "$name" "$value"
+    eval "$name=\$value"
+}
+
+speed_name() {
+    case "$1" in
+        0) echo 10M ;;
+        1) echo 100M ;;
+        2) echo 1000M ;;
+        *) echo reserved ;;
+    esac
+}
+
+echo 'RV220W passive B53 topology snapshot'
+echo "label=$label"
+echo "time=$stamp"
+echo "bus=$bus"
+echo 'policy=selector-only pseudo-PHY writes to 0x1e:0x10/0x11; switch data registers read only; no reset, DSA binding, VLAN/ARL/MIB-control, PHY-control, or flash writes'
+uname -a 2>/dev/null || true
+cat /etc/rv220w-build 2>/dev/null || true
+
+section PRECHECK
+command -v mdio 2>/dev/null || true
+mdio 2>&1 || true
+initial_page=$(c22_read "$reg_page") || initial_page=
+initial_addr=$(c22_read "$reg_addr") || initial_addr=
+printf 'selector_page_initial=%s\n' "${initial_page:-unavailable}"
+printf 'selector_addr_initial=%s\n' "${initial_addr:-unavailable}"
+case "$initial_page:$initial_addr" in
+    0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) selector_saved=1 ;;
+    *)
+        echo 'ERROR: pseudo-PHY selector registers are not readable; refusing indirect access'
+        exit 1
+        ;;
+esac
+
+section IDENTITY
+read_named32 device_id 2 48
+read_named8 revision_id 2 64
+read_named48 strap_value 1 112
+
+section GLOBAL_CONTROL
+read_named8 smp_control 0 10
+read_named8 switch_mode 0 11
+read_named8 imp_override_port8 0 14
+read_named8 ip_multicast_control 0 33
+read_named8 switch_control 0 34
+read_named16 protected_port_selection 0 36
+read_named16 unknown_unicast_flood_mask 0 50
+read_named16 multicast_flood_mask 0 52
+read_named16 ip_multicast_flood_mask 0 54
+read_named16 disable_learning_mask 0 60
+
+section MANAGEMENT
+read_named8 global_management_config 2 0
+read_named8 broadcom_header_control 2 3
+read_named32 aging_time_control 2 6
+read_named16 broadcom_header_rx_disable 2 96
+read_named16 broadcom_header_tx_disable 2 98
+case "$global_management_config" in
+    0x[0-9a-fA-F]*)
+        management_mode_code=$((($((global_management_config)) >> 6) & 3))
+        case "$management_mode_code" in
+            0) management_mode_name=ports0-4 ;;
+            2) management_mode_name=imp0-port8 ;;
+            3) management_mode_name=dual-imp-port8-port5 ;;
+            *) management_mode_name=reserved ;;
+        esac
+        ;;
+    *) management_mode_code=unavailable; management_mode_name=unavailable ;;
+esac
+printf 'frame_management_mode_code=%s\n' "$management_mode_code"
+printf 'frame_management_mode=%s\n' "$management_mode_name"
+
+section GLOBAL_STATUS
+read_named16 link_status_summary 1 0
+read_named32 speed_status_summary 1 4
+read_named16 duplex_status_summary 1 8
+
+section VLAN_CONTROL
+read_named8 vlan_control0 52 0
+read_named8 vlan_control1 52 1
+read_named8 vlan_control2 52 2
+read_named16 vlan_control3 52 3
+read_named8 vlan_control4 52 5
+read_named8 vlan_control5 52 6
+read_named8 vlan_control6 52 7
+
+section PORT_REGISTERS
+port0_control= port0_pvlan= port0_pvid= port0_gmii= port0_rgmii= port0_eap_raw= port0_eap_mode=
+port5_control= port5_pvlan= port5_pvid= port5_gmii= port5_rgmii= port5_eap_raw= port5_eap_mode=
+port8_control= port8_pvlan= port8_pvid= port8_rgmii= port8_eap_raw= port8_eap_mode=
+port=0
+while [ "$port" -le 8 ]; do
+    printf '\n[port %d]\n' "$port"
+    port_ctrl=$(b53_read8 0 "$port")
+    pvlan=$(b53_read16 49 $((port * 2)))
+    pvid=$(b53_read16 52 $((16 + port * 2)))
+    mii_bmcr=$(b53_read16 $((16 + port)) 0)
+    mii_bmsr=$(b53_read16 $((16 + port)) 1)
+    mii_phyid1=$(b53_read16 $((16 + port)) 2)
+    mii_phyid2=$(b53_read16 $((16 + port)) 3)
+    printf 'port_control=%s\n' "$port_ctrl"
+    printf 'port_vlan_mask=%s\n' "$pvlan"
+    printf 'default_vlan_tag=%s\n' "$pvid"
+    printf 'indirect_mii_bmcr=%s\n' "$mii_bmcr"
+    printf 'indirect_mii_bmsr=%s\n' "$mii_bmsr"
+    printf 'indirect_mii_phyid1=%s\n' "$mii_phyid1"
+    printf 'indirect_mii_phyid2=%s\n' "$mii_phyid2"
+    if [ "$port" -le 7 ]; then
+        gmii_override=$(b53_read8 0 $((88 + port)))
+        printf 'gmii_override=%s\n' "$gmii_override"
+    fi
+    rgmii_control=$(b53_read8 0 $((96 + port)))
+    printf 'rgmii_control=%s\n' "$rgmii_control"
+    eap_raw=ERROR
+    eap_mode_code=unavailable
+    eap_mode=unavailable
+    if b53_read64_parts 66 $((32 + 8 * port)); then
+        eap_raw=$(printf '0x%04x%04x%04x%04x' "$((r64_d3))" "$((r64_d2))" "$((r64_d1))" "$((r64_d0))")
+        eap_mode_code=$((($((r64_d3)) >> 3) & 3))
+        eap_mode=$(eap_mode_name "$eap_mode_code")
+    fi
+    printf 'eap_config_raw=%s\n' "$eap_raw"
+    printf 'eap_mode_code=%s\n' "$eap_mode_code"
+    printf 'eap_mode=%s\n' "$eap_mode"
+    case "$port" in
+        0) port0_control=$port_ctrl; port0_pvlan=$pvlan; port0_pvid=$pvid; port0_gmii=${gmii_override:-unavailable}; port0_rgmii=$rgmii_control; port0_eap_raw=$eap_raw; port0_eap_mode=$eap_mode ;;
+        5) port5_control=$port_ctrl; port5_pvlan=$pvlan; port5_pvid=$pvid; port5_gmii=${gmii_override:-unavailable}; port5_rgmii=$rgmii_control; port5_eap_raw=$eap_raw; port5_eap_mode=$eap_mode ;;
+        8) port8_control=$port_ctrl; port8_pvlan=$pvlan; port8_pvid=$pvid; port8_rgmii=$rgmii_control; port8_eap_raw=$eap_raw; port8_eap_mode=$eap_mode ;;
+    esac
+    port=$((port + 1))
+done
+
+section DSA_CONDUIT_REGISTER_CHECK
+live_wan_conduit=unavailable
+if [ -d /sys/class/net/wan ]; then
+    live_wan_conduit=$(ip -o link show dev wan 2>/dev/null | awk 'NR == 1 { name=$2; sub(/:$/, "", name); split(name, parts, "@"); if (parts[2] != "") print parts[2]; else print "unavailable" }')
+    [ -n "$live_wan_conduit" ] || live_wan_conduit=unavailable
+fi
+printf 'live_wan_conduit=%s\n' "$live_wan_conduit"
+printf 'port0_control=%s\n' "${port0_control:-unavailable}"
+printf 'port0_port_vlan_mask=%s\n' "${port0_pvlan:-unavailable}"
+printf 'port5_control=%s\n' "${port5_control:-unavailable}"
+printf 'port5_port_vlan_mask=%s\n' "${port5_pvlan:-unavailable}"
+printf 'port8_control=%s\n' "${port8_control:-unavailable}"
+printf 'port8_port_vlan_mask=%s\n' "${port8_pvlan:-unavailable}"
+printf 'port0_eap_config_raw=%s\n' "${port0_eap_raw:-unavailable}"
+printf 'port0_eap_mode=%s\n' "${port0_eap_mode:-unavailable}"
+printf 'port5_eap_config_raw=%s\n' "${port5_eap_raw:-unavailable}"
+printf 'port5_eap_mode=%s\n' "${port5_eap_mode:-unavailable}"
+printf 'port8_eap_config_raw=%s\n' "${port8_eap_raw:-unavailable}"
+printf 'port8_eap_mode=%s\n' "${port8_eap_mode:-unavailable}"
+printf 'frame_management_mode=%s\n' "${management_mode_name:-unavailable}"
+printf 'broadcom_header_control=%s\n' "${broadcom_header_control:-unavailable}"
+printf 'broadcom_header_rx_disable=%s\n' "${broadcom_header_rx_disable:-unavailable}"
+printf 'broadcom_header_tx_disable=%s\n' "${broadcom_header_tx_disable:-unavailable}"
+printf 'vendor_reference_port0_mask=0x0021\n'
+printf 'vendor_reference_port5_mask=0x0021\n'
+printf 'vendor_reference_port8_mask=0x011e\n'
+expected_cpu_port=unavailable
+expected_cpu_mask=
+unexpected_cpu_mask=
+case "$live_wan_conduit" in
+    eth0) expected_cpu_port=8; expected_cpu_mask=$port8_pvlan; unexpected_cpu_mask=$port5_pvlan ;;
+    eth1) expected_cpu_port=5; expected_cpu_mask=$port5_pvlan; unexpected_cpu_mask=$port8_pvlan ;;
+esac
+printf 'expected_wan_cpu_port=%s\n' "$expected_cpu_port"
+conduit_register_check=unavailable
+port0_has_expected_cpu=unavailable
+expected_cpu_has_port0=unavailable
+unexpected_cpu_has_port0=unavailable
+case "$expected_cpu_port:$port0_pvlan:$expected_cpu_mask:$unexpected_cpu_mask" in
+    5:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*|8:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*)
+        p0_num=$((port0_pvlan)); expected_num=$((expected_cpu_mask)); unexpected_num=$((unexpected_cpu_mask)); expected_bit=$((1 << expected_cpu_port))
+        [ $((p0_num & expected_bit)) -ne 0 ] && port0_has_expected_cpu=yes || port0_has_expected_cpu=no
+        [ $((expected_num & 1)) -ne 0 ] && expected_cpu_has_port0=yes || expected_cpu_has_port0=no
+        [ $((unexpected_num & 1)) -ne 0 ] && unexpected_cpu_has_port0=yes || unexpected_cpu_has_port0=no
+        if [ "$port0_has_expected_cpu" = yes ] && [ "$expected_cpu_has_port0" = yes ]; then conduit_register_check=ok; else conduit_register_check=failed; fi
+        ;;
+esac
+printf 'port0_has_expected_cpu=%s\n' "$port0_has_expected_cpu"
+printf 'expected_cpu_has_port0=%s\n' "$expected_cpu_has_port0"
+printf 'unexpected_cpu_has_port0=%s\n' "$unexpected_cpu_has_port0"
+printf 'conduit_register_check=%s\n' "$conduit_register_check"
+
+section DECODED_PORT_SUMMARY
+case "$link_status_summary:$speed_status_summary:$duplex_status_summary" in
+    ERROR:*|*:ERROR:*|*:*:ERROR)
+        echo 'unavailable=one or more global status reads failed'
+        ;;
+    *)
+        link_num=$((link_status_summary))
+        speed_num=$((speed_status_summary))
+        duplex_num=$((duplex_status_summary))
+        port=0
+        while [ "$port" -le 8 ]; do
+            link=$(((link_num >> port) & 1))
+            speed_code=$(((speed_num >> (2 * port)) & 3))
+            duplex=$(((duplex_num >> port) & 1))
+            printf 'port%d link=%d speed=%s duplex=%s\n' \
+                "$port" "$link" "$(speed_name "$speed_code")" \
+                "$([ "$duplex" -eq 1 ] && echo full || echo half)"
+            port=$((port + 1))
+        done
+        ;;
+esac
+
+section NETWORK_COUNTERS
+for n in eth0 eth1 eth2; do
+    [ -d "/sys/class/net/$n" ] || continue
+    echo "[$n]"
+    for item in carrier rx_packets tx_packets rx_bytes tx_bytes rx_errors tx_errors rx_dropped tx_dropped multicast; do
+        if [ -r "/sys/class/net/$n/statistics/$item" ]; then
+            printf '%s=' "$item"
+            cat "/sys/class/net/$n/statistics/$item"
+        elif [ -r "/sys/class/net/$n/$item" ]; then
+            printf '%s=' "$item"
+            if ! cat "/sys/class/net/$n/$item" 2>/dev/null; then
+                echo unavailable
+            fi
+        fi
+    done
+done
+
+section SELECTOR_RESTORE
+restore_selectors
+selector_saved=0
+printf 'selector_page_restored=%s\n' "$(c22_read "$reg_page" 2>/dev/null || echo unavailable)"
+printf 'selector_addr_restored=%s\n' "$(c22_read "$reg_addr" 2>/dev/null || echo unavailable)"
+echo 'read_errors=reported inline as ERROR tokens'
+
+section END
+echo "output=$out"
+printf '%s\n' "$out" >&3
+printf 'RV220W B53 snapshot: %s\n' "$out" >/dev/console 2>/dev/null || true

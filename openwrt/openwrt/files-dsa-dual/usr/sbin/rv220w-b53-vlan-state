@@ -1,0 +1,335 @@
+#!/bin/sh
+# RV220W BCM53115 VLAN/PVID diagnostic controller.
+#
+# RAM-only safety model:
+#   - reads use Broadcom pseudo-PHY selector access only;
+#   - writes are restricted to default VLAN tags for ports 0/5 and VLAN-table
+#     entries 0/1;
+#   - every original register is saved before the first write and can be
+#     restored without rebooting;
+#   - no PHY reset, DSA binding, PVLAN, EAP, ARL/MIB control, firewall, or
+#     flash operation is performed.
+set -u
+
+action=${1:-show}
+bus=${2:-8001180000001800}
+confirm=${3:-}
+state_dir=${RV220W_VLAN_STATE_DIR:-/tmp}
+save="$state_dir/rv220w-b53-vlan-original"
+
+case "$action" in
+    show|set-p5-pvid0|set-domain-vlan0|set-domain-vlan1|restore) ;;
+    *)
+        echo "usage: $0 {show|set-p5-pvid0|set-domain-vlan0|set-domain-vlan1|restore} [mdio-bus] [RAM_ONLY_CONFIRM]" >&2
+        exit 2
+        ;;
+esac
+case "$bus" in
+    *[!A-Za-z0-9._:-]*|'') echo "ERROR: unsafe MDIO bus selector" >&2; exit 2 ;;
+esac
+case "$action" in
+    show) ;;
+    *)
+        [ "$confirm" = RAM_ONLY_CONFIRM ] || {
+            echo "ERROR: write action requires RAM_ONLY_CONFIRM" >&2
+            exit 2
+        }
+        ;;
+esac
+
+pseudo_phy=30
+reg_page=16
+reg_addr=17
+reg_data0=24
+reg_data1=25
+reg_data2=26
+reg_data3=27
+selector_saved=0
+initial_page=
+initial_addr=
+
+c22_read() {
+    mdio "$bus" phy "$pseudo_phy" raw "$1" 2>/dev/null | tail -n 1
+}
+
+c22_write() {
+    case "$1" in
+        16|17|24|25|26|27) ;;
+        *) echo "ERROR: refused MDIO write reg=$1" >&2; return 90 ;;
+    esac
+    mdio "$bus" phy "$pseudo_phy" raw "$1" "$2" >/dev/null 2>&1
+}
+
+wait_selector_complete() {
+    tries=0
+    while [ "$tries" -lt 40 ]; do
+        status=$(c22_read "$reg_addr") || return 1
+        case "$status" in
+            0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) ;;
+            *) return 1 ;;
+        esac
+        status_num=$((status))
+        [ $((status_num & 3)) -eq 0 ] && return 0
+        tries=$((tries + 1))
+        usleep 100 2>/dev/null || sleep 0.01
+    done
+    return 1
+}
+
+restore_selectors() {
+    [ "$selector_saved" -eq 1 ] || return 0
+    [ -n "$initial_page" ] && c22_write "$reg_page" "$initial_page" >/dev/null 2>&1 || true
+    if [ -n "$initial_addr" ]; then
+        initial_addr_num=$((initial_addr))
+        if [ $((initial_addr_num & 3)) -eq 0 ]; then
+            c22_write "$reg_addr" "$initial_addr" >/dev/null 2>&1 || true
+        fi
+    fi
+}
+trap 'restore_selectors' EXIT HUP INT TERM
+
+select_read() {
+    page=$1 reg=$2
+    c22_write "$reg_page" "$(printf '0x%04x' $(((page & 255) << 8 | 1)))" || return 1
+    c22_write "$reg_addr" "$(printf '0x%04x' $(((reg & 255) << 8 | 2)))" || return 1
+    wait_selector_complete
+}
+
+select_write_words() {
+    page=$1 reg=$2 d0=$3 d1=${4:-0} d2=${5:-0} d3=${6:-0}
+    c22_write "$reg_page" "$(printf '0x%04x' $(((page & 255) << 8 | 1)))" || return 1
+    c22_write "$reg_data0" "$(printf '0x%04x' $((d0 & 65535)))" || return 1
+    c22_write "$reg_data1" "$(printf '0x%04x' $((d1 & 65535)))" || return 1
+    c22_write "$reg_data2" "$(printf '0x%04x' $((d2 & 65535)))" || return 1
+    c22_write "$reg_data3" "$(printf '0x%04x' $((d3 & 65535)))" || return 1
+    c22_write "$reg_addr" "$(printf '0x%04x' $(((reg & 255) << 8 | 1)))" || return 1
+    wait_selector_complete
+}
+
+b53_read8() {
+    select_read "$1" "$2" || return 1
+    d0=$(c22_read "$reg_data0") || return 1
+    case "$d0" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) printf '0x%02x\n' $((d0 & 255)) ;;
+        *) return 1 ;;
+    esac
+}
+
+b53_read16() {
+    select_read "$1" "$2" || return 1
+    d0=$(c22_read "$reg_data0") || return 1
+    case "$d0" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) printf '0x%04x\n' $((d0 & 65535)) ;;
+        *) return 1 ;;
+    esac
+}
+
+b53_read32() {
+    select_read "$1" "$2" || return 1
+    d0=$(c22_read "$reg_data0") || return 1
+    d1=$(c22_read "$reg_data1") || return 1
+    case "$d0:$d1" in
+        0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+            printf '0x%08x\n' $(((d0 & 65535) | ((d1 & 65535) << 16)))
+            ;;
+        *) return 1 ;;
+    esac
+}
+
+b53_write8() {
+    select_write_words "$1" "$2" "$3" 0 0 0
+}
+
+b53_write16() {
+    select_write_words "$1" "$2" "$3" 0 0 0
+}
+
+b53_write32() {
+    value=$3
+    select_write_words "$1" "$2" $((value & 65535)) $(((value >> 16) & 65535)) 0 0
+}
+
+# BCM53115 uses the generic B53 VLAN table registers on ARL I/O page 0x05.
+vlan_wait() {
+    tries=0
+    while [ "$tries" -lt 40 ]; do
+        access=$(b53_read8 5 128) || return 1
+        access_num=$((access))
+        [ $((access_num & 128)) -eq 0 ] && return 0
+        tries=$((tries + 1))
+        usleep 100 2>/dev/null || sleep 0.01
+    done
+    return 1
+}
+
+vlan_read() {
+    vid=$1
+    b53_write16 5 129 "$vid" || return 1
+    b53_write8 5 128 129 || return 1  # START | READ
+    vlan_wait || return 1
+    b53_read32 5 131
+}
+
+vlan_write() {
+    vid=$1 entry=$2
+    b53_write16 5 129 "$vid" || return 1
+    b53_write32 5 131 "$entry" || return 1
+    b53_write8 5 128 128 || return 1  # START | WRITE
+    vlan_wait
+}
+
+pvid_read() {
+    port=$1
+    b53_read16 52 $((16 + port * 2))
+}
+
+pvid_write_vid() {
+    port=$1 vid=$2
+    old=$(pvid_read "$port") || return 1
+    old_num=$((old))
+    new=$(((old_num & ~4095) | (vid & 4095)))
+    b53_write16 52 $((16 + port * 2)) "$new"
+}
+
+mask_bits() {
+    value=$1
+    result=
+    p=0
+    while [ "$p" -le 8 ]; do
+        if [ $((value & (1 << p))) -ne 0 ]; then
+            [ -n "$result" ] && result="$result,$p" || result=$p
+        fi
+        p=$((p + 1))
+    done
+    printf '{%s}' "$result"
+}
+
+show_state() {
+    prefix=$1
+    pvid0=$(pvid_read 0) || return 1
+    pvid5=$(pvid_read 5) || return 1
+    pvid8=$(pvid_read 8) || return 1
+    vlan0=$(vlan_read 0) || return 1
+    vlan1=$(vlan_read 1) || return 1
+    pvid0_num=$((pvid0)); pvid5_num=$((pvid5)); pvid8_num=$((pvid8))
+    vlan0_num=$((vlan0)); vlan1_num=$((vlan1))
+    vlan0_members=$((vlan0_num & 511)); vlan0_untag=$(((vlan0_num >> 9) & 511))
+    vlan1_members=$((vlan1_num & 511)); vlan1_untag=$(((vlan1_num >> 9) & 511))
+    printf '%s_pvid0_raw=0x%04x\n' "$prefix" "$pvid0_num"
+    printf '%s_pvid0_vid=%d\n' "$prefix" $((pvid0_num & 4095))
+    printf '%s_pvid5_raw=0x%04x\n' "$prefix" "$pvid5_num"
+    printf '%s_pvid5_vid=%d\n' "$prefix" $((pvid5_num & 4095))
+    printf '%s_pvid8_raw=0x%04x\n' "$prefix" "$pvid8_num"
+    printf '%s_pvid8_vid=%d\n' "$prefix" $((pvid8_num & 4095))
+    printf '%s_vlan0_raw=0x%08x\n' "$prefix" "$vlan0_num"
+    printf '%s_vlan0_members=0x%03x\n' "$prefix" "$vlan0_members"
+    printf '%s_vlan0_member_ports=%s\n' "$prefix" "$(mask_bits "$vlan0_members")"
+    printf '%s_vlan0_untag=0x%03x\n' "$prefix" "$vlan0_untag"
+    printf '%s_vlan0_untag_ports=%s\n' "$prefix" "$(mask_bits "$vlan0_untag")"
+    printf '%s_vlan1_raw=0x%08x\n' "$prefix" "$vlan1_num"
+    printf '%s_vlan1_members=0x%03x\n' "$prefix" "$vlan1_members"
+    printf '%s_vlan1_member_ports=%s\n' "$prefix" "$(mask_bits "$vlan1_members")"
+    printf '%s_vlan1_untag=0x%03x\n' "$prefix" "$vlan1_untag"
+    printf '%s_vlan1_untag_ports=%s\n' "$prefix" "$(mask_bits "$vlan1_untag")"
+}
+
+save_original() {
+    [ -e "$save" ] && return 0
+    p0=$(pvid_read 0) || return 1
+    p5=$(pvid_read 5) || return 1
+    p8=$(pvid_read 8) || return 1
+    v0=$(vlan_read 0) || return 1
+    v1=$(vlan_read 1) || return 1
+    umask 077
+    printf '%s %s %s %s %s\n' "$p0" "$p5" "$p8" "$v0" "$v1" > "$save"
+}
+
+require_eth1() {
+    command -v ip >/dev/null 2>&1 || {
+        echo "ERROR: ip utility is required for live-conduit safety check" >&2
+        return 1
+    }
+    first=$(ip -d link show dev wan 2>/dev/null | sed -n '1p')
+    case "$first" in
+        *'wan@eth1:'*) ;;
+        *)
+            echo "ERROR: write actions require live wan@eth1; observed: ${first:-missing}" >&2
+            return 1
+            ;;
+    esac
+}
+
+command -v mdio >/dev/null 2>&1 || {
+    echo "ERROR: mdio utility not found" >&2
+    exit 1
+}
+initial_page=$(c22_read "$reg_page") || initial_page=
+initial_addr=$(c22_read "$reg_addr") || initial_addr=
+case "$initial_page:$initial_addr" in
+    0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]:0x[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]) selector_saved=1 ;;
+    *) echo "ERROR: pseudo-PHY selectors are not readable" >&2; exit 1 ;;
+esac
+
+echo 'RV220W BCM53115 VLAN/PVID diagnostic control'
+echo "action=$action"
+echo "bus=$bus"
+echo 'policy=RAM-only; writes restricted to port-0/5 default VLAN tags and VLAN-table entries 0/1; no PVLAN, EAP, PHY, reset, firewall, DSA-binding, or flash writes'
+show_state before || {
+    echo "ERROR: initial VLAN/PVID read failed" >&2
+    exit 1
+}
+
+[ "$action" = show ] && exit 0
+require_eth1 || exit 1
+save_original || {
+    echo "ERROR: could not save original VLAN/PVID state" >&2
+    exit 1
+}
+
+case "$action" in
+    set-p5-pvid0)
+        pvid_write_vid 5 0 || { echo "ERROR: port 5 PVID write failed" >&2; exit 1; }
+        ;;
+    set-domain-vlan0)
+        entry=$(vlan_read 0) || exit 1
+        entry_num=$((entry))
+        members=$(((entry_num & 511) | 33))
+        untag=$((((entry_num >> 9) & 511) | 1))
+        untag=$((untag & ~32))
+        new_entry=$(((entry_num & ~262143) | members | (untag << 9)))
+        vlan_write 0 "$new_entry" || { echo "ERROR: VLAN 0 table write failed" >&2; exit 1; }
+        pvid_write_vid 0 0 || { echo "ERROR: port 0 PVID write failed" >&2; exit 1; }
+        pvid_write_vid 5 0 || { echo "ERROR: port 5 PVID write failed" >&2; exit 1; }
+        ;;
+    set-domain-vlan1)
+        entry=$(vlan_read 1) || exit 1
+        entry_num=$((entry))
+        members=$(((entry_num & 511) | 33))
+        untag=$((((entry_num >> 9) & 511) | 1))
+        untag=$((untag & ~32))
+        new_entry=$(((entry_num & ~262143) | members | (untag << 9)))
+        vlan_write 1 "$new_entry" || { echo "ERROR: VLAN 1 table write failed" >&2; exit 1; }
+        pvid_write_vid 0 1 || { echo "ERROR: port 0 PVID write failed" >&2; exit 1; }
+        pvid_write_vid 5 1 || { echo "ERROR: port 5 PVID write failed" >&2; exit 1; }
+        ;;
+    restore)
+        [ -r "$save" ] || { echo "ERROR: no saved original state at $save" >&2; exit 1; }
+        read op0 op5 op8 ov0 ov1 < "$save" || { echo "ERROR: saved state is unreadable" >&2; exit 1; }
+        case "$op0:$op5:$op8:$ov0:$ov1" in
+            0x[0-9a-fA-F]*:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*:0x[0-9a-fA-F]*) ;;
+            *) echo "ERROR: saved state is malformed" >&2; exit 1 ;;
+        esac
+        vlan_write 0 "$((ov0))" || { echo "ERROR: VLAN 0 restore failed" >&2; exit 1; }
+        vlan_write 1 "$((ov1))" || { echo "ERROR: VLAN 1 restore failed" >&2; exit 1; }
+        b53_write16 52 16 "$((op0))" || { echo "ERROR: port 0 PVID restore failed" >&2; exit 1; }
+        b53_write16 52 26 "$((op5))" || { echo "ERROR: port 5 PVID restore failed" >&2; exit 1; }
+        b53_write16 52 32 "$((op8))" || { echo "ERROR: port 8 PVID restore failed" >&2; exit 1; }
+        ;;
+esac
+
+show_state after || {
+    echo "ERROR: VLAN/PVID readback failed" >&2
+    exit 1
+}
+echo "saved_original=$save"
+echo 'result=ok'

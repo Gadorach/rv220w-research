@@ -14,7 +14,7 @@ set -l stamp (rv_timestamp)
 mkdir -p "$RV220W_TOOLKIT_ROOT/captures"
 set -l output "$RV220W_TOOLKIT_ROOT/captures/rv220w-flash-32MiB-$stamp-read1.bin"
 set -q _flag_output; and set output (realpath -m $_flag_output)
-set -l dumper "$RV220W_UART_DUMPER"
+set -l dumper "$RV220W_TOOLKIT_ROOT/scripts/host/dump_uboot_flash_uart.py"
 if set -q _flag_from_power_cycle
     set -l interrupt_timeout 120
     set -q _flag_interrupt_timeout; and set interrupt_timeout $_flag_interrupt_timeout

@@ -1,0 +1,33 @@
+#!/bin/sh
+# Read-only first-pass status report for the full wired profile.
+set -u
+
+printf '%s\n' 'RV220W full-RJ45 candidate status'
+cat /etc/rv220w-build 2>/dev/null || true
+printf '\n=== CONDUITS ===\n'
+for dev in wan lan1 lan2 lan3 lan4; do
+	ip -d link show dev "$dev" 2>/dev/null | sed -n '1,2p' || true
+done
+printf '\n=== ADDRESSES_AND_ROUTES ===\n'
+ip -br address 2>/dev/null || ip address
+ip route show table all
+printf '\n=== NETWORK ===\n'
+uci -q show network
+printf '\n=== DHCP ===\n'
+uci -q show dhcp
+printf '\n=== FIREWALL ===\n'
+uci -q show firewall
+printf '\n=== SERVICES ===\n'
+for service in network dnsmasq odhcpd firewall; do
+	if [ -x "/etc/init.d/$service" ]; then
+		printf '%s=' "$service"
+		/etc/init.d/$service running >/dev/null 2>&1 && echo running || echo stopped
+	fi
+done
+printf '\n=== WAN_STATUS ===\n'
+ubus call network.interface.wan status 2>/dev/null || true
+ubus call network.interface.wan6 status 2>/dev/null || true
+printf '\n=== SWITCH_VALIDATION ===\n'
+if [ -x /usr/sbin/rv220w-b53-snapshot ]; then
+	/usr/sbin/rv220w-b53-snapshot full-rj45-status 8001180000001800 2>/dev/null || true
+fi

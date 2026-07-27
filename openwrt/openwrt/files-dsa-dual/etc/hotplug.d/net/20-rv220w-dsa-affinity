@@ -1,0 +1,10 @@
+#!/bin/sh
+# Fallback for unusual module/init ordering. The helper is idempotent and exits
+# without disrupting links once the requested mapping is already present.
+case "${ACTION:-}:${INTERFACE:-}" in
+	add:eth0|add:eth1|add:wan|add:lan1|add:lan2|add:lan3|add:lan4)
+		if ! /usr/sbin/rv220w-dsa-affinity --check >/dev/null 2>&1; then
+			/usr/sbin/rv220w-dsa-affinity apply >/dev/null 2>&1 &
+		fi
+		;;
+esac

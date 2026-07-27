@@ -1,0 +1,46 @@
+#!/bin/sh
+# First full wired-router profile for RAM-only RV220W validation.
+# Keep the proven direct-link subnet used by TFTP while enabling normal
+# OpenWrt LAN/WAN separation and software-defined WAN protocols.
+
+uci -q set system.@system[0].hostname='rv220w-rj45'
+uci -q commit system
+
+uci -q delete network.wan
+uci -q delete network.wan6
+uci -q delete network.lan
+uci -q delete network.br_lan
+
+while :; do
+	section=$(uci -q show network | sed -n "s/^\(network\.@device\[[0-9][0-9]*\]\)\.name='br-lan'$/\1/p" | head -n 1)
+	[ -n "$section" ] || break
+	uci -q delete "$section" || break
+done
+
+uci set network.br_lan='device'
+uci set network.br_lan.name='br-lan'
+uci set network.br_lan.type='bridge'
+uci add_list network.br_lan.ports='lan1'
+uci add_list network.br_lan.ports='lan2'
+uci add_list network.br_lan.ports='lan3'
+uci add_list network.br_lan.ports='lan4'
+uci set network.br_lan.stp='0'
+
+uci set network.lan='interface'
+uci set network.lan.device='br-lan'
+uci set network.lan.proto='static'
+uci set network.lan.ipaddr='192.168.240.2'
+uci set network.lan.netmask='255.255.255.0'
+uci set network.lan.ip6assign='60'
+
+uci set network.wan='interface'
+uci set network.wan.device='wan'
+uci set network.wan.proto='dhcp'
+
+uci set network.wan6='interface'
+uci set network.wan6.device='wan'
+uci set network.wan6.proto='dhcpv6'
+
+uci commit network
+logger -t rv220w 'full RJ45 profile: lan1-lan4 -> br-lan 192.168.240.2/24; wan -> DHCP/DHCPv6 on eth1 conduit'
+exit 0

@@ -2,36 +2,40 @@
 
 ## Goal
 
-Develop a reproducible, evidence-based understanding of the RV220W sufficient to preserve the original firmware, recover the board, boot modern Linux entirely from RAM, and promote hardware support toward OpenWrt.
-
-## Evidence vocabulary
-
-- **Observed:** directly photographed, measured, or captured.
-- **Confirmed:** reproduced or independently supported by authoritative documentation.
-- **Inferred:** the best current explanation, but not yet proven.
-- **Unknown:** insufficient evidence.
+Preserve and understand the Cisco RV220W well enough to recover the original firmware, boot modern Linux safely from RAM, and develop maintainable OpenWrt support without risking the stock boot chain.
 
 ## Confirmed platform
 
 - Cisco RV220W-A V01, PCB `YK910A-1.6`.
 - Cavium OCTEON Plus CN5010-SCP pass 1.1, one active core at 400 MHz.
-- 128 MiB DDR2, 266 MHz clock / 532 MT/s data rate.
-- 32 MiB x16 CFI NOR at U-Boot window `0xbdc00000`.
+- 128 MiB DDR2.
+- 32 MiB x16 CFI NOR at U-Boot address `0xbdc00000`.
 - Broadcom BCM53115 five-port Gigabit switch.
-- BCM4322 Mini PCI WLAN module, PCI ID `14e4:432b`.
+- Broadcom BCM4322 Mini PCI WLAN module, PCI ID `14e4:432b`.
 - U-Boot 1.1.1 development build, revision `193M`.
-- Linux 2.6.21.7-Cavium-Octeon, big-endian MIPS64.
+- Stock Linux 2.6.21.7-Cavium-Octeon, big-endian MIPS64.
 - JP1 primary UART at 115200 8N1.
 
-## Research order
+## Current modern OpenWrt result
 
-1. Preserve identifiers and firmware.
-2. Establish passive serial access.
-3. Verify a complete flash read path.
-4. Qualify recovery and RAM boot.
-5. Add modern Linux support one subsystem at a time.
-6. Write persistent storage only after the RAM-only path is repeatable.
+A modern OpenWrt initramfs image now boots completely through the stock U-Boot TFTP path and runs entirely from RAM. The current `rj45-full` profile initializes all five RJ45 ports using upstream-style B53/DSA support plus focused Octeon and B53 patches.
 
-## Current disposition
+The wired topology is hardware-proven as:
 
-The source router is a retired display/research unit. The package therefore preserves all factory-reset configuration data without redaction. This includes an obsolete device HTTPS private key in the JFFS2 extraction. It is retained as historical evidence and must not be reused.
+```text
+LAN1-LAN4 -> switch ports 1-4 -> CPU port 8 -> eth0 -> br-lan
+WAN        -> switch port 0   -> CPU port 5 -> eth1 -> wan
+```
+
+No persistent flash installation has been attempted. LuCI is not included, and the BCM4322 radio is not yet operational.
+
+## Evidence vocabulary
+
+- **Observed:** directly photographed, measured, or captured.
+- **Hardware-proven:** reproduced on the physical RV220W through live boot or traffic testing.
+- **Inferred:** the best current explanation, but not yet directly validated.
+- **Unknown:** insufficient evidence.
+
+## Preservation rule
+
+The stock boot chain and full verified flash image remain the recovery baseline. Until a separate persistent-installation project is qualified, all OpenWrt work must continue through RAM-only TFTP boot with no `saveenv`, erase, copy-to-NOR, or Linux MTD write operation.

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0 — hardware-proven OpenWrt RAM-boot merge
+
+- Replaced the early `openwrt/` scaffold with the complete v1.9.0 promotion toolkit.
+- Recorded the hardware-proven full TFTP RAM boot of the experimental OpenWrt image.
+- Recorded successful initialization and operation of all five RJ45 ports.
+- Updated the current topology: LAN1–LAN4 through switch CPU port 8/`eth0`, WAN through CPU port 5/`eth1`.
+- Made the absence of LuCI, Wi-Fi support, and persistent flash testing explicit.
+- Rewrote the root README as a minimal project outline and status pointer.
+- Replaced stale canonical OpenWrt, Ethernet, wireless, risk, and known-unknown documentation with the current state.
+- Retained version-specific toolkit documents as historical implementation and regression records.
+
 ## 1.0.0 — organized research baseline
 
 - Rebuilt the chat-derived package into a coherent directory hierarchy.

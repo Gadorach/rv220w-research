@@ -1,47 +1,71 @@
 #!/usr/bin/env fish
 source (dirname (status --current-filename))/lib/common.fish
-argparse 'r/recreate' 'n/dry-run' -- $argv; or exit 2
-rv_require distrobox podman
-if set -q _flag_recreate
-    rv_warn "Removing Distrobox $RV220W_BOX"
-    if not set -q _flag_dry_run
-        distrobox stop "$RV220W_BOX" >/dev/null 2>&1
-        distrobox rm --force "$RV220W_BOX" >/dev/null 2>&1
-    end
-end
-if not rv_box_exists
-    rv_info "Creating $RV220W_BOX from $RV220W_BOX_IMAGE"
+argparse 'r/recreate' 'R/remove-only' 'n/dry-run' -- $argv; or exit 2
+
+rv_require distrobox podman timeout
+
+set -l create_needed 0
+set -l recreate_requested 0
+set -q _flag_recreate; and set recreate_requested 1
+set -q _flag_remove_only; and set recreate_requested 1
+
+if test $recreate_requested -eq 1
+    rv_warn "Recreating Distrobox $RV220W_BOX"
     if set -q _flag_dry_run
-        echo "distrobox create --yes --name $RV220W_BOX --image $RV220W_BOX_IMAGE"
+        echo "timeout --foreground 30s podman rm --force --time 3 --ignore $RV220W_BOX"
+    else
+        rv_remove_box_runtime
+    end
+    if set -q _flag_remove_only
+        rv_info 'Removal-only request complete.'
         exit 0
     end
-    distrobox create --yes --name "$RV220W_BOX" --image "$RV220W_BOX_IMAGE"; or rv_die 'Distrobox creation failed'
+    set create_needed 1
+else if not rv_box_exists
+    set create_needed 1
+else if not rv_box_is_compatible
+    set -l identity (rv_box_identity)
+    test -n "$identity"; or set identity unknown
+    rv_warn "Existing container $RV220W_BOX is incompatible: $identity"
+    set -l runtime (rv_box_runtime_summary)
+    test -n "$runtime"; and rv_warn "Runtime object: $runtime"
+    rv_die "This toolkit requires Ubuntu 24.04 with apt-get. Re-run: ./rv220w.fish setup-box --recreate"
 end
-set -l provision "$RV220W_TOOLKIT_ROOT/work/provision-openwrt-box.sh"
-mkdir -p (dirname "$provision")
-cat > "$provision" <<'BASH'
-#!/usr/bin/env bash
-set -euo pipefail
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update
-sudo apt-get install -y --no-install-recommends \
-  build-essential clang flex bison g++ g++-multilib gawk gcc-multilib gettext git \
-  libncurses-dev libssl-dev libelf-dev zlib1g-dev libzstd-dev liblzma-dev \
-  python3 python3-dev python3-pip python3-setuptools python3-venv python3-pyelftools \
-  rsync swig unzip zip xz-utils zstd file wget curl ca-certificates ccache \
-  xsltproc subversion mercurial ecj fastjar time perl bc jq patch patchutils quilt \
-  device-tree-compiler u-boot-tools squashfs-tools mtd-utils binutils genisoimage \
-  autoconf automake libtool pkg-config gperf help2man texinfo
-sudo apt-get clean
-rm -rf /var/lib/apt/lists/*
-python3 --version
-gcc --version | head -1
-BASH
-chmod +x "$provision"
+
+if test $create_needed -eq 1
+    rv_info "Creating $RV220W_BOX from $RV220W_BOX_IMAGE"
+    rv_info 'The image pull may take several minutes on first use; Distrobox/Podman progress will remain visible.'
+    if set -q _flag_dry_run
+        echo "distrobox create --yes --name $RV220W_BOX --image $RV220W_BOX_IMAGE"
+    else
+        distrobox create --yes --name "$RV220W_BOX" --image "$RV220W_BOX_IMAGE"
+        or rv_die 'Distrobox creation failed'
+    end
+end
+
+if not set -q _flag_dry_run
+    rv_box_is_compatible
+    or begin
+        set -l identity (rv_box_identity)
+        test -n "$identity"; or set identity unknown
+        rv_die "Created/reused box has an unexpected base system ($identity). Check RV220W_BOX_IMAGE and rerun setup-box --recreate"
+    end
+end
+
+set -l provision "$RV220W_TOOLKIT_ROOT/scripts/inner/provision-openwrt-box.sh"
+test -x "$provision"; or rv_die "Provisioning helper is missing or not executable: $provision"
+
 rv_info 'Provisioning OpenWrt build dependencies in the shared-home Ubuntu container.'
 if set -q _flag_dry_run
-    echo "distrobox enter $RV220W_BOX -- bash $provision"
+    echo "distrobox enter --name $RV220W_BOX --no-tty -- bash $provision"
     exit 0
 end
-distrobox enter "$RV220W_BOX" -- bash "$provision"; or rv_die 'Distrobox provisioning failed'
-rv_info 'Distrobox is ready.'
+
+rv_box_enter bash "$provision"
+or rv_die 'Distrobox provisioning failed'
+
+rv_box_is_provisioned
+or rv_die 'Provisioning command completed, but required compilers/Perl modules are still missing'
+
+set -l identity (rv_box_identity)
+rv_info "Distrobox is ready: $identity"

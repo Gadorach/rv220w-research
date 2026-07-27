@@ -1,44 +1,35 @@
-# Automated TFTP live boot
+# Proven TFTP RAM boot
 
-## Workflow
-
-The `openwrt/rv220w.fish tftp-boot` action:
-
-1. Detects or accepts the host interface and IPv4 address.
-2. Optionally assigns a temporary direct-link address.
-3. Starts a temporary `dnsmasq` TFTP server.
-4. Opens JP1 at 115200 baud.
-5. Sends Ctrl+C until `rv200w#` is captured.
-6. Sets temporary `ipaddr`, `serverip`, and `netmask` values without `saveenv`.
-7. Tries selected `octeth` interfaces.
-8. Runs `tftpboot` to the configured RAM address.
-9. Verifies the transferred byte count and ELF placement.
-10. Calls `bootoctlinux` and records serial/TFTP logs.
-11. Restores temporary host network state.
-
-## Transport proof
-
-First test with the recovered stock ELF:
+## Current command
 
 ```fish
+cd openwrt
+./rv220w.fish build rj45-full
 ./rv220w.fish tftp-boot \
-    --interface enp5s0 \
-    --configure-interface \
-    ../firmware/derived/01b-linux-kernel.elf
+    --profile rj45-full \
+    --interface <host-interface> \
+    --configure-interface
 ```
 
-Use the stock command line from the boot log when testing the factory kernel.
+The profile selector uses:
 
-## OpenWrt test
-
-```fish
-./rv220w.fish build initramfs
-./rv220w.fish tftp-boot \
-    --interface enp5s0 \
-    --configure-interface \
-    "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-generic-initramfs.elf"
+```text
+$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-initramfs.elf
 ```
 
-## Limits
+The direct-link defaults are host `192.168.240.1/24` and router LAN `192.168.240.2/24`.
 
-U-Boot disables the BCM53115 during startup. If no front-panel port generates TFTP traffic, collect read-only `mii`/`bcmmii` evidence instead of guessing switch writes.
+## What is proven
+
+- Serial interruption reaches `rv200w#`.
+- U-Boot transfers the ELF by TFTP into RAM.
+- `bootoctlinux` launches the modern kernel.
+- OpenWrt reaches a running userspace.
+- The live image initializes and operates LAN1–LAN4 and WAN.
+- Reboot returns to stock firmware because no flash command is issued.
+
+## Safety behavior
+
+The helper only changes temporary environment variables, starts TFTP, and executes `bootoctlinux`. It never runs `saveenv` or a flash erase/program command.
+
+Each test should retain the generated serial and TFTP logs. Record the toolkit version, source lock, artifact SHA-256, physical jack used for U-Boot transfer, and post-boot port-validation results.

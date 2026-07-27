@@ -1,40 +1,39 @@
 # Ethernet and BCM53115 switch
 
-## Stock architecture
+## Confirmed modern topology
 
-The stock stack is approximately:
+The BCM53115 is controlled by Linux B53/DSA at pseudo-PHY address `0x1e`. All five external RJ45 ports are operational in the current RAM-boot image.
+
+| Function | BCM53115 port | Octeon path | Linux interface |
+|---|---:|---|---|
+| WAN | 0 | CPU port 5 -> `eth1` | `wan` |
+| LAN1 | 1 | CPU port 8 -> `eth0` | `lan1` |
+| LAN2 | 2 | CPU port 8 -> `eth0` | `lan2` |
+| LAN3 | 3 | CPU port 8 -> `eth0` | `lan3` |
+| LAN4 | 4 | CPU port 8 -> `eth0` | `lan4` |
+
+Switch ports 5 and 8 use `rgmii-rxid` and operate as independent CPU conduits. `eth2` has no observed external link and is strongly associated with the unpopulated optional RJ45/magnetics footprint.
+
+## VLAN and conduit result
+
+The hardware isolation domains are:
 
 ```text
-CN5010 packet I/O / RGMII
-  └─ cavium-ethernet.ko
-       ├─ Broadcom tag and hardware-offload hooks
-       └─ MDIO API
-            └─ mii.ko
-                 └─ bcm5398.ko
-                      └─ BCM53115 port/VLAN/IMP management
+WAN: {0,5}
+LAN: {1,2,3,4,8}
 ```
 
-The module is named `bcm5398.ko` but contains BCM53115 identification and useful symbols including register access, port state, VLAN, and mirror configuration.
+Run9 proved that WAN ingress through CPU port 5 failed when that firmware-described CPU port was excluded from B53's active-port mask and therefore skipped by generic default VLAN/PVID setup. Toolkit patch `998-b53-enable-dt-cpu-ports.patch` merges DSA CPU ports into `enabled_ports` before normal B53 configuration.
 
-U-Boot reports three RGMII ports and then executes `disable 53115 ... Done`, so TFTP reachability through the front-panel ports must be proven rather than assumed.
+This replaces the earlier diagnostic-only state. No userspace MDIO repair is required in the current `rj45-full` image.
 
-## Unknowns
+## Stock architecture
 
-- Physical jack to `octeth0/1/2` mapping.
-- MDIO/pseudo-PHY address.
-- BCM53115 CPU/IMP port number.
-- RGMII RX/TX delay configuration.
-- Broadcom tag placement and managed-mode behavior.
-- Bootloader switch state during TFTP.
+The factory software used Cavium Ethernet, a Broadcom-tag path, `mii.ko`, and a module named `bcm5398.ko` that contains BCM53115 register, VLAN, port, and IMP management logic. That stack remains useful as historical evidence, but the modern image uses B53/DSA.
 
-## Promotion sequence
+## Remaining Ethernet work
 
-1. Prove a native Octeon interface independently if possible.
-2. Capture stock MDIO reads/writes and module parameters.
-3. Identify switch chip ID and CPU port.
-4. Bring up read-only B53 register access.
-5. Establish one untagged CPU-to-front-port VLAN.
-6. Add DSA port model and tagging only after basic forwarding works.
-7. Validate all five physical ports, link modes, counters, and reset recovery.
-
-Linux B53/DSA support is the preferred modern path, but the BCM53115 managed-mode/tagging details may require a focused patch or an initial VLAN-based compatibility mode.
+- Long-duration and repeated cold-boot regression testing.
+- Tagged WAN subinterface regression testing where required by an ISP.
+- Performance characterization beyond functional traffic validation.
+- Upstream-quality review and separation of generic versus RV220W-specific patches.

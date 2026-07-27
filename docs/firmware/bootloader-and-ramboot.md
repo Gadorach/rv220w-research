@@ -2,7 +2,7 @@
 
 ## Confirmed U-Boot environment
 
-Important variables:
+Important variables include:
 
 ```text
 bootdelay=0
@@ -18,27 +18,40 @@ env_size=0x20000
 ethact=octeth0
 ```
 
-Default boot command:
+The stock firmware container starts at `0xbdc80000`; its ELF begins at offset `0x200`.
+
+## Proven modern RAM-boot contract
+
+The current OpenWrt ELF is loaded by TFTP around `0x05500000` and started with `bootoctlinux`. This path has been proven to boot the complete experimental OpenWrt system and initialize all five RJ45 ports.
+
+The automated helper uses temporary U-Boot variables only:
 
 ```text
-cp.b BDC80000 0x2a00000 580000;
-bootoctlinux 0x2a00200 mtdparts=phys_mapped_flash:512k(bootloader)ro,6M(kernel),16M(rootfs),1024k(data),128k(bootload-env)
+base 0
+setenv autoload no
+setenv ipaddr ...
+setenv serverip ...
+setenv netmask ...
+setenv ethact ...
+tftpboot ...
+bootoctlinux ...
 ```
 
-The firmware container starts at `0xbdc80000`; the ELF begins 0x200 bytes later. U-Boot copies 0x580000 bytes to RAM and calls `bootoctlinux 0x2a00200`.
+It does not call `saveenv`, `erase`, `protect`, `cp` to NOR, or a flash-update script. Power cycling returns to the original firmware.
 
-## Useful commands
+## Current image profile
 
-Available commands include `tftpboot`, `bootp`, `http`, `loadb`, `loads`, `cp`, `crc32`, `md`, `flinfo`, `pci`, `mii`, `bcmmii`, `bootoctlinux`, and `bootelf`. There is no `bootm` and no outbound TFTP upload command.
+```fish
+cd openwrt
+./rv220w.fish build rj45-full
+./rv220w.fish tftp-boot \
+    --profile rj45-full \
+    --interface <host-interface> \
+    --configure-interface
+```
 
-## RAM-boot rules
+The profile is an initramfs-based experimental image. It is not a persistent installation image.
 
-- Use TFTP or serial download to place a complete big-endian Octeon ELF in RAM.
-- Use a source/load buffer around `0x05500000` unless image-size analysis proves another safe range.
-- Do not overwrite the stock kernel copy area or U-Boot structures.
-- Begin with serial-only initramfs and no NOR writes.
-- Prove transport with the recovered stock ELF before blaming a custom kernel.
+## Recovery baseline
 
-## Recovery
-
-Ctrl+C during firmware checking reaches U-Boot. The first 512 KiB and final environment sector must remain preserved until JTAG and external programming recovery are qualified.
+Ctrl+C during startup reaches `rv200w#`. Preserve the first 512 KiB boot chain, the final environment sector, and the complete verified flash image until independent flash restore and external-programmer recovery are qualified.

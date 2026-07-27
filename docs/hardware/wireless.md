@@ -3,23 +3,21 @@
 ## Hardware
 
 - Full-size Mini PCI module.
-- Main controller: Broadcom `BCM4322LKFBG`.
-- PCI ID observed by U-Boot: `14e4:432b`.
-- Three U.FL-style antenna connectors.
+- Broadcom `BCM4322LKFBG`.
+- PCI ID `14e4:432b`.
+- Three antenna connectors.
 - Two RF front-end devices marked `SiGe / 2547A / 2069CHF`.
-- Module PCB marking appears `YK910MO-1.0`.
+- Module PCB marking appears to be `YK910MO-1.0`.
 
-## Stock implementation
+## Current OpenWrt status
 
-The factory system uses proprietary `wl.ko` and userspace WLAN control utilities. Calibration/NVRAM location has not been fully resolved.
+PCI enumeration is proven, but Wi-Fi support is not implemented in the current image. No `b43` firmware selection, SPROM/calibration validation, interface creation, association, throughput, or RF testing has been completed.
 
-## Open-source strategy
+The `rj45-full` profile intentionally omits WLAN so wired boot and routing remain isolated from radio work.
 
-WLAN is deliberately last. The old BCM4322 has only partial support through `b43`, requires external firmware, and does not provide a clean modern 802.11n experience. Since the card is removable, a compatible ath9k-based Mini PCI card is likely the best fully open-source route.
+## Likely paths
 
-Before replacement:
+1. Investigate `b43` support with separately supplied firmware and preserved calibration data.
+2. Replace the removable card with a better-supported Mini PCI device, such as an ath9k-compatible model, if electrical and mechanical compatibility are confirmed.
 
-1. Preserve card orientation and antenna mapping.
-2. Inventory stock firmware, NVRAM, and calibration files.
-3. Capture PCI configuration and reset/clock behavior.
-4. Confirm Mini PCI 3.3 V power and host reset signals.
+A replacement card should not be treated as a substitute for preserving the original module's antenna mapping, calibration material, and PCI behavior.

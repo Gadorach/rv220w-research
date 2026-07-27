@@ -1,0 +1,116 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Cisco RV220W conservative RAM-validation device tree.
+ *
+ * Only hardware established by U-Boot, stock modules, and successful
+ * OpenWrt RAM boots is represented. Linux switch and reset-button control
+ * remain disabled so the proven U-Boot configuration is retained.
+ */
+
+/include/ "octeon_3xxx.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
+/ {
+	model = "Cisco RV220W";
+	compatible = "cisco,rv220w", "cavium,octeon-3860";
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	aliases {
+		/* Retain both conventional aliases for userspace and early console naming. */
+		uart0 = &uart0;
+		serial0 = &uart0;
+		pip = &pip;
+		smi0 = &smi0;
+		twsi0 = &twsi0;
+	};
+
+	/* U-Boot samples Octeon GPIO 1 and enters recovery when it is low. */
+	rv220w-reset-keys {
+		compatible = "gpio-keys";
+		status = "disabled";
+
+		reset {
+			label = "reset/recovery";
+			linux,code = <KEY_RESTART>;
+			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+			debounce-interval = <60>;
+		};
+	};
+};
+
+&uart0 {
+	/* CN5010 I/O/UART clock equals the verified 400 MHz core clock. */
+	clock-frequency = <400000000>;
+	status = "okay";
+};
+
+&twsi0 {
+	status = "okay";
+};
+
+&smi0 {
+	status = "okay";
+
+	/*
+	 * Confirmed independently in U-Boot and the stock mii/bcm5398 modules.
+	 * Keep disabled until the exact BCM53115 CPU and user-port topology is
+	 * validated for Linux B53/DSA.
+	 */
+	switch@1e {
+		compatible = "brcm,bcm53115";
+		reg = <0x1e>;
+		status = "disabled";
+	};
+};
+
+&pip {
+	status = "okay";
+
+	interface@0 {
+		status = "okay";
+
+		ethernet@0 {
+			status = "okay";
+		};
+
+		ethernet@1 {
+			status = "okay";
+		};
+
+		ethernet@2 {
+			status = "okay";
+		};
+	};
+};
+
+/* The generic USB node hangs this board in octeon_usb_probe(). */
+&usbn {
+	status = "disabled";
+};
+
+/*
+ * Reproduce the v1.3.0 BootBus arrangement exactly. The enabled inherited
+ * nor@0,0 child is intentionally retained because hardware evidence showed it
+ * also triggers Octeon's legacy phys_mapped_flash registration. That legacy
+ * path reads U-Boot's live CS0 register and finds the true 0x1dc00000 base,
+ * 32 MiB size, and x16 width. The redundant generic 0x1f400000 physmap probe
+ * is accepted in this repaired baseline and remains read-only.
+ */
+&bootbus {
+	status = "okay";
+
+	/delete-node/ cavium,cs-config@0;
+	/delete-node/ cavium,cs-config@4;
+	/delete-node/ cavium,cs-config@5;
+	/delete-node/ cavium,cs-config@6;
+	/delete-node/ led-display@4,0;
+	/delete-node/ compact-flash@5,0;
+
+	nor@0,0 {
+		status = "okay";
+	};
+};

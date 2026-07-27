@@ -1,0 +1,40 @@
+From: OpenAI RV220W promotion toolkit <noreply@example.invalid>
+Subject: [PATCH] staging: octeon: accept DSA conduit length-mismatch frames
+
+The Octeon PIP parser reports receive error 10 when the frame length does
+not agree with the value occupying the normal Ethernet length/type field.
+EtherType-inserting DSA tags, including the Broadcom tag used by B53,
+occupy that location until the DSA receive path removes the tag.  As a
+result, otherwise valid tagged frames can be dropped by the Octeon driver
+before eth_type_trans() hands them to DSA.
+
+Keep the existing short-frame exception and also accept error 10 on a
+netdev which is actively used as a DSA conduit.  The normal DSA receive
+path remains responsible for validating and decoding the tag; unrelated
+Octeon ports retain the existing error handling.
+
+This is a generic Octeon/DSA conduit compatibility fix.  It does not add
+B53-, board-name-, or OpenWrt-specific behavior.
+
+--- a/drivers/staging/octeon/ethernet-rx.c
++++ b/drivers/staging/octeon/ethernet-rx.c
+@@ -18,5 +18,6 @@
+ #include <linux/smp.h>
+ #include <linux/interrupt.h>
++#include <net/dsa.h>
+ #include <net/dst.h>
+ #ifdef CONFIG_XFRM
+ #include <linux/xfrm.h>
+@@ -69,7 +70,11 @@ static inline int cvm_oct_check_rcv_error(struct cvmx_wqe *work)
+ 	else
+ 		port = work->word1.cn38xx.ipprt;
+ 
+-	if ((work->word2.snoip.err_code == 10) && (work->word1.len <= 64))
++	if (work->word2.snoip.err_code == 10 &&
++	    (work->word1.len <= 64 ||
++	     (port < TOTAL_NUMBER_OF_PORTS &&
++	      cvm_oct_device[port] &&
++	      netdev_uses_dsa(cvm_oct_device[port]))))
+ 		/*
+ 		 * Ignore length errors on min size packets. Some
+ 		 * equipment incorrectly pads packets to 64+4FCS

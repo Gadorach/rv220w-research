@@ -1,0 +1,75 @@
+#!/bin/sh
+# RV220W direct Clause 22 MDIO identity/status scan.
+# This script performs reads only. It never supplies a write value to mdio.
+set -u
+
+label=${1:-identity}
+bus=${2:-8001180000001800}
+label=$(printf '%s' "$label" | tr -c 'A-Za-z0-9._-' '_')
+bus_label=$(printf '%s' "$bus" | tr -c 'A-Za-z0-9._-' '_')
+stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || echo unknown-time)
+out="/tmp/rv220w-mdio-${label}-${bus_label}-${stamp}.txt"
+
+exec 3>&1
+exec >"$out" 2>&1
+
+section() {
+    printf '\n=== %s ===\n' "$1"
+}
+
+echo 'RV220W MDIO identity/status scan'
+echo "label=$label"
+echo "time=$stamp"
+echo "bus=$bus"
+echo 'policy=read-only direct Clause 22 reads; no MDIO values, indirect page selection, switch-register writes, DSA binding, or flash writes'
+uname -a 2>/dev/null || true
+cat /etc/rv220w-build 2>/dev/null || true
+
+section BUSES
+mdio 2>&1 || true
+ls -la /sys/class/mdio_bus 2>/dev/null || true
+
+section BUS_PROBE
+# mdio BUS probes PHY addresses and reports discovered IDs/link state.
+mdio "$bus" 2>&1 || true
+
+section DIRECT_C22
+echo '# Each address is read only: BMCR(0), BMSR twice(1), PHYID1(2), PHYID2(3).'
+echo '# The second BMSR read reports current state after any latch-low bit is consumed.'
+addr=0
+while [ "$addr" -le 31 ]; do
+    printf '\n[phy %02d / 0x%02x]\n' "$addr" "$addr"
+    printf 'reg00_bmcr='
+    mdio "$bus" phy "$addr" raw 0 2>&1 || true
+    printf 'reg01_bmsr_first='
+    mdio "$bus" phy "$addr" raw 1 2>&1 || true
+    printf 'reg01_bmsr_second='
+    mdio "$bus" phy "$addr" raw 1 2>&1 || true
+    printf 'reg02_phyid1='
+    mdio "$bus" phy "$addr" raw 2 2>&1 || true
+    printf 'reg03_phyid2='
+    mdio "$bus" phy "$addr" raw 3 2>&1 || true
+    addr=$((addr + 1))
+done
+
+section NETWORK_COUNTERS
+for n in eth0 eth1 eth2; do
+    [ -d "/sys/class/net/$n" ] || continue
+    echo "[$n]"
+    for item in carrier rx_packets tx_packets rx_bytes tx_bytes rx_errors tx_errors rx_dropped tx_dropped multicast; do
+        if [ -r "/sys/class/net/$n/statistics/$item" ]; then
+            printf '%s=' "$item"
+            cat "/sys/class/net/$n/statistics/$item"
+        elif [ -r "/sys/class/net/$n/$item" ]; then
+            printf '%s=' "$item"
+            if ! cat "/sys/class/net/$n/$item" 2>/dev/null; then
+                echo unavailable
+            fi
+        fi
+    done
+done
+
+section END
+echo "output=$out"
+printf '%s\n' "$out" >&3
+printf 'RV220W MDIO scan: %s\n' "$out" >/dev/console 2>/dev/null || true

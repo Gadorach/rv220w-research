@@ -1,0 +1,265 @@
+RV220W passive B53 topology snapshot
+label=run9-eth1-p5-pvid0-b53
+time=19700101T061925Z
+bus=8001180000001800
+policy=selector-only pseudo-PHY writes to 0x1e:0x10/0x11; switch data registers read only; no reset, DSA binding, VLAN/ARL/MIB-control, PHY-control, or flash writes
+Linux rv220w-validation 6.12.94 #0 SMP Mon Jun 29 12:59:20 2026 mips64 GNU/Linux
+RV220W OpenWrt RAM-only dual-conduit DSA validation profile v1.8.0 (rxid)
+OpenWrt ref: v25.12.5-dirty
+Build UTC: 2026-07-26T17:53:31Z
+
+=== PRECHECK ===
+/usr/bin/mdio
+8001180000001800
+dsa-0.0
+fixed-0
+selector_page_initial=0x2401
+selector_addr_initial=0xc000
+
+=== IDENTITY ===
+device_id=0x00053115
+revision_id=0x08
+strap_value=0x000008d10c1c
+
+=== GLOBAL_CONTROL ===
+smp_control=0x00
+switch_mode=0x03
+imp_override_port8=0x8b
+ip_multicast_control=0xc1
+switch_control=0x00
+protected_port_selection=0x0000
+unknown_unicast_flood_mask=0x01ff
+multicast_flood_mask=0x01ff
+ip_multicast_flood_mask=0x01ff
+disable_learning_mask=0x01e1
+
+=== MANAGEMENT ===
+global_management_config=0xc2
+broadcom_header_control=0x03
+aging_time_control=0x0010012c
+broadcom_header_rx_disable=0x0000
+broadcom_header_tx_disable=0x0000
+frame_management_mode_code=3
+frame_management_mode=dual-imp-port8-port5
+
+=== GLOBAL_STATUS ===
+link_status_summary=0x0121
+speed_status_summary=0x0002aaaa
+duplex_status_summary=0x01f3
+
+=== VLAN_CONTROL ===
+vlan_control0=0xe3
+vlan_control1=0x0a
+vlan_control2=0x10
+vlan_control3=0x0000
+vlan_control4=0x80
+vlan_control5=0x10
+vlan_control6=0x00
+
+=== PORT_REGISTERS ===
+
+[port 0]
+port_control=0xa0
+port_vlan_mask=0x0021
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x0b
+rgmii_control=0x00
+eap_config_raw=0x0018000000000000
+eap_mode_code=3
+eap_mode=simplified
+
+[port 1]
+port_control=0x20
+port_vlan_mask=0x011e
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x0b
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 2]
+port_control=0x20
+port_vlan_mask=0x011e
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x0b
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 3]
+port_control=0x20
+port_vlan_mask=0x011e
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x0b
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 4]
+port_control=0x20
+port_vlan_mask=0x011e
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x0b
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 5]
+port_control=0xbc
+port_vlan_mask=0x0021
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x4b
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 6]
+port_control=0x00
+port_vlan_mask=0x0000
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x00
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 7]
+port_control=0x00
+port_vlan_mask=0x0000
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+gmii_override=0x00
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+[port 8]
+port_control=0xbc
+port_vlan_mask=0x011e
+default_vlan_tag=0x0000
+indirect_mii_bmcr=0x0000
+indirect_mii_bmsr=0x0000
+indirect_mii_phyid1=0x0000
+indirect_mii_phyid2=0x0000
+rgmii_control=0x00
+eap_config_raw=0x0000000000000000
+eap_mode_code=0
+eap_mode=basic
+
+=== DSA_CONDUIT_REGISTER_CHECK ===
+live_wan_conduit=eth1
+port0_control=0xa0
+port0_port_vlan_mask=0x0021
+port5_control=0xbc
+port5_port_vlan_mask=0x0021
+port8_control=0xbc
+port8_port_vlan_mask=0x011e
+port0_eap_config_raw=0x0018000000000000
+port0_eap_mode=simplified
+port5_eap_config_raw=0x0000000000000000
+port5_eap_mode=basic
+port8_eap_config_raw=0x0000000000000000
+port8_eap_mode=basic
+frame_management_mode=dual-imp-port8-port5
+broadcom_header_control=0x03
+broadcom_header_rx_disable=0x0000
+broadcom_header_tx_disable=0x0000
+vendor_reference_port0_mask=0x0021
+vendor_reference_port5_mask=0x0021
+vendor_reference_port8_mask=0x011e
+expected_wan_cpu_port=5
+port0_has_expected_cpu=yes
+expected_cpu_has_port0=yes
+unexpected_cpu_has_port0=no
+conduit_register_check=ok
+
+=== DECODED_PORT_SUMMARY ===
+port0 link=1 speed=1000M duplex=full
+port1 link=0 speed=1000M duplex=full
+port2 link=0 speed=1000M duplex=half
+port3 link=0 speed=1000M duplex=half
+port4 link=0 speed=1000M duplex=full
+port5 link=1 speed=1000M duplex=full
+port6 link=0 speed=1000M duplex=full
+port7 link=0 speed=1000M duplex=full
+port8 link=1 speed=1000M duplex=full
+
+=== NETWORK_COUNTERS ===
+[eth0]
+carrier=1
+rx_packets=5231
+tx_packets=126
+rx_bytes=545600
+tx_bytes=87660
+rx_errors=0
+tx_errors=0
+rx_dropped=0
+tx_dropped=0
+multicast=803
+[eth1]
+carrier=1
+rx_packets=0
+tx_packets=214
+rx_bytes=0
+tx_bytes=33576
+rx_errors=0
+tx_errors=0
+rx_dropped=0
+tx_dropped=0
+multicast=0
+[eth2]
+carrier=unavailable
+rx_packets=0
+tx_packets=0
+rx_bytes=0
+tx_bytes=0
+rx_errors=0
+tx_errors=0
+rx_dropped=0
+tx_dropped=0
+multicast=0
+
+=== SELECTOR_RESTORE ===
+selector_page_restored=0x2401
+selector_addr_restored=0xc000
+read_errors=reported inline as ERROR tokens
+
+=== END ===
+output=/tmp/rv220w-b53-run9-eth1-p5-pvid0-b53-8001180000001800-19700101T061925Z.txt

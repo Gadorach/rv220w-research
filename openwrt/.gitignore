@@ -1,0 +1,7 @@
+config/toolkit.env.fish
+captures/
+work/
+__pycache__/
+*.pyc
+*.log
+*.tmp

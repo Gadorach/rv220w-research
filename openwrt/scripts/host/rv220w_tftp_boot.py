@@ -34,6 +34,29 @@ class BootError(RuntimeError):
     pass
 
 
+class UnsafeBootState(BootError):
+    """U-Boot reported a stale/unsafe transfer state requiring a power cycle."""
+
+
+UNSAFE_UBOOT_MARKERS = (
+    b"WARNING: Data loaded outside of the reserved load area",
+    b"memory corruption may occur",
+)
+
+def check_unsafe_uboot(data: bytes) -> None:
+    if any(marker in data for marker in UNSAFE_UBOOT_MARKERS):
+        raise UnsafeBootState(
+            "U-Boot reported an unsafe stale transfer state. Power-cycle the router "
+            "before retrying; the helper will not continue from this prompt."
+        )
+    # U-Boot prints a standalone Abort when a previous transfer was interrupted.
+    if re.search(rb"(?:^|[\r\n])Abort(?:[\r\n]|$)", data):
+        raise UnsafeBootState(
+            "U-Boot reported Abort from a previous transfer. Power-cycle the router "
+            "before retrying."
+        )
+
+
 def auto_int(value: str) -> int:
     return int(value, 0)
 
@@ -96,11 +119,22 @@ def choose_network(args: argparse.Namespace) -> tuple[str, ipaddress.IPv4Interfa
                 raise BootError(f"interface does not exist: {args.interface}")
             selected = {"name": args.interface, "addresses": []}
     elif args.server_ip:
-        route = run_json(["ip", "-j", "route", "get", args.server_ip])
-        if not route:
-            raise BootError("could not resolve interface for --server-ip")
-        name = route[0].get("dev")
-        selected = next((r for r in records if r["name"] == name), {"name": name, "addresses": []})
+        # With an explicit server address and no explicit interface, first look
+        # for an interface already carrying it. Route lookup is not meaningful
+        # for an address that --configure-interface is about to add locally.
+        selected = next(
+            (
+                r
+                for r in records
+                if any(a.get("local") == args.server_ip for a in r.get("addresses", []))
+            ),
+            None,
+        )
+        if selected is None:
+            if args.configure_interface and len(records) == 1:
+                selected = records[0]
+            else:
+                raise BootError("could not choose an interface for --server-ip; pass --interface")
     else:
         with_ipv4 = [r for r in records if r["addresses"]]
         if len(with_ipv4) == 1:
@@ -113,24 +147,37 @@ def choose_network(args: argparse.Namespace) -> tuple[str, ipaddress.IPv4Interfa
 
     name = str(selected["name"])
     addresses = list(selected.get("addresses", []))
+    test_network = ipaddress.IPv4Network(args.test_subnet, strict=False)
     added = False
-    if args.server_ip:
+
+    if args.configure_interface:
+        server_ip = ipaddress.IPv4Address(args.server_ip) if args.server_ip else next(test_network.hosts())
+        if server_ip not in test_network:
+            raise BootError(f"server IP {server_ip} is outside configured test subnet {test_network}")
+        server_if = ipaddress.IPv4Interface(f"{server_ip}/{test_network.prefixlen}")
+        matching = [a for a in addresses if a.get("local") == str(server_ip)]
+        subprocess.run(["sudo", "ip", "link", "set", name, "up"], check=True)
+        if not matching:
+            # Do not flush or replace unrelated host addresses. Add only the
+            # deterministic direct-link address and remove only this address on exit.
+            subprocess.run(["sudo", "ip", "address", "add", str(server_if), "dev", name], check=True)
+            added = True
+        elif int(matching[0]["prefixlen"]) != test_network.prefixlen:
+            raise BootError(
+                f"server IP {server_ip} already exists on {name} with /{matching[0]['prefixlen']}, "
+                f"expected /{test_network.prefixlen}"
+            )
+    elif args.server_ip:
         server_ip = ipaddress.IPv4Address(args.server_ip)
         matching = [a for a in addresses if a.get("local") == str(server_ip)]
         if not matching:
-            raise BootError(f"server IP {server_ip} is not configured on {name}")
-        prefix = int(matching[0]["prefixlen"])
-        server_if = ipaddress.IPv4Interface(f"{server_ip}/{prefix}")
+            raise BootError(f"server IP {server_ip} is not configured on {name}; use --configure-interface")
+        server_if = ipaddress.IPv4Interface(f"{server_ip}/{matching[0]['prefixlen']}")
     elif addresses:
-        preferred = next((a for a in addresses if not ipaddress.IPv4Address(a["local"]).is_link_local), addresses[0])
+        in_test = [a for a in addresses if ipaddress.IPv4Address(a["local"]) in test_network]
+        preferred_pool = in_test or [a for a in addresses if not ipaddress.IPv4Address(a["local"]).is_link_local] or addresses
+        preferred = preferred_pool[0]
         server_if = ipaddress.IPv4Interface(f"{preferred['local']}/{preferred['prefixlen']}")
-    elif args.configure_interface:
-        network = ipaddress.IPv4Network(args.test_subnet, strict=False)
-        server_ip = next(network.hosts())
-        server_if = ipaddress.IPv4Interface(f"{server_ip}/{network.prefixlen}")
-        subprocess.run(["sudo", "ip", "link", "set", name, "up"], check=True)
-        subprocess.run(["sudo", "ip", "address", "add", str(server_if), "dev", name], check=True)
-        added = True
     else:
         raise BootError(f"interface {name} has no IPv4 address; use --configure-interface or configure one manually")
 
@@ -144,8 +191,10 @@ def choose_network(args: argparse.Namespace) -> tuple[str, ipaddress.IPv4Interfa
         device_ip = next(hosts)
         while device_ip == server_if.ip:
             device_ip = next(hosts)
-    return name, server_if, device_ip, added
 
+    if device_ip == server_if.ip:
+        raise BootError(f"server IP and device IP must differ; both resolve to {device_ip}")
+    return name, server_if, device_ip, added
 
 def inspect_image(path: pathlib.Path, load_address: int) -> tuple[int, int]:
     blob = path.read_bytes()
@@ -229,7 +278,7 @@ def start_tftp(image: pathlib.Path, server_ip: ipaddress.IPv4Address, interface:
         f"--listen-address={server_ip}",
         "--enable-tftp",
         f"--tftp-root={root}",
-        "--tftp-no-blocksize",
+        "--tftp-mtu=544",
         "--tftp-max=16",
         f"--user={user}",
         f"--group={group}",
@@ -272,6 +321,7 @@ class Console:
             data = self.read_some()
             if data:
                 buf.extend(data)
+                check_unsafe_uboot(bytes(buf[-4096:]))
                 if bytes(buf).endswith(PROMPT):
                     return bytes(buf)
             else:
@@ -284,6 +334,8 @@ class Console:
         try:
             self.wait_prompt(1.0)
             return
+        except UnsafeBootState:
+            raise
         except BootError:
             pass
         print("\n[rv220w] Power-cycle the router now. Ctrl-C will be sent automatically.", file=sys.stderr)
@@ -292,20 +344,26 @@ class Console:
         last_interrupt = 0.0
         seen_uboot = False
         seen_magic = False
+        linux_notice = False
         while time.monotonic() < deadline:
             data = self.read_some()
             if data:
                 buf.extend(data)
                 tail = bytes(buf[-4096:])
+                check_unsafe_uboot(tail)
                 seen_uboot = seen_uboot or b"U-Boot" in tail
                 seen_magic = seen_magic or b"checking fw magic" in tail or b"Image name" in tail
+                if not linux_notice and (b"root@rv220w-validation" in tail or b"OpenWrt" in tail):
+                    print(
+                        "\n[rv220w] Running Linux detected. Waiting for a real power cycle; "
+                        "no Ctrl-C will be sent until a U-Boot banner appears.",
+                        file=sys.stderr,
+                    )
+                    linux_notice = True
                 if tail.endswith(PROMPT):
                     return
             now = time.monotonic()
             if (seen_magic or seen_uboot) and now - last_interrupt > 0.08:
-                self.write(b"\x03")
-                last_interrupt = now
-            elif now - last_interrupt > 0.5:
                 self.write(b"\x03")
                 last_interrupt = now
             time.sleep(0.002)
@@ -326,9 +384,13 @@ class Console:
         self.ser.reset_input_buffer()
         self.write(command.encode("ascii") + b"\r")
         deadline = time.monotonic() + timeout
+        buf = bytearray()
         while time.monotonic() < deadline:
             data = self.read_some()
-            if not data:
+            if data:
+                buf.extend(data)
+                check_unsafe_uboot(bytes(buf[-4096:]))
+            else:
                 time.sleep(0.002)
         print("\n[rv220w] boot capture timeout reached; log closed without sending input", file=sys.stderr)
 
@@ -337,6 +399,7 @@ def tftp_transfer(console: Console, filename: str, image_size: int, load_address
     netmask = server_if.network.netmask
     console.command("base 0")
     console.command("setenv autoload no")
+    console.command("setenv netretry no")
     console.command(f"setenv ipaddr {device_ip}")
     console.command(f"setenv serverip {server_if.ip}")
     console.command(f"setenv netmask {netmask}")
@@ -346,11 +409,15 @@ def tftp_transfer(console: Console, filename: str, image_size: int, load_address
         console.command(f"setenv ethact {ethact}")
         try:
             response = console.command(f"tftpboot 0x{load_address:08x} {filename}", timeout=timeout)
+        except UnsafeBootState:
+            raise
         except BootError as exc:
             errors.append(f"{ethact}: {exc}")
             console.write(b"\x03\r")
             try:
                 console.wait_prompt(5.0)
+            except UnsafeBootState:
+                raise
             except BootError:
                 pass
             continue

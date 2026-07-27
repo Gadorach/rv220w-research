@@ -1,0 +1,117 @@
+{
+  "name": "rv220w-openwrt-promotion-toolkit",
+  "version": "1.9.0",
+  "snapshot_date": "2026-07-27",
+  "host": "CachyOS with fish",
+  "build_environment": "Validated Ubuntu 24.04 Distrobox (explicit --name execution)",
+  "openwrt_ref": "v25.12.5",
+  "linux_reference_ref": "linux-6.12.y",
+  "reference_builder": "Gadorach/meraki-builder ms42p-dev",
+  "platform": "Cisco RV220W / Cavium CN5010-SCP",
+  "known_flash_size": 33554432,
+  "known_flash_crc32": "ce96f3e0",
+  "known_flash_sha256": "03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5",
+  "safety_policy": "RAM-only validation; no automated flash writes",
+  "platform_integration": "Cisco RV220W hardware-proven RAM-validation DTB profile v1.3.2",
+  "openwrt_platform_patch": "openwrt/platform/openwrt-rv220w-platform-v1.3.2.patch",
+  "validation_defaults": {
+    "host_interface": "enp0s31f6",
+    "host_ip": "192.168.240.1",
+    "device_ip": "192.168.240.2",
+    "uboot_ethact": "octeth0"
+  },
+  "baseline_status": "v1.9.0 hardware validated by complete TFTP RAM boot with all five RJ45 ports operational; no LuCI, WLAN, or persistent flash attempt",
+  "key_change": "run9 VLAN proof promoted into B53 CPU-port initialization patch 998; rj45-full is now hardware-proven for complete RAM boot and five-port wired operation",
+  "candidate": {
+    "filename": "rv220w-openwrt-rv220w-initramfs-v1.3.2-dtb-repacked.elf",
+    "sha256": "8284b808e3698b97ed17969439df8285c6ff82d1945af5932b3c1072b644551b",
+    "derivation": "all non-DTB file-backed sections from proven v1.3.1; exact v1.3.0 nor@0,0 child restored; 400 MHz UART retained",
+    "hardware_validation": "superseded by clean v1.3.2 build hardware validation"
+  },
+  "discovery_profile": {
+    "build_mode": "rv220w-discovery-initramfs",
+    "artifact": "rv220w-openwrt-rv220w-discovery-initramfs.elf",
+    "switch_binding": "disabled; no B53 child in DT",
+    "policy": "passive discovery; direct Clause 22 reads plus selector-only pseudo-PHY writes to 0x1e registers 0x10/0x11; no switch data writes, reset, DSA binding, or flash writes",
+    "version": "1.8.4"
+  },
+  "hardware_validated_reference": {
+    "filename": "rv220w-openwrt-rv220w-initramfs.elf",
+    "sha256": "07d7dd4542bf4d5864a67de56dcebc600d64bd61c550ecbe2acf0b9412b965c7",
+    "size": 15708840,
+    "entry": "0xffffffff819c5230",
+    "date": "2026-07-25/26"
+  },
+  "port_mapping": {
+    "status": "hardware validated passive topology plus LAN DSA runs 1-5",
+    "eth0": "LAN1-LAN4 aggregate switched path",
+    "eth1": "WAN path",
+    "eth2": "no observed link or traffic; strong board-level inference ties it to an unpopulated optional RJ45/magnetics footprint",
+    "phy0": "WAN",
+    "phy1": "LAN1",
+    "phy2": "LAN2",
+    "phy3": "LAN3",
+    "phy4": "LAN4",
+    "phy5": "present with distinct PHY ID; internal/non-external role not yet assigned",
+    "pseudo_phy_0x1e": "Broadcom switch-management endpoint",
+    "evidence": "NONE/WAN UART scans prove PHY0; LAN1-LAN4 scans prove PHY1-PHY4; host counters map WAN to eth1 and LAN aggregate to eth0",
+    "switch_port0": "WAN external PHY0",
+    "switch_port1": "LAN1 external PHY1",
+    "switch_port2": "LAN2 external PHY2",
+    "switch_port3": "LAN3 external PHY3",
+    "switch_port4": "LAN4 external PHY4",
+    "switch_port5": "hardware-proven 1G full-duplex DSA conduit to Octeon eth1; run9 restores bidirectional WAN forwarding when port5 participates in the selected ordinary VLAN-table domain",
+    "switch_port8": "hardware-proven DSA conduit to Octeon eth0; all four LAN ports pass 1000/full and full-MTU traffic",
+    "switch_ports6_7": "unused/disabled in observed vendor topology"
+  },
+  "current_stage": {
+    "name": "hardware-proven full-RJ45 RAM-boot OpenWrt profile",
+    "build_modes": [
+      "rv220w-rj45-initramfs",
+      "rv220w-dsa-dual-rxid",
+      "rv220w-dsa-lan-rxid"
+    ],
+    "default_alias": "rj45-full -> rv220w-rj45-initramfs",
+    "transport": "hardware-proven RAM-only TFTP boot through stock U-Boot; no saveenv or flash writes",
+    "topology": "wan/port0 -> CPU port5 -> eth1; lan1-lan4/ports1-4 -> CPU port8 -> eth0 -> br-lan",
+    "affinity": "standard DSA rtnetlink mapping before netifd: wan -> eth1; lan1-lan4 -> eth0; generic B53 conduit callback preserves disjoint PVLAN domains",
+    "addresses": {
+      "lan": "192.168.240.2/24 with DHCP server",
+      "wan": "DHCP plus DHCPv6 client"
+    },
+    "policy": "firewall4 separates LAN and WAN; LAN-to-WAN forwarding and masquerading enabled; WAN-to-LAN forwarding rejected; PPP/PPPoE available; no LuCI or flash-write automation",
+    "timing": "port5 and port8 rgmii-rxid, both hardware-proven at 1000/full",
+    "kernel_patches": [
+      "995-rv220w-octeon-dsa-master-node.patch",
+      "996-octeon-dsa-conduit-length-error.patch",
+      "997-b53-multi-conduit-affinity.patch",
+      "998-b53-enable-dt-cpu-ports.patch"
+    ],
+    "run9_result": "port5 PVID change alone failed; adding port5 to VID0 restored WAN, restoring the original table restored failure, and a separate VID1 {0,5} domain also passed; ordinary VLAN membership/classification is proven causal",
+    "driver_fix": "merge dsa_cpu_ports(ds) into B53 enabled_ports before generic VLAN setup so every firmware-described CPU conduit receives the default PVID and VLAN membership",
+    "hardware_isolation": "PVLAN WAN domain {0,5}; LAN domain {1,2,3,4,8}; Linux bridge contains only lan1-lan4",
+    "next_after_rj45": "preserve final regression logs, evaluate optional LuCI size, promote LEDs/reset/watchdog, investigate WLAN, then design and qualify a recovery-preserving persistent layout",
+    "evidence": "evidence/run9-vlan-pvid plus RV220W-RUN9-VLAN-PVID-PROOF.md",
+    "hardware_validation": "complete boot to running OpenWrt with LAN1-LAN4 and WAN initialized and operational",
+    "limitations": "experimental/unpolished; no LuCI; BCM4322 Wi-Fi not operational; no persistent installation or onboard NOR write attempted"
+  },
+  "lan_dsa_hardware_validation": {
+    "status": "complete",
+    "profile": "rv220w-dsa-lan-rxid",
+    "topology": "BCM53115 ports1-4 -> CPU port8 -> Octeon eth0 -> Linux DSA -> br-lan",
+    "timing": "rgmii-rxid",
+    "ports": [
+      "LAN1",
+      "LAN2",
+      "LAN3",
+      "LAN4"
+    ],
+    "packet_sizes": "LAN1 passed ICMP payloads 0,18,56,512,1400,1472 bytes at 20/20 each",
+    "errors": "no interface errors/drops during test windows; no sustained Octeon receive error 10 after v1.7.6"
+  },
+  "wlan_plan": {
+    "device": "Broadcom BCM4322 Mini PCI, PCI ID 14e4:432b",
+    "status": "PCI enumeration proven; driver/firmware/RF operation deferred",
+    "next_gate": "begin b43/firmware or replacement-card investigation after preserving the hardware-proven full-RJ45 regression baseline"
+  }
+}

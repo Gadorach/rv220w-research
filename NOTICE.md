@@ -1,9 +1,9 @@
 # Notice
 
-The MIT license covers original scripts and documentation in this repository.
+The repository-level MIT license covers original research scripts and documentation unless a subdirectory states otherwise. The complete OpenWrt promotion toolkit under `openwrt/` retains its own GPL-3.0 license in `openwrt/LICENSE`.
 
-Photographs under `evidence/photos/original/` were supplied by the device owner and are retained as research evidence. No public redistribution license is asserted for those photographs. The public-safe derivative removes the most obvious device label but should still be reviewed before publication.
+Photographs under `evidence/photos/original/` were supplied by the device owner and are retained as research evidence. No public redistribution license is asserted for those photographs. Review all photographs and preserved firmware data before public redistribution.
 
 Cisco, Cavium/Marvell, Broadcom, Macronix, Etron, and other product names are trademarks of their respective owners. This repository is independent research and is not affiliated with or endorsed by Cisco.
 
-Third-party manuals and data sheets are not bundled. `sources/` contains URLs and retrieval helpers only.
+Vendor firmware, extracted binaries, configuration data, certificates, and keys remain subject to their original terms. Third-party manuals and data sheets are not bundled; `sources/` contains URLs and retrieval helpers only.

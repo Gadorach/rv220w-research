@@ -1,18 +1,6 @@
 # CachyOS and Distrobox build environment
 
-## Host responsibilities
-
-CachyOS provides:
-
-- fish entry points,
-- Git and artifact storage,
-- Podman/Distrobox,
-- serial and direct-link network devices,
-- TFTP runtime tools.
-
-## Container responsibilities
-
-Ubuntu 24.04 Distrobox provides the stable OpenWrt build dependency set, cross-toolchains, kernel headers, SquashFS tools, device-tree compiler, and image utilities.
+The supported workflow uses fish on CachyOS for orchestration and an Ubuntu 24.04 Distrobox for OpenWrt compilation.
 
 ## Setup
 
@@ -23,6 +11,7 @@ cp config/toolkit.env.fish.example config/toolkit.env.fish
 ./rv220w.fish setup-host
 ./rv220w.fish setup-box
 ./rv220w.fish prepare-sources
+./rv220w.fish platform verify
 ```
 
 Default workspace:
@@ -37,23 +26,23 @@ Default workspace:
   source-lock.json
 ```
 
-The Meraki builder checkout is a workflow reference, not an RV220W code dependency.
-
-## Build modes
+## Current hardware-proven build
 
 ```fish
-./rv220w.fish build initramfs
-./rv220w.fish build squashfs
-./rv220w.fish build squashfs-live
-./rv220w.fish build kernel
-./rv220w.fish build-linux
+./rv220w.fish build rj45-full
 ```
 
-The generic Octeon build is only a transport/kernel baseline. Do not flash it and do not assume another Octeon device’s DTS matches the RV220W.
+Expected artifact:
+
+```text
+$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-initramfs.elf
+```
+
+The older `initramfs`, `discovery`, `dsa-lan`, and `dsa-dual` profiles remain useful for regression and diagnostics. The `rj45-full` profile is the current complete wired RAM-boot image.
 
 ## Reproducibility
 
-- Keep source checkouts clean before updating.
-- Record exact commits in `source-lock.json`.
-- Keep generated configs and build logs with each artifact.
-- Rebuild from a clean output directory before promotion to hardware testing.
+- Preserve `source-lock.json`, expanded configs, build logs, and artifact hashes.
+- Run the toolkit tests before packaging changes.
+- Do not change the OpenWrt ref while comparing hardware behavior.
+- Do not confuse the standalone Linux reference build with the OpenWrt-managed kernel used by the live image.

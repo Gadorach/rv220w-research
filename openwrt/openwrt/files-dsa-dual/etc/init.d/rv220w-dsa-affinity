@@ -1,0 +1,11 @@
+#!/bin/sh /etc/rc.common
+START=18
+STOP=90
+
+boot() {
+	/usr/sbin/rv220w-dsa-affinity apply || logger -t rv220w-dsa-affinity 'early affinity assignment failed'
+}
+
+start() {
+	boot
+}

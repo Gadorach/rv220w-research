@@ -1,38 +1,56 @@
 # Current status
 
-**Organized package:** 1.0.0  
-**Research snapshot:** 2026-07-20  
-**Board:** Cisco RV220W-A V01 / `YK910A-1.6`
+**Research package:** 1.1.0
 
-## Complete
+**OpenWrt toolkit:** 1.9.0
 
-- Board and component photography, including direct high-resolution stitched views.
-- Major component inventory.
-- JP1 primary UART pinout and U-Boot access.
-- J2 high-confidence MIPS14/EJTAG electrical topology.
-- Two independently verified 32 MiB flash captures.
-- Physical flash map, actual U-Boot environment location, and firmware container format.
-- Boot stub, U-Boot, kernel ELF, SquashFS rootfs, JFFS2 data, and environment/tail extraction.
-- Stock kernel/module architecture review.
-- CachyOS/Distrobox/OpenWrt promotion toolkit.
-- Duplicate scripts and overlapping documentation consolidated.
+**Snapshot:** 2026-07-27
 
-## Immediate work
+**Board:** Cisco RV220W-A V01 / PCB `YK910A-1.6`
 
-1. Prove TFTP transport by loading the recovered stock ELF into RAM.
-2. Build and boot a minimal generic Octeon OpenWrt initramfs.
-3. Add an RV220W board description and read-only BootBus NOR support.
-4. Map the Octeon RGMII interfaces to physical ports.
-5. Bring up the BCM53115 CPU/IMP port and switch management path.
-6. Map LEDs, reset input, JP2, J2, and watchdog behavior.
-7. Design persistent storage only after RAM boot and recovery are reliable.
+## Hardware-proven OpenWrt state
 
-## Unresolved
+The current experimental OpenWrt initramfs image has been built and fully booted from RAM through the stock U-Boot TFTP path. The onboard NOR was not modified.
 
-- Firmware header fields at offsets `0x04` and `0x08`.
-- Meaning of the final 16 non-erased bytes in the actual U-Boot environment sector.
-- Exact JP2 protocol and physical pin numbering.
-- Active confirmation of every J2 EJTAG signal.
-- Complete GPIO, LED, reset, and watchdog map.
-- BCM53115 MDIO address, CPU port, Broadcom tag behavior, and RGMII delays.
-- A tested RV220W device tree and OpenWrt image profile.
+The live system initializes and operates all five front-panel RJ45 ports:
+
+```text
+WAN  -> BCM53115 port 0 -> CPU port 5 -> Octeon eth1 -> DSA wan
+LAN1 -> BCM53115 port 1 \
+LAN2 -> BCM53115 port 2  \
+LAN3 -> BCM53115 port 3   > CPU port 8 -> Octeon eth0 -> DSA -> br-lan
+LAN4 -> BCM53115 port 4  /
+```
+
+The working timing mode is `rgmii-rxid` for both switch CPU links. The v1.9.0 B53 patch includes firmware-described DSA CPU ports in the active-port mask so both CPU conduits receive normal default VLAN/PVID setup.
+
+The `rj45-full` profile provides a conventional wired-router policy in RAM:
+
+- LAN1–LAN4 in `br-lan` at `192.168.240.2/24`;
+- DHCP service on LAN;
+- DHCP and DHCPv6 clients on WAN;
+- firewall4 LAN/WAN separation;
+- LAN-to-WAN forwarding and masquerading;
+- PPP and PPPoE packages.
+
+## Deliberately absent or untested
+
+- **LuCI:** not added or tested.
+- **Wi-Fi:** the BCM4322 Mini PCI device enumerates, but no driver, firmware, radio, or RF validation has been completed.
+- **Persistent installation:** no NOR erase, program, sysupgrade, or boot-from-flash attempt has been made.
+- **Persistent root filesystem:** only RAM-loaded experimental images are qualified.
+- **Board services:** status LEDs, reset-button integration, watchdog behavior, and remaining GPIOs are not fully promoted.
+
+## Preservation baseline
+
+- Two independent 32 MiB UART flash acquisitions match byte-for-byte.
+- Boot stub, U-Boot, stock kernel ELF, SquashFS rootfs, JFFS2 data, and the actual final environment sector are preserved.
+- The automated TFTP path changes only temporary U-Boot variables and never calls `saveenv` or a flash command.
+
+## Recommended next work
+
+1. Preserve the final full-RJ45 boot and traffic-validation logs as a named regression baseline.
+2. Add optional LuCI only after measuring image and runtime-memory impact.
+3. Promote LEDs, reset input, and watchdog behavior without enabling destructive reset semantics.
+4. Investigate BCM4322 `b43` firmware support or a better-supported replacement Mini PCI card.
+5. Design a recovery-preserving flash layout only after repeated RAM-boot regression testing and a complete restore procedure are qualified.
