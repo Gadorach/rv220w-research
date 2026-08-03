@@ -1,0 +1,15 @@
+__copy_user
+alloc_chrdev_region
+cdev_add
+cdev_del
+cdev_init
+jiffies
+mii_phy_read
+mii_phy_write
+param_get_charp
+param_get_int
+param_set_charp
+param_set_int
+printk
+strcmp
+unregister_chrdev_region

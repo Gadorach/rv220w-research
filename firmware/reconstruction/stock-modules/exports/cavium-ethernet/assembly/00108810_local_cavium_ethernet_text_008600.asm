@@ -1,0 +1,27 @@
+# rv220w-stock-modules-v1.0.0 module=cavium-ethernet entry=00108810 function=local_cavium_ethernet_text_008600
+00108810	lui v0,0xfffc
+00108814	SPECIAL2 zero,a0,a0,0x1b,0x32
+00108818	ori v0,v0,0x9
+0010881c	li a3,0xff
+00108820	dsll v0,v0,0x11
+00108824	lui a1,0xfff0
+00108828	daddiu v0,v0,-0x7ff7
+0010882c	ori a1,a1,0x23
+00108830	dsll v0,v0,0x1c
+00108834	dsll32 a1,a1,0xb
+00108838	ori a2,v0,0x308
+0010883c	ori v0,v0,0x6a0
+00108840	daddu a2,a0,a2
+00108844	daddu a0,a0,v0
+00108848	ld v1,0x0(a2)
+0010884c	li v0,0x3
+00108850	ori a1,a1,0xf8
+00108854	dins v1,a3,0x4,0x8
+00108858	dins v1,v0,0x0,0x2
+0010885c	sd v1,0x0(a2)
+00108860	ld t0,0x0(a1)
+00108864	ld v0,0x0(a0)
+00108868	dins v0,a3,0x0,0x8
+0010886c	sd v0,0x0(a0)
+00108870	jr ra
+00108874	_ld v1,0x0(a1)

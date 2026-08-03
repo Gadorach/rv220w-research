@@ -1,0 +1,94 @@
+{
+  "package": "rv220w-openwrt-rv220w-platform-update",
+  "version": "1.1.0",
+  "purpose": "RAM-only Cisco RV220W OpenWrt initramfs platform validation",
+  "safety": {
+    "sysupgrade_image": false,
+    "flash_writes_added": false,
+    "b53_dsa_enabled": false,
+    "gpio_keys_enabled": false,
+    "dt_bootbus_enabled": false
+  },
+  "evidence": {
+    "uboot_functions": 737,
+    "uboot_decompile_success": 737,
+    "uboot_decompile_failures": 0,
+    "uboot_command_records": 58,
+    "reset_gpio": 1,
+    "reset_active_low": true,
+    "base_mac_flash_offset": "0x6ff00",
+    "bcm53115_pseudo_phy": "0x1e"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "size": 3173,
+      "sha256": "9dfb34a5b7241e82e5e6605deb516088bad9de45008b735eb380e4797075c01a"
+    },
+    {
+      "path": "artifacts/cn5010_cisco_rv220w.dtb",
+      "size": 5658,
+      "sha256": "bec71679b57fdf20cb676c8ab910359366bf0400b6e9ea8016bbb08cb4e742c5"
+    },
+    {
+      "path": "artifacts/cn5010_cisco_rv220w.dtb.json",
+      "size": 986,
+      "sha256": "1948941c4d547225a93bf2c284e9f2f66baeafaaa5a6f710e082ecda72ddeb93"
+    },
+    {
+      "path": "artifacts/cn5010_cisco_rv220w.dts",
+      "size": 2151,
+      "sha256": "c303d7e6843924720f31bb52dd8faf75ea689a7a9783610f90a04586e1bd1287"
+    },
+    {
+      "path": "docs/DT-EVIDENCE-MATRIX.md",
+      "size": 2233,
+      "sha256": "cea3053f4da18b789f6471e8ff16c21fd1ddb4dd577076225a6a050325bd550f"
+    },
+    {
+      "path": "docs/FIRST-BOOT-VALIDATION.md",
+      "size": 1467,
+      "sha256": "4b8c6006a7c943eb91dfa306e520d38bfec3234dcdc437895074bbbecbd856c1"
+    },
+    {
+      "path": "docs/U-BOOT-CONFIRMATIONS.md",
+      "size": 2747,
+      "sha256": "78be4bdf9e3abd484197a24aadc782816daffa4848afad86efb01480ff25e410"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "size": 1088,
+      "sha256": "d080086b0074489753a7d24a8dd4a0f0027702afdd4efa7c0827e0b411639ecd"
+    },
+    {
+      "path": "patches/openwrt-rv220w-platform-v1.1.0.patch",
+      "size": 6024,
+      "sha256": "484d72f0ee078a73fd9841e37895732dbe9f8d353fa8c56019d9eb3fd094687e"
+    },
+    {
+      "path": "patches/promotion-toolkit-rv220w-v1.1.0.patch",
+      "size": 3482,
+      "sha256": "62e84697b2f66819e6d2c1543ae9ce6662d8cdd4b5f63b300ee75ec21434c771"
+    },
+    {
+      "path": "provenance/INPUTS.txt",
+      "size": 778,
+      "sha256": "0401862623a425359ff23dedbc269fd8b6c3f28bf33d669421702ea4c6565a32"
+    },
+    {
+      "path": "scripts/apply-rv220w-platform-update.fish",
+      "size": 1264,
+      "sha256": "9981c433171d62bd4f965357010bf01bcf52ba6a6a6fb86ca24b19a308f9c4f7"
+    },
+    {
+      "path": "scripts/build_precompiled_dtb.py",
+      "size": 7612,
+      "sha256": "5aa56c48872155ba0c8358cd0333e6ea1b803ad86d69e4786e3c3f42d73f3d7b"
+    },
+    {
+      "path": "scripts/revert-rv220w-platform-update.fish",
+      "size": 865,
+      "sha256": "f862c1a2d4688efe6e12926d0c37bec83c71a4d5033ba83487b26a178416e9dc"
+    }
+  ]
+}

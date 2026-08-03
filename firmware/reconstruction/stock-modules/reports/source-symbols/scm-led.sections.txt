@@ -1,0 +1,36 @@
+There are 27 section headers, starting at offset 0x2148:
+
+Section Headers:
+  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0
+  [ 1] .MIPS.options     MIPS_OPTIONS    0000000000000000 000040 000050 01  Ao  0   0  8
+  [ 2] .text             PROGBITS        0000000000000000 000090 0010d0 00  AX  0   0 16
+  [ 3] .rela.text        RELA            0000000000000000 002d28 002268 18     25   2  8
+  [ 4] .exit.text        PROGBITS        0000000000000000 001160 000138 00  AX  0   0  8
+  [ 5] .rela.exit.text   RELA            0000000000000000 004f90 000420 18     25   4  8
+  [ 6] .init.text        PROGBITS        0000000000000000 001298 000268 00  AX  0   0  8
+  [ 7] .rela.init.text   RELA            0000000000000000 0053b0 000840 18     25   6  8
+  [ 8] .rodata           PROGBITS        0000000000000000 001500 0003b0 00   A  0   0 16
+  [ 9] .rela.rodata      RELA            0000000000000000 005bf0 000510 18     25   8  8
+  [10] .rodata.str1.8    PROGBITS        0000000000000000 0018b0 000050 01 AMS  0   0  8
+  [11] __ksymtab         PROGBITS        0000000000000000 001900 000010 00   A  0   0  8
+  [12] .rela__ksymtab    RELA            0000000000000000 006100 000030 18     25  11  8
+  [13] .modinfo          PROGBITS        0000000000000000 001910 000060 00   A  0   0  8
+  [14] __ksymtab_strings PROGBITS        0000000000000000 001970 000010 00   A  0   0  8
+  [15] .data             PROGBITS        0000000000000000 001980 0001c0 00  WA  0   0 16
+  [16] .rela.data        RELA            0000000000000000 006130 000030 18     25  15  8
+  [17] .gnu.linkonce.this_module PROGBITS        0000000000000000 001b80 000300 00  WA  0   0 128
+  [18] .rela.gnu.linkonce.this_module RELA            0000000000000000 006160 000030 18     25  17  8
+  [19] .bss              NOBITS          0000000000000000 001e80 0000b0 00  WA  0   0 16
+  [20] .comment          PROGBITS        0000000000000000 001e80 00007a 00      0   0  1
+  [21] .pdr              PROGBITS        0000000000000000 001efc 000160 00      0   0  4
+  [22] .rela.pdr         RELA            0000000000000000 006190 000108 18     25  21  8
+  [23] .mdebug.abi64     PROGBITS        0000000000000000 00205c 000000 00      0   0  1
+  [24] .shstrtab         STRTAB          0000000000000000 00205c 0000ea 00      0   0  1
+  [25] .symtab           SYMTAB          0000000000000000 002808 0003d8 18     26  16  8
+  [26] .strtab           STRTAB          0000000000000000 002be0 000142 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), p (processor specific)

@@ -1,0 +1,8 @@
+caller_section	caller_offset	caller_name	callsite_offset	callee_section	callee_offset	callee_name	kind
+.text	0x90	local_push_button_proc_read	0x13c	.text	0x10c	local_push_button_text_00010c	internal-section
+.text	0x148	local_push_button_proc_write	0x370	.text	0x304	local_push_button_text_000304	internal-section
+.text	0x148	local_push_button_proc_write	0x3b0	.text	0x2b0	local_push_button_text_0002b0	internal-section
+.text	0x3b8	local_push_button_timer_callback	0x5fc	.text	0x3ec	local_push_button_text_0003ec	internal-section
+.text	0x3b8	local_push_button_timer_callback	0x620	.text	0x434	local_push_button_text_000434	internal-section
+.text	0x3b8	local_push_button_timer_callback	0x678	.text	0x568	local_push_button_text_000568	internal-section
+.text	0x3b8	local_push_button_timer_callback	0x6d0	.text	0x568	local_push_button_text_000568	internal-section

@@ -1,56 +1,78 @@
 # Current status
 
-**Research package:** 1.1.0
-
-**OpenWrt toolkit:** 1.9.0
-
-**Snapshot:** 2026-07-27
-
+**Research package:** 2.0.0  
+**OpenWrt toolkit:** 1.10.3 integrated documentation revision  
+**Boot-chain reconstruction:** 1.4.0-r1  
+**Snapshot:** 2026-08-02  
 **Board:** Cisco RV220W-A V01 / PCB `YK910A-1.6`
 
-## Hardware-proven OpenWrt state
+## Hardware-proven persistent OpenWrt state
 
-The current experimental OpenWrt initramfs image has been built and fully booted from RAM through the stock U-Boot TFTP path. The onboard NOR was not modified.
+The RV220W now boots the LuCI-enabled OpenWrt initramfs ELF from the onboard
+parallel NOR. The stock U-Boot chain remains in use with two narrow instruction
+patches in its first 128 KiB erase sector.
 
-The live system initializes and operates all five front-panel RJ45 ports:
+Required boot sequence:
 
 ```text
-WAN  -> BCM53115 port 0 -> CPU port 5 -> Octeon eth1 -> DSA wan
-LAN1 -> BCM53115 port 1 \
-LAN2 -> BCM53115 port 2  \
-LAN3 -> BCM53115 port 3   > CPU port 8 -> Octeon eth0 -> DSA -> br-lan
-LAN4 -> BCM53115 port 4  /
+NOR 0xbdc80000 -> cp.b exact ELF source_size -> RAM 0x05500000
+RAM 0x05500000 -> bootoctlinux -> OpenWrt 25.12.5 / Linux 6.12.94
 ```
 
-The working timing mode is `rgmii-rxid` for both switch CPU links. The v1.9.0 B53 patch includes firmware-described DSA CPU ports in the active-port mask so both CPU conduits receive normal default VLAN/PVID setup.
+The validated environment policy is:
 
-The `rj45-full` profile provides a conventional wired-router policy in RAM:
+```text
+bootdelay=3
+bootcmd=run openwrt_boot
+openwrt_boot=cp.b 0xbdc80000 0x05500000 0x11565d0; bootoctlinux 0x05500000 console=ttyS0,115200
+```
 
-- LAN1–LAN4 in `br-lan` at `192.168.240.2/24`;
-- DHCP service on LAN;
-- DHCP and DHCPv6 clients on WAN;
-- firewall4 LAN/WAN separation;
-- LAN-to-WAN forwarding and masquerading;
-- PPP and PPPoE packages.
+`0x11565d0` is specific to the validated 18,179,536-byte LuCI ELF. It must be
+regenerated from the slot manifest whenever the image changes.
 
-## Deliberately absent or untested
+## Mandatory installation order
 
-- **LuCI:** not added or tested.
-- **Wi-Fi:** the BCM4322 Mini PCI device enumerates, but no driver, firmware, radio, or RF validation has been completed.
-- **Persistent installation:** no NOR erase, program, sysupgrade, or boot-from-flash attempt has been made.
-- **Persistent root filesystem:** only RAM-loaded experimental images are qualified.
-- **Board services:** status LEDs, reset-button integration, watchdog behavior, and remaining GPIOs are not fully promoted.
+1. Preserve a complete NOR backup and external recovery capability.
+2. Apply and verify the combined boot-policy patch.
+3. Build and RAM-boot the dedicated `nor-writer` image.
+4. Back up and write only the 22 MiB `openwrt-slot`.
+5. Manually test the manifest-derived copy-to-RAM boot commands.
+6. Save the final `openwrt_boot` and `bootcmd` environment only after the manual boot succeeds.
 
-## Preservation baseline
+Do **not** flash the OpenWrt slot first on an unpatched boot chain. The stock late
+initialization overwrites `bootcmd`, and the proprietary image check diverts an
+OpenWrt image into Sercomm HTTP recovery.
 
-- Two independent 32 MiB UART flash acquisitions match byte-for-byte.
-- Boot stub, U-Boot, stock kernel ELF, SquashFS rootfs, JFFS2 data, and the actual final environment sector are preserved.
-- The automated TFTP path changes only temporary U-Boot variables and never calls `saveenv` or a flash command.
+## Verified behavior
 
-## Recommended next work
+- LuCI is available on LAN at `http://192.168.240.2/`.
+- LAN1-LAN4 operate through BCM53115 CPU port 8 and Octeon `eth0`.
+- WAN operates through BCM53115 CPU port 5 and Octeon `eth1`.
+- DHCP, firewall4, LAN-to-WAN routing/NAT, and WAN isolation are validated.
+- A complete 22 MiB slot write and read-back SHA-256 verification succeeded.
+- Saved `bootcmd` survives `saveenv` and reset after the boot-policy patch.
+- Released-button invalid-format HTTP recovery is bypassed.
+- Holding the active-low recovery button still enters Sercomm download mode.
 
-1. Preserve the final full-RJ45 boot and traffic-validation logs as a named regression baseline.
-2. Add optional LuCI only after measuring image and runtime-memory impact.
-3. Promote LEDs, reset input, and watchdog behavior without enabling destructive reset semantics.
-4. Investigate BCM4322 `b43` firmware support or a better-supported replacement Mini PCI card.
-5. Design a recovery-preserving flash layout only after repeated RAM-boot regression testing and a complete restore procedure are qualified.
+## Boot-chain patch identity
+
+```text
+flash range: 0xbdc00000-0xbdc1ffff
+combined CRC32: b77a94de
+0x13138: 04 41 00 03 -> 10 00 00 03
+0x13168: 03 20 00 08 -> 03 e0 00 08
+```
+
+The exact target bytes, sector erase/program/compare procedure, runtime policy,
+and recovery-button behavior were exercised on hardware. The distribution
+wrapper's idempotent already-combined path was also tested. One single wrapper
+execution directly from a completely stock sector to combined was not separately
+performed; the two component transitions and final combined state were.
+
+## Remaining limitations
+
+- The stored image is initramfs. Firmware persists, but runtime configuration is recreated on every boot.
+- No persistent SquashFS plus writable overlay or supported `sysupgrade` path exists.
+- Wi-Fi remains unsupported; the BCM4322 only has PCI enumeration proof.
+- Status LEDs, reset-button Linux integration, watchdog behavior, and remaining GPIOs are not fully promoted.
+- Every replacement ELF requires a newly generated `openwrt_boot` copy length.

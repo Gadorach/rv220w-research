@@ -1,0 +1,21 @@
+{
+  "schema": "rv220w-dlink-cavium-donor-catalog-v1",
+  "downloaded_into_this_package": false,
+  "sources": [
+    {
+      "product_family": "D-Link DSR-500/500N/1000/1000N",
+      "archive": "D-Link_DSR_500_500N_1000_1000N_GPL-SRC_v1.08B51.tar.bz2",
+      "url": "https://dlink-gpl.s3.amazonaws.com/GPL1300183/D-Link_DSR_500_500N_1000_1000N_GPL-SRC_v1.08B51.tar.bz2",
+      "reported_components": ["sdk-2.0", "install-sdk-2.0", "tools-gcc-4.3", "kernel", "firmwareAppend"],
+      "relevance": "DSR-500N uses the same CN5010-SCP class, 128 MiB DRAM, 32 MiB NOR, U-Boot 1.1.1 and three RGMII ports."
+    },
+    {
+      "product_family": "D-Link DWC-1000",
+      "archive": "D-Link_DWC-1000_GPL-SRC_v4.x",
+      "reported_components": ["tools-linux-octeon-sdk-1.7.3-264", "tools-gcc-4.1", "sdk", "Kernel"],
+      "relevance": "Confirms public TeamF1/Cavium SDK 1.7.3-era build material close to the RV220W bootloader banner."
+    }
+  ],
+  "license_note": "Donor code is not redistributed here. Obtain it from the vendor GPL source location and retain its original license notices.",
+  "inspection_command": "python3 tools/inspect_dlink_donor.py /path/to/extracted-donor --output donor-inventory.json"
+}

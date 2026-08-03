@@ -1,0 +1,6 @@
+Ghidra application.version=12.1.2
+Ghidra application.release.name=PUBLIC
+Java: OpenJDK 21.0.10
+Processor language: MIPS:BE:64:64-32addr
+Compiler spec: default
+Analysis strategy: no generic autoanalysis; .pdr boundary recovery; export-symbol recovery; semantic annotation; whole-program decompile/disassembly export

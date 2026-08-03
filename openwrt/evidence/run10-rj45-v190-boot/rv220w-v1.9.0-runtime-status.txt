@@ -1,0 +1,459 @@
+BusyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+  ____  __     ______  ___   ___ __        __
+ |  _ \ \ \   / /___ \|___ \ / _ \\ \      / /
+ | |_) | \ \ / /  __) | __) | | | |\ \ /\ / /
+ |  _ <   \ V /  / __/ / __/| |_| | \ V  V /
+ |_| \_\   \_/  |_____|_____|\___/   \_/\_/
+
+ OpenWrt RV220W RAM-only full-RJ45 candidate
+ LAN1-LAN4: br-lan, 192.168.240.2/24, DHCP server enabled.
+ WAN: separate DSA port on eth1, DHCP/DHCPv6 client, firewall and NAT enabled.
+ Volatile switch/kernel validation only; flash writes are not performed.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@rv220w-rj45:~# rv220w-rj45-status
+dev eth1
+ubus call network.interface.wan status
+nft list rulesetRV220W full-RJ45 candidate status
+RV220W OpenWrt RAM-only full-RJ45 candidate v1.9.0 (rxid)
+OpenWrt ref: v25.12.5-dirty
+Build UTC: 2026-07-27T02:44:16Z
+
+=== CONDUITS ===
+5: wan@eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+6: lan1@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-lan state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+7: lan2@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+8: lan3@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+9: lan4@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+
+=== ADDRESSES_AND_ROUTES ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UNKNOWN        fe80::a693:4cff:feb1:42a6/64 
+eth1             UNKNOWN        fe80::a693:4cff:feb1:42a7/64 
+eth2             DOWN           
+wan@eth1         DOWN           
+lan1@eth0        UP             
+lan2@eth0        DOWN           
+lan3@eth0        DOWN           
+lan4@eth0        DOWN           
+br-lan           UP             192.168.240.2/24 fd3b:7b6d:f939::1/60 fe80::a693:4cff:feb1:42a6/64 
+192.168.240.0/24 dev br-lan proto kernel scope link src 192.168.240.2 
+local 127.0.0.0/8 dev lo table local proto kernel scope host src 127.0.0.1 
+local 127.0.0.1 dev lo table local proto kernel scope host src 127.0.0.1 
+broadcast 127.255.255.255 dev lo table local proto kernel scope link src 127.0.0.1 
+local 192.168.240.2 dev br-lan table local proto kernel scope host src 192.168.240.2 
+broadcast 192.168.240.255 dev br-lan table local proto kernel scope link src 192.168.240.2 
+fd3b:7b6d:f939::/64 dev br-lan proto static metric 1024 pref medium
+unreachable fd3b:7b6d:f939::/48 dev lo proto static metric 2147483647 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+fe80::/64 dev eth1 proto kernel metric 256 pref medium
+fe80::/64 dev br-lan proto kernel metric 256 pref medium
+local ::1 dev lo table local proto kernel metric 0 pref medium
+anycast fd3b:7b6d:f939:: dev br-lan table local proto kernel metric 0 pref medium
+local fd3b:7b6d:f939::1 dev br-lan table local proto kernel metric 0 pref medium
+anycast fe80:: dev eth0 table local proto kernel metric 0 pref medium
+anycast fe80:: dev eth1 table local proto kernel metric 0 pref medium
+anycast fe80:: dev br-lan table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a6 dev eth0 table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a6 dev br-lan table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a7 dev eth1 table local proto kernel metric 0 pref medium
+multicast ff00::/8 dev eth0 table local proto kernel metric 256 pref medium
+multicast ff00::/8 dev br-lan table local proto kernel metric 256 pref medium
+multicast ff00::/8 dev eth1 table local proto kernel metric 256 pref medium
+
+=== NETWORK ===
+network.loopback=interface
+network.loopback.device='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1/8'
+network.globals=globals
+network.globals.dhcp_default_duid='00041ffe8cb9401a407d942a249a13da408f'
+network.globals.ula_prefix='fd3b:7b6d:f939::/48'
+network.br_lan=device
+network.br_lan.name='br-lan'
+network.br_lan.type='bridge'
+network.br_lan.ports='lan1' 'lan2' 'lan3' 'lan4'
+network.br_lan.stp='0'
+network.lan=interface
+network.lan.device='br-lan'
+network.lan.proto='static'
+network.lan.ipaddr='192.168.240.2'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.wan=interface
+network.wan.device='wan'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.device='wan'
+network.wan6.proto='dhcpv6'
+
+=== DHCP ===
+dhcp.@dnsmasq[0]=dnsmasq
+dhcp.@dnsmasq[0].domainneeded='1'
+dhcp.@dnsmasq[0].boguspriv='1'
+dhcp.@dnsmasq[0].filterwin2k='0'
+dhcp.@dnsmasq[0].localise_queries='1'
+dhcp.@dnsmasq[0].rebind_protection='1'
+dhcp.@dnsmasq[0].rebind_localhost='1'
+dhcp.@dnsmasq[0].local='/lan/'
+dhcp.@dnsmasq[0].domain='lan'
+dhcp.@dnsmasq[0].expandhosts='1'
+dhcp.@dnsmasq[0].nonegcache='0'
+dhcp.@dnsmasq[0].cachesize='1000'
+dhcp.@dnsmasq[0].authoritative='1'
+dhcp.@dnsmasq[0].readethers='1'
+dhcp.@dnsmasq[0].leasefile='/tmp/dhcp.leases'
+dhcp.@dnsmasq[0].resolvfile='/tmp/resolv.conf.d/resolv.conf.auto'
+dhcp.@dnsmasq[0].nonwildcard='1'
+dhcp.@dnsmasq[0].localservice='1'
+dhcp.@dnsmasq[0].ednspacket_max='1232'
+dhcp.@dnsmasq[0].filter_aaaa='0'
+dhcp.@dnsmasq[0].filter_a='0'
+dhcp.odhcpd=odhcpd
+dhcp.odhcpd.maindhcp='0'
+dhcp.odhcpd.leasefile='/tmp/odhcpd.leases'
+dhcp.odhcpd.leasetrigger='/usr/sbin/odhcpd-update'
+dhcp.odhcpd.loglevel='4'
+dhcp.odhcpd.piodir='/tmp/odhcpd-piodir'
+dhcp.odhcpd.hostsdir='/tmp/hosts'
+dhcp.lan=dhcp
+dhcp.lan.interface='lan'
+dhcp.lan.start='100'
+dhcp.lan.limit='150'
+dhcp.lan.leasetime='12h'
+dhcp.lan.dhcpv4='server'
+dhcp.lan.dhcpv6='server'
+dhcp.lan.ra='server'
+dhcp.lan.ra_slaac='1'
+dhcp.wan=dhcp
+dhcp.wan.interface='wan'
+dhcp.wan.ignore='1'
+
+=== FIREWALL ===
+firewall.@defaults[0]=defaults
+firewall.@defaults[0].syn_flood='1'
+firewall.@defaults[0].input='REJECT'
+firewall.@defaults[0].output='ACCEPT'
+firewall.@defaults[0].forward='REJECT'
+firewall.@defaults[0].synflood_protect='1'
+firewall.@zone[0]=zone
+firewall.@zone[0].name='lan'
+firewall.@zone[0].input='ACCEPT'
+firewall.@zone[0].output='ACCEPT'
+firewall.@zone[0].forward='ACCEPT'
+firewall.@zone[0].network='lan'
+firewall.@zone[1]=zone
+firewall.@zone[1].name='wan'
+firewall.@zone[1].input='REJECT'
+firewall.@zone[1].output='ACCEPT'
+firewall.@zone[1].forward='REJECT'
+firewall.@zone[1].masq='1'
+firewall.@zone[1].mtu_fix='1'
+firewall.@zone[1].network='wan' 'wan6'
+firewall.@forwarding[0]=forwarding
+firewall.@forwarding[0].src='lan'
+firewall.@forwarding[0].dest='wan'
+firewall.@rule[0]=rule
+firewall.@rule[0].name='Allow-DHCP-Renew'
+firewall.@rule[0].src='wan'
+firewall.@rule[0].proto='udp'
+firewall.@rule[0].dest_port='68'
+firewall.@rule[0].target='ACCEPT'
+firewall.@rule[0].family='ipv4'
+firewall.@rule[1]=rule
+firewall.@rule[1].name='Allow-Ping'
+firewall.@rule[1].src='wan'
+firewall.@rule[1].proto='icmp'
+firewall.@rule[1].icmp_type='echo-request'
+firewall.@rule[1].family='ipv4'
+firewall.@rule[1].target='ACCEPT'
+firewall.@rule[2]=rule
+firewall.@rule[2].name='Allow-IGMP'
+firewall.@rule[2].src='wan'
+firewall.@rule[2].proto='igmp'
+firewall.@rule[2].family='ipv4'
+firewall.@rule[2].target='ACCEPT'
+firewall.@rule[3]=rule
+firewall.@rule[3].name='Allow-DHCPv6'
+firewall.@rule[3].src='wan'
+firewall.@rule[3].proto='udp'
+firewall.@rule[3].dest_port='546'
+firewall.@rule[3].family='ipv6'
+firewall.@rule[3].target='ACCEPT'
+firewall.@rule[4]=rule
+firewall.@rule[4].name='Allow-MLD'
+firewall.@rule[4].src='wan'
+firewall.@rule[4].proto='icmp'
+firewall.@rule[4].src_ip='fe80::/10'
+firewall.@rule[4].icmp_type='130/0' '131/0' '132/0' '143/0'
+firewall.@rule[4].family='ipv6'
+firewall.@rule[4].target='ACCEPT'
+firewall.@rule[5]=rule
+firewall.@rule[5].name='Allow-ICMPv6-Input'
+firewall.@rule[5].src='wan'
+firewall.@rule[5].proto='icmp'
+firewall.@rule[5].icmp_type='echo-request' 'echo-reply' 'destination-unreachable' 'packet-too-big' 'time-exceeded' 'bad-header' 'unknown-header-type' 'router-solicitation' 'neighbour-solicitation' 'router-advertisement' 'neighbour-advertisement'
+firewall.@rule[5].limit='1000/sec'
+firewall.@rule[5].family='ipv6'
+firewall.@rule[5].target='ACCEPT'
+firewall.@rule[6]=rule
+firewall.@rule[6].name='Allow-ICMPv6-Forward'
+firewall.@rule[6].src='wan'
+firewall.@rule[6].dest='*'
+firewall.@rule[6].proto='icmp'
+firewall.@rule[6].icmp_type='echo-request' 'echo-reply' 'destination-unreachable' 'packet-too-big' 'time-exceeded' 'bad-header' 'unknown-header-type'
+firewall.@rule[6].limit='1000/sec'
+firewall.@rule[6].family='ipv6'
+firewall.@rule[6].target='ACCEPT'
+firewall.@rule[7]=rule
+firewall.@rule[7].name='Allow-IPSec-ESP'
+firewall.@rule[7].src='wan'
+firewall.@rule[7].dest='lan'
+firewall.@rule[7].proto='esp'
+firewall.@rule[7].target='ACCEPT'
+firewall.@rule[8]=rule
+firewall.@rule[8].name='Allow-ISAKMP'
+firewall.@rule[8].src='wan'
+firewall.@rule[8].dest='lan'
+firewall.@rule[8].dest_port='500'
+firewall.@rule[8].proto='udp'
+firewall.@rule[8].target='ACCEPT'
+
+=== SERVICES ===
+network=running
+dnsmasq=running
+odhcpd=running
+firewall=stopped
+
+=== WAN_STATUS ===
+{
+        "up": false,
+        "pending": false,
+        "available": true,
+        "autostart": true,
+        "dynamic": false,
+        "proto": "dhcp",
+        "device": "wan",
+        "data": {
+
+        }
+}
+{
+        "up": false,
+        "pending": false,
+        "available": true,
+        "autostart": true,
+        "dynamic": false,
+        "proto": "dhcpv6",
+        "device": "wan",
+        "data": {
+
+        }
+}
+
+=== SWITCH_VALIDATION ===
+/tmp/rv220w-b53-full-rj45-status-8001180000001800-19700101T000242Z.txt
+RV220W B53 snapshot: /tmp/rv220w-b53-full-rj45-status-8001180000001800-19700101T000242Z.txt
+root@rv220w-rj45:~# ip -d -s link show dev wan
+5: wan@eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+    dsa conduit eth1 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p0 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+root@rv220w-rj45:~# ip -s link show dev eth1
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc fq_codel state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+           826       7      0       0       0       0 
+root@rv220w-rj45:~# ubus call network.interface.wan status
+{
+        "up": false,
+        "pending": false,
+        "available": true,
+        "autostart": true,
+        "dynamic": false,
+        "proto": "dhcp",
+        "device": "wan",
+        "data": {
+
+        }
+}
+root@rv220w-rj45:~# nft list ruleset
+table inet fw4 {
+        chain input {
+                type filter hook input priority filter; policy drop;
+                iif "lo" accept comment "!fw4: Accept traffic from loopback"
+                ct state vmap { established : accept, related : accept } comment "!fw4: Handle inbound flows"
+                tcp flags & (fin | syn | rst | ack) == syn jump syn_flood comment "!fw4: Rate limit TCP syn packets"
+                iifname "br-lan" jump input_lan comment "!fw4: Handle lan IPv4/IPv6 input traffic"
+                iifname "wan" jump input_wan comment "!fw4: Handle wan IPv4/IPv6 input traffic"
+                jump handle_reject
+        }
+
+        chain forward {
+                type filter hook forward priority filter; policy drop;
+                ct state vmap { established : accept, related : accept } comment "!fw4: Handle forwarded flows"
+                iifname "br-lan" jump forward_lan comment "!fw4: Handle lan IPv4/IPv6 forward traffic"
+                iifname "wan" jump forward_wan comment "!fw4: Handle wan IPv4/IPv6 forward traffic"
+                jump handle_reject
+        }
+
+        chain output {
+                type filter hook output priority filter; policy accept;
+                oif "lo" accept comment "!fw4: Accept traffic towards loopback"
+                ct state vmap { established : accept, related : accept } comment "!fw4: Handle outbound flows"
+                oifname "br-lan" jump output_lan comment "!fw4: Handle lan IPv4/IPv6 output traffic"
+                oifname "wan" jump output_wan comment "!fw4: Handle wan IPv4/IPv6 output traffic"
+        }
+
+        chain prerouting {
+                type filter hook prerouting priority filter; policy accept;
+                iifname "br-lan" jump helper_lan comment "!fw4: Handle lan IPv4/IPv6 helper assignment"
+        }
+
+        chain handle_reject {
+                meta l4proto tcp reject with tcp reset comment "!fw4: Reject TCP traffic"
+                reject comment "!fw4: Reject any other traffic"
+        }
+
+        chain syn_flood {
+                limit rate 25/second burst 50 packets return comment "!fw4: Accept SYN packets below rate-limit"
+                drop comment "!fw4: Drop excess packets"
+        }
+
+        chain input_lan {
+                jump accept_from_lan
+        }
+
+        chain output_lan {
+                jump accept_to_lan
+        }
+
+        chain forward_lan {
+                jump accept_to_wan comment "!fw4: Accept lan to wan forwarding"
+                jump accept_to_lan
+        }
+
+        chain helper_lan {
+        }
+
+        chain accept_from_lan {
+                iifname "br-lan" counter packets 0 bytes 0 accept comment "!fw4: accept lan IPv4/IPv6 traffic"
+        }
+
+        chain accept_to_lan {
+                oifname "br-lan" counter packets 7 bytes 984 accept comment "!fw4: accept lan IPv4/IPv6 traffic"
+        }
+
+        chain input_wan {
+                meta nfproto ipv4 udp dport 68 counter packets 0 bytes 0 accept comment "!fw4: Allow-DHCP-Renew"
+                icmp type echo-request counter packets 0 bytes 0 accept comment "!fw4: Allow-Ping"
+                meta nfproto ipv4 meta l4proto igmp counter packets 0 bytes 0 accept comment "!fw4: Allow-IGMP"
+                meta nfproto ipv6 udp dport 546 counter packets 0 bytes 0 accept comment "!fw4: Allow-DHCPv6"
+                ip6 saddr fe80::/10 icmpv6 type . icmpv6 code { mld-listener-query . 0, mld-listener-report . 0, mld-listener-done . 0, mld2-listener-report . 0 } counter packets 0 bytes 0 accept comment "!fw4: Allow-MLD"
+                icmpv6 type { destination-unreachable, time-exceeded, echo-request, echo-reply, nd-router-solicit, nd-router-advert } limit rate 1000/second burst 5 packets counter packets 0 bytes 0 accept comment "!fw4: Allow-ICMPv6-Input"
+                icmpv6 type . icmpv6 code { packet-too-big . 0, parameter-problem . 0, parameter-problem . 1, nd-neighbor-solicit . 0, nd-neighbor-advert . 0 } limit rate 1000/second burst 5 packets counter packets 0 bytes 0 accept comment "!fw4: Allow-ICMPv6-Input"
+                jump reject_from_wan
+        }
+
+        chain output_wan {
+                jump accept_to_wan
+        }
+
+        chain forward_wan {
+                icmpv6 type { destination-unreachable, time-exceeded, echo-request, echo-reply } limit rate 1000/second burst 5 packets counter packets 0 bytes 0 accept comment "!fw4: Allow-ICMPv6-Forward"
+                icmpv6 type . icmpv6 code { packet-too-big . 0, parameter-problem . 0, parameter-problem . 1 } limit rate 1000/second burst 5 packets counter packets 0 bytes 0 accept comment "!fw4: Allow-ICMPv6-Forward"
+                meta l4proto esp counter packets 0 bytes 0 jump accept_to_lan comment "!fw4: Allow-IPSec-ESP"
+                udp dport 500 counter packets 0 bytes 0 jump accept_to_lan comment "!fw4: Allow-ISAKMP"
+                jump reject_to_wan
+        }
+
+        chain accept_to_wan {
+                meta nfproto ipv4 oifname "wan" ct state invalid counter packets 0 bytes 0 drop comment "!fw4: Prevent NAT leakage"
+                oifname "wan" counter packets 0 bytes 0 accept comment "!fw4: accept wan IPv4/IPv6 traffic"
+        }
+
+        chain reject_from_wan {
+                iifname "wan" counter packets 0 bytes 0 jump handle_reject comment "!fw4: reject wan IPv4/IPv6 traffic"
+        }
+
+        chain reject_to_wan {
+                oifname "wan" counter packets 0 bytes 0 jump handle_reject comment "!fw4: reject wan IPv4/IPv6 traffic"
+        }
+
+        chain dstnat {
+                type nat hook prerouting priority dstnat; policy accept;
+        }
+
+        chain srcnat {
+                type nat hook postrouting priority srcnat; policy accept;
+                oifname "wan" jump srcnat_wan comment "!fw4: Handle wan IPv4/IPv6 srcnat traffic"
+        }
+
+        chain srcnat_wan {
+                meta nfproto ipv4 masquerade comment "!fw4: Masquerade IPv4 wan traffic"
+        }
+
+        chain raw_prerouting {
+                type filter hook prerouting priority raw; policy accept;
+        }
+
+        chain raw_output {
+                type filter hook output priority raw; policy accept;
+        }
+
+        chain mangle_prerouting {
+                type filter hook prerouting priority mangle; policy accept;
+        }
+
+        chain mangle_postrouting {
+                type filter hook postrouting priority mangle; policy accept;
+                oifname "wan" tcp flags & (fin | syn | rst) == syn tcp option maxseg size set rt mtu comment "!fw4: Zone wan IPv4/IPv6 egress MTU fixing"
+        }
+
+        chain mangle_input {
+                type filter hook input priority mangle; policy accept;
+        }
+
+        chain mangle_output {
+                type route hook output priority mangle; policy accept;
+        }
+
+        chain mangle_forward {
+                type filter hook forward priority mangle; policy accept;
+                iifname "wan" tcp flags & (fin | syn | rst) == syn tcp option maxseg size set rt mtu comment "!fw4: Zone wan IPv4/IPv6 ingress MTU fixing"
+        }
+}
+root@rv220w-rj45:~# 

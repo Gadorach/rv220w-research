@@ -1,0 +1,181 @@
+{
+  "schema": "rv220w-dlink-cavium-multiversion-v1.4",
+  "generated_utc": "2026-07-29T08:00:00Z",
+  "donor_source_redistributed": false,
+  "archives": [
+    {
+      "name": "D-Link_DSR-1000N_GPL-SRC_v1.01B57.tar.bz2",
+      "sha256": "4cc7fca27510953bd46d406bb917e419d20245cf11eb685a4db5e032e6c5f631",
+      "member_records": 21914
+    },
+    {
+      "name": "D-Link_DSR-500N_GPL-SRC_v1.03B12.rar",
+      "sha256": "0f434c760edf76c37d28f2b8fb113b44000b5bec053edf1cf0eca93d75e5d63d",
+      "member_records": 28791
+    },
+    {
+      "name": "D-Link_DSR-1000N_GPL-SRC_v1.04B58.tar.bz2",
+      "sha256": "0216fb0c22d9825bc6230ce6e25e5d456c0c66e04470779e3de832a79e9786ff",
+      "member_records": 35648
+    },
+    {
+      "name": "D-Link_DSR_500_500N_1000_1000N_GPL-SRC_v1.08B51.7z.001",
+      "sha256": "729eec4a058fa490b343384588b53d7d2ffe5c3b5031d1c9bdbcafd925150b67",
+      "member_records": 53859
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v1.01B67.tar.bz2",
+      "sha256": "c2d7d6d01ae145d24b999e5721ff66e5a461194439e0e833dc4ec8575fde8b71",
+      "member_records": 23108
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v4.1.0.2_10204.tar.bz2",
+      "sha256": "d42760e4004f33d6767feb766afdf83ebf31f55bd4d7ec4f926d75e3efe9d262",
+      "member_records": 25155
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v4.1.0.2_10222.tar.bz2",
+      "sha256": "2820fb86385f231a38cd69588564da7e27cd932f65a9ba7715c2c0b43f19c19a",
+      "member_records": 23126
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v4.2.0.3.tar.bz2",
+      "sha256": "d107263490bd2fae95cdbe3aa1f25e33022c56ae8ea80639fddcfce6ca0a6446",
+      "member_records": 27472
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v1.4.2.0.6.tar.bz2",
+      "sha256": "e336c2f5a5f576607da007d06deb8a9f99295a5ad81d96484d734216231420e9",
+      "member_records": 28096
+    },
+    {
+      "name": "D-Link_DWC-1000_B1_GPL-SRC_v1.4.2.0.6.tar.bz2",
+      "sha256": "42ccfe20d5303edfc8e32eba54d2029c757b16e8e6f94090b8ea56f3f49fdd03",
+      "member_records": 28098
+    },
+    {
+      "name": "D-Link_DWC-1000_GPL-SRC_v1.4.3.0.2.tar.bz2",
+      "sha256": "673a0482678c7192a9fa290fb48a3e31183cc4882dd72c8cc44ee3566ac64740",
+      "member_records": 27623
+    }
+  ],
+  "findings": {
+    "complete_uboot_source_found": false,
+    "bootoctlinux_source_found": false,
+    "omitted_tree_reference": "SDK files reference ../../bootloader/u-boot/include/octeon_mem_map.h, but that external tree is absent.",
+    "exact_sdk_lineage": "Cavium Networks Octeon SDK 1.7.3 build 264",
+    "toolchain_archive_sha256": "f5cadccd86881826e5cad93e1fb6c82892aaac6919bb577a30fb381e4e9beb9e",
+    "toolchain_archive_identical_copies": 7,
+    "public_app_init_header_sha256": "4103d0d6e6c98b4263c35dd01b1f61777ba224415540201e1f4766c76500b62b",
+    "rv200w_lineage": "Early DSR/DWC Linux trees explicitly contain CONFIG_OCTEON_RV200W and an RV220W comment.",
+    "private_board_ids": {
+      "DSR1000N": 20006,
+      "DSR500N": 20013,
+      "DSR500": 20015,
+      "DSR1000": 20016,
+      "DWC1000": 20017
+    },
+    "rv200w_numeric_board_id": "not found; do not infer one",
+    "topology": {
+      "ipd_ports_0_1": "BCM53115, no external PHY address",
+      "ipd_port_2": "Broadcom B5081 at MDIO address 8",
+      "interface_0_ports": 3,
+      "ports_0_1_link": "forced up, 1000 Mbps, full duplex"
+    },
+    "rgmii_timing": "D-Link removed generic CN50XX ASXX TX/RX clock writes of 16; preserve and audit initialized skew rather than overwrite it.",
+    "usb": {
+      "clock": "USB_CLOCK_TYPE_CRYSTAL_12",
+      "cn50xx_p_rtype": 0,
+      "cn50xx_p_c_sel": 0,
+      "priority": "low; RV220W USB remains disabled"
+    },
+    "vendor_elf_constraint": "A D-Link Cavium patch states U-Boot cannot handle a non-empty NOTES program header; disable build-id or reject non-empty PT_NOTE before handoff.",
+    "executive_patch_later_sha256": "32b4a88ea3fe605a1d8b49f174a5882d399187cec752e33ab10e336dfc7799da",
+    "executive_patch_later_identical_copies": 6,
+    "executive_patch_early_sha256": "3b9b1b77d563319b228605652f34c6f955134e85944016e897961bfdf4c644b6"
+  },
+  "octeon_boot_abi": {
+    "descriptor_version": 6,
+    "argv_max": 64,
+    "boot_descriptor_size": 400,
+    "cvmx_bootinfo_v1_2_size": 152,
+    "entry_registers": {
+      "a0": "argc",
+      "a1": "argv KSEG0 compatibility address; low 32 bits set",
+      "a2": "1 for initialization core, 0 otherwise",
+      "a3": "physical boot descriptor address; low 32 bits set"
+    },
+    "boot_descriptor_offsets": {
+      "desc_version": 0,
+      "desc_size": 4,
+      "stack_top": 8,
+      "heap_base": 16,
+      "heap_end": 24,
+      "entry_point": 32,
+      "desc_vaddr": 40,
+      "exception_base_addr": 48,
+      "stack_size": 52,
+      "heap_size": 56,
+      "argc": 60,
+      "argv": 64,
+      "flags": 320,
+      "core_mask": 324,
+      "dram_size": 328,
+      "phy_mem_desc_addr": 332,
+      "debugger_flags_base_addr": 336,
+      "eclock_hz": 340,
+      "dclock_hz": 344,
+      "spi_clock_hz": 348,
+      "board_type": 352,
+      "board_rev_major": 354,
+      "board_rev_minor": 355,
+      "chip_type": 356,
+      "chip_rev_major": 358,
+      "chip_rev_minor": 359,
+      "board_serial_number": 360,
+      "mac_addr_base": 380,
+      "mac_addr_count": 386,
+      "cvmx_desc_vaddr": 392
+    },
+    "cvmx_bootinfo_offsets": {
+      "major_version": 0,
+      "minor_version": 4,
+      "stack_top": 8,
+      "heap_base": 16,
+      "heap_end": 24,
+      "desc_vaddr": 32,
+      "exception_base_addr": 40,
+      "stack_size": 44,
+      "flags": 48,
+      "core_mask": 52,
+      "dram_size": 56,
+      "phy_mem_desc_addr": 60,
+      "debugger_flags_base_addr": 64,
+      "eclock_hz": 68,
+      "dclock_hz": 72,
+      "reserved0": 76,
+      "board_type": 80,
+      "board_rev_major": 82,
+      "board_rev_minor": 83,
+      "board_serial_number": 88,
+      "mac_addr_base": 108,
+      "mac_addr_count": 114,
+      "compact_flash_common_base_addr": 120,
+      "compact_flash_attribute_base_addr": 128,
+      "led_display_base_addr": 136,
+      "dfa_ref_clock_hz": 144,
+      "config_flags": 148
+    }
+  },
+  "unchanged_conclusions": {
+    "forced_bootcmd_patch_offset": "0x00013168",
+    "original_bytes": "03200008",
+    "suppression_bytes": "03e00008",
+    "hardware_written": true,
+    "stage2_hardware_tested": false,
+    "hardware_validation_date": "2026-08-02",
+    "combined_http_bypass_offset": "0x00013138",
+    "combined_sector_crc32": "b77a94de",
+    "physical_recovery_button_preserved": true
+  }
+}

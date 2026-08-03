@@ -1,0 +1,5 @@
+TF1_cvm_oct_mdio_read
+cvm_oct_mdio_write
+local_bh_disable
+local_bh_enable
+printk

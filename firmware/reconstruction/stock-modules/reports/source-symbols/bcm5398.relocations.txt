@@ -1,0 +1,2508 @@
+
+Relocation section '.rela.text' at offset 0x4c40 contains 642 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000014  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000018  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000001c  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000ac  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b0  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b4  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b8  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000170  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000174  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000178  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000017c  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001b8  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001bc  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001c0  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001c4  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000020c  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000210  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000214  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000218  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000258  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000025c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000260  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000026c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000270  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000274  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000278  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000027c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000288  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000028c  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000290  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000294  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002b0  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002b4  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002b8  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002c4  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000304  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000308  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000030c  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000310  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000368  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000036c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000370  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000037c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000380  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000384  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000388  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000038c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000398  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000039c  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003a0  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003a4  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003c0  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003c4  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003c8  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003d4  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000420  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000424  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000428  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000042c  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000438  0000000100000004 R_MIPS_26              0000000000000000 .text + 324
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000044c  0000000100000004 R_MIPS_26              0000000000000000 .text + 350
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000464  0000000100000004 R_MIPS_26              0000000000000000 .text + 350
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000047c  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000480  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000484  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000488  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000004e4  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000004e8  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000004ec  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000004f0  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000528  0000000100000004 R_MIPS_26              0000000000000000 .text + 4dc
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000544  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000548  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000054c  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000550  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000005b4  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000005b8  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000005bc  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000005c0  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000630  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000634  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000638  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000063c  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000694  0000001c0000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000698  0000001c00000005 R_MIPS_HI16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000069c  0000001c0000001c R_MIPS_HIGHER          0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000006a0  0000001c00000006 R_MIPS_LO16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000724  0000000100000004 R_MIPS_26              0000000000000000 .text + 6c8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000730  0000000100000004 R_MIPS_26              0000000000000000 .text + 6c8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000073c  0000000100000004 R_MIPS_26              0000000000000000 .text + 6c8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000074c  0000001c0000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000750  0000001c00000005 R_MIPS_HI16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000754  0000001c0000001c R_MIPS_HIGHER          0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000758  0000001c00000006 R_MIPS_LO16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007b4  000000370000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007b8  0000003700000005 R_MIPS_HI16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007bc  000000370000001c R_MIPS_HIGHER          0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007c0  0000003700000006 R_MIPS_LO16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007f0  0000000100000004 R_MIPS_26              0000000000000000 .text + 7b4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000007fc  0000001c0000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000800  0000001c00000005 R_MIPS_HI16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000804  0000001c0000001c R_MIPS_HIGHER          0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000808  0000001c00000006 R_MIPS_LO16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000008cc  0000000100000004 R_MIPS_26              0000000000000000 .text + 92c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000008e8  000000370000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000008ec  0000003700000005 R_MIPS_HI16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000008f0  000000370000001c R_MIPS_HIGHER          0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000008f4  0000003700000006 R_MIPS_LO16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000094c  000000370000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000950  0000003700000005 R_MIPS_HI16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000954  000000370000001c R_MIPS_HIGHER          0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000958  0000003700000006 R_MIPS_LO16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000096c  0000000100000004 R_MIPS_26              0000000000000000 .text + 90c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000998  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000099c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009a0  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009ac  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009d8  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009dc  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009e0  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009e4  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009f4  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009f8  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000009fc  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a00  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a2c  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a30  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a34  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a40  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a4c  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a50  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a54  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a60  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a70  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a74  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a78  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000a7c  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000aa8  000000340000001d R_MIPS_HIGHEST         0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000aac  0000003400000005 R_MIPS_HI16            0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ab0  000000340000001c R_MIPS_HIGHER          0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ab4  0000003400000006 R_MIPS_LO16            0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ac8  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000acc  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ad0  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000adc  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b00  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b04  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b08  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b14  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b68  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b6c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b70  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b7c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b80  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b84  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b88  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000b8c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ba8  0000000100000004 R_MIPS_26              0000000000000000 .text + a2c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bb8  0000002a0000001d R_MIPS_HIGHEST         00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bbc  0000002a00000005 R_MIPS_HI16            00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bc0  0000002a0000001c R_MIPS_HIGHER          00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bc4  0000002a00000006 R_MIPS_LO16            00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bd8  0000000100000004 R_MIPS_26              0000000000000000 .text + a6c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000be0  0000002a0000001d R_MIPS_HIGHEST         00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000be4  0000002a00000005 R_MIPS_HI16            00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000be8  0000002a0000001c R_MIPS_HIGHER          00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000bec  0000002a00000006 R_MIPS_LO16            00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c00  0000000100000004 R_MIPS_26              0000000000000000 .text + a6c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c08  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c0c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c10  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c1c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c48  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c4c  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c50  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c54  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c64  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c68  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c6c  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000c70  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ca8  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cac  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cb0  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cb4  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cc0  000000340000001d R_MIPS_HIGHEST         0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cc4  0000003400000005 R_MIPS_HI16            0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cc8  000000340000001c R_MIPS_HIGHER          0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ccc  0000003400000006 R_MIPS_LO16            0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cf0  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cf4  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000cf8  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d04  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d28  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d2c  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d30  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d3c  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d80  0000001d0000001d R_MIPS_HIGHEST         0000000000002ad8 miiSwitchRegisterRead32 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d84  0000001d00000005 R_MIPS_HI16            0000000000002ad8 miiSwitchRegisterRead32 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d88  0000001d0000001c R_MIPS_HIGHER          0000000000002ad8 miiSwitchRegisterRead32 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000d8c  0000001d00000006 R_MIPS_LO16            0000000000002ad8 miiSwitchRegisterRead32 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000dec  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000df0  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000df4  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e00  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e04  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e08  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e0c  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e10  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 98
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e2c  0000000100000004 R_MIPS_26              0000000000000000 .text + ca4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e60  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e64  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e68  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000e6c  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ecc  000000260000001d R_MIPS_HIGHEST         0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ed0  0000002600000005 R_MIPS_HI16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ed4  000000260000001c R_MIPS_HIGHER          0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ed8  0000002600000006 R_MIPS_LO16            0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f20  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f24  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f28  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f2c  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f3c  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f40  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f44  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f48  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f70  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f74  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f78  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f7c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f8c  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f90  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000f94  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000fa0  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000fe4  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000fe8  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000fec  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000ff0  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001000  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001004  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001008  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001014  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001078  000000180000001d R_MIPS_HIGHEST         00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000107c  0000001800000005 R_MIPS_HI16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001080  000000180000001c R_MIPS_HIGHER          00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001084  0000001800000006 R_MIPS_LO16            00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001094  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001098  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000109c  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010a0  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010d0  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010d4  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010d8  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010dc  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010ec  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010f0  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000010f4  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001100  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001144  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001148  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000114c  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001150  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001160  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001164  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001168  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001174  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011c8  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011cc  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011d0  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011dc  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011e0  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011e4  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011e8  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000011ec  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001204  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001208  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000120c  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001218  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000121c  000000110000001d R_MIPS_HIGHEST         0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001220  0000001100000005 R_MIPS_HI16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001224  000000110000001c R_MIPS_HIGHER          0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001228  0000001100000006 R_MIPS_LO16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001248  0000000100000004 R_MIPS_26              0000000000000000 .text + fc0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001250  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001254  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001258  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001264  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001268  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000126c  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001270  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001274  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000128c  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001290  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001294  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012a0  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012a4  000000110000001d R_MIPS_HIGHEST         0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012a8  0000001100000005 R_MIPS_HI16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012ac  000000110000001c R_MIPS_HIGHER          0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012b0  0000001100000006 R_MIPS_LO16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012d0  0000000100000004 R_MIPS_26              0000000000000000 .text + 1120
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012d8  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012dc  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012e0  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012ec  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012f0  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012f4  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012f8  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000012fc  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001308  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000130c  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001310  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001314  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001330  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001334  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001338  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001344  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001348  000000110000001d R_MIPS_HIGHEST         0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000134c  0000001100000005 R_MIPS_HI16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001350  000000110000001c R_MIPS_HIGHER          0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001354  0000001100000006 R_MIPS_LO16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001374  0000000100000004 R_MIPS_26              0000000000000000 .text + 1194
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001380  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001384  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001388  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001394  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001398  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000139c  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013a0  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013a4  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013bc  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013c0  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013c4  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013d0  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 2
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013d4  000000110000001d R_MIPS_HIGHEST         0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013d8  0000001100000005 R_MIPS_HI16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013dc  000000110000001c R_MIPS_HIGHER          0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000013e0  0000001100000006 R_MIPS_LO16            0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001400  0000000100000004 R_MIPS_26              0000000000000000 .text + 1194
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014ac  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014b0  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014b8  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014c0  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014f4  000000240000001d R_MIPS_HIGHEST         0000000000000670 bcm5398PortConfigGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014f8  0000002400000005 R_MIPS_HI16            0000000000000670 bcm5398PortConfigGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000014fc  000000240000001c R_MIPS_HIGHER          0000000000000670 bcm5398PortConfigGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001500  0000002400000006 R_MIPS_LO16            0000000000000670 bcm5398PortConfigGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001538  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000153c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001544  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000154c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000015d8  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000015dc  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000015e4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000015ec  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001630  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001634  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001638  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000163c  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001668  0000000100000004 R_MIPS_26              0000000000000000 .text + 16bc
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001690  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001694  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000169c  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000016a4  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001718  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000171c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001724  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000172c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001774  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001778  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000177c  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001780  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000017b0  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000017b4  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000017b8  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000017bc  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000017d8  0000000100000004 R_MIPS_26              0000000000000000 .text + 16bc
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001828  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000182c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001834  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000183c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001878  000000170000001d R_MIPS_HIGHEST         0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000187c  0000001700000005 R_MIPS_HI16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001880  000000170000001c R_MIPS_HIGHER          0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001884  0000001700000006 R_MIPS_LO16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000018b0  0000000100000004 R_MIPS_26              0000000000000000 .text + 16bc
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000018d8  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000018dc  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000018e4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000018ec  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001914  000000310000001d R_MIPS_HIGHEST         0000000000000ec0 bcm5398PortMirrorSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001918  0000003100000005 R_MIPS_HI16            0000000000000ec0 bcm5398PortMirrorSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000191c  000000310000001c R_MIPS_HIGHER          0000000000000ec0 bcm5398PortMirrorSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001920  0000003100000006 R_MIPS_LO16            0000000000000ec0 bcm5398PortMirrorSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001944  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001970  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001974  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000197c  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001984  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000019c4  000000170000001d R_MIPS_HIGHEST         0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000019c8  0000001700000005 R_MIPS_HI16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000019cc  000000170000001c R_MIPS_HIGHER          0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000019d0  0000001700000006 R_MIPS_LO16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a04  000000140000001d R_MIPS_HIGHEST         00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a08  0000001400000005 R_MIPS_HI16            00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a0c  000000140000001c R_MIPS_HIGHER          00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a10  0000001400000006 R_MIPS_LO16            00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a34  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a50  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + a8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a54  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + a8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a58  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + a8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a5c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + a8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a68  000000250000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a6c  0000002500000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a70  000000250000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001a74  0000002500000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ab4  000000130000001d R_MIPS_HIGHEST         0000000000000098 bcm5398VlanEnable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ab8  0000001300000005 R_MIPS_HI16            0000000000000098 bcm5398VlanEnable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001abc  000000130000001c R_MIPS_HIGHER          0000000000000098 bcm5398VlanEnable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ac0  0000001300000006 R_MIPS_LO16            0000000000000098 bcm5398VlanEnable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ae0  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b1c  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b20  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b28  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b30  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b4c  0000002c0000001d R_MIPS_HIGHEST         0000000000000748 bcm5398PortStateSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b50  0000002c00000005 R_MIPS_HI16            0000000000000748 bcm5398PortStateSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b54  0000002c0000001c R_MIPS_HIGHER          0000000000000748 bcm5398PortStateSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b58  0000002c00000006 R_MIPS_LO16            0000000000000748 bcm5398PortStateSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001b78  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bac  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bb0  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bb8  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bc0  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001be8  000000280000001d R_MIPS_HIGHEST         0000000000000470 bcm5398VlanNon8021QSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bec  0000002800000005 R_MIPS_HI16            0000000000000470 bcm5398VlanNon8021QSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bf0  000000280000001c R_MIPS_HIGHER          0000000000000470 bcm5398VlanNon8021QSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001bf4  0000002800000006 R_MIPS_LO16            0000000000000470 bcm5398VlanNon8021QSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c14  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c4c  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c50  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c54  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c58  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c8c  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c90  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c94  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001c98  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cc4  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cd0  0000001f0000001d R_MIPS_HIGHEST         0000000000000000 bcm5398VlanDisable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cd4  0000001f00000005 R_MIPS_HI16            0000000000000000 bcm5398VlanDisable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cd8  0000001f0000001c R_MIPS_HIGHER          0000000000000000 bcm5398VlanDisable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cdc  0000001f00000006 R_MIPS_LO16            0000000000000000 bcm5398VlanDisable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001cfc  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d24  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d28  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d30  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d38  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d64  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d68  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d6c  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d70  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001d90  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001db8  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001dbc  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001dc4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001dcc  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e14  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e18  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e1c  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e20  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e54  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e58  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e5c  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e60  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001e8c  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001eb8  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ebc  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ec4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ecc  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f00  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f04  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f08  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f0c  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f48  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f4c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f54  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f5c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f70  0000000100000004 R_MIPS_26              0000000000000000 .text + 156c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f98  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001f9c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001fa4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001fac  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ff4  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ff8  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000001ffc  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002000  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002044  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002048  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000204c  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002050  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000206c  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002098  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000209c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000020a4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000020ac  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002108  000000230000001d R_MIPS_HIGHEST         0000000000000130 bcm5398PortDefaultTagSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000210c  0000002300000005 R_MIPS_HI16            0000000000000130 bcm5398PortDefaultTagSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002110  000000230000001c R_MIPS_HIGHER          0000000000000130 bcm5398PortDefaultTagSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002114  0000002300000006 R_MIPS_LO16            0000000000000130 bcm5398PortDefaultTagSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002134  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002150  0000001e0000001d R_MIPS_HIGHEST         0000000000000530 bcm5398PortLinkStatusQuery + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002154  0000001e00000005 R_MIPS_HI16            0000000000000530 bcm5398PortLinkStatusQuery + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002158  0000001e0000001c R_MIPS_HIGHER          0000000000000530 bcm5398PortLinkStatusQuery + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000215c  0000001e00000006 R_MIPS_LO16            0000000000000530 bcm5398PortLinkStatusQuery + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002170  0000000100000004 R_MIPS_26              0000000000000000 .text + 16c0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002198  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000219c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000021a4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000021ac  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000021f4  000000270000001d R_MIPS_HIGHEST         0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000021f8  0000002700000005 R_MIPS_HI16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000021fc  000000270000001c R_MIPS_HIGHER          0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002200  0000002700000006 R_MIPS_LO16            0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002244  000000200000001d R_MIPS_HIGHEST         0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002248  0000002000000005 R_MIPS_HI16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000224c  000000200000001c R_MIPS_HIGHER          0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002250  0000002000000006 R_MIPS_LO16            0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000226c  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002298  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000229c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022a4  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022ac  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022e0  0000002f0000001d R_MIPS_HIGHEST         0000000000000588 bcm5398PortDefaultTagGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022e4  0000002f00000005 R_MIPS_HI16            0000000000000588 bcm5398PortDefaultTagGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022e8  0000002f0000001c R_MIPS_HIGHER          0000000000000588 bcm5398PortDefaultTagGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000022ec  0000002f00000006 R_MIPS_LO16            0000000000000588 bcm5398PortDefaultTagGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002338  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000233c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002344  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000234c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002360  0000000100000004 R_MIPS_26              0000000000000000 .text + 156c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002388  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000238c  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002394  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000239c  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000023c8  000000350000001d R_MIPS_HIGHEST         00000000000007f8 bcm5398PortConfigSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000023cc  0000003500000005 R_MIPS_HI16            00000000000007f8 bcm5398PortConfigSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000023d0  000000350000001c R_MIPS_HIGHER          00000000000007f8 bcm5398PortConfigSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000023d4  0000003500000006 R_MIPS_LO16            00000000000007f8 bcm5398PortConfigSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000023f4  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000241c  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002420  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002428  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002430  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002454  0000000100000004 R_MIPS_26              0000000000000000 .text + 16bc
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000247c  0000002b0000001d R_MIPS_HIGHEST         0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002480  0000002b0000001c R_MIPS_HIGHER          0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002488  0000002b00000005 R_MIPS_HI16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002490  0000002b00000006 R_MIPS_LO16            0000000000000000 __copy_user + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000024d0  0000000100000004 R_MIPS_26              0000000000000000 .text + 1630
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000024f4  000000170000001d R_MIPS_HIGHEST         0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000024f8  0000001700000005 R_MIPS_HI16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000024fc  000000170000001c R_MIPS_HIGHER          0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002500  0000001700000006 R_MIPS_LO16            0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000253c  000000140000001d R_MIPS_HIGHEST         00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002540  0000001400000005 R_MIPS_HI16            00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002544  000000140000001c R_MIPS_HIGHER          00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002548  0000001400000006 R_MIPS_LO16            00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002564  0000000100000004 R_MIPS_26              0000000000000000 .text + 1568
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000258c  000000330000001d R_MIPS_HIGHEST         0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002590  0000003300000005 R_MIPS_HI16            0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002594  000000330000001c R_MIPS_HIGHER          0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002598  0000003300000006 R_MIPS_LO16            0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000025d4  000000370000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000025d8  0000003700000005 R_MIPS_HI16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000025dc  000000370000001c R_MIPS_HIGHER          0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000025e0  0000003700000006 R_MIPS_LO16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002618  0000001c0000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000261c  0000001c00000005 R_MIPS_HI16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002620  0000001c0000001c R_MIPS_HIGHER          0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002624  0000001c00000006 R_MIPS_LO16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000026dc  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000026e0  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000026e4  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000026f0  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002708  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + c0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000270c  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + c0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002710  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + c0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002714  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + c0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002720  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002724  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002728  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002734  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002738  000000040000001d R_MIPS_HIGHEST         0000000000000000 .rodata + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000273c  0000000400000005 R_MIPS_HI16            0000000000000000 .rodata + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002740  000000040000001c R_MIPS_HIGHER          0000000000000000 .rodata + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002744  0000000400000006 R_MIPS_LO16            0000000000000000 .rodata + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000027d0  000000250000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000027d4  0000002500000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000027d8  000000250000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000027dc  0000002500000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000027f0  0000000100000004 R_MIPS_26              0000000000000000 .text + 2768
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002818  000000370000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000281c  0000003700000005 R_MIPS_HI16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002820  000000370000001c R_MIPS_HIGHER          0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002824  0000003700000006 R_MIPS_LO16            0000000000000000 mii_phy_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002854  0000001c0000001d R_MIPS_HIGHEST         0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002858  0000001c00000005 R_MIPS_HI16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000285c  0000001c0000001c R_MIPS_HIGHER          0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002860  0000001c00000006 R_MIPS_LO16            0000000000000000 mii_phy_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000287c  000000250000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002880  0000002500000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002884  000000250000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002888  0000002500000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028b4  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028b8  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028bc  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028c8  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028e0  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 100
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028e4  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 100
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028e8  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 100
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028ec  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 100
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028f8  0000002e0000001d R_MIPS_HIGHEST         0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000028fc  0000002e00000005 R_MIPS_HI16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002900  0000002e0000001c R_MIPS_HIGHER          0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000290c  0000002e00000006 R_MIPS_LO16            0000000000000000 jiffies + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002910  000000040000001d R_MIPS_HIGHEST         0000000000000000 .rodata + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002914  0000000400000005 R_MIPS_HI16            0000000000000000 .rodata + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002918  000000040000001c R_MIPS_HIGHER          0000000000000000 .rodata + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000291c  0000000400000006 R_MIPS_LO16            0000000000000000 .rodata + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a2c  0000000100000004 R_MIPS_26              0000000000000000 .text + 293c
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a4c  000000160000001d R_MIPS_HIGHEST         00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a50  0000001600000005 R_MIPS_HI16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a54  000000160000001c R_MIPS_HIGHER          00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a58  0000001600000006 R_MIPS_LO16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002a9c  000000160000001d R_MIPS_HIGHEST         00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002aa0  0000001600000005 R_MIPS_HI16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002aa4  000000160000001c R_MIPS_HIGHER          00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002aa8  0000001600000006 R_MIPS_LO16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002aec  000000160000001d R_MIPS_HIGHEST         00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002af0  0000001600000005 R_MIPS_HI16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002af4  000000160000001c R_MIPS_HIGHER          00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000002af8  0000001600000006 R_MIPS_LO16            00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.exit.text' at offset 0x8870 contains 16 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000004  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000000c  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  000000390000001d R_MIPS_HIGHEST         0000000000000000 cdev_del + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000024  0000003900000005 R_MIPS_HI16            0000000000000000 cdev_del + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000028  000000390000001c R_MIPS_HIGHER          0000000000000000 cdev_del + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000002c  0000003900000006 R_MIPS_LO16            0000000000000000 cdev_del + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000044  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000048  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000004c  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000058  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000005c  000000320000001d R_MIPS_HIGHEST         0000000000000000 unregister_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000003200000005 R_MIPS_HI16            0000000000000000 unregister_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000064  000000320000001c R_MIPS_HIGHER          0000000000000000 unregister_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000068  0000003200000006 R_MIPS_LO16            0000000000000000 unregister_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.init.text' at offset 0x89f0 contains 123 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000004  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000014  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000024  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000028  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000002c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000003c  000000250000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000040  0000002500000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000044  000000250000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000048  0000002500000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000058  0000002d0000001d R_MIPS_HIGHEST         0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000005c  0000002d00000005 R_MIPS_HI16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000002d0000001c R_MIPS_HIGHER          0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000064  0000002d00000006 R_MIPS_LO16            0000000000000000 strcmp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000074  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000078  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000007c  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000080  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000008c  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000090  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000094  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000a4  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b0  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b4  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000b8  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000c4  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000d0  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000d4  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000d8  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000e4  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000e8  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 28
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000ec  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 28
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000f0  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 28
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000f4  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 28
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000100  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000104  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000108  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000114  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000118  000000250000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000011c  0000002500000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000120  000000250000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000124  0000002500000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000138  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000013c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000140  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000014c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000154  000000120000001d R_MIPS_HIGHEST         0000000000000000 alloc_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000158  0000001200000005 R_MIPS_HI16            0000000000000000 alloc_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000015c  000000120000001c R_MIPS_HIGHER          0000000000000000 alloc_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000160  0000001200000006 R_MIPS_LO16            0000000000000000 alloc_chrdev_region + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000180  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000184  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000188  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000018c  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000198  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000019c  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001a0  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001a4  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001b0  000000380000001d R_MIPS_HIGHEST         0000000000000000 cdev_init + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001b4  0000003800000005 R_MIPS_HI16            0000000000000000 cdev_init + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001b8  000000380000001c R_MIPS_HIGHER          0000000000000000 cdev_init + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001bc  0000003800000006 R_MIPS_LO16            0000000000000000 cdev_init + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001cc  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001d0  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001d8  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001e0  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 4
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001f0  000000150000001d R_MIPS_HIGHEST         0000000000000000 __this_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001f4  0000001500000005 R_MIPS_HI16            0000000000000000 __this_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001f8  000000150000001c R_MIPS_HIGHER          0000000000000000 __this_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001fc  0000001500000006 R_MIPS_LO16            0000000000000000 __this_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000208  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 68
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000020c  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 68
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000214  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 68
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000021c  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 68
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000220  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000224  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000228  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000022c  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000023c  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000240  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000244  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000248  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000254  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 70
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000258  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 70
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000260  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 70
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000268  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 70
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000026c  000000210000001d R_MIPS_HIGHEST         0000000000000000 cdev_add + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000270  0000002100000005 R_MIPS_HI16            0000000000000000 cdev_add + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000274  000000210000001c R_MIPS_HIGHER          0000000000000000 cdev_add + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000278  0000002100000006 R_MIPS_LO16            0000000000000000 cdev_add + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002b0  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002b4  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002bc  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002c8  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002c4  0000000300000004 R_MIPS_26              0000000000000000 .init.text + d0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002d0  000000070000001d R_MIPS_HIGHEST         0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002d4  0000000700000005 R_MIPS_HI16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002d8  000000070000001c R_MIPS_HIGHER          0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002e4  0000000700000006 R_MIPS_LO16            0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002e8  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002ec  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002f0  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002f4  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 20
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000030c  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000310  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000314  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000320  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000032c  000000080000001d R_MIPS_HIGHEST         0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000330  000000080000001c R_MIPS_HIGHER          0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000338  0000000800000005 R_MIPS_HI16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000344  0000000800000006 R_MIPS_LO16            0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000340  0000000300000004 R_MIPS_26              0000000000000000 .init.text + d0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000348  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 78
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000034c  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 78
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000350  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 78
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000354  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 78
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000380  000000050000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 50
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000384  0000000500000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 50
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000388  000000050000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 50
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000038c  0000000500000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 50
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000003a0  0000000300000004 R_MIPS_26              0000000000000000 .init.text + 298
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela__ksymtab' at offset 0x9578 contains 4 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000001800000012 R_MIPS_64              00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  0000000600000012 R_MIPS_64              0000000000000000 __ksymtab_strings + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000001600000012 R_MIPS_64              00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000018  0000000600000012 R_MIPS_64              0000000000000000 __ksymtab_strings + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela__param' at offset 0x95d8 contains 12 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000000700000012 R_MIPS_64              0000000000000000 .data + e8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000003000000012 R_MIPS_64              0000000000000000 param_set_int + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000018  0000003600000012 R_MIPS_64              0000000000000000 param_get_int + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  0000000800000012 R_MIPS_64              0000000000000000 .bss + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000028  0000000700000012 R_MIPS_64              0000000000000000 .data + f8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000038  0000003000000012 R_MIPS_64              0000000000000000 param_set_int + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000040  0000003600000012 R_MIPS_64              0000000000000000 param_get_int + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000048  0000000700000012 R_MIPS_64              0000000000000000 .data + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000050  0000000700000012 R_MIPS_64              0000000000000000 .data + 108
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000001a00000012 R_MIPS_64              0000000000000000 param_set_charp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000068  0000002900000012 R_MIPS_64              0000000000000000 param_get_charp + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000070  0000000700000012 R_MIPS_64              0000000000000000 .data + 8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.data' at offset 0x96f8 contains 4 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000008  0000000500000012 R_MIPS_64              0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000001500000012 R_MIPS_64              0000000000000000 __this_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000050  0000003300000012 R_MIPS_64              0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000002200000012 R_MIPS_64              0000000000002570 bcm5398CompatIoctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.gnu.linkonce.this_module' at offset 0x9758 contains 2 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000170  0000001b00000012 R_MIPS_64              0000000000000000 init_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000298  0000001900000012 R_MIPS_64              0000000000000000 cleanup_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.pdr' at offset 0x9788 contains 25 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000001f00000002 R_MIPS_32              0000000000000000 bcm5398VlanDisable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  0000001300000002 R_MIPS_32              0000000000000098 bcm5398VlanEnable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000040  0000002300000002 R_MIPS_32              0000000000000130 bcm5398PortDefaultTagSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000001400000002 R_MIPS_32              00000000000001a0 bcm5398PortEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000080  0000000200000002 R_MIPS_32              0000000000000000 .exit.text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000a0  0000000300000002 R_MIPS_32              0000000000000000 .init.text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000c0  0000002a00000002 R_MIPS_32              00000000000001e8 configWanPort + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000e0  0000002800000002 R_MIPS_32              0000000000000470 bcm5398VlanNon8021QSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000100  0000001e00000002 R_MIPS_32              0000000000000530 bcm5398PortLinkStatusQuery + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000120  0000002f00000002 R_MIPS_32              0000000000000588 bcm5398PortDefaultTagGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000140  0000001700000002 R_MIPS_32              0000000000000618 bcm5398PortEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000160  0000002400000002 R_MIPS_32              0000000000000670 bcm5398PortConfigGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000180  0000002c00000002 R_MIPS_32              0000000000000748 bcm5398PortStateSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001a0  0000003500000002 R_MIPS_32              00000000000007f8 bcm5398PortConfigSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001c0  0000002000000002 R_MIPS_32              0000000000000978 bcm5398VlanEntrySet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000001e0  0000002700000002 R_MIPS_32              0000000000000c08 bcm5398VlanEntryGet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000200  0000001100000002 R_MIPS_32              0000000000000e38 wanportCheck + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000220  0000003100000002 R_MIPS_32              0000000000000ec0 bcm5398PortMirrorSet + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000240  0000003300000002 R_MIPS_32              0000000000001410 bcm5398Ioctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000260  0000002200000002 R_MIPS_32              0000000000002570 bcm5398CompatIoctl + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000280  0000001800000002 R_MIPS_32              00000000000025c0 miiSwitchRegisterWrite + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002a0  0000001600000002 R_MIPS_32              00000000000027f8 miiSwitchRegisterRead + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002c0  0000003400000002 R_MIPS_32              0000000000002a38 miiSwitchRegisterRead8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000002e0  0000002600000002 R_MIPS_32              0000000000002a88 miiSwitchRegisterRead16 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000300  0000001d00000002 R_MIPS_32              0000000000002ad8 miiSwitchRegisterRead32 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      

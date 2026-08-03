@@ -1,0 +1,9 @@
+key	value
+module	scm-led
+analysis_version	rv220w-stock-modules-v1.0.0
+program	scm-led.ko
+processor	MIPS:BE:64:64-32addr
+function_count	11
+decompile_success	11
+decompile_failure	0
+external_count	0

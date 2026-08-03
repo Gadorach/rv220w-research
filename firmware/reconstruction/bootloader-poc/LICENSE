@@ -1,0 +1,6 @@
+SPDX-License-Identifier: GPL-2.0-or-later
+
+This proof-of-concept source is distributed under the GNU General Public
+License, version 2 or (at your option) any later version. Reconstructed Cisco
+and Cavium behavior is described from independent analysis; no claim is made
+that the reconstructed pseudocode is original vendor source.

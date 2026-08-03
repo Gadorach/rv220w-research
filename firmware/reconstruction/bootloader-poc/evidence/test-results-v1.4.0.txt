@@ -1,0 +1,33 @@
+boot-chain byte proof regression passed
+vendor boot-chain patch regression passed
+stage2 SHA-256 and CRC-32 vectors passed
+stage2 verification passed: size=93096 entry=0xffffffff84000000 load=0xffffffff84000000-0xffffffff840058eb
+sha256=1369e9c240aedd33e624498a8932b076074e105a45785f19e8e658ceb9caed1a
+stage2 static policy regression passed
+D-Link Cavium donor report regression passed
+stage2 donor-derived inspection policy regression passed
+D-Link multiversion report regression passed
+Octeon boot ABI layout assertions passed
+path=/mnt/data/rv220w-v140-work/rv220w-platform-reconstruction-v1.4.0/bootloader-poc/artifacts/rv220w-stage2-poc.elf
+size=93096
+entry=0xffffffff84000000
+pt_load=3
+pt_note=0
+pt_note_nonempty=0
+vendor_bootoctlinux_compatible=yes
+path=/tmp/tmpkwn8eoeb/good.elf
+size=512
+entry=0xffffffff84000000
+pt_load=1
+pt_note=1
+pt_note_nonempty=0
+vendor_bootoctlinux_compatible=yes
+path=/tmp/tmpkwn8eoeb/bad.elf
+size=512
+entry=0xffffffff84000000
+pt_load=1
+pt_note=1
+pt_note_nonempty=1
+vendor_bootoctlinux_compatible=no
+vendor ELF compatibility regression passed
+all RV220W bootloader PoC tests passed

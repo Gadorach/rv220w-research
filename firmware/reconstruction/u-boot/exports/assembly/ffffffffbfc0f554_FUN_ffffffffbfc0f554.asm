@@ -1,0 +1,60 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc0f554 function=FUN_ffffffffbfc0f554
+ffffffffbfc0f554	addiu sp,sp,-0x30
+ffffffffbfc0f558	sll v0,a1,0x2
+ffffffffbfc0f55c	sd gp,0x20(sp)
+ffffffffbfc0f560	addu v0,v0,a0
+ffffffffbfc0f564	sd s1,0x18(sp)
+ffffffffbfc0f568	lui gp,0x3
+ffffffffbfc0f56c	sd s0,0x10(sp)
+ffffffffbfc0f570	addu gp,gp,t9
+ffffffffbfc0f574	sd ra,0x28(sp)
+ffffffffbfc0f578	andi a1,a3,0xff
+ffffffffbfc0f57c	lw v1,0xc(v0)
+ffffffffbfc0f580	addiu gp,gp,0x418c
+ffffffffbfc0f584	lbu v0,0xa0c(a0)
+ffffffffbfc0f588	daddu s0,a0,zero
+ffffffffbfc0f58c	lw t9,0x1c(gp)
+ffffffffbfc0f590	mul a3,a2,v0
+ffffffffbfc0f594	daddu a2,sp,zero
+ffffffffbfc0f598	addiu t9,t9,-0xd84
+ffffffffbfc0f59c	jalr t9
+ffffffffbfc0f5a0	_addu s1,a3,v1
+ffffffffbfc0f5a4	li v0,0x2
+ffffffffbfc0f5a8	lbu v1,0xa0c(s0)
+ffffffffbfc0f5ac	beq v1,v0,0xffffffffbfc0f5fc
+ffffffffbfc0f5b0	_nop
+ffffffffbfc0f5b4	sltiu v0,v1,0x3
+ffffffffbfc0f5b8	beq v0,zero,0xffffffffbfc0f5d4
+ffffffffbfc0f5bc	_li v0,0x4
+ffffffffbfc0f5c0	li v0,0x1
+ffffffffbfc0f5c4	bne v1,v0,0xffffffffbfc0f5e8
+ffffffffbfc0f5c8	_nop
+ffffffffbfc0f5cc	b 0xffffffffbfc0f5f0
+ffffffffbfc0f5d0	_nop
+ffffffffbfc0f5d4	beq v1,v0,0xffffffffbfc0f610
+ffffffffbfc0f5d8	_nop
+ffffffffbfc0f5dc	li v0,0x8
+ffffffffbfc0f5e0	beq v1,v0,0xffffffffbfc0f61c
+ffffffffbfc0f5e4	_ld v1,0x0(sp)
+ffffffffbfc0f5e8	b 0xffffffffbfc0f628
+ffffffffbfc0f5ec	_clear v0
+ffffffffbfc0f5f0	lbu v0,0x0(s1)
+ffffffffbfc0f5f4	b 0xffffffffbfc0f604
+ffffffffbfc0f5f8	_lbu v1,0x0(sp)
+ffffffffbfc0f5fc	lhu v0,0x0(s1)
+ffffffffbfc0f600	lhu v1,0x0(sp)
+ffffffffbfc0f604	and v0,v1,v0
+ffffffffbfc0f608	b 0xffffffffbfc0f628
+ffffffffbfc0f60c	_SPECIAL2 v0,v0,v1,0x0,0x2a
+ffffffffbfc0f610	lw v0,0x0(s1)
+ffffffffbfc0f614	b 0xffffffffbfc0f604
+ffffffffbfc0f618	_lw v1,0x0(sp)
+ffffffffbfc0f61c	ld v0,0x0(s1)
+ffffffffbfc0f620	and v0,v0,v1
+ffffffffbfc0f624	SPECIAL2 v0,v0,v1,0x0,0x2a
+ffffffffbfc0f628	ld ra,0x28(sp)
+ffffffffbfc0f62c	ld gp,0x20(sp)
+ffffffffbfc0f630	ld s1,0x18(sp)
+ffffffffbfc0f634	ld s0,0x10(sp)
+ffffffffbfc0f638	jr ra
+ffffffffbfc0f63c	_addiu sp,sp,0x30

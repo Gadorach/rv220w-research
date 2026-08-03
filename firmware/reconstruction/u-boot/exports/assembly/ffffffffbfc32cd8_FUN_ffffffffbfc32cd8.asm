@@ -1,0 +1,30 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc32cd8 function=FUN_ffffffffbfc32cd8
+ffffffffbfc32cd8	addiu sp,sp,-0x10
+ffffffffbfc32cdc	lui v0,0xfff0
+ffffffffbfc32ce0	sd gp,0x0(sp)
+ffffffffbfc32ce4	ori v0,v0,0x23
+ffffffffbfc32ce8	lui gp,0x1
+ffffffffbfc32cec	dsll32 v0,v0,0xb
+ffffffffbfc32cf0	addu gp,gp,t9
+ffffffffbfc32cf4	ori v0,v0,0x1000
+ffffffffbfc32cf8	sd ra,0x8(sp)
+ffffffffbfc32cfc	addiu gp,gp,0xa08
+ffffffffbfc32d00	sd a0,0x0(v0)
+ffffffffbfc32d04	lui v0,0xfff0
+ffffffffbfc32d08	ori v0,v0,0x23
+ffffffffbfc32d0c	dsll32 v0,v0,0xb
+ffffffffbfc32d10	ori v0,v0,0xf8
+ffffffffbfc32d14	ld v0,0x0(v0)
+ffffffffbfc32d18	lw t9,0x10(gp)
+ffffffffbfc32d1c	addiu t9,t9,0x2ca8
+ffffffffbfc32d20	jalr t9
+ffffffffbfc32d24	_nop
+ffffffffbfc32d28	li v1,-0x1
+ffffffffbfc32d2c	ld ra,0x8(sp)
+ffffffffbfc32d30	dextu v0,v0,0x38,0x1
+ffffffffbfc32d34	ld gp,0x0(sp)
+ffffffffbfc32d38	dsll32 v0,v0,0x18
+ffffffffbfc32d3c	movn v1,zero,v0
+ffffffffbfc32d40	addiu sp,sp,0x10
+ffffffffbfc32d44	jr ra
+ffffffffbfc32d48	_daddu v0,v1,zero

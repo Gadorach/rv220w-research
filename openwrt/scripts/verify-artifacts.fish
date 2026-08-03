@@ -42,6 +42,23 @@ if test -d "$RV220W_WORKSPACE/artifacts"
         end
     end
 end
+if test -d "$RV220W_WORKSPACE/artifacts"
+    set -l slot_image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-luci-nor-slot.bin"
+    set -l slot_manifest "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-luci-nor-slot.json"
+    if test -f "$slot_image"; or test -f "$slot_manifest"
+        if not test -f "$slot_image"; or not test -f "$slot_manifest"
+            rv_warn 'Incomplete LuCI NOR-slot artifact pair.'
+            set failures (math $failures + 1)
+        else
+            python3 "$RV220W_TOOLKIT_ROOT/scripts/host/build_rv220w_nor_slot.py" verify "$slot_image" "$slot_manifest"
+            or begin
+                rv_warn 'LuCI NOR-slot image or manifest failed verification.'
+                set failures (math $failures + 1)
+            end
+        end
+    end
+end
+
 if test $failures -gt 0
     rv_die "$failures verification failure(s)"
 end

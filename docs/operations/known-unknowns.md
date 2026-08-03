@@ -1,28 +1,35 @@
 # Known unknowns
 
-## Boot and flash
+## Persistent filesystem and upgrade design
 
-- Meaning of firmware header fields at offsets `0x04` and `0x08`.
-- Meaning of the final 16 non-erased bytes in the actual environment sector.
-- Exact stage-1 boot-stub responsibilities.
-- A safe persistent OpenWrt partition, image, installer, and rollback design.
-- Interrupted-write and power-loss behavior for any future installer.
+- Final SquashFS/overlay partitioning and writable-root design.
+- Supported factory/sysupgrade format and rollback metadata.
+- Power-loss behavior during slot or future overlay updates.
+- Safe automation of manifest-derived U-Boot environment changes.
 
-## Debug and board services
+## Boot chain
 
-- JP2 protocol and powered behavior.
-- Active confirmation of all J2 EJTAG signals.
+- Exact stage-1 boot-stub responsibilities beyond the reconstructed functions.
+- Meaning of firmware-header fields at offsets `0x04` and `0x08`.
+- Meaning of the final 16 non-erased bytes in the environment sector.
+- Single-run validation of the packaged combined wrapper from a completely stock sector.
+
+## Board services
+
+- U3 BootBus latch address multiplexing and its LE/OE control sources.
+- JP2 powered protocol and complete J2 EJTAG confirmation.
 - Complete status-LED and GPIO map.
-- Safe Linux reset-button semantics.
-- Watchdog timeout, enable, and recovery behavior.
+- Linux reset-button semantics and watchdog policy.
 
 ## Ethernet
 
-The front-panel topology, B53 address, CPU ports, RGMII timing, and five-port operation are now proven. Remaining work is primarily long-duration regression, tagged-WAN cases, performance characterization, and upstream-quality patch review.
+The five-port topology and functional routed data path are proven. Remaining
+questions are long-duration reliability, performance, tagged-ISP cases, and
+upstream patch quality.
 
-## WLAN
+## Wireless
 
-- Exact BCM4322 SPROM/calibration source and required firmware set.
+- BCM4322 firmware and calibration source.
 - Antenna-chain mapping.
-- Practical `b43` stability and performance on this board.
-- Best electrically compatible replacement Mini PCI card, if replacement is preferred.
+- Practical `b43` stability and performance.
+- Best compatible replacement Mini PCI card if the original radio is not practical.

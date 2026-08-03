@@ -1,0 +1,53 @@
+{
+  "schema": "rv220w-hardware-validation-v1",
+  "date": "2026-08-02",
+  "release_revision": "1.4.0-r1",
+  "device": "Cisco RV220W-A V01",
+  "validated_sector": {
+    "flash_range": "0xbdc00000-0xbdc1ffff",
+    "size": 131072,
+    "crc32": "b77a94de",
+    "http_recovery_branch": {
+      "offset": "0x13138",
+      "bytes": "10000003",
+      "result": "invalid proprietary firmware format no longer launches Sercomm HTTP recovery"
+    },
+    "bootcmd_overwrite_tailcall": {
+      "offset": "0x13168",
+      "bytes": "03e00008",
+      "result": "saved bootcmd is no longer overwritten during vendor late initialization"
+    }
+  },
+  "runtime_results": {
+    "normal_openwrt_boot": true,
+    "saved_bootcmd_persists_across_reset": true,
+    "physical_recovery_button_active_low": true,
+    "physical_recovery_download_mode_preserved": true,
+    "sercomm_http_recovery_on_invalid_magic_bypassed": true,
+    "final_bootdelay_seconds": 3,
+    "preboot_removed": true
+  },
+  "combined_distribution_flasher": {
+    "package": "rv220w-combined-boot-policy-patch-flasher-v1.0.0",
+    "target_bytes_hardware_validated": true,
+    "live_identity_detection_hardware_validated": true,
+    "idempotent_no_write_path_hardware_validated": true,
+    "single_step_destructive_write_from_stock_directly_exercised": false,
+    "note": "The same sector staging, erase, program, full compare and re-protection primitives were hardware exercised by the preceding bootcmd-only and selective-HTTP patch tools. The combined wrapper was then run against the already-combined state and correctly performed no write."
+  },
+  "evidence": [
+    {
+      "path": "bootloader-poc/evidence/hardware-validation/2026-08-02-normal-openwrt-boot.log",
+      "sha256": "cdd92a60de9f33cb7947a7109aa15b4aa0cb61e22dd14472964d0fa78de4a003"
+    },
+    {
+      "path": "bootloader-poc/evidence/hardware-validation/2026-08-02-recovery-button-validation.log"
+    },
+    {
+      "path": "bootloader-poc/evidence/hardware-validation/2026-08-02-combined-flasher-idempotence.log"
+    },
+    {
+      "path": "bootloader-poc/evidence/hardware-validation/2026-08-02-environment-policy.log"
+    }
+  ]
+}

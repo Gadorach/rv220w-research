@@ -1,0 +1,8 @@
+caller_entry	caller_name	callee_name	callee_kind	occurrences
+00100050	mii_phy_read	TF1_cvm_oct_mdio_read	kernel-or-module-import	1
+00100050	mii_phy_read	local_bh_disable	kernel-or-module-import	1
+00100050	mii_phy_read	local_bh_enable	kernel-or-module-import	1
+00100108	mii_phy_write	cvm_oct_mdio_write	kernel-or-module-import	1
+00100108	mii_phy_write	local_bh_disable	kernel-or-module-import	1
+00100108	mii_phy_write	local_bh_enable	kernel-or-module-import	1
+001001e8	init_module	printk	kernel-or-module-import	1

@@ -52,4 +52,13 @@ set -q _flag_force_upload; and set -a command --force-upload
 
 rv_info "Collecting passive B53 topology snapshot over UART: port=$port baud=$baud label=$label"
 command $command
-or rv_die 'UART B53 collection failed. Ensure no other process has the serial adapter open and that the OpenWrt shell is active.'
+set -l collect_status $status
+switch $collect_status
+    case 0
+        exit 0
+    case 3
+        rv_warn 'B53 scanner unavailable: the target does not include the raw MDIO diagnostic stack.'
+        exit 3
+    case '*'
+        rv_die 'UART B53 collection failed. The detailed target-side report, when available, is shown above; also ensure no other process has the serial adapter open.'
+end

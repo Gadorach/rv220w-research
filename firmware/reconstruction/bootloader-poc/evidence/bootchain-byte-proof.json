@@ -1,0 +1,81 @@
+{
+  "schema": "rv220w-bootchain-byte-proof-v1",
+  "input": "/mnt/data/rv220w-poc-work/out/rv220w-platform-reconstruction-v1.2.0/bootloader-poc/../u-boot/originals/rv220w-boot-chain.bin",
+  "size": 524288,
+  "sha256": "0630714e3e86edfeeed064088266c59524d970e0b74780e903b68b45e8982e7d",
+  "crc32": "483548c0",
+  "u_boot_slice": {
+    "offset": 196608,
+    "size": 327680,
+    "sha256": "1b68453e055dee56a8724b17a927df36ff201a44c8e450c5d17a3b8e9117000d",
+    "separate_extraction_verified": true
+  },
+  "late_init": {
+    "entry": "0xffffffffbfc13084",
+    "file_offset": 77956,
+    "reconstructed_gp": "0xffffffffbfc436e0",
+    "bootcmd_name": {
+      "offset": 241056,
+      "address": "0xffffffffbfc3ada0",
+      "value": "bootcmd"
+    },
+    "stock_command": {
+      "offset": 222128,
+      "address": "0xffffffffbfc363b0",
+      "length_without_nul": 153,
+      "value": "cp.b BDC80000 0x2a00000 580000;bootoctlinux 0x2a00200 mtdparts=phys_mapped_flash:512k(bootloader)ro,6M(kernel),16M(rootfs),1024k(data),128k(bootload-env)"
+    },
+    "setenv_wrapper": "0xffffffffbfc19b60",
+    "setenv_core": "0xffffffffbfc190f4",
+    "tail_call": {
+      "offset": 78184,
+      "original_be32": "0x03200008",
+      "meaning": "jr t9 (tail-call setenv)",
+      "suppression_be32": "0x03e00008",
+      "suppression_meaning": "jr ra (return without setting bootcmd)"
+    },
+    "firmware_check": "0xffffffffbfc22834",
+    "http_recovery": "0xffffffffbfc22bd4",
+    "firmware_check_branch": {
+      "offset": 78136,
+      "original_be32": "0x04410003",
+      "experimental_bypass_be32": "0x10000003"
+    },
+    "instruction_words": {
+      "0x1312c": "0x8f99034c",
+      "0x13130": "0x0320f809",
+      "0x13138": "0x04410003",
+      "0x1313c": "0x8f9902d0",
+      "0x13140": "0x0320f809",
+      "0x13148": "0x8f840014",
+      "0x1314c": "0x8f850010",
+      "0x13150": "0x8f990434",
+      "0x13154": "0x2484ada0",
+      "0x13158": "0xdfbc0008",
+      "0x1315c": "0x24a563b0",
+      "0x13160": "0xdfbf0010",
+      "0x13164": "0xdfb00000",
+      "0x13168": "0x03200008",
+      "0x1316c": "0x27bd0020"
+    }
+  },
+  "firmware_header_check": {
+    "function": "0xffffffffbfc22834",
+    "image_name_flash_address": "0xffffffffbdc80074",
+    "image_size_flash_address": "0xffffffffbdc80010",
+    "maximum_size": 33554432,
+    "trailer_address_formula": "0xffffffffbdc80000 + image_size - 0x80",
+    "trailer_magic": "FWCHKADDISABABA",
+    "trailer_string_file_offset": 266368
+  },
+  "board_data": {
+    "base_mac_flash_offset": 458496,
+    "actual_environment_flash_offset": 33423360,
+    "actual_environment_size": 131072
+  },
+  "patch_policy": {
+    "upper_string_redirect": "preferred first persistent experiment; no lower code bytes changed",
+    "suppress_force": "one-byte lower-region code change at 0x13169; external recovery required",
+    "bypass_recovery": "two-byte lower-region branch change at 0x13138-0x13139; experimental only"
+  }
+}

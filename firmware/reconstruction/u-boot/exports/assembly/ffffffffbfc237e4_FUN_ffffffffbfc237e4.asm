@@ -1,0 +1,42 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc237e4 function=FUN_ffffffffbfc237e4
+ffffffffbfc237e4	daddu t1,a0,zero
+ffffffffbfc237e8	daddu t0,a1,zero
+ffffffffbfc237ec	b 0xffffffffbfc23800
+ffffffffbfc237f0	_daddu a3,a0,zero
+ffffffffbfc237f4	sb t0,0x0(a3)
+ffffffffbfc237f8	addiu a2,a2,-0x1
+ffffffffbfc237fc	addiu a3,a3,0x1
+ffffffffbfc23800	beq a2,zero,0xffffffffbfc23864
+ffffffffbfc23804	_andi v0,a2,0x7
+ffffffffbfc23808	andi v0,a3,0x7
+ffffffffbfc2380c	bne v0,zero,0xffffffffbfc237f4
+ffffffffbfc23810	_sltiu v0,a2,0x8
+ffffffffbfc23814	bne v0,zero,0xffffffffbfc23860
+ffffffffbfc23818	_nop
+ffffffffbfc2381c	andi v0,t0,0xff
+ffffffffbfc23820	sll a1,v0,0x10
+ffffffffbfc23824	sll v1,v0,0x8
+ffffffffbfc23828	sll a0,v0,0x18
+ffffffffbfc2382c	or v0,v0,v1
+ffffffffbfc23830	or a0,a0,a1
+ffffffffbfc23834	li v1,-0x8
+ffffffffbfc23838	and v1,a2,v1
+ffffffffbfc2383c	or v0,v0,a0
+ffffffffbfc23840	addi a0,v0,0x0
+ffffffffbfc23844	dsll32 a0,a0,0x0
+ffffffffbfc23848	or a0,v0,a0
+ffffffffbfc2384c	sd a0,0x0(a3)
+ffffffffbfc23850	addi v1,v1,-0x8
+ffffffffbfc23854	bne zero,v1,0xffffffffbfc2384c
+ffffffffbfc23858	_addi a3,a3,0x8
+ffffffffbfc2385c	addu a3,a3,v1
+ffffffffbfc23860	andi v0,a2,0x7
+ffffffffbfc23864	b 0xffffffffbfc23874
+ffffffffbfc23868	_li v1,-0x1
+ffffffffbfc2386c	sb t0,0x0(a3)
+ffffffffbfc23870	addiu a3,a3,0x1
+ffffffffbfc23874	addiu v0,v0,-0x1
+ffffffffbfc23878	bne v0,v1,0xffffffffbfc2386c
+ffffffffbfc2387c	_nop
+ffffffffbfc23880	jr ra
+ffffffffbfc23884	_daddu v0,t1,zero

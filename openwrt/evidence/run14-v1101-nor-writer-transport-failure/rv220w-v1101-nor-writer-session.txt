@@ -1,0 +1,458 @@
+usyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+  ____  __     ______  ___   ___ __        __
+ |  _ \ \ \   / /___ \|___ \ / _ \\ \      / /
+ | |_) | \ \ / /  __) | __) | | | |\ \ /\ / /
+ |  _ <   \ V /  / __/ / __/| |_| | \ V  V /
+ |_| \_\   \_/  |_____|_____|\___/   \_/\_/
+
+ OpenWrt RV220W full-RJ45 + LuCI RAM firmware
+ LuCI HTTP: http://192.168.240.2/ (LAN only)
+ WAN: DHCP/DHCPv6 on the independent eth1 DSA conduit.
+ The standard profile keeps every NOR partition read-only.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@rv220w-rj45:~# 
+[rv220w] Power-cycle the router now. Ctrl-C will be sent automatically.
+
+
+U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+
+CUST_RV200W board revision major:1, minor:0, serial #: 
+OCTEON CN5010-SCP pass 1.1, Core clock: 400 MHz, DDR clock: 266 MHz (532 Mhz data rate)
+CL5 Minimum Clock Rate                        :   3000 ps
+DDR Clock Rate (tCLK)                         :   3759 ps
+CAS Latency                                   :      5
+Refresh Rate (tREFI)                          :   7812 ns
+Minimum Row Precharge Time (tRP)              :  15000 ps
+Minimum Row Active to Row Active delay (tRRD) :  10000 ps
+Minimum RAS to CAS delay (tRCD)               :  15000 ps
+Minimum Active to Precharge Time (tRAS)       :  45000 ps
+Write Recovery Time (tWR)                     :  20000 ps
+Internal write to read command delay (tWTR)   :  15000 ps
+Device Min Auto-refresh Active/Command (tRFC) : 105000 ps
+Board delay                                   :   2700 ps
+PAL rev: 0.00, MCU rev: 0.00, CPU voltage: 0.00
+in set_reg_sc
+DRAM:  128 MB
+Manu.id(0xc2) Dev.id1(0x227e) Dev.id2(0x2222) Dev.id3(0x2201),tst.value 0x1000
+Flash: 32 MB
+*** Warning - bad CRC, using default environment
+
+Clearing DRAM...... done
+BIST check passed.
+Starting PCI
+PCI Status: PCI 32-bit
+PCI BAR 0: 0x00000000, PCI BAR 1: Memory 0x00000000  PCI 0xf8000000
+Net:   octeth0, octeth1, octeth2
+
+disable 53115 ... Done
+in set_reg_sc
+PUSH_BUTTON--> 1
+
+
+
+checking fw magic ... ...
+Image name         : RV220W-Firmware-1.0.4.17.img
+Image size         : 22184064 bytes
+Magic Word         : FWCHKADDISABABA
+
+ 0 
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# <INTERRUPT>
+rv200w# base 0
+Base Address64: 0x0000000000000000, Base Address: 0x00000000
+rv200w# setenv autoload no
+rv200w# setenv netretry no
+rv200w# setenv ipaddr 192.168.240.2
+rv200w# setenv serverip 192.168.240.1
+rv200w# setenv netmask 255.255.255.0
+rv200w# 
+[rv220w] trying U-Boot network interface octeth0
+setenv ethact octeth0
+rv200w# tftpboot 0x05500000 rv220w-openwrt-rv220w-nor-writer-initramfs.elf
+
+enable 53115 ... Done
+Interface 0 has 3 ports (RGMII)
+Using octeth0 device
+TFTP from server 192.168.240.1; our IP address is 192.168.240.2
+Filename 'rv220w-openwrt-rv220w-nor-writer-initramfs.elf'.
+Load address: 0x5500000
+Loading: octeth0: Up 1000 Mbps Full duplex (port  0)
+T invalid RARP header
+#################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         ####################[tftp] Jul 28 04:50:36 dnsmasq-tftp[1601068]: sent /tmp/rv220w-tftp-jxhjk8z4/rv220w-openwrt-rv220w-nor-writer-initramfs.elf to 192.168.240.2
+
+done
+Bytes transferred = 17659344 (10d75d0 hex), 1620 Kbytes/sec
+rv200w# 
+[rv220w] transfer verified through octeth0
+[rv220w] image is in RAM at 0x05500000
+[rv220w] executing: bootoctlinux 0x05500000 console=ttyS0,115200
+bootoctlinux 0x05500000 console=ttyS0,115200
+argv[2]: console=ttyS0,115200
+ELF file is 64 bit
+Attempting to allocate memory for ELF segment: addr: 0xffffffff81100000 (adjusted to: 0x0000000001100000), size 0x1232650
+Allocated memory for ELF segment: addr: 0xffffffff81100000, size 0x1232650
+Loading .text @ 0xffffffff81100000 (0x8cef20 bytes)
+Loading __ex_table @ 0xffffffff819cef20 (0x2c10 bytes)
+Loading .rodata @ 0xffffffff819d2000 (0x1f1250 bytes)
+Loading .pci_fixup @ 0xffffffff81bc3250 (0x38e8 bytes)
+Loading __ksymtab @ 0xffffffff81bc6b38 (0x175e0 bytes)
+Loading __ksymtab_gpl @ 0xffffffff81bde118 (0x17070 bytes)
+Loading __ksymtab_strings @ 0xffffffff81bf5188 (0x245bd bytes)
+Loading __param @ 0xffffffff81c19748 (0x1ba8 bytes)
+Loading .data @ 0xffffffff81c1c000 (0xcee40 bytes)
+Loading .init.text @ 0xffffffff81ceb000 (0x2e7c8 bytes)
+Loading .init.data @ 0xffffffff81d197e0 (0x4b33a0 bytes)
+Loading .data..percpu @ 0xffffffff821cd000 (0x7ea0 bytes)
+Loading .appended_dtb @ 0xffffffff821d4ea0 (0x1200 bytes)
+Clearing .bss @ 0xffffffff822e0000 (0x52650 bytes)
+## Loading Linux kernel with entry point: 0xffffffff819c5270 ...
+Bootloader: Done loading app on coremask: 0x1
+[    0.000000] Linux version 6.12.94 (gadorach@Latitude-E5570) (mips64-openwrt-linux-musl-gcc (OpenWrt GCC 14.3.0 r33051-f5dae5ece4) 14.3.0, GNU ld (GNU Binutils) 2.44) #0 SMP Mon Jun 29 12:59:20 2026
+[    0.000000] CVMSEG size: 0 cache lines (0 bytes)
+[    0.000000] printk: legacy bootconsole [early0] enabled
+[    0.000000] CPU0 revision is: 000d0601 (Cavium Octeon+)
+[    0.000000] printk: debug: ignoring loglevel setting.
+[    0.000000] Kernel sections are not in the memory maps
+[    0.000000] Wasting 278528 bytes for tracking 4352 unused pages
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Using appended Device Tree.
+[    0.000000] OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 0MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x0000000002408000-0x0000000002448000] (0MB)
+[    0.000000] Primary instruction cache 32kB, virtually tagged, 4 way, 64 sets, linesize 128 bytes.
+[    0.000000] Primary data cache 16kB, 64-way, 2 sets, linesize 128 bytes.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000001100000-0x00000000efffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000001100000-0x0000000002331fff]
+[    0.000000]   node   0: [mem 0x0000000002400000-0x0000000007bfffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000001100000-0x0000000007bfffff]
+[    0.000000] On node 0, zone DMA32: 4352 pages in unavailable ranges
+[    0.000000] On node 0, zone DMA32: 206 pages in unavailable ranges
+[    0.000000] On node 0, zone DMA32: 33792 pages in unavailable ranges
+[    0.000000] percpu: Embedded 17 pages/cpu s32416 r8192 d29024 u69632
+[    0.000000] pcpu-alloc: s32416 r8192 d29024 u69632 alloc=17*4096
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Kernel command line: mtdparts=phys_mapped_flash:512k(boot-chain)ro,22m(openwrt-slot),1m(stock-data)ro,128k(legacy-env-gap)ro,8448k(vendor-tail)ro,128k(uboot-env)ro console=ttyS0,115200 loglevel=8 ignore_loglevel usbcore.nousb
+[    0.000000] Dentry cache hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 27186
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=128, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=1.
+[    0.000000]  Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] RCU Tasks Trace: Setting shift to 0 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=1.
+[    0.000000] NR_IRQS: 127
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.373552] clocksource: OCTEON_CVMCOUNT: mask: 0xffffffffffffffff max_cycles: 0x5c4093a7d1, max_idle_ns: 440795210635 ns
+[    0.384628] Calibrating delay loop (skipped) preset value.. 800.00 BogoMIPS (lpj=4000000)
+[    0.392673] pid_max: default: 32768 minimum: 301
+[    0.404120] Mount-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.411290] Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.431153] rcu: Hierarchical SRCU implementation.
+[    0.435871] rcu:     Max phase no-delay instances is 1000.
+[    0.442658] smp: Bringing up secondary CPUs ...
+[    0.447133] smp: Brought up 1 node, 1 CPU
+[    0.451322] Memory: 84380K/108744K available (9018K kernel code, 828K rwdata, 2344K rodata, 6100K init, 329K bss, 23336K reserved, 0K cma-reserved)
+[    0.471190] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.481055] futex hash table entries: 256 (order: 3, 32768 bytes, linear)
+[    0.497181] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.511206] Enabling Octeon big bar support
+[    0.521336] PCI Status: PCI 32-bit
+[    0.525586] PCI Clock: 33 MHz
+[    0.581393] SCSI subsystem initialized
+[    0.585800] libata version 3.00 loaded.
+[    0.589838] usbcore: USB support disabled
+[    0.593704] EDAC MC: Ver: 3.0.0
+[    0.601061] PCI host bridge to bus 0000:00
+[    0.605031] pci_bus 0000:00: root bus resource [mem 0x11b00f0000000-0x11b0130000000] (bus address [0xf0000000-0x130000000])
+[    0.616202] pci_bus 0000:00: root bus resource [io  0x4000-0xffffffff]
+[    0.622640] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.630755] pci 0000:00:03.0: [14e4:432b] type 00 class 0x028000 conventional PCI endpoint
+[    0.638902] pci 0000:00:03.0: BAR 0 [mem 0x00000000-0x00003fff]
+[    0.644948] pci 0000:00:03.0: supports D1 D2
+[    0.649069] pci 0000:00:03.0: PME# supported from D0 D3hot D3cold
+[    0.656458] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.662971] pci 0000:00:03.0: BAR 0 [mem 0x11b00f0000000-0x11b00f0003fff]: assigned
+[    0.671647] clocksource: Switched to clocksource OCTEON_CVMCOUNT
+[    0.686198] NET: Registered PF_INET protocol family
+[    0.691310] IP idents hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.702699] tcp_listen_portaddr_hash hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.710948] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.718766] TCP established hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.726380] TCP bind hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.733502] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.740351] MPTCP token hash table entries: 256 (order: 1, 6144 bytes, linear)
+[    0.747803] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.754310] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.762140] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.767783] PCI: CLS 0 bytes, default 128
+[    0.812381] workingset: timestamp_bits=46 max_order=15 bucket_order=0
+[    0.872209] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.880171] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.933048] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.
+[    0.942312] octeon_gpio 1070000000800.gpio-controller: OCTEON GPIO driver probed.
+[    0.950351] Serial: 8250/16550 driver, 2 ports, IRQ sharing disabled
+[    0.958892] printk: legacy console [ttyS0] disabled
+[    0.964573] 1180000000800.serial: ttyS0 at MMIO 0x1180000000800 (irq = 34, base_baud = 25000000) is a OCTEON
+[    0.974446] printk: legacy console [ttyS0] enabled
+[    0.974446] printk: legacy console [ttyS0] enabled
+[    0.983951] printk: legacy bootconsole [early0] disabled
+[    0.983951] printk: legacy bootconsole [early0] disabled
+[    1.073594] octeon_rng octeon_rng: Octeon Random Number Generator
+[    1.081052] random: crng init done
+[    1.112824] loop: module loaded
+[    1.116587] Driver 'pata_octeon_cf' needs updating - please use bus_type methods
+[    1.128728] mdio_octeon 1180000001800.mdio: Probed
+[    1.134905] i2c-octeon 1180000001000.i2c: probed
+[    1.139873] octeon_wdt: Initial granularity 5 Sec
+[    1.182389] EDAC DEVICE0: Giving out device to module octeon-cpu controller cache: DEV octeon_pc_edac (INTERRUPT)
+[    1.193252] EDAC DEVICE1: Giving out device to module octeon-l2c controller octeon_l2c_err: DEV octeon_l2c_edac (POLLED)
+[    1.204505] octeon_lmc_edac octeon_lmc_edac.0: Disabled (ECC not enabled)
+[    1.211742] EDAC PCI0: Giving out device to module octeon-pci controller octeon_pci_err: DEV octeon_pci_edac (POLLED)
+[    1.227214] Interface 0 has 3 ports (RGMII)
+[    1.869242] NET: Registered PF_INET6 protocol family
+[    1.880696] Segment Routing with IPv6
+[    1.884700] In-situ OAM (IOAM) with IPv6
+[    1.888912] NET: Registered PF_PACKET protocol family
+[    1.894754] 8021q: 802.1Q VLAN Support v1.8
+[    1.899609] Bootbus flash: Setting flash for 32MB flash at 0x1dc00000
+[    1.906444] phys_mapped_flash: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x0000c2 Chip ID 0x00227e
+[    1.917053] Amd/Fujitsu Extended Query Table at 0x0040
+[    1.922382]   Amd/Fujitsu Extended Query version 1.3.
+[    1.927479] number of CFI chips: 1
+[    1.930968] 6 cmdlinepart partitions found on MTD device phys_mapped_flash
+[    1.937933] Creating 6 MTD partitions on "phys_mapped_flash":
+[    1.943755] 0x000000000000-0x000000080000 : "boot-chain"
+[    1.951065] 0x000000080000-0x000001680000 : "openwrt-slot"
+[    1.959220] 0x000001680000-0x000001780000 : "stock-data"
+[    1.966691] 0x000001780000-0x0000017a0000 : "legacy-env-gap"
+[    1.974725] 0x0000017a0000-0x000001fe0000 : "vendor-tail"
+[    1.982389] 0x000001fe0000-0x000002000000 : "uboot-env"
+[    2.093691] Freeing unused kernel image (initmem) memory: 6100K
+[    2.099744] This architecture does not have kernel memory protection.
+[    2.106366] Run /init as init process
+[    2.110110]   with arguments:
+[    2.113275]     /init
+[    2.115625]   with environment:
+[    2.118822]     HOME=/
+[    2.121432]     TERM=linux
+[    2.735270] init: Console is alive
+[    2.739333] init: - watchdog -
+[    2.765196] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    2.775636] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    2.793896] init: - preinit -
+[    3.546628] eth0: 1000 Mbps Full duplex, port 0, queue 0
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+- generating board file -
+[    8.206386] eth0: Link down
+[    8.230421] procd: - early -
+[    8.234143] procd: - watchdog -
+[    8.905802] procd: - watchdog -
+[    8.909666] procd: - ubus -
+[    8.975996] procd: - init -
+Please press Enter to activate this console.
+[   10.205268] kmodloader: loading kernel modules from /etc/modules.d/*
+[   10.251119] bcm53xx 8001180000001800:1e: found switch: BCM53115, rev 8
+[   11.862022] bcm53xx 8001180000001800:1e: configuring for fixed/rgmii-rxid link mode
+[   11.869962] bcm53xx 8001180000001800:1e: Configured port 5 for rgmii-rxid
+[   11.878259] bcm53xx 8001180000001800:1e: configuring for fixed/rgmii-rxid link mode
+[   11.886243] bcm53xx 8001180000001800:1e: Configured port 8 for rgmii-rxid
+[   11.895054] bcm53xx 8001180000001800:1e wan (uninitialized): PHY [dsa-0.0:00] driver [Generic PHY] (irq=POLL)
+[   11.909358] bcm53xx 8001180000001800:1e lan1 (uninitialized): PHY [dsa-0.0:01] driver [Generic PHY] (irq=POLL)
+[   11.923161] bcm53xx 8001180000001800:1e lan2 (uninitialized): PHY [dsa-0.0:02] driver [Generic PHY] (irq=POLL)
+[   11.936869] bcm53xx 8001180000001800:1e lan3 (uninitialized): PHY [dsa-0.0:03] driver [Generic PHY] (irq=POLL)
+[   11.950619] bcm53xx 8001180000001800:1e lan4 (uninitialized): PHY [dsa-0.0:04] driver [Generic PHY] (irq=POLL)
+[   11.965367] octeon_ethernet 11800a0000000.pip eth1: entered promiscuous mode
+[   11.972874] octeon_ethernet 11800a0000000.pip eth0: entered promiscuous mode
+[   11.980118] DSA: tree 0 setup
+[   11.984095] bcm53xx 8001180000001800:1e: Link is Up - 1Gbps/Full - flow control off
+[   12.022424] bcm53xx 8001180000001800:1e: Link is Up - 1Gbps/Full - flow control off
+[   12.150726] urngd: v1.0.2 started.
+[   12.682043] PPP generic driver version 2.4.2
+[   12.705382] NET: Registered PF_PPPOX protocol family
+[   12.786748] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   32.667353] eth0: 1000 Mbps Full duplex, port 0, queue 0
+[   32.726083] bcm53xx 8001180000001800:1e lan1: configuring for phy/gmii link mode
+[   32.770151] br-lan: port 1(lan1) entered blocking state
+[   32.775599] br-lan: port 1(lan1) entered disabled state
+[   32.780941] bcm53xx 8001180000001800:1e lan1: entered allmulticast mode
+[   32.787705] octeon_ethernet 11800a0000000.pip eth0: entered allmulticast mode
+[   32.799008] bcm53xx 8001180000001800:1e lan1: entered promiscuous mode
+[   33.062533] bcm53xx 8001180000001800:1e lan2: configuring for phy/gmii link mode
+[   33.114847] br-lan: port 2(lan2) entered blocking state
+[   33.120149] br-lan: port 2(lan2) entered disabled state
+[   33.125625] bcm53xx 8001180000001800:1e lan2: entered allmulticast mode
+[   33.135408] bcm53xx 8001180000001800:1e lan2: entered promiscuous mode
+[   33.293514] bcm53xx 8001180000001800:1e lan3: configuring for phy/gmii link mode
+[   33.359287] br-lan: port 3(lan3) entered blocking state
+[   33.364778] br-lan: port 3(lan3) entered disabled state
+[   33.370141] bcm53xx 8001180000001800:1e lan3: entered allmulticast mode
+[   33.434486] bcm53xx 8001180000001800:1e lan3: entered promiscuous mode
+[   33.531145] bcm53xx 8001180000001800:1e lan4: configuring for phy/gmii link mode
+[   33.582479] br-lan: port 4(lan4) entered blocking state
+[   33.587782] br-lan: port 4(lan4) entered disabled state
+[   33.593339] bcm53xx 8001180000001800:1e lan4: entered allmulticast mode
+[   33.658726] bcm53xx 8001180000001800:1e lan4: entered promiscuous mode
+[   33.808278] eth1: 1000 Mbps Full duplex, port 1, queue 1
+[   33.842975] bcm53xx 8001180000001800:1e wan: configuring for phy/gmii link mode
+[   36.922134] bcm53xx 8001180000001800:1e lan1: Link is Up - 1Gbps/Full - flow control rx/tx
+[   36.930582] br-lan: port 1(lan1) entered blocking state
+[   36.935951] br-lan: port 1(lan1) entered forwarding state
+[   37.012350] bcm53xx 8001180000001800:1e wan: Link is Up - 1Gbps/Full - flow control off
+^C
+[rv220w] interrupted
+[rv220w] serial log: /home/gadorach/src/rv220w-openwrt/logs/rv220w-tftp-boot-20260728T075015Z.serial.log
+[rv220w] TFTP log:   /home/gadorach/src/rv220w-openwrt/logs/rv220w-tftp-boot-20260728T075015Z.tftp.log
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main* 3m 58s
+❯ ./rv220w.fish nor-stage status
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:dURKDHgzA7pMCnUxWMZ+YjoK1RU7poSgCt9NIdR+w1Y.
+Please contact your system administrator.
+Add correct host key in /home/gadorach/.ssh/known_hosts to get rid of this message.
+Offending ED25519 key in /home/gadorach/.ssh/known_hosts:5
+Host key for 192.168.240.2 has changed and you have requested strict checking.
+Host key verification failed.
+[rv220w:error] Target is not the dedicated v1.10.1 NOR-writer RAM image.
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main*
+❯ ./rv220w.fish nor-stage status
+Warning: Permanently added '192.168.240.2' (ED25519) to the list of known hosts.
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main*
+❯ ./rv220w.fish nor-stage backup
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+[rv220w] Reading the complete 22 MiB openwrt-slot into /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075522Z.bin
+[rv220w] Backup complete: /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075522Z.bin
+/home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075522Z.bin
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main* 10s
+❯ cat ~/src/rv220w-openwrt/artifacts/rv220w-openwrt-rv220w-rj45-luci-nor-slot.json
+{
+  "automatic_boot_environment_change": false,
+  "automatic_reboot": false,
+  "board": "Cisco RV220W",
+  "boot_address": "0xbdc80000",
+  "configuration_persistence": "none; initramfs runtime is recreated on every boot",
+  "elf_class": "ELF64",
+  "elf_data": "big-endian",
+  "elf_entry": 18446744071589089904,
+  "elf_machine": "MIPS",
+  "erase_size": 131072,
+  "fill_byte": 255,
+  "flash_base_kseg1": "0xbdc00000",
+  "manual_uboot_command": "bootoct 0xbdc80000 forceboot",
+  "schema": "rv220w-openwrt-nor-slot-v1",
+  "slot_image_name": "rv220w-openwrt-rv220w-rj45-luci-nor-slot.bin",
+  "slot_image_sha256": "51340539fff729869bab36181662e36648768663c9774e5f98646d4283bc86a5",
+  "slot_name": "openwrt-slot",
+  "slot_offset": 524288,
+  "slot_size": 23068672,
+  "source_name": "rv220w-openwrt-rv220w-rj45-luci-initramfs.elf",
+  "source_sha256": "c880077eebb0aa43901a2bb537c647f743f60b4476a79e51f133abd5ccc2167f",
+  "source_size": 18179536,
+  "storage": "32 MiB parallel NOR"
+}
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main*
+❯ cd ~/src/rv220w-research/rv220w-research/promotion-toolkit
+
+  ./rv220w.fish nor-stage write \
+          --confirm RV220W_WRITE_OPENWRT_SLOT
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+[rv220w] Reading the complete 22 MiB openwrt-slot into /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075732Z.bin
+[rv220w] Backup complete: /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075732Z.bin
+/home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T075732Z.bin
+[rv220w] Uploading the verified 22 MiB slot image to root@192.168.240.2:/tmp/rv220w-openwrt-slot.bin
+ash: /usr/libexec/sftp-server: not found
+scp: Connection closed
+[rv220w:error] Slot-image upload failed; NOR was not written.
+

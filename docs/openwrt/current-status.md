@@ -1,25 +1,35 @@
 # Current OpenWrt status
 
-## Proven on hardware
+## Working on hardware
 
-- OpenWrt v25.12.5-based sources build for the RV220W through the v1.9.0 toolkit.
-- The resulting big-endian Octeon ELF boots through U-Boot/TFTP and runs entirely from RAM.
-- UART console, board device tree, read-only flash visibility, native Octeon Ethernet, B53/DSA, and both CPU conduits operate.
-- LAN1–LAN4 operate through `eth0` and switch CPU port 8.
-- WAN operates through `eth1` and switch CPU port 5.
-- The `rj45-full` profile configures LAN DHCP, WAN DHCP/DHCPv6, firewall4, NAT, and PPP/PPPoE packages.
+- OpenWrt 25.12.5 / Linux 6.12.94.
+- Automatic boot from the onboard parallel NOR through the patched stock U-Boot chain.
+- LuCI and uHTTPd on LAN at `http://192.168.240.2/`.
+- LAN1-LAN4 bridged as `br-lan` with DHCP service.
+- Independent WAN conduit with DHCP/DHCPv6 client support.
+- firewall4 LAN/WAN separation, LAN-to-WAN forwarding, and masquerading.
+- All five RJ45 jacks through B53/DSA.
+- Guarded 22 MiB OpenWrt slot backup, write, and full read-back verification.
+- Physical-button Sercomm recovery retained after the boot-chain patch.
 
-## Explicit limitations
+## Current image type
 
-- LuCI was not built into or tested on this platform.
-- Wi-Fi is unavailable; only BCM4322 PCI enumeration is known.
-- No persistent flash image, installer, sysupgrade path, or onboard NOR write has been attempted.
-- The image is experimental test firmware and is not a polished release.
-- LED, reset-button, and watchdog integration remains incomplete.
+The persistent slot contains a padded initramfs ELF. The image survives power
+cycles, but runtime configuration does not. Every boot recreates the root
+filesystem and UCI state from the image.
 
-## Source of truth
+## Mandatory external state
 
-- Toolkit overview: [`../../openwrt/README.md`](../../openwrt/README.md)
-- Current toolkit status: [`../../openwrt/docs/CURRENT_STATUS.md`](../../openwrt/docs/CURRENT_STATUS.md)
-- Device-tree evidence: [`../../openwrt/docs/RV220W-DT-EVIDENCE-MATRIX.md`](../../openwrt/docs/RV220W-DT-EVIDENCE-MATRIX.md)
-- Run9 VLAN proof: [`../../openwrt/docs/RV220W-RUN9-VLAN-PVID-PROOF.md`](../../openwrt/docs/RV220W-RUN9-VLAN-PVID-PROOF.md)
+Automatic boot depends on:
+
+- combined boot-policy sector CRC32 `b77a94de`;
+- a valid `openwrt-slot` image at `0xbdc80000`;
+- an `openwrt_boot` variable whose copy length matches the current ELF manifest;
+- `bootcmd=run openwrt_boot` and no duplicate `preboot` launch.
+
+## Not implemented
+
+- persistent writable overlay;
+- supported sysupgrade/factory image format;
+- Wi-Fi driver, firmware, calibration, association, or RF validation;
+- complete LEDs, reset-button Linux policy, watchdog, and GPIO promotion.

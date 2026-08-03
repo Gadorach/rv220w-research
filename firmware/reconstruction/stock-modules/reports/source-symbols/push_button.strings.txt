@@ -1,0 +1,56 @@
+    3c1 `0-<
+    aa8 push_button
+    ab8 UnRegistered the sysctl for reboot status
+    ae8 Registerd the sysctl reboot status
+    b10 REBOOT
+    b18 RESTORE
+    b20 TEST
+    b28 rebootbutton
+    b38 depends=
+    b48 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+    b88 license=GPL
+    b98 depends=scm-led
+    ba8 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+    d98 "push_button"
+   1081 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   10be GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   11dd .symtab
+   11e5 .strtab
+   11ed .shstrtab
+   11f7 .MIPS.options
+   1205 .rela.text
+   1210 .rela.exit.text
+   1220 .rela.init.text
+   1230 .rodata.str1.8
+   123f .modinfo
+   1248 .rela.data
+   1253 .rela.gnu.linkonce.this_module
+   1272 .bss
+   1277 .comment
+   1280 .rela.pdr
+   128a .mdebug.abi64
+   1ba9 strcpy
+   1bb0 rebootbutton
+   1bbd __this_module
+   1bcb led_blink
+   1bd5 cleanup_module
+   1be4 init_timer
+   1bef init_waitqueue_head
+   1c03 proc_root
+   1c0d init_module
+   1c19 create_proc_entry
+   1c2b unregister_sysctl_table
+   1c43 printk
+   1c4a gpio_config_input_sense
+   1c62 __copy_user
+   1c6e jiffies
+   1c76 push_button_fops
+   1c87 __up
+   1c8c remove_proc_entry
+   1c9e set_input
+   1ca8 proc_dointvec
+   1cb6 __down_interruptible
+   1ccb strlen
+   1cd2 del_timer
+   1cdc register_sysctl_table
+   1cf2 __mod_timer

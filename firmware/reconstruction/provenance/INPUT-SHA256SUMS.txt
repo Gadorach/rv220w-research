@@ -1,0 +1,3 @@
+03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5  rv220w-flash-32MiB-read1(1).bin
+0630714e3e86edfeeed064088266c59524d970e0b74780e903b68b45e8982e7d  u-boot/originals/rv220w-boot-chain.bin
+1b68453e055dee56a8724b17a927df36ff201a44c8e450c5d17a3b8e9117000d  u-boot/originals/rv220w-u-boot.bin

@@ -51,12 +51,16 @@ else if set -q _flag_profile
             set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-dsa-dual-rxid.elf"
         case rj45 rj45-full full-rj45
             set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-initramfs.elf"
+        case rj45-luci luci
+            set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-luci-initramfs.elf"
+        case nor-writer
+            set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-nor-writer-initramfs.elf"
         case dsa-dual-wan-txid
             set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-dsa-dual-wan-txid.elf"
         case dsa-dual-wan-rgmii
             set image "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-dsa-dual-wan-rgmii.elf"
         case '*'
-            rv_die "Unknown TFTP profile: $_flag_profile (expected discovery, reference, dsa-lan, dsa-dual, rj45-full, dsa-dual-wan-txid, dsa-dual-wan-rgmii, squashfs-live, or generic)"
+            rv_die "Unknown TFTP profile: $_flag_profile (expected discovery, reference, dsa-lan, dsa-dual, rj45-full, rj45-luci, nor-writer, dsa-dual-wan-txid, dsa-dual-wan-rgmii, squashfs-live, or generic)"
     end
     if not test -f "$image"
         if test "$_flag_profile" = discovery
@@ -67,6 +71,8 @@ else if set -q _flag_profile
 else
     set -l candidates \
         "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-initramfs.elf" \
+        "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-luci-initramfs.elf" \
+        "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-nor-writer-initramfs.elf" \
         "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-rj45-initramfs.elf" \
         "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-dsa-dual-rxid.elf" \
         "$RV220W_WORKSPACE/artifacts/rv220w-openwrt-rv220w-dsa-lan-rxid.elf" \
@@ -89,8 +95,11 @@ if set -q _flag_profile
         else
             rv_warn 'WAN is intentionally unavailable in the LAN-only baseline profile.'
         end
-    else if contains -- "$_flag_profile" rj45 rj45-full full-rj45
-        rv_warn 'This RAM-only full-RJ45 candidate enables volatile B53/DSA configuration, LAN DHCP, WAN DHCP/DHCPv6, firewall4 and NAT.'
+    else if test "$_flag_profile" = nor-writer
+        rv_warn 'This image is the dedicated RAM-boot NOR writer. Only the 22 MiB openwrt-slot is writable; every non-slot NOR region remains read-only.'
+        rv_warn 'No write occurs during TFTP boot. A separate nor-stage write command, backup, and exact confirmation token are still required.'
+    else if contains -- "$_flag_profile" rj45 rj45-full full-rj45 rj45-luci luci
+        rv_warn 'This RAM-only full-RJ45 profile enables volatile B53/DSA configuration, LAN DHCP, WAN DHCP/DHCPv6, strict firewall4 isolation and NAT.'
         rv_warn 'LAN remains 192.168.240.2/24 so the proven TFTP direct-link addressing is retained.'
     end
 end

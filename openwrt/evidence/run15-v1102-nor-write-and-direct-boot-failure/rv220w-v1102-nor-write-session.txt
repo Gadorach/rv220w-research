@@ -1,0 +1,319 @@
+~/src/rv220w-research/rv220w-research/promotion-toolkit main* 11s
+❯ /home/gadorach/Downloads/rv220w-openwrt-upgrade-v1.10.1-to-v1.10.2/upgrade-existing-v1.10.1-to-v1.10.2.fish 
+MANIFEST.json: OK
+README.md: OK
+VALIDATION.md: OK
+promotion-toolkit/.gitignore: OK
+promotion-toolkit/CHANGELOG.md: OK
+promotion-toolkit/LICENSE: OK
+promotion-toolkit/README.md: OK
+promotion-toolkit/VERSION: OK
+promotion-toolkit/config/openwrt-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-discovery-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-dsa-dual-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-dsa-lan-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-nor-writer-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-rj45-initramfs.config: OK
+promotion-toolkit/config/openwrt-rv220w-rj45-luci-initramfs.config: OK
+promotion-toolkit/config/openwrt-squashfs-live.config: OK
+promotion-toolkit/config/openwrt-squashfs.config: OK
+promotion-toolkit/config/toolkit.env.fish.example: OK
+promotion-toolkit/docs/CACHYOS_BUILD.md: OK
+promotion-toolkit/docs/FLASH_WORKFLOW.md: OK
+promotion-toolkit/docs/PROMOTION_PLAN.md: OK
+promotion-toolkit/docs/RV220W-DT-EVIDENCE-MATRIX.md: OK
+promotion-toolkit/docs/RV220W-FIRST-BOOT-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-PORT-MAPPING-CAMPAIGN.md: OK
+promotion-toolkit/docs/RV220W-RUN6E-ETH1-FAILURE-EVIDENCE.md: OK
+promotion-toolkit/docs/RV220W-RUN9-VLAN-PVID-PROOF.md: OK
+promotion-toolkit/docs/RV220W-STAGE3-PORT-MAP.md: OK
+promotion-toolkit/docs/RV220W-STAGE5-B53-TOPOLOGY.md: OK
+promotion-toolkit/docs/RV220W-STAGE6-LAN-DSA-HARDWARE-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-U-BOOT-CONFIRMATIONS.md: OK
+promotion-toolkit/docs/RV220W-V1.10.0-LUCI-NOR-STAGING.md: OK
+promotion-toolkit/docs/RV220W-V1.10.1-NOR-WRITER-GUARD-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.10.2-NOR-TRANSPORT-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.3.0-BUILD-AND-BOOT.md: OK
+promotion-toolkit/docs/RV220W-V1.3.0-TEST-PLAN.md: OK
+promotion-toolkit/docs/RV220W-V1.3.0-VALIDATION-CHANGES.md: OK
+promotion-toolkit/docs/RV220W-V1.3.1-BUILD-AND-BOOT.md: OK
+promotion-toolkit/docs/RV220W-V1.3.1-VALIDATION-CHANGES.md: OK
+promotion-toolkit/docs/RV220W-V1.3.2-BUILD-AND-BOOT.md: OK
+promotion-toolkit/docs/RV220W-V1.3.2-HARDWARE-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-V1.3.2-VALIDATION-CHANGES.md: OK
+promotion-toolkit/docs/RV220W-V1.4.0-DISCOVERY-PROFILE.md: OK
+promotion-toolkit/docs/RV220W-V1.4.1-COLLECTOR-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.5.0-MDIO-IDENTITY-STAGE.md: OK
+promotion-toolkit/docs/RV220W-V1.5.1-UART-MDIO-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.5.2-UART-FRAMING-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.6.0-PASSIVE-B53-STAGE.md: OK
+promotion-toolkit/docs/RV220W-V1.6.1-UART-OCTAL-UPLOAD-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.6.2-UART-SHORT-COMMAND-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.7.0-LAN-DSA-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-V1.7.1-BRCM-TAG-AUTOLOAD-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.7.2-OCTEON-DSA-MASTER-NODE-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.7.3-OCTEON-KERNEL-PATCH-CORRECTION.md: OK
+promotion-toolkit/docs/RV220W-V1.7.4-UPDATER-DTS-RECOVERY-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.7.5-NONINTERACTIVE-BUILD-GUARD.md: OK
+promotion-toolkit/docs/RV220W-V1.7.6-OCTEON-DSA-RX-LENGTH-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.8.0-DUAL-CONDUIT-WAN-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-V1.8.1-PRE-DEFCONFIG-MENUCONFIG-RACE-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.8.2-B53-CONDUIT-REGISTER-DIAGNOSTICS.md: OK
+promotion-toolkit/docs/RV220W-V1.8.3-EAP-MODE-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-V1.8.4-VLAN-PVID-VALIDATION.md: OK
+promotion-toolkit/docs/RV220W-V1.9.0-FULL-RJ45-CANDIDATE.md: OK
+promotion-toolkit/docs/RV220W-V1.9.1-PRODUCTION-CLEANUP.md: OK
+promotion-toolkit/docs/RV220W-V1.9.2-PATCH999-CONTEXT-HOTFIX.md: OK
+promotion-toolkit/docs/RV220W-V1.9.3-FDT-VERIFY-API-HOTFIX.md: OK
+promotion-toolkit/docs/SETUP_FAILURES_V1.0.1.md: OK
+promotion-toolkit/docs/SETUP_FAILURES_V1.0.2.md: OK
+promotion-toolkit/docs/SETUP_FAILURES_V1.0.3.md: OK
+promotion-toolkit/docs/SETUP_FAILURES_V1.0.4.md: OK
+promotion-toolkit/docs/SQUASHFS_LIVE_DESIGN.md: OK
+promotion-toolkit/docs/TFTP_LIVE_BOOT.md: OK
+promotion-toolkit/docs/UPSTREAM_REFERENCES.md: OK
+promotion-toolkit/docs/VALIDATION.md: OK
+promotion-toolkit/evidence/run10-rj45-v190-boot/README.md: OK
+promotion-toolkit/evidence/run10-rj45-v190-boot/rv220w-tftp-boot-20260727T025422Z.serial.log: OK
+promotion-toolkit/evidence/run10-rj45-v190-boot/rv220w-tftp-boot-20260727T025422Z.tftp.log: OK
+promotion-toolkit/evidence/run10-rj45-v190-boot/rv220w-v1.9.0-runtime-status.txt: OK
+promotion-toolkit/evidence/run12-v193-rj45-validation/README.md: OK
+promotion-toolkit/evidence/run12-v193-rj45-validation/rv220w-dsa-run12-v193-rj45-cold-dsa-20260728T045324Z.txt: OK
+promotion-toolkit/evidence/run12-v193-rj45-validation/rv220w-dsa-run12-v193-rj45-loaded-dsa-20260728T045738Z.txt: OK
+promotion-toolkit/evidence/run12-v193-rj45-validation/rv220w-dsa-uart-run12-v193-rj45-cold-dsa-20260728T045245Z.serial.log: OK
+promotion-toolkit/evidence/run12-v193-rj45-validation/rv220w-dsa-uart-run12-v193-rj45-loaded-dsa-20260728T045736Z.serial.log: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/README.md: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/openwrt-rv220w-nor-writer-initramfs.expanded.config: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/rv220w-v110-luci-boot.serial.log: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/rv220w-v110-luci-boot.tftp.log: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/rv220w-v110-luci-build-tail.log: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/rv220w-v110-luci-initramfs.readelf.txt: OK
+promotion-toolkit/evidence/run13-v110-luci-and-writer-guard/rv220w-v110-luci-nor-slot.json: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/README.md: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/backup-sha256.txt: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/rv220w-v1101-nor-writer-boot.serial.log: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/rv220w-v1101-nor-writer-boot.tftp.log: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/rv220w-v1101-nor-writer-build-tail.log: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/rv220w-v1101-nor-writer-initramfs.readelf.txt: OK
+promotion-toolkit/evidence/run14-v1101-nor-writer-transport-failure/rv220w-v1101-nor-writer-session.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/README.md: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-run9-eth1-domain-vlan0-b53-8001180000001800-19700101T062534Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-run9-eth1-domain-vlan1-b53-8001180000001800-19700101T063952Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-run9-eth1-p5-pvid0-b53-8001180000001800-19700101T061925Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-run9-eth1-restored-b53-8001180000001800-19700101T064858Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-run9-eth1-vlan-original-b53-8001180000001800-19700101T061024Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-uart-run9-eth1-domain-vlan0-b53-20260727T010830Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-uart-run9-eth1-domain-vlan1-b53-20260727T012248Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-uart-run9-eth1-p5-pvid0-b53-20260727T010220Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-uart-run9-eth1-restored-b53-20260727T013154Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-uart-run9-eth1-vlan-original-b53-20260727T005320Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-restore-20260727T011123Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-restore-20260727T012805Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-set-domain-vlan0-20260727T010605Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-set-domain-vlan1-20260727T011504Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-set-p5-pvid0-20260727T005643Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-show-20260727T005122Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-show-20260727T011315Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53-serial/rv220w-b53-vlan-show-20260727T012956Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53/rv220w-b53-run9-eth1-domain-vlan0-b53-8001180000001800-19700101T062534Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53/rv220w-b53-run9-eth1-domain-vlan1-b53-8001180000001800-19700101T063952Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53/rv220w-b53-run9-eth1-p5-pvid0-b53-8001180000001800-19700101T061925Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53/rv220w-b53-run9-eth1-restored-b53-8001180000001800-19700101T064858Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/b53/rv220w-b53-run9-eth1-vlan-original-b53-8001180000001800-19700101T061024Z.txt: OK
+promotion-toolkit/evidence/run9-vlan-pvid/dsa/rv220w-dsa-uart-run9-eth1-domain-vlan0-dsa-20260727T010821Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/dsa/rv220w-dsa-uart-run9-eth1-domain-vlan1-dsa-20260727T012239Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/dsa/rv220w-dsa-uart-run9-eth1-p5-pvid0-dsa-20260727T010212Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/dsa/rv220w-dsa-uart-run9-eth1-restored-dsa-20260727T013145Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/dsa/rv220w-dsa-uart-run9-eth1-vlan-original-dsa-20260727T005311Z.serial.log: OK
+promotion-toolkit/evidence/run9-vlan-pvid/rv220w-b53-results.zip: OK
+promotion-toolkit/evidence/v192-build-failure/README.md: OK
+promotion-toolkit/evidence/v192-build-failure/failure-summary.txt: OK
+promotion-toolkit/evidence/v192-build-failure/rv220w-rj45-rxid-build-error-tail.txt: OK
+promotion-toolkit/evidence/v192-build-failure/rv220w-rj45-rxid-build-serial.log: OK
+promotion-toolkit/evidence/v192-build-failure/rv220w-rj45-rxid-build.log: OK
+promotion-toolkit/openwrt/dsa-dual/997-b53-multi-conduit-affinity.patch: OK
+promotion-toolkit/openwrt/dsa-dual/998-b53-enable-dt-cpu-ports.patch: OK
+promotion-toolkit/openwrt/dsa-dual/cn5010_cisco_rv220w-dsa-dual.dts.in: OK
+promotion-toolkit/openwrt/dsa-lan/995-rv220w-octeon-dsa-master-node.patch: OK
+promotion-toolkit/openwrt/dsa-lan/996-octeon-dsa-conduit-length-error.patch: OK
+promotion-toolkit/openwrt/dsa-lan/cn5010_cisco_rv220w-dsa-lan.dts.in: OK
+promotion-toolkit/openwrt/files-base/etc/banner: OK
+promotion-toolkit/openwrt/files-base/etc/uci-defaults/99-rv220w-validation: OK
+promotion-toolkit/openwrt/files-discovery/etc/banner: OK
+promotion-toolkit/openwrt/files-discovery/usr/sbin/rv220w-b53-eap-mode: OK
+promotion-toolkit/openwrt/files-discovery/usr/sbin/rv220w-b53-snapshot: OK
+promotion-toolkit/openwrt/files-discovery/usr/sbin/rv220w-b53-vlan-state: OK
+promotion-toolkit/openwrt/files-discovery/usr/sbin/rv220w-discovery-snapshot: OK
+promotion-toolkit/openwrt/files-discovery/usr/sbin/rv220w-mdio-scan: OK
+promotion-toolkit/openwrt/files-dsa-dual/etc/banner: OK
+promotion-toolkit/openwrt/files-dsa-dual/etc/hotplug.d/net/20-rv220w-dsa-affinity: OK
+promotion-toolkit/openwrt/files-dsa-dual/etc/init.d/rv220w-dsa-affinity: OK
+promotion-toolkit/openwrt/files-dsa-dual/etc/modules.d/30-tag-brcm: OK
+promotion-toolkit/openwrt/files-dsa-dual/etc/uci-defaults/98-rv220w-dsa-dual-network: OK
+promotion-toolkit/openwrt/files-dsa-dual/usr/sbin/rv220w-b53-eap-mode: OK
+promotion-toolkit/openwrt/files-dsa-dual/usr/sbin/rv220w-b53-snapshot: OK
+promotion-toolkit/openwrt/files-dsa-dual/usr/sbin/rv220w-b53-vlan-state: OK
+promotion-toolkit/openwrt/files-dsa-dual/usr/sbin/rv220w-dsa-affinity: OK
+promotion-toolkit/openwrt/files-dsa-dual/usr/sbin/rv220w-dsa-snapshot: OK
+promotion-toolkit/openwrt/files-dsa-lan/etc/banner: OK
+promotion-toolkit/openwrt/files-dsa-lan/etc/modules.d/30-tag-brcm: OK
+promotion-toolkit/openwrt/files-dsa-lan/etc/uci-defaults/98-rv220w-dsa-lan-network: OK
+promotion-toolkit/openwrt/files-dsa-lan/usr/sbin/rv220w-dsa-snapshot: OK
+promotion-toolkit/openwrt/files-nor-writer/etc/banner: OK
+promotion-toolkit/openwrt/files-nor-writer/usr/sbin/rv220w-nor-stage: OK
+promotion-toolkit/openwrt/files-rj45-full/etc/banner: OK
+promotion-toolkit/openwrt/files-rj45-full/etc/uci-defaults/98-rv220w-rj45-network: OK
+promotion-toolkit/openwrt/files-rj45-full/etc/uci-defaults/99-rv220w-rj45-services: OK
+promotion-toolkit/openwrt/files-rj45-full/usr/sbin/rv220w-rj45-status: OK
+promotion-toolkit/openwrt/files-rj45-luci/etc/banner: OK
+promotion-toolkit/openwrt/files-rj45-luci/etc/uci-defaults/97-rv220w-luci-lan-only: OK
+promotion-toolkit/openwrt/files-squashfs-live/init: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.2.0-to-v1.3.0.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.2.0.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.0-to-v1.3.1.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.0.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.1-to-v1.3.2.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.1.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.2-to-v1.4.0.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.3.2.patch: OK
+promotion-toolkit/openwrt/platform/openwrt-rv220w-platform-v1.4.0.patch: OK
+promotion-toolkit/openwrt/production/999-octeon-production-dt-flash-cleanups.patch: OK
+promotion-toolkit/openwrt/production/cn5010_cisco_rv220w-production.dts.in: OK
+promotion-toolkit/openwrt/reference/cn5010_cisco_rv220w-reference.dtb: OK
+promotion-toolkit/openwrt/reference/cn5010_cisco_rv220w-reference.dtb.json: OK
+promotion-toolkit/openwrt/reference/cn5010_cisco_rv220w.dts: OK
+promotion-toolkit/openwrt/reference/octeon_3xxx-v25.12.5.dtb: OK
+promotion-toolkit/openwrt/scaffold/cn5010_cisco_rv220w.dts.todo: OK
+promotion-toolkit/rv220w.fish: OK
+promotion-toolkit/scripts/b53-eap.fish: OK
+promotion-toolkit/scripts/b53-vlan.fish: OK
+promotion-toolkit/scripts/build-linux-reference.fish: OK
+promotion-toolkit/scripts/build-openwrt.fish: OK
+promotion-toolkit/scripts/collect-b53.fish: OK
+promotion-toolkit/scripts/collect-conduit.fish: OK
+promotion-toolkit/scripts/collect-dsa.fish: OK
+promotion-toolkit/scripts/collect-mdio.fish: OK
+promotion-toolkit/scripts/collect-rj45.fish: OK
+promotion-toolkit/scripts/collect-snapshot.fish: OK
+promotion-toolkit/scripts/compare-b53.fish: OK
+promotion-toolkit/scripts/doctor.fish: OK
+promotion-toolkit/scripts/dump-firmware.fish: OK
+promotion-toolkit/scripts/extract-dump.fish: OK
+promotion-toolkit/scripts/host/build_rv220w_nor_slot.py: OK
+promotion-toolkit/scripts/host/build_rv220w_reference_dtb.py: OK
+promotion-toolkit/scripts/host/compare_rv220w_b53_snapshots.py: OK
+promotion-toolkit/scripts/host/dump_uboot_flash_uart.py: OK
+promotion-toolkit/scripts/host/extract_jffs2_be.py: OK
+promotion-toolkit/scripts/host/extract_rv220w_flash.py: OK
+promotion-toolkit/scripts/host/repack_v132_candidate.py: OK
+promotion-toolkit/scripts/host/rv220w_tftp_boot.py: OK
+promotion-toolkit/scripts/host/rv220w_uart_b53_eap.py: OK
+promotion-toolkit/scripts/host/rv220w_uart_b53_vlan.py: OK
+promotion-toolkit/scripts/host/rv220w_uart_collect_b53.py: OK
+promotion-toolkit/scripts/host/rv220w_uart_collect_dsa.py: OK
+promotion-toolkit/scripts/host/rv220w_uart_collect_mdio.py: OK
+promotion-toolkit/scripts/host/wait_uboot_prompt.py: OK
+promotion-toolkit/scripts/inner/build-linux-reference.sh: OK
+promotion-toolkit/scripts/inner/build-openwrt.sh: OK
+promotion-toolkit/scripts/inner/install-rv220w-platform.py: OK
+promotion-toolkit/scripts/inner/prepare-sources.sh: OK
+promotion-toolkit/scripts/inner/provision-openwrt-box.sh: OK
+promotion-toolkit/scripts/inner/repair-rv220w-source-dts.py: OK
+promotion-toolkit/scripts/lib/common.fish: OK
+promotion-toolkit/scripts/nor-stage.fish: OK
+promotion-toolkit/scripts/platform.fish: OK
+promotion-toolkit/scripts/prepare-sources.fish: OK
+promotion-toolkit/scripts/setup-distrobox.fish: OK
+promotion-toolkit/scripts/setup-host-cachyos.fish: OK
+promotion-toolkit/scripts/tftp-boot.fish: OK
+promotion-toolkit/scripts/verify-artifacts.fish: OK
+promotion-toolkit/scripts/version.fish: OK
+promotion-toolkit/tests/test_b53_conduit_compare.py: OK
+promotion-toolkit/tests/test_b53_dt_cpu_ports_patch.py: OK
+promotion-toolkit/tests/test_b53_eap_mode.py: OK
+promotion-toolkit/tests/test_b53_multi_conduit_patch.py: OK
+promotion-toolkit/tests/test_b53_selector_safety.py: OK
+promotion-toolkit/tests/test_b53_uart_framing.py: OK
+promotion-toolkit/tests/test_b53_vlan_state.py: OK
+promotion-toolkit/tests/test_build_config_order.py: OK
+promotion-toolkit/tests/test_dsa_dual_profile.py: OK
+promotion-toolkit/tests/test_dsa_kernel_patch.py: OK
+promotion-toolkit/tests/test_dsa_uart_framing.py: OK
+promotion-toolkit/tests/test_noninteractive_make_guard.py: OK
+promotion-toolkit/tests/test_rj45_full_profile.py: OK
+promotion-toolkit/tests/test_source_dts_repair.py: OK
+promotion-toolkit/tests/test_static_toolkit.py: OK
+promotion-toolkit/tests/test_uart_framing.py: OK
+promotion-toolkit/tests/test_uart_octal_upload.py: OK
+promotion-toolkit/tests/test_v1101_nor_writer_config_guard.py: OK
+promotion-toolkit/tests/test_v1102_nor_transport.py: OK
+promotion-toolkit/tests/test_v110_collector_cleanup.py: OK
+promotion-toolkit/tests/test_v110_luci_nor_stage.py: OK
+promotion-toolkit/tests/test_v191_production_cleanup.py: OK
+promotion-toolkit/tests/test_v192_patch999_context.py: OK
+promotion-toolkit/tests/test_v193_fdt_verify_api.py: OK
+promotion-toolkit/toolkit.json: OK
+rv220w-openwrt-toolkit-v1.10.1-to-v1.10.2-source.patch: OK
+upgrade-existing-v1.10.1-to-v1.10.2.fish: OK
+RV220W platform v1.4.0 already installed and verified
+v1.10.2 NOR SSH-stream and ephemeral-host-key checks passed
+v1.10.2 NOR-writer post-defconfig guard regression passed
+v1.10.2 LuCI and guarded NOR-stage checks passed
+v1.10.0 collector and stale-log cleanup checks passed
+v1.9.3 full-RJ45 profile checks passed
+build configuration ordering regression check passed
+detached noninteractive make guard regression check passed
+installed toolkit: /home/gadorach/src/rv220w-research/rv220w-research/promotion-toolkit
+OpenWrt platform integration: v1.4.0 verified unchanged
+kernel patches 995-999: verified unchanged
+NOR transport: non-PTY SSH stream; no scp/SFTP; ephemeral host keys isolated
+previous toolkit backup: /home/gadorach/src/rv220w-research/rv220w-research/promotion-toolkit.backup-20260728T082414Z-1617972
+
+No writer rebuild or router reboot is required. Reuse the running v1.10.1 writer:
+./rv220w.fish nor-stage status
+./rv220w.fish nor-stage write --confirm RV220W_WRITE_OPENWRT_SLOT
+This updater did not build an image, contact the router, or write NOR.
+
+~/src/rv220w-research/rv220w-research/promotion-toolkit main*
+❯ cd ~/src/rv220w-research/rv220w-research/promotion-toolkit
+
+  ./rv220w.fish nor-stage status
+
+  ./rv220w.fish nor-stage write \
+          --confirm RV220W_WRITE_OPENWRT_SLOT
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+board=Cisco RV220W
+storage=32MiB-parallel-NOR
+profile=nor-writer
+writable_partition=openwrt-slot
+mtd_device=/dev/mtd1
+size=23068672
+erasesize=131072
+protected=boot-chain,stock-data,legacy-env-gap,vendor-tail,uboot-env
+automatic_reboot=no
+automatic_saveenv=no
+[rv220w] Reading the complete 22 MiB openwrt-slot into /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T082433Z.bin
+[rv220w] Backup complete: /home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T082433Z.bin
+/home/gadorach/src/rv220w-openwrt/backups/nor/rv220w-openwrt-slot-backup-20260728T082433Z.bin
+[rv220w] Streaming the verified 22 MiB slot image to root@192.168.240.2:/tmp/rv220w-openwrt-slot.bin
+[rv220w] Invoking the target-side openwrt-slot-only writer and full read-back verification.
+Writing exactly 23068672 bytes to openwrt-slot (/dev/mtd1).
+No other MTD partition is writable in this boot profile.
+Unlocking openwrt-slot ...
+
+Writing from /tmp/rv220w-openwrt-slot.bin to openwrt-slot ...     
+write=ok sha256=51340539fff729869bab36181662e36648768663c9774e5f98646d4283bc86a5
+No reboot or U-Boot environment change was performed.
+At the U-Boot prompt, manually test: bootoct 0xbdc80000 forceboot
+[rv220w] Write and read-back verification completed. The router was not rebooted and U-Boot environment was not changed.
+[rv220w] At the serial U-Boot prompt, test manually: bootoct 0xbdc80000 forceboot

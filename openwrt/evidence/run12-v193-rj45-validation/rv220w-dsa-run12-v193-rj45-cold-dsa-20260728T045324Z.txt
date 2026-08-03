@@ -1,0 +1,1138 @@
+RV220W DSA validation snapshot
+profile=dual-conduit
+label=run12-v193-rj45-cold-dsa
+time=20260728T045324Z
+policy=RAM-only DSA ownership test; B53/DSA switch reset/reconfiguration allowed; no automated flash writes
+Linux rv220w-rj45 6.12.94 #0 SMP Mon Jun 29 12:59:20 2026 mips64 GNU/Linux
+RV220W OpenWrt RAM-only full-RJ45 production candidate v1.9.3 (rxid)
+OpenWrt ref: v25.12.5-dirty
+Build UTC: 2026-07-28T04:16:47Z
+
+=== KERNEL_DSA ===
+[    0.673505] clocksource: Switched to clocksource OCTEON_CVMCOUNT
+[    1.124937] mdio_octeon 1180000001800.mdio: Probed
+[    1.229082] Interface 0 has 3 ports (RGMII)
+[    3.568612] eth0: 1000 Mbps Full duplex, port 0, queue 0
+[    8.255099] eth0: Link down
+[   10.306267] bcm53xx 8001180000001800:1e: found switch: BCM53115, rev 8
+[   11.935531] bcm53xx 8001180000001800:1e: configuring for fixed/rgmii-rxid link mode
+[   11.943548] bcm53xx 8001180000001800:1e: Configured port 5 for rgmii-rxid
+[   11.951796] bcm53xx 8001180000001800:1e: configuring for fixed/rgmii-rxid link mode
+[   11.959791] bcm53xx 8001180000001800:1e: Configured port 8 for rgmii-rxid
+[   11.968612] bcm53xx 8001180000001800:1e wan (uninitialized): PHY [dsa-0.0:00] driver [Generic PHY] (irq=POLL)
+[   11.982901] bcm53xx 8001180000001800:1e lan1 (uninitialized): PHY [dsa-0.0:01] driver [Generic PHY] (irq=POLL)
+[   11.996716] bcm53xx 8001180000001800:1e lan2 (uninitialized): PHY [dsa-0.0:02] driver [Generic PHY] (irq=POLL)
+[   12.010429] bcm53xx 8001180000001800:1e lan3 (uninitialized): PHY [dsa-0.0:03] driver [Generic PHY] (irq=POLL)
+[   12.024233] bcm53xx 8001180000001800:1e lan4 (uninitialized): PHY [dsa-0.0:04] driver [Generic PHY] (irq=POLL)
+[   12.038952] octeon_ethernet 11800a0000000.pip eth1: entered promiscuous mode
+[   12.046445] octeon_ethernet 11800a0000000.pip eth0: entered promiscuous mode
+[   12.053749] DSA: tree 0 setup
+[   39.439260] eth0: 1000 Mbps Full duplex, port 0, queue 0
+[   39.480956] bcm53xx 8001180000001800:1e lan1: configuring for phy/gmii link mode
+[   39.548244] br-lan: port 1(lan1) entered blocking state
+[   39.553696] br-lan: port 1(lan1) entered disabled state
+[   39.559034] bcm53xx 8001180000001800:1e lan1: entered allmulticast mode
+[   39.565828] octeon_ethernet 11800a0000000.pip eth0: entered allmulticast mode
+[   39.577126] bcm53xx 8001180000001800:1e lan1: entered promiscuous mode
+[   39.875683] bcm53xx 8001180000001800:1e lan2: configuring for phy/gmii link mode
+[   39.914312] br-lan: port 2(lan2) entered blocking state
+[   39.919618] br-lan: port 2(lan2) entered disabled state
+[   39.925106] bcm53xx 8001180000001800:1e lan2: entered allmulticast mode
+[   39.934946] bcm53xx 8001180000001800:1e lan2: entered promiscuous mode
+[   40.062097] bcm53xx 8001180000001800:1e lan3: configuring for phy/gmii link mode
+[   40.116504] br-lan: port 3(lan3) entered blocking state
+[   40.121808] br-lan: port 3(lan3) entered disabled state
+[   40.127297] bcm53xx 8001180000001800:1e lan3: entered allmulticast mode
+[   40.193683] bcm53xx 8001180000001800:1e lan3: entered promiscuous mode
+[   40.292921] bcm53xx 8001180000001800:1e lan4: configuring for phy/gmii link mode
+[   40.350930] br-lan: port 4(lan4) entered blocking state
+[   40.356430] br-lan: port 4(lan4) entered disabled state
+[   40.361773] bcm53xx 8001180000001800:1e lan4: entered allmulticast mode
+[   40.428319] bcm53xx 8001180000001800:1e lan4: entered promiscuous mode
+[   40.580204] eth1: 1000 Mbps Full duplex, port 1, queue 1
+[   40.620936] bcm53xx 8001180000001800:1e wan: configuring for phy/gmii link mode
+[   44.444115] bcm53xx 8001180000001800:1e lan4: Link is Up - 1Gbps/Full - flow control rx/tx
+[   44.452556] br-lan: port 4(lan4) entered blocking state
+[   44.457926] br-lan: port 4(lan4) entered forwarding state
+[  826.843833] bcm53xx 8001180000001800:1e wan: Link is Up - 1Gbps/Full - flow control off
+[  836.929275] bcm53xx 8001180000001800:1e lan4: Link is Down
+[  836.935316] br-lan: port 4(lan4) entered disabled state
+[  840.284012] bcm53xx 8001180000001800:1e lan1: Link is Up - 1Gbps/Full - flow control rx/tx
+[  840.292462] br-lan: port 1(lan1) entered blocking state
+[  840.297829] br-lan: port 1(lan1) entered forwarding state
+[ 1186.601383] bcm53xx 8001180000001800:1e lan1: Link is Down
+[ 1186.607154] br-lan: port 1(lan1) entered disabled state
+[ 1190.121331] bcm53xx 8001180000001800:1e lan2: Link is Up - 1Gbps/Full - flow control rx/tx
+[ 1190.129825] br-lan: port 2(lan2) entered blocking state
+[ 1190.135201] br-lan: port 2(lan2) entered forwarding state
+[ 1205.720508] bcm53xx 8001180000001800:1e lan2: Link is Down
+[ 1205.726262] br-lan: port 2(lan2) entered disabled state
+[ 1207.960527] bcm53xx 8001180000001800:1e lan3: Link is Up - 1Gbps/Full - flow control rx/tx
+[ 1207.968938] br-lan: port 3(lan3) entered blocking state
+[ 1207.974302] br-lan: port 3(lan3) entered forwarding state
+[ 1219.400133] bcm53xx 8001180000001800:1e lan3: Link is Down
+[ 1219.405881] br-lan: port 3(lan3) entered disabled state
+[ 1221.720246] bcm53xx 8001180000001800:1e lan4: Link is Up - 1Gbps/Full - flow control rx/tx
+[ 1221.728690] br-lan: port 4(lan4) entered blocking state
+[ 1221.734054] br-lan: port 4(lan4) entered forwarding state
+[ 1236.279996] bcm53xx 8001180000001800:1e lan4: Link is Down
+[ 1236.285741] br-lan: port 4(lan4) entered disabled state
+[ 1238.600113] bcm53xx 8001180000001800:1e lan1: Link is Up - 1Gbps/Full - flow control rx/tx
+[ 1238.608556] br-lan: port 1(lan1) entered blocking state
+[ 1238.613918] br-lan: port 1(lan1) entered forwarding state
+b53_common             53248  1 b53_mdio
+b53_mdio               12288  0 
+tag_brcm               12288  1 
+--- tag-driver availability ---
+/lib/modules/6.12.94/tag_brcm.ko
+/lib/modules/6.12.94/tag_none.ko
+[/etc/modules.d/30-tag-brcm]
+# BCM53115 CPU port 8 requires the Broadcom DSA tag protocol before B53 probes.
+tag_brcm
+[/etc/modules.d/dsa-b53]
+b53_common
+[/etc/modules.d/dsa-b53-mdio]
+b53_mdio
+
+=== INTERFACES ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00 promiscuity 0 allmulti 0 minmtu 0 maxmtu 0 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 524280 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 
+    RX:  bytes packets errors dropped  missed   mcast           
+         38808     482      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         38808     482      0       0       0       0 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff promiscuity 5 allmulti 4 minmtu 42 maxmtu 65370 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 parentbus platform parentdev 11800a0000000.pip 
+    RX:  bytes packets errors dropped  missed   mcast           
+       7572394   12552      0       1       0    1426 
+    TX:  bytes packets errors dropped carrier collsns           
+       6172800    6676      0       0       0       0 
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 1 allmulti 0 minmtu 42 maxmtu 65370 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 parentbus platform parentdev 11800a0000000.pip 
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+        981589    4113      0       0       0       0 
+4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a8 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 42 maxmtu 65370 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 parentbus platform parentdev 11800a0000000.pip 
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+    dsa conduit eth1 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p0 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+       6447607    8084      0      25       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+        961295    4106      0       0       0       0 
+6: lan1@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-lan state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state forwarding priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p1 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+        886325    3960      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+       6041760    6345      0       0       0       0 
+7: lan2@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8002 port_no 0x2 designated_port 32770 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p2 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+         62690     226      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         66550     156      0       0       0       0 
+8: lan3@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8003 port_no 0x3 designated_port 32771 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p3 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+         40638     132      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         13607      72      0       0       0       0 
+9: lan4@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p4 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+    RX:  bytes packets errors dropped  missed   mcast           
+         34718     150      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         17827      86      0       0       0       0 
+10: br-lan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 65535 
+    bridge forward_delay 800 hello_time 100 max_age 1000 ageing_time 30000 stp_state 0 priority 32767 vlan_filtering 0 vlan_protocol 802.1Q bridge_id 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   59.13 fdb_n_learned 1 fdb_max_learned 0 vlan_default_pvid 1 vlan_stats_enabled 0 vlan_stats_per_port 0 group_fwd_mask 0 group_address 01:80:c2:00:00:00 mcast_snooping 0 no_linklocal_learn 0 mcast_vlan_snooping 0 mst_enabled 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 16 mcast_hash_max 512 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 0 mcast_igmp_version 2 mcast_mld_version 1 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 
+    RX:  bytes packets errors dropped  missed   mcast           
+        947819    3974      0       0       0     402 
+    TX:  bytes packets errors dropped carrier collsns           
+       6142036    6675      0      22       0       0 
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host proto kernel_lo 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc fq_codel state UP group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::a693:4cff:feb1:42a6/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc fq_codel state UP group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::a693:4cff:feb1:42a7/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether a4:93:4c:b1:42:a8 brd ff:ff:ff:ff:ff:ff
+5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.179/24 brd 192.168.1.255 scope global wan
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a693:4cff:feb1:42a7/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+6: lan1@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-lan state UP group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7
+7: lan2@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7
+8: lan3@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7
+9: lan4@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7
+10: br-lan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.240.2/24 brd 192.168.240.255 scope global br-lan
+       valid_lft forever preferred_lft forever
+    inet6 fd2d:7c36:36ff::1/60 scope global noprefixroute 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a693:4cff:feb1:42a6/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+default via 192.168.1.1 dev wan proto static src 192.168.1.179 
+192.168.1.0/24 dev wan proto kernel scope link src 192.168.1.179 
+192.168.240.0/24 dev br-lan proto kernel scope link src 192.168.240.2 
+local 127.0.0.0/8 dev lo table local proto kernel scope host src 127.0.0.1 
+local 127.0.0.1 dev lo table local proto kernel scope host src 127.0.0.1 
+broadcast 127.255.255.255 dev lo table local proto kernel scope link src 127.0.0.1 
+local 192.168.1.179 dev wan table local proto kernel scope host src 192.168.1.179 
+broadcast 192.168.1.255 dev wan table local proto kernel scope link src 192.168.1.179 
+local 192.168.240.2 dev br-lan table local proto kernel scope host src 192.168.240.2 
+broadcast 192.168.240.255 dev br-lan table local proto kernel scope link src 192.168.240.2 
+fd2d:7c36:36ff::/64 dev br-lan proto static metric 1024 pref medium
+unreachable fd2d:7c36:36ff::/48 dev lo proto static metric 2147483647 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+fe80::/64 dev eth1 proto kernel metric 256 pref medium
+fe80::/64 dev br-lan proto kernel metric 256 pref medium
+fe80::/64 dev wan proto kernel metric 256 pref medium
+local ::1 dev lo table local proto kernel metric 0 pref medium
+anycast fd2d:7c36:36ff:: dev br-lan table local proto kernel metric 0 pref medium
+local fd2d:7c36:36ff::1 dev br-lan table local proto kernel metric 0 pref medium
+anycast fe80:: dev eth0 table local proto kernel metric 0 pref medium
+anycast fe80:: dev eth1 table local proto kernel metric 0 pref medium
+anycast fe80:: dev br-lan table local proto kernel metric 0 pref medium
+anycast fe80:: dev wan table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a6 dev eth0 table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a6 dev br-lan table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a7 dev eth1 table local proto kernel metric 0 pref medium
+local fe80::a693:4cff:feb1:42a7 dev wan table local proto kernel metric 0 pref medium
+multicast ff00::/8 dev eth0 table local proto kernel metric 256 pref medium
+multicast ff00::/8 dev br-lan table local proto kernel metric 256 pref medium
+multicast ff00::/8 dev eth1 table local proto kernel metric 256 pref medium
+multicast ff00::/8 dev wan table local proto kernel metric 256 pref medium
+
+=== DSA_SYSFS ===
+[eth0]
+ifindex=2
+address=a4:93:4c:b1:42:a6
+carrier=1
+operstate=up
+mtu=1504
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000/interface@0/ethernet@0
+parent_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000
+master=/sys/devices/platform/soc@0/11800a0000000.pip/net/eth0/master
+lower=
+upper=
+[eth1]
+ifindex=3
+address=a4:93:4c:b1:42:a7
+carrier=1
+operstate=up
+mtu=1504
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000/interface@0/ethernet@1
+parent_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000
+master=/sys/devices/platform/soc@0/11800a0000000.pip/net/eth1/master
+lower=
+upper=
+[eth2]
+ifindex=4
+address=a4:93:4c:b1:42:a8
+carrier=unavailable
+operstate=down
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000/interface@0/ethernet@2
+parent_of_node=/sys/firmware/devicetree/base/soc@0/pip@11800a0000000
+master=/sys/devices/platform/soc@0/11800a0000000.pip/net/eth2/master
+lower=
+upper=
+[wan]
+ifindex=5
+address=a4:93:4c:b1:42:a7
+carrier=1
+operstate=up
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e/ethernet-ports/port@0
+parent_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e
+master=/sys/devices/platform/soc@0/1180000001800.mdio/mdio_bus/8001180000001800/8001180000001800:1e/net/wan/master
+lower=
+upper=
+[lan1]
+ifindex=6
+address=a4:93:4c:b1:42:a6
+carrier=1
+operstate=up
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e/ethernet-ports/port@1
+parent_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e
+master=/sys/devices/virtual/net/br-lan
+lower=
+upper=
+[lan2]
+ifindex=7
+address=a4:93:4c:b1:42:a6
+carrier=0
+operstate=down
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e/ethernet-ports/port@2
+parent_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e
+master=/sys/devices/virtual/net/br-lan
+lower=
+upper=
+[lan3]
+ifindex=8
+address=a4:93:4c:b1:42:a6
+carrier=0
+operstate=down
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e/ethernet-ports/port@3
+parent_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e
+master=/sys/devices/virtual/net/br-lan
+lower=
+upper=
+[lan4]
+ifindex=9
+address=a4:93:4c:b1:42:a6
+carrier=0
+operstate=down
+mtu=1500
+netdev_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e/ethernet-ports/port@4
+parent_of_node=/sys/firmware/devicetree/base/soc@0/mdio@1180000001800/switch@1e
+master=/sys/devices/virtual/net/br-lan
+lower=
+upper=
+[br-lan]
+ifindex=10
+address=a4:93:4c:b1:42:a6
+carrier=1
+operstate=up
+mtu=1500
+netdev_of_node=/sys/devices/virtual/net/br-lan/of_node
+parent_of_node=none
+master=/sys/devices/virtual/net/br-lan/master
+lower=
+upper=
+
+=== DSA_AFFINITY ===
+affinity_check=ok
+status=ok
+wan=eth1
+lan1=eth0
+lan2=eth0
+lan3=eth0
+lan4=eth0
+5: wan@eth1: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+6: lan1@eth0: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+7: lan2@eth0: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+8: lan3@eth0: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+9: lan4@eth0: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+--- wan ---
+5: wan@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a7 brd ff:ff:ff:ff:ff:ff promiscuity 0 allmulti 0 minmtu 68 maxmtu 9698 
+    dsa conduit eth1 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p0 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+--- lan1 ---
+6: lan1@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-lan state UP mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state forwarding priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8001 port_no 0x1 designated_port 32769 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p1 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+--- lan2 ---
+7: lan2@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8002 port_no 0x2 designated_port 32770 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p2 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+--- lan3 ---
+8: lan3@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8003 port_no 0x3 designated_port 32771 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p3 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+--- lan4 ---
+9: lan4@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue master br-lan state DOWN mode DEFAULT group default qlen 1000
+    link/ether a4:93:4c:b1:42:a6 brd ff:ff:ff:ff:ff:ff permaddr a4:93:4c:b1:42:a7 promiscuity 1 allmulti 1 minmtu 68 maxmtu 9698 
+    dsa conduit eth0 
+    bridge_slave state disabled priority 32 cost 5 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 7fff.A4:93:4C:B1:42:A6 designated_root 7fff.A4:93:4C:B1:42:A6 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on bcast_flood on mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off group_fwd_mask 0 group_fwd_mask_str 0x0 vlan_tunnel off isolated off locked off mab off addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro_ipv4_max_size 65536 portname p4 switchid 00000000 parentbus mdio_bus parentdev 8001180000001800:1e 
+
+=== BRIDGE ===
+6: lan1@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 master br-lan state forwarding priority 32 cost 5 
+    hairpin off guard off root_block off fastleave off learning on flood on mcast_flood on bcast_flood on mcast_router 1 mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off vlan_tunnel off isolated off locked off mab off mcast_n_groups 0 mcast_max_groups 0 
+7: lan2@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 master br-lan state disabled priority 32 cost 5 
+    hairpin off guard off root_block off fastleave off learning on flood on mcast_flood on bcast_flood on mcast_router 1 mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off vlan_tunnel off isolated off locked off mab off mcast_n_groups 0 mcast_max_groups 0 
+8: lan3@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 master br-lan state disabled priority 32 cost 5 
+    hairpin off guard off root_block off fastleave off learning on flood on mcast_flood on bcast_flood on mcast_router 1 mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off vlan_tunnel off isolated off locked off mab off mcast_n_groups 0 mcast_max_groups 0 
+9: lan4@eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 master br-lan state disabled priority 32 cost 5 
+    hairpin off guard off root_block off fastleave off learning on flood on mcast_flood on bcast_flood on mcast_router 1 mcast_to_unicast off neigh_suppress off neigh_vlan_suppress off vlan_tunnel off isolated off locked off mab off mcast_n_groups 0 mcast_max_groups 0 
+33:33:00:00:00:02 dev eth0 self permanent
+01:00:5e:00:00:01 dev eth0 self permanent
+33:33:00:00:00:01 dev eth0 self permanent
+33:33:ff:b1:42:a6 dev eth0 self permanent
+33:33:ff:00:00:00 dev eth0 self permanent
+33:33:00:00:00:01 dev eth1 self permanent
+33:33:00:00:00:02 dev eth1 self permanent
+01:00:5e:00:00:01 dev eth1 self permanent
+33:33:ff:b1:42:a7 dev eth1 self permanent
+33:33:ff:00:00:00 dev eth1 self permanent
+33:33:00:00:00:01 dev eth2 self permanent
+33:33:00:00:00:02 dev eth2 self permanent
+84:7b:eb:10:e8:76 dev lan1 master br-lan 
+a4:93:4c:b1:42:a6 dev lan1 vlan 1 master br-lan permanent
+a4:93:4c:b1:42:a6 dev lan1 master br-lan permanent
+84:7b:eb:10:e8:76 dev lan1 self 
+33:33:00:00:00:01 dev br-lan self permanent
+33:33:00:00:00:02 dev br-lan self permanent
+01:00:5e:00:00:01 dev br-lan self permanent
+33:33:ff:00:00:01 dev br-lan self permanent
+33:33:ff:b1:42:a6 dev br-lan self permanent
+33:33:ff:00:00:00 dev br-lan self permanent
+33:33:00:01:00:02 dev br-lan self permanent
+33:33:00:01:00:03 dev br-lan self permanent
+port              vlan-id  
+lan1              1 PVID Egress Untagged
+lan2              1 PVID Egress Untagged
+lan3              1 PVID Egress Untagged
+lan4              1 PVID Egress Untagged
+br-lan            1 PVID Egress Untagged
+
+=== ETHTOOL ===
+--- eth0 ---
+Settings for eth0:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  1000baseT/Full
+	Advertised pause frame use: No
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  1000baseT/Full
+	Link partner advertised pause frame use: No
+	Link partner advertised auto-negotiation: No
+	Link partner advertised FEC modes: Not reported
+	Speed: 1000Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: forced master
+	master-slave status: slave
+	Port: MII
+	PHYAD: 0
+	Transceiver: external
+	Link detected: yes
+driver: octeon_ethernet
+version: 6.12.94
+firmware-version: 
+expansion-rom-version: 
+bus-info: Builtin
+supports-statistics: yes
+supports-test: no
+supports-eeprom-access: no
+supports-register-dump: yes
+supports-priv-flags: no
+NIC statistics:
+     p08_TxOctets: 7523985
+     p08_TxDropPkts: 0
+     p08_TxBroadcastPkts: 419
+     p08_TxMulticastPkts: 1429
+     p08_TxUnicastPkts: 10712
+     p08_TxCollisions: 0
+     p08_TxSingleCollision: 0
+     p08_TxMultipleCollision: 0
+     p08_TxDeferredTransmit: 0
+     p08_TxLateCollision: 0
+     p08_TxExcessiveCollision: 0
+     p08_TxPausePkts: 0
+     p08_RxOctets: 6168432
+     p08_RxUndersizePkts: 0
+     p08_RxPausePkts: 0
+     p08_Pkts64Octets: 0
+     p08_Pkts65to127Octets: 1448
+     p08_Pkts128to255Octets: 524
+     p08_Pkts256to511Octets: 267
+     p08_Pkts512to1023Octets: 247
+     p08_Pkts1024to1522Octets: 4183
+     p08_RxOversizePkts: 0
+     p08_RxJabbers: 0
+     p08_RxAlignmentErrors: 0
+     p08_RxFCSErrors: 0
+     p08_RxGoodOctets: 6168432
+     p08_RxDropPkts: 0
+     p08_RxUnicastPkts: 6618
+     p08_RxMulticastPkts: 50
+     p08_RxBroadcastPkts: 1
+     p08_RxSAChanges: 0
+     p08_RxFragments: 0
+     p08_RxJumboPkts: 0
+     p08_RxSymbolErrors: 0
+     p08_RxDiscarded: 19
+--- eth1 ---
+Settings for eth1:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  1000baseT/Full
+	Advertised pause frame use: No
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Speed: 1000Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	Port: MII
+	PHYAD: 1
+	Transceiver: external
+	Link detected: yes
+driver: octeon_ethernet
+version: 6.12.94
+firmware-version: 
+expansion-rom-version: 
+bus-info: Builtin
+supports-statistics: yes
+supports-test: no
+supports-eeprom-access: no
+supports-register-dump: yes
+supports-priv-flags: no
+NIC statistics:
+     p05_TxOctets: 0
+     p05_TxDropPkts: 0
+     p05_TxBroadcastPkts: 0
+     p05_TxMulticastPkts: 0
+     p05_TxUnicastPkts: 0
+     p05_TxCollisions: 0
+     p05_TxSingleCollision: 0
+     p05_TxMultipleCollision: 0
+     p05_TxDeferredTransmit: 0
+     p05_TxLateCollision: 0
+     p05_TxExcessiveCollision: 0
+     p05_TxPausePkts: 0
+     p05_RxOctets: 981945
+     p05_RxUndersizePkts: 0
+     p05_RxPausePkts: 0
+     p05_Pkts64Octets: 0
+     p05_Pkts65to127Octets: 2902
+     p05_Pkts128to255Octets: 403
+     p05_Pkts256to511Octets: 343
+     p05_Pkts512to1023Octets: 140
+     p05_Pkts1024to1522Octets: 327
+     p05_RxOversizePkts: 0
+     p05_RxJabbers: 0
+     p05_RxAlignmentErrors: 0
+     p05_RxFCSErrors: 0
+     p05_RxGoodOctets: 981945
+     p05_RxDropPkts: 0
+     p05_RxUnicastPkts: 4047
+     p05_RxMulticastPkts: 20
+     p05_RxBroadcastPkts: 48
+     p05_RxSAChanges: 1
+     p05_RxFragments: 0
+     p05_RxJumboPkts: 0
+     p05_RxSymbolErrors: 0
+     p05_RxDiscarded: 7
+--- wan ---
+Settings for wan:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+	                                     100baseT/Half 100baseT/Full
+	                                     1000baseT/Full
+	Link partner advertised pause frame use: No
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 1000Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred master
+	master-slave status: slave
+	Port: MII
+	PHYAD: 0
+	Transceiver: external
+	Supports Wake-on: d
+	Wake-on: d
+	Link detected: yes
+driver: dsa
+version: 6.12.94
+firmware-version: N/A
+expansion-rom-version: 
+bus-info: platform
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+NIC statistics:
+     tx_packets: 4108
+     tx_bytes: 961643
+     rx_packets: 8090
+     rx_bytes: 6449026
+     TxOctets: 981119
+     TxDropPkts: 0
+     TxBroadcastPkts: 48
+     TxMulticastPkts: 13
+     TxUnicastPkts: 4047
+     TxCollisions: 0
+     TxSingleCollision: 0
+     TxMultipleCollision: 0
+     TxDeferredTransmit: 0
+     TxLateCollision: 0
+     TxExcessiveCollision: 0
+     TxPausePkts: 0
+     RxOctets: 6481386
+     RxUndersizePkts: 0
+     RxPausePkts: 0
+     Pkts64Octets: 277
+     Pkts65to127Octets: 1944
+     Pkts128to255Octets: 693
+     Pkts256to511Octets: 744
+     Pkts512to1023Octets: 248
+     Pkts1024to1522Octets: 4184
+     RxOversizePkts: 0
+     RxJabbers: 0
+     RxAlignmentErrors: 0
+     RxFCSErrors: 0
+     RxGoodOctets: 6481386
+     RxDropPkts: 0
+     RxUnicastPkts: 6679
+     RxMulticastPkts: 1023
+     RxBroadcastPkts: 388
+     RxSAChanges: 1843
+     RxFragments: 0
+     RxJumboPkts: 0
+     RxSymbolErrors: 0
+     RxDiscarded: 0
+--- lan1 ---
+Settings for lan1:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+	                                     100baseT/Half 100baseT/Full
+	                                     1000baseT/Full
+	Link partner advertised pause frame use: Symmetric Receive-only
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 1000Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred master
+	master-slave status: master
+	Port: MII
+	PHYAD: 1
+	Transceiver: external
+	Supports Wake-on: d
+	Wake-on: d
+	Link detected: yes
+driver: dsa
+version: 6.12.94
+firmware-version: N/A
+expansion-rom-version: 
+bus-info: platform
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+NIC statistics:
+     tx_packets: 6348
+     tx_bytes: 6042068
+     rx_packets: 3962
+     rx_bytes: 886673
+     TxOctets: 6068184
+     TxDropPkts: 0
+     TxBroadcastPkts: 0
+     TxMulticastPkts: 13
+     TxUnicastPkts: 6335
+     TxCollisions: 0
+     TxSingleCollision: 0
+     TxMultipleCollision: 0
+     TxDeferredTransmit: 0
+     TxLateCollision: 0
+     TxExcessiveCollision: 0
+     TxPausePkts: 0
+     RxOctets: 904175
+     RxUndersizePkts: 0
+     RxPausePkts: 0
+     Pkts64Octets: 180
+     Pkts65to127Octets: 2563
+     Pkts128to255Octets: 481
+     Pkts256to511Octets: 350
+     Pkts512to1023Octets: 127
+     Pkts1024to1522Octets: 274
+     RxOversizePkts: 0
+     RxJabbers: 0
+     RxAlignmentErrors: 0
+     RxFCSErrors: 0
+     RxGoodOctets: 904175
+     RxDropPkts: 0
+     RxUnicastPkts: 3725
+     RxMulticastPkts: 228
+     RxBroadcastPkts: 22
+     RxSAChanges: 1
+     RxFragments: 0
+     RxJumboPkts: 0
+     RxSymbolErrors: 0
+     RxDiscarded: 13
+--- lan2 ---
+Settings for lan2:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Speed: Unknown!
+	Duplex: Unknown! (255)
+	Auto-negotiation: on
+	master-slave cfg: preferred master
+	master-slave status: unknown
+	Port: MII
+	PHYAD: 2
+	Transceiver: external
+	Supports Wake-on: d
+	Wake-on: d
+	Link detected: no
+driver: dsa
+version: 6.12.94
+firmware-version: N/A
+expansion-rom-version: 
+bus-info: platform
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+NIC statistics:
+     tx_packets: 156
+     tx_bytes: 66550
+     rx_packets: 226
+     rx_bytes: 62690
+     TxOctets: 67143
+     TxDropPkts: 0
+     TxBroadcastPkts: 0
+     TxMulticastPkts: 4
+     TxUnicastPkts: 151
+     TxCollisions: 0
+     TxSingleCollision: 0
+     TxMultipleCollision: 0
+     TxDeferredTransmit: 0
+     TxLateCollision: 0
+     TxExcessiveCollision: 0
+     TxPausePkts: 0
+     RxOctets: 64290
+     RxUndersizePkts: 0
+     RxPausePkts: 0
+     Pkts64Octets: 7
+     Pkts65to127Octets: 116
+     Pkts128to255Octets: 58
+     Pkts256to511Octets: 14
+     Pkts512to1023Octets: 10
+     Pkts1024to1522Octets: 25
+     RxOversizePkts: 0
+     RxJabbers: 0
+     RxAlignmentErrors: 0
+     RxFCSErrors: 0
+     RxGoodOctets: 64290
+     RxDropPkts: 0
+     RxUnicastPkts: 167
+     RxMulticastPkts: 58
+     RxBroadcastPkts: 5
+     RxSAChanges: 1
+     RxFragments: 0
+     RxJumboPkts: 0
+     RxSymbolErrors: 0
+     RxDiscarded: 4
+--- lan3 ---
+Settings for lan3:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Speed: Unknown!
+	Duplex: Unknown! (255)
+	Auto-negotiation: on
+	master-slave cfg: preferred master
+	master-slave status: unknown
+	Port: MII
+	PHYAD: 3
+	Transceiver: external
+	Supports Wake-on: d
+	Wake-on: d
+	Link detected: no
+driver: dsa
+version: 6.12.94
+firmware-version: N/A
+expansion-rom-version: 
+bus-info: platform
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+NIC statistics:
+     tx_packets: 72
+     tx_bytes: 13607
+     rx_packets: 132
+     rx_bytes: 40638
+     TxOctets: 12393
+     TxDropPkts: 0
+     TxBroadcastPkts: 0
+     TxMulticastPkts: 4
+     TxUnicastPkts: 59
+     TxCollisions: 0
+     TxSingleCollision: 0
+     TxMultipleCollision: 0
+     TxDeferredTransmit: 0
+     TxLateCollision: 0
+     TxExcessiveCollision: 0
+     TxPausePkts: 0
+     RxOctets: 41862
+     RxUndersizePkts: 0
+     RxPausePkts: 0
+     Pkts64Octets: 5
+     Pkts65to127Octets: 65
+     Pkts128to255Octets: 37
+     Pkts256to511Octets: 9
+     Pkts512to1023Octets: 2
+     Pkts1024to1522Octets: 18
+     RxOversizePkts: 0
+     RxJabbers: 0
+     RxAlignmentErrors: 0
+     RxFCSErrors: 0
+     RxGoodOctets: 41862
+     RxDropPkts: 0
+     RxUnicastPkts: 74
+     RxMulticastPkts: 58
+     RxBroadcastPkts: 4
+     RxSAChanges: 1
+     RxFragments: 0
+     RxJumboPkts: 0
+     RxSymbolErrors: 0
+     RxDiscarded: 4
+--- lan4 ---
+Settings for lan4:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Speed: Unknown!
+	Duplex: Unknown! (255)
+	Auto-negotiation: on
+	master-slave cfg: preferred master
+	master-slave status: unknown
+	Port: MII
+	PHYAD: 4
+	Transceiver: external
+	Supports Wake-on: d
+	Wake-on: d
+	Link detected: no
+driver: dsa
+version: 6.12.94
+firmware-version: N/A
+expansion-rom-version: 
+bus-info: platform
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+NIC statistics:
+     tx_packets: 86
+     tx_bytes: 17827
+     rx_packets: 150
+     rx_bytes: 34718
+     TxOctets: 17769
+     TxDropPkts: 0
+     TxBroadcastPkts: 1
+     TxMulticastPkts: 22
+     TxUnicastPkts: 61
+     TxCollisions: 0
+     TxSingleCollision: 0
+     TxMultipleCollision: 0
+     TxDeferredTransmit: 0
+     TxLateCollision: 0
+     TxExcessiveCollision: 0
+     TxPausePkts: 0
+     RxOctets: 38320
+     RxUndersizePkts: 0
+     RxPausePkts: 0
+     Pkts64Octets: 9
+     Pkts65to127Octets: 89
+     Pkts128to255Octets: 57
+     Pkts256to511Octets: 9
+     Pkts512to1023Octets: 2
+     Pkts1024to1522Octets: 11
+     RxOversizePkts: 0
+     RxJabbers: 0
+     RxAlignmentErrors: 0
+     RxFCSErrors: 0
+     RxGoodOctets: 38320
+     RxDropPkts: 0
+     RxUnicastPkts: 67
+     RxMulticastPkts: 105
+     RxBroadcastPkts: 5
+     RxSAChanges: 0
+     RxFragments: 0
+     RxJumboPkts: 0
+     RxSymbolErrors: 0
+     RxDiscarded: 27
+
+=== MDIO_AND_DT ===
+/sys/bus/mdio_bus/devices
+/sys/bus/mdio_bus/devices/8001180000001800:1e
+/sys/bus/mdio_bus/devices/dsa-0.0:00
+/sys/bus/mdio_bus/devices/dsa-0.0:01
+/sys/bus/mdio_bus/devices/dsa-0.0:02
+/sys/bus/mdio_bus/devices/dsa-0.0:03
+/sys/bus/mdio_bus/devices/dsa-0.0:04
+/sys/bus/mdio_bus/devices/fixed-0:00
+/sys/bus/mdio_bus/devices/fixed-0:01
+
+=== UCI ===
+network.loopback=interface
+network.loopback.device='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1/8'
+network.globals=globals
+network.globals.dhcp_default_duid='0004f24fc729bd594f5a833ebc5293df49b8'
+network.globals.ula_prefix='fd2d:7c36:36ff::/48'
+network.br_lan=device
+network.br_lan.name='br-lan'
+network.br_lan.type='bridge'
+network.br_lan.ports='lan1' 'lan2' 'lan3' 'lan4'
+network.br_lan.stp='0'
+network.lan=interface
+network.lan.device='br-lan'
+network.lan.proto='static'
+network.lan.ipaddr='192.168.240.2'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.wan=interface
+network.wan.device='wan'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.device='wan'
+network.wan6.proto='dhcpv6'
+{
+	"up": true,
+	"pending": false,
+	"available": true,
+	"autostart": true,
+	"dynamic": false,
+	"uptime": 1514,
+	"l3_device": "br-lan",
+	"proto": "static",
+	"device": "br-lan",
+	"updated": [
+		"addresses"
+	],
+	"metric": 0,
+	"dns_metric": 0,
+	"delegation": true,
+	"ipv4-address": [
+		{
+			"address": "192.168.240.2",
+			"mask": 24
+		}
+	],
+	"ipv6-address": [
+		
+	],
+	"ipv6-prefix": [
+		
+	],
+	"ipv6-prefix-assignment": [
+		{
+			"address": "fd2d:7c36:36ff::",
+			"mask": 60,
+			"local-address": {
+				"address": "fd2d:7c36:36ff::1",
+				"mask": 60
+			}
+		}
+	],
+	"route": [
+		
+	],
+	"dns-server": [
+		
+	],
+	"dns-search": [
+		
+	],
+	"neighbors": [
+		
+	],
+	"inactive": {
+		"ipv4-address": [
+			
+		],
+		"ipv6-address": [
+			
+		],
+		"route": [
+			
+		],
+		"dns-server": [
+			
+		],
+		"dns-search": [
+			
+		],
+		"neighbors": [
+			
+		]
+	},
+	"data": {
+		
+	}
+}
+{
+	"up": true,
+	"pending": false,
+	"available": true,
+	"autostart": true,
+	"dynamic": false,
+	"uptime": 634,
+	"l3_device": "wan",
+	"proto": "dhcp",
+	"device": "wan",
+	"updated": [
+		"addresses",
+		"routes",
+		"data"
+	],
+	"metric": 0,
+	"dns_metric": 0,
+	"delegation": true,
+	"ipv4-address": [
+		{
+			"address": "192.168.1.179",
+			"mask": 24
+		}
+	],
+	"ipv6-address": [
+		
+	],
+	"ipv6-prefix": [
+		
+	],
+	"ipv6-prefix-assignment": [
+		
+	],
+	"route": [
+		{
+			"target": "0.0.0.0",
+			"mask": 0,
+			"nexthop": "192.168.1.1",
+			"source": "192.168.1.179/32"
+		}
+	],
+	"dns-server": [
+		"192.168.1.1"
+	],
+	"dns-search": [
+		"vertex.home"
+	],
+	"neighbors": [
+		
+	],
+	"inactive": {
+		"ipv4-address": [
+			
+		],
+		"ipv6-address": [
+			
+		],
+		"route": [
+			
+		],
+		"dns-server": [
+			
+		],
+		"dns-search": [
+			
+		],
+		"neighbors": [
+			
+		]
+	},
+	"data": {
+		"dhcpserver": "192.168.1.1",
+		"hostname": "rv220w-rj45",
+		"leasetime": 86400
+	}
+}
+
+=== END ===
+output=/tmp/rv220w-dsa-run12-v193-rj45-cold-dsa-20260728T045324Z.txt

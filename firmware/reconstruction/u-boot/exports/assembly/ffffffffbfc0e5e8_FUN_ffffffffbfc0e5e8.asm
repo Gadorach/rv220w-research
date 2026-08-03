@@ -1,0 +1,41 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc0e5e8 function=FUN_ffffffffbfc0e5e8
+ffffffffbfc0e5e8	addiu sp,sp,-0x20
+ffffffffbfc0e5ec	sd gp,0x8(sp)
+ffffffffbfc0e5f0	lui gp,0x3
+ffffffffbfc0e5f4	sd s0,0x0(sp)
+ffffffffbfc0e5f8	addu gp,gp,t9
+ffffffffbfc0e5fc	sd ra,0x10(sp)
+ffffffffbfc0e600	addiu gp,gp,0x50f8
+ffffffffbfc0e604	lw s0,0x694(gp)
+ffffffffbfc0e608	lw t9,0x758(gp)
+ffffffffbfc0e60c	lw v0,0x0(s0)
+ffffffffbfc0e610	lw a0,0x14(gp)
+ffffffffbfc0e614	daddu v1,t9,zero
+ffffffffbfc0e618	lw a1,0x1c(gp)
+ffffffffbfc0e61c	slti v0,v0,0x5
+ffffffffbfc0e620	lw t9,0x90c(gp)
+ffffffffbfc0e624	addiu a0,a0,-0x5b50
+ffffffffbfc0e628	bne v0,zero,0xffffffffbfc0e660
+ffffffffbfc0e62c	_addiu a1,a1,-0x1a18
+ffffffffbfc0e630	daddu t9,v1,zero
+ffffffffbfc0e634	jalr t9
+ffffffffbfc0e638	_nop
+ffffffffbfc0e63c	lw t9,0x214(gp)
+ffffffffbfc0e640	jalr t9
+ffffffffbfc0e644	_nop
+ffffffffbfc0e648	sw zero,0x0(s0)
+ffffffffbfc0e64c	ld ra,0x10(sp)
+ffffffffbfc0e650	ld gp,0x8(sp)
+ffffffffbfc0e654	ld s0,0x0(sp)
+ffffffffbfc0e658	jr ra
+ffffffffbfc0e65c	_addiu sp,sp,0x20
+ffffffffbfc0e660	lui a0,0x95
+ffffffffbfc0e664	ori a0,a0,0x2f9
+ffffffffbfc0e668	jalr t9
+ffffffffbfc0e66c	_dsll a0,a0,0x8
+ffffffffbfc0e670	lw t9,0xd0(gp)
+ffffffffbfc0e674	ld gp,0x8(sp)
+ffffffffbfc0e678	ld ra,0x10(sp)
+ffffffffbfc0e67c	ld s0,0x0(sp)
+ffffffffbfc0e680	jr t9
+ffffffffbfc0e684	_addiu sp,sp,0x20

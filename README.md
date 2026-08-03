@@ -1,22 +1,21 @@
 # Cisco RV220W research
 
-Research, preservation, and experimental modern OpenWrt support for the Cisco RV220W.
+Research, preservation, boot-chain analysis, and experimental modern OpenWrt support for the Cisco RV220W.
 
 ## Current status
 
-- **Proven:** OpenWrt boots completely from RAM through U-Boot/TFTP.
-- **Proven:** the live image initializes and operates all five RJ45 ports: LAN1–LAN4 and WAN.
-- **Not included:** LuCI and Wi-Fi support.
-- **Not attempted:** persistent installation or writes to the onboard NOR flash.
-- **Safety model:** development remains RAM-only; reboot returns to the untouched stock firmware.
+- Modern OpenWrt boots automatically from the onboard NOR through the patched stock U-Boot chain.
+- The persistent image includes LuCI and operates WAN plus all four LAN ports.
+- The required combined boot-policy patch is hardware validated and preserves physical-button Sercomm recovery.
+- NOR slot writing, complete backup, and full read-back verification are hardware validated.
+- Wi-Fi and a persistent writable OpenWrt root/overlay remain unfinished.
 
-## Project map
+## Start here
 
-- [`STATUS.md`](STATUS.md) — detailed current status and remaining work.
-- [`docs/README.md`](docs/README.md) — research and hardware documentation.
-- [`openwrt/README.md`](openwrt/README.md) — current OpenWrt build, validation, and TFTP RAM-boot toolkit.
-- `firmware/` — verified stock images, partitions, filesystems, and analysis.
-- `hardware/` and `evidence/` — board records, measurements, photographs, and captured proof.
-- `tools/` — preservation and analysis utilities outside the OpenWrt toolkit.
+- [`STATUS.md`](STATUS.md) — exact current behavior, requirements, and remaining work.
+- [`docs/README.md`](docs/README.md) — canonical documentation index.
+- [`docs/openwrt/installation.md`](docs/openwrt/installation.md) — required patch-first installation order.
+- [`openwrt/README.md`](openwrt/README.md) — build, RAM-boot, and guarded NOR tooling.
+- [`firmware/reconstruction/README.md`](firmware/reconstruction/README.md) — boot-chain reconstruction and hardware evidence.
 
-The repository contains preserved vendor firmware and extracted data for research and recovery. Those files remain subject to their original terms and must not be treated as redistributable open-source code.
+Preserved vendor firmware and extracted data remain subject to their original terms and are included for research and recovery.

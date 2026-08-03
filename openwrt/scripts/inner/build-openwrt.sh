@@ -112,15 +112,55 @@ sync_dsa_dual_files() {
       "Build UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > files/etc/rv220w-build
 }
 
-sync_rj45_full_files() {
+write_build_profile() {
+    local profile=$1
+    local writes=$2
+    printf '%s\n' \
+      "profile=$profile" \
+      "writes=$writes" \
+      "toolkit=1.10.3" \
+      "build_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)" > files/etc/rv220w-build-profile
+}
+
+sync_rj45_common_files() {
     sync_base_files
     rsync -a "$toolkit/openwrt/files-dsa-dual/" files/
     rm -f \
         files/etc/uci-defaults/98-rv220w-dsa-dual-network \
-        files/etc/uci-defaults/99-rv220w-validation
+        files/etc/uci-defaults/99-rv220w-validation \
+        files/usr/sbin/rv220w-b53-eap-mode \
+        files/usr/sbin/rv220w-b53-snapshot \
+        files/usr/sbin/rv220w-b53-vlan-state \
+        files/usr/sbin/rv220w-dsa-snapshot
     rsync -a "$toolkit/openwrt/files-rj45-full/" files/
+}
+
+sync_rj45_full_files() {
+    sync_rj45_common_files
+    write_build_profile rj45-full none
     printf '%s\n' \
-      "RV220W OpenWrt RAM-only full-RJ45 candidate v1.9.0 (${RV220W_DSA_VARIANT})" \
+      "RV220W OpenWrt RAM-only full-RJ45 validated baseline v1.10.3 (${RV220W_DSA_VARIANT})" \
+      "OpenWrt ref: $(git describe --always --dirty --tags)" \
+      "Build UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > files/etc/rv220w-build
+}
+
+sync_rj45_luci_files() {
+    sync_rj45_common_files
+    rsync -a "$toolkit/openwrt/files-rj45-luci/" files/
+    write_build_profile rj45-luci none
+    printf '%s\n' \
+      "RV220W OpenWrt RAM-only full-RJ45 + LuCI profile v1.10.3 (${RV220W_DSA_VARIANT})" \
+      "OpenWrt ref: $(git describe --always --dirty --tags)" \
+      "Build UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > files/etc/rv220w-build
+}
+
+sync_nor_writer_files() {
+    sync_rj45_common_files
+    rsync -a "$toolkit/openwrt/files-nor-writer/" files/
+    write_build_profile nor-writer openwrt-slot-only
+    printf '%s\n' \
+      "RV220W OpenWrt RAM-boot NOR writer v1.10.3 (${RV220W_DSA_VARIANT})" \
+      "Writable MTD policy: openwrt-slot only" \
       "OpenWrt ref: $(git describe --always --dirty --tags)" \
       "Build UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > files/etc/rv220w-build
 }
@@ -163,6 +203,72 @@ verify_rj45_full_config() {
             echo "Full-RJ45 package was not retained by defconfig: $item" >&2
             exit 1
         }
+    done
+
+    local forbidden=(
+      CONFIG_PACKAGE_kmod-mdio-netlink=y
+      CONFIG_PACKAGE_mdio-tools=y
+    )
+    for item in "${forbidden[@]}"; do
+        if grep -qxF "$item" .config; then
+            echo "Production full-RJ45 config retained diagnostic package: $item" >&2
+            exit 1
+        fi
+    done
+}
+
+verify_luci_config() {
+    verify_rj45_full_config
+    local required=(
+      CONFIG_PACKAGE_luci-light=y
+      CONFIG_PACKAGE_luci-base=y
+      CONFIG_PACKAGE_luci-mod-admin-full=y
+      CONFIG_PACKAGE_luci-app-firewall=y
+      CONFIG_PACKAGE_uhttpd=y
+      CONFIG_PACKAGE_uhttpd-mod-ubus=y
+    )
+    local item
+    for item in "${required[@]}"; do
+        grep -qxF "$item" .config || {
+            echo "LuCI profile package was not retained by defconfig: $item" >&2
+            exit 1
+        }
+    done
+}
+
+verify_nor_writer_config() {
+    # The writer deliberately reuses the proven RJ45 network base but excludes
+    # LuCI/uHTTPd to minimize the destructive-maintenance image. v1.10.0
+    # accidentally called verify_luci_config here, making a correct defconfig
+    # fail before compilation.
+    verify_rj45_full_config
+
+    local required=(
+      CONFIG_PACKAGE_mtd=y
+      CONFIG_TARGET_octeon_generic_DEVICE_cisco_rv220w_flash_stage=y
+    )
+    local item
+    for item in "${required[@]}"; do
+        grep -qxF "$item" .config || {
+            echo "NOR-writer requirement was not retained by defconfig: $item" >&2
+            exit 1
+        }
+    done
+
+    local forbidden=(
+      CONFIG_TARGET_octeon_generic_DEVICE_cisco_rv220w=y
+      CONFIG_PACKAGE_luci-light=y
+      CONFIG_PACKAGE_luci-base=y
+      CONFIG_PACKAGE_luci-mod-admin-full=y
+      CONFIG_PACKAGE_luci-app-firewall=y
+      CONFIG_PACKAGE_uhttpd=y
+      CONFIG_PACKAGE_uhttpd-mod-ubus=y
+    )
+    for item in "${forbidden[@]}"; do
+        if grep -qxF "$item" .config; then
+            echo "NOR-writer config retained a forbidden normal/LuCI option: $item" >&2
+            exit 1
+        fi
     done
 }
 
@@ -208,13 +314,13 @@ build_dsa_lan() (
         [[ -f "${kernel_patch_targets[$patch_index]}" ]] || {
             echo "RV220W DSA kernel patch is not installed in the OpenWrt source tree:" >&2
             echo "  ${kernel_patch_targets[$patch_index]}" >&2
-            echo "Re-run the v1.9.0 updater with --workspace pointing at this tree." >&2
+            echo "Re-run the v1.10.3 updater with --workspace pointing at this tree." >&2
             exit 1
         }
         cmp -s "${kernel_patch_sources[$patch_index]}" "${kernel_patch_targets[$patch_index]}" || {
-            echo "Installed DSA kernel patch differs from toolkit v1.9.0:" >&2
+            echo "Installed DSA kernel patch differs from toolkit v1.10.3:" >&2
             echo "  ${kernel_patch_targets[$patch_index]}" >&2
-            echo "Re-run the v1.9.0 updater before building." >&2
+            echo "Re-run the v1.10.3 updater before building." >&2
             exit 1
         }
     done
@@ -243,8 +349,16 @@ build_dsa_dual() (
     local variant=$1
     local wan_phy_mode=$2
     local profile=${3:-validation}
+    local production=0
+    case "$profile" in
+      full-rj45|luci|nor-writer) production=1 ;;
+    esac
+
     local source_dts="target/linux/octeon/files/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts"
     local template="$toolkit/openwrt/dsa-dual/cn5010_cisco_rv220w-dsa-dual.dts.in"
+    if [[ $production == 1 ]]; then
+        template="$toolkit/openwrt/production/cn5010_cisco_rv220w-production.dts.in"
+    fi
     local kernel_patch_sources=(
         "$toolkit/openwrt/dsa-lan/995-rv220w-octeon-dsa-master-node.patch"
         "$toolkit/openwrt/dsa-lan/996-octeon-dsa-conduit-length-error.patch"
@@ -255,9 +369,15 @@ build_dsa_dual() (
         "target/linux/octeon/patches-6.12/996-octeon-dsa-conduit-length-error.patch"
         "target/linux/octeon/patches-6.12/997-b53-multi-conduit-affinity.patch"
     )
-    if [[ $profile == full-rj45 ]]; then
-        kernel_patch_sources+=("$toolkit/openwrt/dsa-dual/998-b53-enable-dt-cpu-ports.patch")
-        kernel_patch_targets+=("target/linux/octeon/patches-6.12/998-b53-enable-dt-cpu-ports.patch")
+    if [[ $production == 1 ]]; then
+        kernel_patch_sources+=(
+            "$toolkit/openwrt/dsa-dual/998-b53-enable-dt-cpu-ports.patch"
+            "$toolkit/openwrt/production/999-octeon-production-dt-flash-cleanups.patch"
+        )
+        kernel_patch_targets+=(
+            "target/linux/octeon/patches-6.12/998-b53-enable-dt-cpu-ports.patch"
+            "target/linux/octeon/patches-6.12/999-octeon-production-dt-flash-cleanups.patch"
+        )
     fi
     local backup= source_sha= restore_rc=0 patch_index
 
@@ -289,13 +409,13 @@ build_dsa_dual() (
         [[ -f "${kernel_patch_targets[$patch_index]}" ]] || {
             echo "RV220W DSA kernel patch is not installed in the OpenWrt source tree:" >&2
             echo "  ${kernel_patch_targets[$patch_index]}" >&2
-            echo "Re-run the v1.9.0 updater with --workspace pointing at this tree." >&2
+            echo "Re-run the v1.10.3 updater with --workspace pointing at this tree." >&2
             exit 1
         }
         cmp -s "${kernel_patch_sources[$patch_index]}" "${kernel_patch_targets[$patch_index]}" || {
-            echo "Installed DSA kernel patch differs from toolkit v1.9.0:" >&2
+            echo "Installed DSA kernel patch differs from toolkit v1.10.3:" >&2
             echo "  ${kernel_patch_targets[$patch_index]}" >&2
-            echo "Re-run the v1.9.0 updater before building." >&2
+            echo "Re-run the v1.10.3 updater before building." >&2
             exit 1
         }
     done
@@ -308,28 +428,59 @@ build_dsa_dual() (
     grep -q 'label = "wan";' "$source_dts"
     grep -q 'ethernet = <&rv220w_eth1>;' "$source_dts"
     grep -q 'ethernet = <&rv220w_eth0>;' "$source_dts"
-    ensure_discovery_feed_packages
     RV220W_DSA_VARIANT=$variant
     export RV220W_DSA_VARIANT
-    if [[ $profile == full-rj45 ]]; then
+
+    case "$profile" in
+      full-rj45)
         sync_rj45_full_files
         configure openwrt-rv220w-rj45-initramfs.config
         verify_rj45_full_config
-    else
+        ;;
+      luci)
+        sync_rj45_luci_files
+        configure openwrt-rv220w-rj45-luci-initramfs.config
+        verify_luci_config
+        ;;
+      nor-writer)
+        sync_nor_writer_files
+        configure openwrt-rv220w-nor-writer-initramfs.config
+        verify_nor_writer_config
+        ;;
+      *)
+        ensure_discovery_feed_packages
         sync_dsa_dual_files
         configure openwrt-rv220w-dsa-dual-initramfs.config
         verify_dsa_dual_config
-    fi
+        ;;
+    esac
+
     maybe_full_clean
     require_expanded_config
     run_make_noninteractive target/linux/clean
-    if [[ $profile == full-rj45 ]]; then
+
+    case "$profile" in
+      full-rj45)
         build_world "rv220w-rj45-$variant"
         stage_initramfs "rv220w-openwrt-rv220w-rj45-initramfs" cisco_rv220w
-    else
+        ;;
+      luci)
+        build_world "rv220w-rj45-luci-$variant"
+        stage_initramfs "rv220w-openwrt-rv220w-rj45-luci-initramfs" cisco_rv220w
+        python3 "$toolkit/scripts/host/build_rv220w_nor_slot.py" build \
+          "$artifacts/rv220w-openwrt-rv220w-rj45-luci-initramfs.elf" \
+          "$artifacts/rv220w-openwrt-rv220w-rj45-luci-nor-slot.bin" \
+          --manifest "$artifacts/rv220w-openwrt-rv220w-rj45-luci-nor-slot.json"
+        ;;
+      nor-writer)
+        build_world "rv220w-nor-writer-$variant"
+        stage_initramfs "rv220w-openwrt-rv220w-nor-writer-initramfs" cisco_rv220w_flash_stage
+        ;;
+      *)
         build_world "rv220w-dsa-dual-$variant"
         stage_initramfs "rv220w-openwrt-rv220w-dsa-dual-$variant" cisco_rv220w
-    fi
+        ;;
+    esac
 )
 
 ensure_discovery_feed_packages() {
@@ -403,20 +554,35 @@ build_world() {
     require_expanded_config
     download_sources
     local verbosity=()
-    if [[ ${RV220W_VERBOSE:-0} == 1 || $mode == rv220w-dsa-lan-* || $mode == rv220w-dsa-dual-* || $mode == rv220w-rj45-* ]]; then
+    if [[ ${RV220W_VERBOSE:-0} == 1 || $mode == rv220w-dsa-lan-* || $mode == rv220w-dsa-dual-* || $mode == rv220w-rj45-* || $mode == rv220w-nor-* ]]; then
         verbosity=(V=s)
     fi
+    local main_log="$logs/$label-build.log"
+    local serial_log="$logs/$label-build-serial.log"
+    rm -f "$serial_log"
     echo "[rv220w:build] mode=$mode target=world noninteractive=setsid stdin=/dev/null"
-    if ! run_make_noninteractive -j"$jobs" world "${verbosity[@]}" 2>&1 | tee "$logs/$label-build.log"; then
+    if ! {
+        printf '[rv220w:build-meta] toolkit=1.10.3 label=%s mode=%s utc=%s jobs=%s pass=parallel\n' \
+          "$label" "$mode" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$jobs"
+        run_make_noninteractive -j"$jobs" world "${verbosity[@]}"
+    } 2>&1 | tee "$main_log"; then
         echo 'Parallel build failed; rerunning serially with V=s for diagnostics.' >&2
-        run_make_noninteractive -j1 world V=s 2>&1 | tee "$logs/$label-build-serial.log"
+        {
+            printf '[rv220w:build-meta] toolkit=1.10.3 label=%s mode=%s utc=%s jobs=1 pass=serial-fallback\n' \
+              "$label" "$mode" "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            run_make_noninteractive -j1 world V=s
+        } 2>&1 | tee "$serial_log"
     fi
 }
 
 find_initramfs() {
     local device=${1:-generic}
+    local pattern='*initramfs-kernel.bin'
+    if [[ $device != generic ]]; then
+        pattern="*-${device}-initramfs-kernel.bin"
+    fi
     find bin/targets/octeon/generic -maxdepth 1 -type f \
-      -name "*${device}*initramfs-kernel.bin" -printf '%T@ %p\n' \
+      -name "$pattern" -printf '%T@ %p\n' \
       | sort -nr | head -1 | cut -d' ' -f2-
 }
 
@@ -530,6 +696,16 @@ case "$mode" in
     # synchronized secondary CPU-port VID 0 state, LAN DHCP, WAN DHCP/DHCPv6,
     # firewall4 isolation and LAN-to-WAN NAT.
     build_dsa_dual rxid rgmii-rxid full-rj45
+    ;;
+  rv220w-rj45-luci-initramfs)
+    # Validated all-RJ45 data plane plus LAN-only LuCI/uHTTPd. The generated
+    # ELF is also padded into the first-stage 22 MiB NOR slot artifact.
+    build_dsa_dual rxid rgmii-rxid luci
+    ;;
+  rv220w-nor-writer-initramfs)
+    # RAM-boot-only writer profile: exactly one writable MTD partition named
+    # openwrt-slot; every non-slot NOR region stays read-only.
+    build_dsa_dual rxid rgmii-rxid nor-writer
     ;;
   rv220w-dsa-dual-wan-txid)
     build_dsa_dual wan-txid rgmii-txid

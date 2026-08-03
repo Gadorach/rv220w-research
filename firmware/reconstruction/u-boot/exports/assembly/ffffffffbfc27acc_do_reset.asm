@@ -1,0 +1,23 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc27acc function=do_reset
+ffffffffbfc27acc	addiu sp,sp,-0x10
+ffffffffbfc27ad0	lui v0,0xff80
+ffffffffbfc27ad4	sd gp,0x0(sp)
+ffffffffbfc27ad8	ori v0,v0,0x107
+ffffffffbfc27adc	lui gp,0x2
+ffffffffbfc27ae0	dsll32 v0,v0,0x8
+ffffffffbfc27ae4	addu gp,gp,t9
+ffffffffbfc27ae8	li v1,0x1
+ffffffffbfc27aec	sd ra,0x8(sp)
+ffffffffbfc27af0	addiu gp,gp,-0x43ec
+ffffffffbfc27af4	ori v0,v0,0x740
+ffffffffbfc27af8	sd v1,0x0(v0)
+ffffffffbfc27afc	lw a1,0x14(gp)
+ffffffffbfc27b00	li a0,0x2
+ffffffffbfc27b04	lw t9,0x584(gp)
+ffffffffbfc27b08	jalr t9
+ffffffffbfc27b0c	_addiu a1,a1,0x15a0
+ffffffffbfc27b10	clear v0
+ffffffffbfc27b14	ld ra,0x8(sp)
+ffffffffbfc27b18	ld gp,0x0(sp)
+ffffffffbfc27b1c	jr ra
+ffffffffbfc27b20	_addiu sp,sp,0x10

@@ -1,0 +1,9 @@
+key	value
+module	push_button
+analysis_version	rv220w-stock-modules-v1.0.0
+program	push_button.ko
+processor	MIPS:BE:64:64-32addr
+function_count	7
+decompile_success	7
+decompile_failure	0
+external_count	0

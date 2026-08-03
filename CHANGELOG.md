@@ -1,5 +1,19 @@
 # Changelog
 
+
+## 2.0.0 — persistent LuCI, NOR, and boot-chain promotion
+
+- Rebased the tree on the reorganized research layout.
+- Replaced the OpenWrt v1.9.0 tree with the authoritative v1.10.3 toolkit.
+- Integrated platform reconstruction v1.4.0-r1 under `firmware/reconstruction/`.
+- Recorded hardware-proven LuCI operation, verified 22 MiB NOR slot writing, and full read-back verification.
+- Recorded the corrected flash launch path: copy the exact ELF bytes to RAM and invoke `bootoctlinux`.
+- Integrated the hardware-validated combined boot-policy patch and distribution flasher.
+- Made the patch-before-firmware order mandatory in all primary installation documentation.
+- Recorded automatic OpenWrt boot, persistent `bootcmd`, and retained physical-button Sercomm recovery.
+- Moved superseded RAM-only, stage, version, and failure documents into `docs/history/`.
+- Kept remaining limitations explicit: initramfs runtime state, no persistent overlay/sysupgrade, no Wi-Fi, and incomplete board services.
+
 ## 1.1.0 — hardware-proven OpenWrt RAM-boot merge
 
 - Replaced the early `openwrt/` scaffold with the complete v1.9.0 promotion toolkit.

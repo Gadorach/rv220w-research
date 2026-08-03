@@ -1,0 +1,9 @@
+key	value
+module	mii
+analysis_version	rv220w-stock-modules-v1.0.0
+program	mii.ko
+processor	MIPS:BE:64:64-32addr
+function_count	4
+decompile_success	4
+decompile_failure	0
+external_count	0

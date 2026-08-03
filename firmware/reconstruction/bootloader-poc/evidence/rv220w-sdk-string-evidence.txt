@@ -1,0 +1,7 @@
+Preserved boot-chain string offsets
+
+0x37488 CVMX_BOARD_TYPE_CUST_RV200W
+0x41080 FWCHKADDISABABA
+0x421f0 Cavium Networks Octeon SDK version 1.7.3, build 264
+
+The SDK string exactly matches the supplied DWC-1000 cvmx-version.h.

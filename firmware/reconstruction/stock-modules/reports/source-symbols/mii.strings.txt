@@ -1,0 +1,35 @@
+     d1  0-<
+    18d @8-<
+    278 <6>Unloading mii
+    290 <6>Loading mii
+    2c0 mii_phy_write
+    2d0 mii_phy_read
+    2e0 depends=cavium-ethernet
+    2f8 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+    681 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+    6be GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+    77d .symtab
+    785 .strtab
+    78d .shstrtab
+    797 .MIPS.options
+    7a5 .rela.text
+    7b0 .rela.exit.text
+    7c0 .rela.init.text
+    7d0 .rodata.str1.8
+    7df .rela__ksymtab
+    7ee __ksymtab_strings
+    800 .modinfo
+    809 .data
+    80f .rela.gnu.linkonce.this_module
+    82e .bss
+    833 .comment
+    83c .rela.pdr
+    846 .mdebug.abi64
+   1081 __this_module
+   108f cleanup_module
+   109e init_module
+   10aa local_bh_enable
+   10ba local_bh_disable
+   10cb printk
+   10d2 cvm_oct_mdio_write
+   10e5 TF1_cvm_oct_mdio_read

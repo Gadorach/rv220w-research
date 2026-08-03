@@ -25,4 +25,4 @@ rv_box_enter python3 "$RV220W_TOOLKIT_ROOT/scripts/inner/install-rv220w-platform
 or rv_die "RV220W platform $mode failed"
 
 set -l toolkit_version (string trim < "$RV220W_TOOLKIT_ROOT/VERSION")
-rv_info "RV220W OpenWrt platform integration v1.3.2 $mode complete (toolkit/discovery $toolkit_version)"
+rv_info "RV220W OpenWrt platform integration v1.4.0 $mode complete (toolkit/discovery $toolkit_version)"

@@ -1,0 +1,5 @@
+
+String dump of section '__ksymtab_strings':
+  [     0]  miiSwitchRegisterWrite
+  [    18]  miiSwitchRegisterRead
+

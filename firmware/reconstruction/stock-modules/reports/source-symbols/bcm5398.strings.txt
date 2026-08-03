@@ -1,0 +1,129 @@
+    7ce 0-0C
+    7d4 0E @
+    9c5 ` -<
+    a22 (-4B 
+    b4d  0-<
+    b72 (-2f
+    ba5 @(-<
+    dcd  (-<
+    e94 |BBC
+   15c9   -g
+   1674 4bS	
+   168f r4bS
+   1705   -g
+   1845   -g
+   1955   -<
+   19f1   -<
+   1b23 n4bS
+   1c29   -<
+   1cc5   -<
+   1d1d   -g
+   1ee5   -g
+   1fd5   -g
+   20c5   -g
+   2205   -$
+   22c5   -g
+   23b5   -g
+   24a5   -<
+   25a9   -g
+   2669 @0-<
+   273d `0-$
+   275d `0-$
+   2771 `0-$
+   2789 `0-$
+   28e4 rb:2$
+   297c rF:24
+   2ffd @(-$
+   3040 miiSwitchRegisterWrite
+   3058 miiSwitchRegisterRead
+   3070 <6>using bcm switch %s
+   3088 bcm5398
+   3090 bcm5395
+   3098 <6>privlegedID %d wanporttNo: %d
+   30c0 <6>ERROR#%d in alloc_chrdev_region
+   30e8 <6>ERROR#%d in cdev_add
+   3108 bcm53115
+   3118 <3>Invalid IOCTL %#08x
+   3130 <3>ERROR: %s: Timeout at page %#0x addr %#0x value 0x%08x%08x
+   3170 <3>ERROR: %s: Timeout at page %#0x addr %#0x
+   31c0 parm=wanportNo:
+   31d0 port that has to be given for WAN
+   31f8 parmtype=wanportNo:int
+   3210 parm=privlegedID:
+   3222 Vlan ID of wan port
+   3238 parmtype=privlegedID:int
+   3258 parm=bcmswitch:
+   3268 broadcom switch version
+   3280 parmtype=bcmswitch:charp
+   32a0 depends=
+   32b0 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+   3368 miiSwitchRegisterWrite
+   3380 miiSwitchRegisterRead
+   3488 wanportNo
+   3498 privlegedID
+   34a8 bcmswitch
+   3518 bcm5398
+   3801 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   383e GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   387b GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   38b8 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   3c15 .symtab
+   3c1d .strtab
+   3c25 .shstrtab
+   3c2f .MIPS.options
+   3c3d .rela.text
+   3c48 .rela.exit.text
+   3c58 .rela.init.text
+   3c68 .rodata
+   3c70 .rodata.str1.8
+   3c7f .rela__ksymtab
+   3c8e .modinfo
+   3c97 .rela__param
+   3ca4 __ksymtab_strings
+   3cb6 .rela.data
+   3cc1 .rela.gnu.linkonce.this_module
+   3ce0 .bss
+   3ce5 .comment
+   3cee .rela.pdr
+   3cf8 .mdebug.abi64
+   4979 wanportCheck
+   4986 alloc_chrdev_region
+   499a bcm5398VlanEnable
+   49ac bcm5398PortEntrySet
+   49c0 __this_module
+   49ce miiSwitchRegisterRead
+   49e4 bcm5398PortEntryGet
+   49f8 miiSwitchRegisterWrite
+   4a0f cleanup_module
+   4a1e param_set_charp
+   4a2e init_module
+   4a3a mii_phy_read
+   4a47 miiSwitchRegisterRead32
+   4a5f bcm5398PortLinkStatusQuery
+   4a7a bcm5398VlanDisable
+   4a8d bcm5398VlanEntrySet
+   4aa1 cdev_add
+   4aaa bcm5398CompatIoctl
+   4abd bcm5398PortDefaultTagSet
+   4ad6 bcm5398PortConfigGet
+   4aeb printk
+   4af2 miiSwitchRegisterRead16
+   4b0a bcm5398VlanEntryGet
+   4b1e bcm5398VlanNon8021QSet
+   4b35 param_get_charp
+   4b45 configWanPort
+   4b53 __copy_user
+   4b5f bcm5398PortStateSet
+   4b73 strcmp
+   4b7a jiffies
+   4b82 bcm5398PortDefaultTagGet
+   4b9b param_set_int
+   4ba9 bcm5398PortMirrorSet
+   4bbe unregister_chrdev_region
+   4bd7 bcm5398Ioctl
+   4be4 miiSwitchRegisterRead8
+   4bfb bcm5398PortConfigSet
+   4c10 param_get_int
+   4c1e mii_phy_write
+   4c2c cdev_init
+   4c36 cdev_del

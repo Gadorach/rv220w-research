@@ -1,0 +1,572 @@
+    2bf 	|P0
+    baf 	6%@
+   11ce @-4B
+   1687 -~Q8
+   172d @(-<
+   17c6 @-4B
+   19dd @ -$
+   1a23 x4P4
+   1a29 @ -$
+   1a39 @ -|
+   1aad @ -$
+   1abd @ -$
+   1b89   -$
+   1ba1   -$
+   1bc9   -$
+   1be1   -$
+   1c01   -$
+   1c1b 84Bk
+   1c23 x4P4
+   1c29   -$
+   1c39 @ -|
+   1fa6  -4B
+   238a 8-5%
+   2536 !84e
+   26b7 `~sx
+   270d D +|bx
+   2a69 @ -<
+   2b4e  -4B
+   2d15   -$
+   2d2a @-fd
+   2d41 C@%<
+   2d5a (-4c
+   2d86  -4f
+   2f99 @ -$
+   3136 @-4B
+   393d  0-<
+   3972  -&1
+   3c8d q0%<
+   3cf1  0-<
+   3d55  0-<
+   3db9  0-<
+   3e1d  0-<
+   3ecd @8-<
+   3f19 @8-<
+   3f65 @8-<
+   3fb1 @8-<
+   3ffd @8-<
+   4069 @8-$
+   459d d -<
+   4665 `(-@
+   475d ` -$
+   4bdd @(-<
+   50f6  %&c
+   521d @ -<
+   5425  (-<
+   59f5 `0-$
+   5a26  -~c
+   5b15 `0-$
+   5c1d C0$$
+   5d9a $:0B
+   5df3 ;|B C
+   60a5  (-<
+   62d5 ` -<
+   6329   -<
+   68f7 P|P8
+   69b7 -|B*
+   69db /|B8
+   6b59 b(-$
+   6c29 @ -<
+   6d31 @0-pC
+   6f1d @ -<
+   70a1 b(-$
+   718b ;|bI
+   73d1 @ -<
+   7441 @ -<
+   7497 @Ac`
+   7a5e  -|c8
+   7a7f /|B8
+   7b13 X~48
+   7d59 `(-$
+   7e79 @ -<
+   80bd   -<
+   8159 @ -<
+   9cfd % -$
+   9e95 q /<
+   9eb5 `0-~#
+   9ee5  0-<
+   9ff5  (-<
+   a1a3 `Av`
+   a24f 8dc(
+   a2da cC$B
+   a30f -|E`
+   a60d `0-$
+   a8f1 ` -~e8
+   a980 |GkG<
+   a9a7 @|GZ
+   a9bb *|GR
+   aa23 %}	I
+   aaf9 @ -<
+   ace3 @|GZ
+   acf7 *|GR
+   ae77 <4BP
+   aeb3 P4B 
+   aecf 8|ux
+   af8f 8dc(
+   b01a cC$B
+   b04f -|E`
+   b291 `(-<
+   b67d ` -<
+   c3f1  (-<
+   c49d ` -<
+   c535 @(-f0
+   c606  -4B
+   c617 $4F 
+   c836 (-4c
+   cbb5 `(-<
+   cd5b +4U@
+   cdb1 @(-~
+   cfb5 @ -<
+   cfd5 @ -<
+   d019 @ -$
+   d0cb !|P8
+   d0e9 @ -$
+   d196 1B0B
+   d1c5 @ -$
+   d1f6 1B&1
+   d2ad @ -$
+   d60f -~r1
+   d699 @ -$
+   d719 @ -$
+   d7db x4B0
+   d7f9 @ -$
+   d803 x4B0
+   da48 cvm_ipfwd_cache_flow
+   da60 cvmx_pow_work_request_async
+   da80 cvmx_pow_work_request_async_nocheck
+   daa8 cvmx_pow_tag_sw_null_nocheck
+   dad0 Old Port configuration %d offset %d
+   daf8 New Port configuration %d offset %d
+   db20 BRCM New value is %d %d
+   db40 VALN New value is %d %d
+   db60 Unregistered the sysctl for hardware offload succeed 
+   db98 %c%c%c%c%c%c%c%c
+   dbb0 Register the sysctl for hardware offload failed 
+   dbe8 Register the sysctl for hardware offload succeed %d 
+   dc20 Register the sysctl for flow cache failed 
+   dc50 Register the sysctl for flow cache succeed 
+   dc80 Register the sysctl for brcm Tag failed 
+   dcb0 Register the sysctl for brcm Tag succeed 
+   dce0 Register the sysctl for vlan enabled failed 
+   dd10 Register the sysctl for vlan enabled succeed 
+   dd40 global cache allocation start %d
+   dd68 Ipforward global cache allocation sucessfull
+   dd98 Unable to allocate %ld bytes of memory for IP forwarding cache
+   ddd8 %02x:%02x:%02x:%02x:%02x:%02x
+   ddf8 :%02x
+   de00 %02x
+   de08 %c%c%c%c%c%c%c%c%c%c%c%c
+   de28 %02x%02x%02x%02x
+   de40 %02x%02x
+   de50 octeon_mac_address
+   de68 sn_code
+   de70 pin_code
+   de80 domain_code
+   de98 cavium-ethernet: %s
+   deb0 Cavium Networks Octeon SDK version 1.7.3, build 264
+   dee8 Warning: Enabling FPA when FPA already enabled.
+   df20 Pool %d size %d No %d
+   df38 Ethernet
+   df48 Registerd the sysctl for IMP port status
+   df78 Registerd the sysctl for 802.1x enabled port
+   dfa8 Registerd the sysctl for blocking non EAP packets status
+   dff0 	Configuring device for POW only access
+   e020 pow%d
+   e028 		Failed to register ethernet device for POW
+   e058 		%s: POW send group %d, receive group %d
+   e088 		Failed to allocate ethernet device for POW
+   e0b8 		Failed to allocate ethernet device for port %d
+   e0f0 port ko %d
+   e100 xaui%d
+   e108 loop%d
+   e110 eth%d
+   e118 spi%d
+   e120 		Failed to register ethernet device for interface %d, port %d
+   e160 cvmx_phys_to_ptr() passed a zero address
+   e190 ipfwd: Cannot free the flow cache because it was allocated with cvmx_bootmem_alloc()
+   e1e8 UnRegistered the sysctl for IMP port status
+   e218 UnRegistered the sysctl for 802.1x task IMP port
+   e250 imp_port_enable
+   e260 _8021x_enabled_port
+   e278 drop_non_eap_traffic
+   e290 hardware_offload_control
+   e2b0 offload_flush_cache
+   e2c8 offload_brcmtag_enabled
+   e2e0 offload_vlan_enabled
+   e2f8 ERROR: SMI write pending!
+   e318 ERROR: SMI read pending!(%d)
+   e338 Illegal ipd_port %d passed to INTERFACE
+   e368 MTU must be between %d and %d.
+   e388 cavium-ethernet
+   e398 Cavium Networks Octeon SDK version 1.7.3, build 264
+   e3d0 Builtin
+   e3d8 Warning: Freeing of pool %u had too many skbuffs (%d)
+   e410 Warning: Freeing of pool %u is missing %d skbuffs
+   e448 cvmx_ptr_to_phys() passed a NULL pointer
+   e478 Unable to allocate %u bytes for FPA pool %d
+   e4a8 octeon_ethernet_stats
+   e4c1 Octeon Port %d (%s)
+   e4d8 rx_packets:             %12lu	tx_packets:             %12lu
+   e518 rx_bytes:               %12lu	tx_bytes:               %12lu
+   e558 rx_errors:              %12lu	tx_errors:              %12lu
+   e598 rx_dropped:             %12lu	tx_dropped:             %12lu
+   e5d8 rx_length_errors:       %12lu	tx_aborted_errors:      %12lu
+   e618 rx_over_errors:         %12lu	tx_carrier_errors:      %12lu
+   e658 rx_crc_errors:          %12lu	tx_fifo_errors:         %12lu
+   e698 rx_frame_errors:        %12lu	tx_heartbeat_errors:    %12lu
+   e6d8 rx_fifo_errors:         %12lu	tx_window_errors:       %12lu
+   e718 rx_missed_errors:       %12lu	multicast:              %12lu
+   e759 Switch Port %d
+   e770 InGoodOctets:   %12llu	OutOctets:      %12llu	64 Octets:      %12llu
+   e7b8 InBadOctets:    %12llu	OutUnicast:     %12llu	65-127 Octets:  %12llu
+   e800 InUnicast:      %12llu	OutBroadcasts:  %12llu	128-255 Octets: %12llu
+   e848 InBroadcasts:   %12llu	OutMulticasts:  %12llu	256-511 Octets: %12llu
+   e890 InMulticasts:   %12llu	OutPause:       %12llu	512-1023 Octets:%12llu
+   e8d8 InPause:        %12llu	Excessive:      %12llu	1024-Max Octets:%12llu
+   e920 InUndersize:    %12llu	Collisions:     %12llu
+   e950 InFragments:    %12llu	Deferred:       %12llu
+   e980 InOversize:     %12llu	Single:         %12llu
+   e9b0 InJabber:       %12llu	Multiple:       %12llu
+   e9e0 In RxErr:       %12llu	OutFCSErr:      %12llu
+   ea10 InFCSErr:       %12llu	Late:           %12llu
+   ea40 Illegal ipd_port %d passed to INTERFACE
+   ea70 %s: Using 10Mbps with software preamble removal
+   eaa8 Full
+   eab0 Half
+   eab8 %s: %u Mbps %s duplex, port %2d, queue %2d
+   eae8 %s: %u Mbps %s duplex, port %2d, POW
+   eb10 %s: Link down
+   eb20 cvmx_phys_to_ptr() passed a zero address
+   eb50 cvmx_ptr_to_phys() passed a NULL pointer
+   eb80 ipfastfwd
+   eb90 %02X:%02X:%02X:%02X:%02X:%02X
+   ebb0 expired
+   ebc8 unknown
+   ebd0 id0=%d id1=%d id2=%d [proto=%d sport=%d saddr= %u.%u.%u.%u dport=%d daddr= %u.%u.%u.%u vlanId=%d] => [proto=%d sport=%d saddr= %u.%u.%u.%u dport=%d daddr= %u.%u.%u.%u vlanId=%d] created=%d status:%s ifname=%s src_mac:%s dst_mac:%s flow:%p entry: %p  bucket: %p index=%d lastused:%ld
+   ecf0 Flushed the flow cache
+   ed08 %s: Failed to allocate flow info buffer
+   ed38 %s called with tag switch in progress
+   ed60 WARNING: Tag switch is taking a long time, possible deadlock
+   eda0 cvmx_phys_to_ptr() passed a zero address
+   edd0 %s called with NULL_NULL tag
+   edf0 %s called when we already have a NULL tag
+   ee20 Port %d unknown preamble, packet dropped
+   ee50 cvmx_ptr_to_phys() passed a NULL pointer
+   ee80 eth0
+   ee88 Port %d failed to allocate skbuff, packet dropped
+   eec0 Port %d not controlled by Linux, packet dropped
+   eef8 Full
+   ef00 Half
+   ef08 %s: %u Mbps %s duplex, port %2d, queue %2d
+   ef38 %s: %u Mbps %s duplex, port %2d, POW
+   ef60 %s: Link down
+   ef70 Illegal ipd_port %d passed to INTERFACE
+   efa8 SPI1: SRX Spi4 interface down
+   efc8 SPI1: SRX Spi4 Calendar table parity error
+   eff8 SPI1: SRX Consecutive Spi4 DIP4 errors have exceeded SPX_ERR_CTL[ERRCNT]
+   f048 SPI1: SRX Spi4 DIP4 error
+   f068 SPI1: SRX Selected port has hit TPA overflow
+   f098 SPI1: SRX Spi4 reserved control word detected
+   f0c8 SPI1: SRX Spi4 receive FIFO drowning/overflow
+   f0f8 SPI1: SRX Spi4 packet closed on non-16B alignment without EOP
+   f138 SPI1: SRX Spi4 async FIFO overflow
+   f160 SPI1: SRX Abnormal packet termination (ERR bit)
+   f198 SPI1: SRX Port out of range
+   f1b8 SPI1: STX Interface encountered a fatal error
+   f1e8 SPI1: STX FRMCNT has exceeded STX_DIP_CNT[MAXFRM]
+   f220 SPI1: STX Unexpected framing sequence
+   f248 SPI1: STX ERRCNT has exceeded STX_DIP_CNT[MAXDIP]
+   f280 SPI1: STX DIP2 error on the Spi4 Status channel
+   f2b8 SPI1: STX Spi4 FIFO overflow error
+   f2e0 SPI1: STX Transmit packet burst too big
+   f310 SPI1: STX Calendar Table Parity Error Bank1
+   f340 SPI1: STX Calendar Table Parity Error Bank0
+   f370 SPI0: SRX Spi4 interface down
+   f390 SPI0: SRX Spi4 Calendar table parity error
+   f3c0 SPI0: SRX Consecutive Spi4 DIP4 errors have exceeded SPX_ERR_CTL[ERRCNT]
+   f410 SPI0: SRX Spi4 DIP4 error
+   f430 SPI0: SRX Selected port has hit TPA overflow
+   f460 SPI0: SRX Spi4 reserved control word detected
+   f490 SPI0: SRX Spi4 receive FIFO drowning/overflow
+   f4c0 SPI0: SRX Spi4 packet closed on non-16B alignment without EOP
+   f500 SPI0: SRX Spi4 async FIFO overflow
+   f528 SPI0: SRX Abnormal packet termination (ERR bit)
+   f560 SPI0: SRX Port out of range
+   f580 SPI0: STX Interface encountered a fatal error
+   f5b0 SPI0: STX FRMCNT has exceeded STX_DIP_CNT[MAXFRM]
+   f5e8 SPI0: STX Unexpected framing sequence
+   f610 SPI0: STX ERRCNT has exceeded STX_DIP_CNT[MAXDIP]
+   f648 SPI0: STX DIP2 error on the Spi4 Status channel
+   f680 SPI0: STX Spi4 FIFO overflow error
+   f6a8 SPI0: STX Transmit packet burst too big
+   f6d8 SPI0: STX Calendar Table Parity Error Bank1
+   f708 SPI0: STX Calendar Table Parity Error Bank0
+   f738 %s: Device not up
+   f750 eth0
+   f760 cvmx_phys_to_ptr() passed a zero address
+   f790 cvmx_ptr_to_phys() passed a NULL pointer
+   f7c0 %s: Failed to send the packet
+   f7e0 %s: Failed to allocate a work queue entry
+   f810 %s: Failed to allocate a packet buffer
+   f838 Unable to insert the tag
+   f858 Illegal ipd_port %d passed to INTERFACE
+   f888 description=Cavium Networks Octeon ethernet driver.
+   f8c0 author=Cavium Networks <support@caviumnetworks.com>
+   f8f8 license=GPL
+   f908 parm=ipfwd_driver_offload: Hardware offload Control
+   f940 parmtype=ipfwd_driver_offload:int
+   f968 parm=pow_send_list:
+   f97c 		Comma separated list of ethernet devices that should use the
+   f9bb 		POW for transmit instead of the actual ethernet hardware. This
+   f9fc 		is a per port version of always_use_pow. always_use_pow takes
+   fa3c 		precedence over this list. For example, setting this to
+   fa76 		"eth2,spi3,spi7" would cause these three devices to transmit
+   fab5 		using the pow_send_group.
+   fad8 parmtype=pow_send_list:string
+   faf8 parm=always_use_pow:
+   fb0d 		When set, always send to the pow group. This will cause
+   fb47 		packets sent to real ethernet devices to be sent to the
+   fb81 		POW group instead of the hardware. Unless some other
+   fbb8 		application changes the config, packets will still be
+   fbf0 		received from the low level hardware. Use this option
+   fc28 		to allow a CVMX app to intercept all packets from the
+   fc60 		linux kernel. You must specify pow_send_group along with
+   fc9b 		this option.
+   fcb0 parmtype=always_use_pow:int
+   fcd0 parm=pow_send_group:
+   fce5 		POW group to send packets to other software on. This
+   fd1c 		controls the creation of the virtual device pow0.
+   fd50 		always_use_pow also depends on this value.
+   fd80 parmtype=pow_send_group:int
+   fda0 parm=pow_receive_group:
+   fdb8 		POW group to receive packets from. All ethernet hardware
+   fdf3 		will be configured to send incomming packets to this POW
+   fe2e 		group. Also any other software can submit packets to this
+   fe6a 		group for the kernel to process.
+   fe90 parmtype=pow_receive_group:int
+   feb0 depends=
+   fec0 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+  10078 sysctlHwOffloadBrcmHandler
+  10098 sysctlHwOffloadVlanHandler
+  100b8 sysctlHwOffloadHandler
+  100d0 cvm_oct_free_work
+  100e8 cvm_oct_register_callback
+  10108 cvm_oct_mdio_write
+  10120 TF1_cvm_oct_mdio_read
+  10138 mii_phy_lock
+  10148 cvm_oct_mdio_write
+  10160 cvm_oct_mdio_read
+  10178 cvm_oct_transmit_qos
+  10ac0 ipfwd_driver_offload
+  10ad8 pow_send_list
+  10af8 always_use_pow
+  10b08 pow_send_group
+  10b18 pow_receive_group
+  10d98 cavium_ethernet
+  11081 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  110be GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  110fb GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  11138 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  11175 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  111b2 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  111ef GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  1122c GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  11269 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  112a6 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  112e3 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  11320 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  1135d GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+  1219d .symtab
+  121a5 .strtab
+  121ad .shstrtab
+  121b7 .MIPS.options
+  121c5 .rela.text
+  121d0 .rela.init.text
+  121e0 .rela.exit.text
+  121f0 .rela.rodata
+  121fd .rodata.str1.8
+  1220c .modinfo
+  12215 .rela__ksymtab
+  12224 .rela__param
+  12231 __ksymtab_strings
+  12243 .rela.data
+  1224e .rela.gnu.linkonce.this_module
+  1226d .bss
+  12272 .comment
+  1227b .rela.pdr
+  12285 .mdebug.abi64
+  13bd9 per_cpu__softnet_data
+  13bef cvmx_pko_shutdown
+  13c01 strcpy
+  13c08 free_irq
+  13c11 yield
+  13c17 cvm_ipfwd_setup_flow_info
+  13c31 mii_ethtool_sset
+  13c42 cvm_oct_xmit
+  13c4f imp_port_enable
+  13c5f isMarkable
+  13c6a cvmx_helper_get_interface_num
+  13c88 cvm_oct_proc_shutdown
+  13c9e cvmx_spi4000_check_speed
+  13cb7 __this_module
+  13cc5 memmove
+  13ccd param_get_string
+  13cde mii_link_ok
+  13cea snprintf
+  13cf3 always_use_pow
+  13d02 unregister_netdev
+  13d14 brcm_miiphy_write
+  13d26 cvm_oct_xmit_pow
+  13d37 cvm_oct_device
+  13d46 mips_hpt_frequency
+  13d59 cvm_gbl_ipfwd_cache
+  13d6d ethtool_op_get_tx_csum
+  13d84 offload_brcmtag_enabled
+  13d9c __printk_ratelimit
+  13daf cleanup_module
+  13dbe cvm_ipfwd_mark_packet
+  13dd4 memcpy
+  13ddb cvm_ipfwd_calculate_ip_header_checksum
+  13e02 kfree
+  13e08 cvm_oct_sgmii_init
+  13e1b seq_lseek
+  13e25 cvm_oct_mem_empty_fpa
+  13e3b init_timer
+  13e46 offload_vlan_enabled
+  13e5b tf1_fib_ct_refresh_hook
+  13e73 cvmx_helper_get_interface_index_num
+  13e97 cvm_oct_xaui_uninit
+  13eab param_set_copystring
+  13ec0 init_module
+  13ecc cvm_ipfwd_get_free_entry
+  13ee5 hwOffloadSysctlRegister
+  13efd create_proc_entry
+  13f0f is_port_authorised
+  13f22 eth_type_trans
+  13f31 cvmx_pko_disable
+  13f42 skb_under_panic
+  13f52 cvmx_helper_link_get
+  13f67 pow_send_group
+  13f76 cvm_ipfwd_ptr_free
+  13f89 kfree_skb
+  13f93 mangleCookieValue
+  13fa5 request_irq
+  13fb1 cvmx_helper_ports_on_interface
+  13fd0 cvm_oct_sgmii_uninit
+  13fe5 cvm_ipfwd_setup_entry
+  13ffb unregister_sysctl_table
+  14013 cvm_oct_do_interrupt
+  14028 __alloc_skb
+  14034 kmem_cache_alloc
+  14045 _8021x_enabled_port
+  14059 cvmx_helper_setup_red
+  1406f cvm_oct_rx_shutdown
+  14083 cvm_ipfwd_find_entry
+  14098 skb_queue_tail
+  140a7 skb_over_panic
+  140b6 cvm_oct_ioctl
+  140c4 tasklet_kill
+  140d1 brcmTagAdd
+  140dc dev_kfree_skb_any
+  140ee cvmx_helper_get_number_of_interfaces
+  14113 sysctlHwOffloadVlanHandler
+  1412e cvm_oct_fill_hw_memory
+  14145 cvmx_warn
+  1414f cvm_oct_tasklet_rx
+  14162 cvmx_helper_interface_get_mode
+  14181 cvmx_helper_get_ipd_port
+  1419a mod_timer
+  141a4 tasklet_init
+  141b1 allocateCacheMemory
+  141c5 cvm_ipfwd_check_timestamp_just_created
+  141ec strstr
+  141f3 cvm_oct_tx_shutdown
+  14207 global_register_lock
+  1421c strncmp
+  14224 mii_phy_lock
+  14231 netif_receive_skb
+  14243 ip_fastfwd_proc_tbl_init
+  1425c count_fail
+  14267 register_netdev
+  14277 udp_ct_conn_timeout
+  1428b cvm_ipfwd_check_timestamp
+  142a5 __tasklet_schedule
+  142b8 findInBlockList
+  142c8 cvm_oct_rgmii_init
+  142db panic
+  142e1 cvm_oct_xaui_init
+  142f3 memcmp
+  142fa printk
+  14301 brcmTagDelete
+  1430f mii_nway_restart
+  14320 pow_send_list
+  1432e proc_net
+  14337 cvm_oct_common_uninit
+  1434d memset
+  14354 cvm_oct_proc_initialize
+  1436c cvm_mac_sprintf
+  1437c cvm_oct_free_work
+  1438e strcmp
+  14395 cvm_ipfwd_ptr_alloc
+  143a9 hwOffloadSysctlUnregister
+  143c3 cvm_ipfwd_ct_refresh
+  143d8 jiffies
+  143e0 cvm_oct_mdio_write
+  143f3 cvm_oct_rgmii_uninit
+  14408 seq_read
+  14411 cvmx_bootmem_alloc
+  14424 cvm_oct_register_callback
+  1443e octeon_bootinfo
+  1444e cvm_oct_spi_uninit
+  14461 cvmx_helper_link_autoconf
+  1447b ipfwd_driver_offload
+  14490 cvm_ipfwd_check_bucket_timestamp
+  144b1 param_set_int
+  144bf cvmx_helper_initialize_packet_io_global
+  144e7 raise_softirq_irqoff
+  144fc cvm_ipfwd_random_select
+  14514 cvm_oct_mem_fill_fpa
+  14529 cvmx_spi_restart_interface
+  14544 remove_proc_entry
+  14556 flushFlowInfo
+  14564 netif_carrier_off
+  14576 seq_printf
+  14581 generic_mii_ioctl
+  14593 octeon_is_simulation
+  145a8 ethtool_op_get_sg
+  145ba cvmx_helper_board_get_mii_address
+  145dc cvm_ipfwd_cache_flow
+  145f1 cvmx_helper_ipd_and_packet_input_enable
+  14619 netif_carrier_on
+  1462a tcp_ct_conn_timeout
+  1463e cvm_oct_transmit_qos
+  14653 cvm_oct_spi_init
+  14664 proc_dointvec
+  14672 malloc_sizes
+  1467f cvm_oct_rx_initialize
+  14695 single_release
+  146a4 offload_flush_cache
+  146b8 sysctlHwOffloadBrcmHandler
+  146d3 cvm_oct_ethtool_ops
+  146e7 cvm_oct_mdio_setup_device
+  14701 cvm_oct_mem_fill_fpa_tf1
+  1471a seq_release_private
+  1472e seq_open
+  14737 drop_non_eap_traffic
+  1474c del_timer
+  14756 offloadPortConfig
+  14768 alloc_etherdev
+  14777 pow_receive_group
+  14789 param_get_int
+  14797 brcm_miiphy_read
+  147a8 single_open
+  147b4 register_sysctl_table
+  147ca cvm_ipfwd_ct_match_find
+  147e2 cvm_ipfwd_ptr_flush
+  147f6 __cvmx_cmd_queue_state_ptr
+  14811 TF1_cvm_oct_mdio_read
+  14827 __mod_timer
+  14833 __kmalloc
+  1483d mii_ethtool_gset
+  1484e sysctlHwOffloadHandler
+  14865 cvm_oct_common_init

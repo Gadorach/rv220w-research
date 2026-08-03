@@ -1,0 +1,37 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc0a564 function=FUN_ffffffffbfc0a564
+ffffffffbfc0a564	lui t1,0x4
+ffffffffbfc0a568	daddu t0,a0,zero
+ffffffffbfc0a56c	addu t1,t1,t9
+ffffffffbfc0a570	addiu t1,t1,-0x6e84
+ffffffffbfc0a574	lw v0,0x14(t1)
+ffffffffbfc0a578	lw v1,0x4830(v0)
+ffffffffbfc0a57c	ll a0,0x0(v1)
+ffffffffbfc0a580	bne a0,zero,0xffffffffbfc0a57c
+ffffffffbfc0a584	_li a0,0x1
+ffffffffbfc0a588	sc a0,0x0(v1)
+ffffffffbfc0a58c	beq a0,zero,0xffffffffbfc0a57c
+ffffffffbfc0a590	_nop
+ffffffffbfc0a594	lw a2,0x4830(v0)
+ffffffffbfc0a598	clear a1
+ffffffffbfc0a59c	b 0xffffffffbfc0a5cc
+ffffffffbfc0a5a0	_ld a0,0x8(a2)
+ffffffffbfc0a5a4	dinsu v1,a3,0x3f,0x1
+ffffffffbfc0a5a8	ld v0,0x0(v1)
+ffffffffbfc0a5ac	sltu v0,v0,t0
+ffffffffbfc0a5b0	bne v0,zero,0xffffffffbfc0a5c4
+ffffffffbfc0a5b4	_daddu v0,a0,zero
+ffffffffbfc0a5b8	ld v0,0x0(v1)
+ffffffffbfc0a5bc	daddu a1,a1,v0
+ffffffffbfc0a5c0	daddu v0,a0,zero
+ffffffffbfc0a5c4	dinsu v0,a3,0x3f,0x1
+ffffffffbfc0a5c8	ld a0,0x0(v0)
+ffffffffbfc0a5cc	li a3,-0x1
+ffffffffbfc0a5d0	bne a0,zero,0xffffffffbfc0a5a4
+ffffffffbfc0a5d4	_daddiu v1,a0,0x8
+ffffffffbfc0a5d8	sync 0x4
+ffffffffbfc0a5dc	sync 0x4
+ffffffffbfc0a5e0	sw zero,0x0(a2)
+ffffffffbfc0a5e4	sync 0x4
+ffffffffbfc0a5e8	sync 0x4
+ffffffffbfc0a5ec	jr ra
+ffffffffbfc0a5f0	_daddu v0,a1,zero

@@ -7,6 +7,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+HISTORY_DOCS = ROOT.parent / "docs" / "history" / "openwrt" / "toolkit-v1.10.3"
 SEED = ROOT / "config/openwrt-rv220w-rj45-initramfs.config"
 NETWORK = ROOT / "openwrt/files-rj45-full/etc/uci-defaults/98-rv220w-rj45-network"
 SERVICES = ROOT / "openwrt/files-rj45-full/etc/uci-defaults/99-rv220w-rj45-services"
@@ -14,7 +15,7 @@ STATUS = ROOT / "openwrt/files-rj45-full/usr/sbin/rv220w-rj45-status"
 BUILD = ROOT / "scripts/inner/build-openwrt.sh"
 OUTER = ROOT / "scripts/build-openwrt.fish"
 TFTP = ROOT / "scripts/tftp-boot.fish"
-DOC = ROOT / "docs/RV220W-V1.9.0-FULL-RJ45-CANDIDATE.md"
+DOC = HISTORY_DOCS / "RV220W-V1.9.3-FDT-VERIFY-API-HOTFIX.md"
 
 
 def fail(message: str) -> None:
@@ -96,6 +97,8 @@ for token in (
     "files/etc/uci-defaults/99-rv220w-validation",
     "verify_rj45_full_config()",
     "998-b53-enable-dt-cpu-ports.patch",
+    "999-octeon-production-dt-flash-cleanups.patch",
+    "cn5010_cisco_rv220w-production.dts.in",
     "openwrt-rv220w-rj45-initramfs.config",
     'build_dsa_dual rxid rgmii-rxid full-rj45',
     'stage_initramfs "rv220w-openwrt-rv220w-rj45-initramfs"',
@@ -112,7 +115,7 @@ tftp = TFTP.read_text(encoding="utf-8")
 for token in (
     "case rj45 rj45-full full-rj45",
     "rv220w-openwrt-rv220w-rj45-initramfs.elf",
-    "LAN DHCP, WAN DHCP/DHCPv6, firewall4 and NAT",
+    "LAN DHCP, WAN DHCP/DHCPv6, strict firewall4 isolation and NAT",
 ):
     if token not in tftp:
         fail(f"TFTP full-RJ45 support lacks token: {token}")
@@ -125,4 +128,4 @@ subprocess.run(["bash", "-n", str(BUILD)], check=True)
 if len(re.findall(r"^  rv220w-rj45-initramfs\)$", build, flags=re.M)) != 1:
     fail("full-RJ45 build mode dispatch is missing or duplicated")
 
-print("v1.9.0 full-RJ45 profile checks passed")
+print("v1.9.3 full-RJ45 profile checks passed")

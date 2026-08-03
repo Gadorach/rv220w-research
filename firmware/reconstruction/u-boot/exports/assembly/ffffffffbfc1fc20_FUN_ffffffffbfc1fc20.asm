@@ -1,0 +1,37 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc1fc20 function=FUN_ffffffffbfc1fc20
+ffffffffbfc1fc20	lui a2,0x2
+ffffffffbfc1fc24	li v0,-0x3
+ffffffffbfc1fc28	addu a2,a2,t9
+ffffffffbfc1fc2c	beq a0,v0,0xffffffffbfc1fc80
+ffffffffbfc1fc30	_addiu a2,a2,0x3ac0
+ffffffffbfc1fc34	slti v0,a0,-0x2
+ffffffffbfc1fc38	beq v0,zero,0xffffffffbfc1fc54
+ffffffffbfc1fc3c	_li v0,-0x2
+ffffffffbfc1fc40	li v0,-0x4
+ffffffffbfc1fc44	bne a0,v0,0xffffffffbfc1fca8
+ffffffffbfc1fc48	_clear v1
+ffffffffbfc1fc4c	b 0xffffffffbfc1fc90
+ffffffffbfc1fc50	_nop
+ffffffffbfc1fc54	beq a0,v0,0xffffffffbfc1fc74
+ffffffffbfc1fc58	_lw v0,0x14(a2)
+ffffffffbfc1fc5c	li v0,-0x1
+ffffffffbfc1fc60	bne a0,v0,0xffffffffbfc1fca4
+ffffffffbfc1fc64	_li v1,0x1
+ffffffffbfc1fc68	lw v0,0x14(a2)
+ffffffffbfc1fc6c	b 0xffffffffbfc1fca8
+ffffffffbfc1fc70	_sw a1,0x2910(v0)
+ffffffffbfc1fc74	li v1,0x1
+ffffffffbfc1fc78	b 0xffffffffbfc1fca8
+ffffffffbfc1fc7c	_sw a1,0x4f60(v0)
+ffffffffbfc1fc80	lw v0,0x14(a2)
+ffffffffbfc1fc84	li v1,0x1
+ffffffffbfc1fc88	b 0xffffffffbfc1fca8
+ffffffffbfc1fc8c	_sw a1,0x2914(v0)
+ffffffffbfc1fc90	bne a1,zero,0xffffffffbfc1fca4
+ffffffffbfc1fc94	_li v1,0x1
+ffffffffbfc1fc98	lw v0,0x14(a2)
+ffffffffbfc1fc9c	b 0xffffffffbfc1fca8
+ffffffffbfc1fca0	_sw zero,0x4f64(v0)
+ffffffffbfc1fca4	clear v1
+ffffffffbfc1fca8	jr ra
+ffffffffbfc1fcac	_daddu v0,v1,zero

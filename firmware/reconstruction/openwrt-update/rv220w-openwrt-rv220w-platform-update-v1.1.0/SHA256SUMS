@@ -1,0 +1,15 @@
+c22778dc2dfac2f1e9fe8d36f23582cb726b960c73317e6a2f40113123acd0ee  ./MANIFEST.json
+9dfb34a5b7241e82e5e6605deb516088bad9de45008b735eb380e4797075c01a  ./README.md
+bec71679b57fdf20cb676c8ab910359366bf0400b6e9ea8016bbb08cb4e742c5  ./artifacts/cn5010_cisco_rv220w.dtb
+1948941c4d547225a93bf2c284e9f2f66baeafaaa5a6f710e082ecda72ddeb93  ./artifacts/cn5010_cisco_rv220w.dtb.json
+c303d7e6843924720f31bb52dd8faf75ea689a7a9783610f90a04586e1bd1287  ./artifacts/cn5010_cisco_rv220w.dts
+cea3053f4da18b789f6471e8ff16c21fd1ddb4dd577076225a6a050325bd550f  ./docs/DT-EVIDENCE-MATRIX.md
+4b8c6006a7c943eb91dfa306e520d38bfec3234dcdc437895074bbbecbd856c1  ./docs/FIRST-BOOT-VALIDATION.md
+78be4bdf9e3abd484197a24aadc782816daffa4848afad86efb01480ff25e410  ./docs/U-BOOT-CONFIRMATIONS.md
+d080086b0074489753a7d24a8dd4a0f0027702afdd4efa7c0827e0b411639ecd  ./docs/VALIDATION.md
+484d72f0ee078a73fd9841e37895732dbe9f8d353fa8c56019d9eb3fd094687e  ./patches/openwrt-rv220w-platform-v1.1.0.patch
+62e84697b2f66819e6d2c1543ae9ce6662d8cdd4b5f63b300ee75ec21434c771  ./patches/promotion-toolkit-rv220w-v1.1.0.patch
+0401862623a425359ff23dedbc269fd8b6c3f28bf33d669421702ea4c6565a32  ./provenance/INPUTS.txt
+9981c433171d62bd4f965357010bf01bcf52ba6a6a6fb86ca24b19a308f9c4f7  ./scripts/apply-rv220w-platform-update.fish
+5aa56c48872155ba0c8358cd0333e6ea1b803ad86d69e4786e3c3f42d73f3d7b  ./scripts/build_precompiled_dtb.py
+f862c1a2d4688efe6e12926d0c37bec83c71a4d5033ba83487b26a178416e9dc  ./scripts/revert-rv220w-platform-update.fish

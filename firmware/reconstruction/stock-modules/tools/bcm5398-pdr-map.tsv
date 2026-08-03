@@ -1,0 +1,3 @@
+section	offset	name
+.exit.text	0x0	local_bcm5398_exit_text_000000
+.init.text	0x0	local_bcm5398_init_text_000000

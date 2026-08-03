@@ -1,0 +1,65 @@
+# rv220w-stock-modules-v1.0.0 module=cavium-ethernet entry=00104848 function=local_cavium_ethernet_text_004638
+00104848	daddiu sp,sp,-0x10
+0010484c	sd ra,0x0(sp)
+00104850	lw a1,0x560(a0)
+00104854	slti v0,a1,0x20
+00104858	beq v0,zero,0x001048d0
+0010485c	_daddiu a0,a0,0x560
+00104860	dext v0,a1,0x4,0x1
+00104864	dsll v1,v0,0x10
+00104868	lw a0,0x0(a0)
+0010486c	slti v0,a0,0x20
+00104870	beq v0,zero,0x0010487c
+00104874	_andi v0,a0,0x3
+00104878	andi v0,a0,0xf
+0010487c	lui a2,0xfff0
+00104880	andi a1,v0,0x3
+00104884	ori a2,a2,0x23
+00104888	daddu a1,a1,v1
+0010488c	dsll a0,a2,0x10
+00104890	dsll a1,a1,0xb
+00104894	ori a0,a0,0x1
+00104898	dsll32 a2,a2,0xb
+0010489c	dsll a0,a0,0x1b
+001048a0	ori a2,a2,0xf8
+001048a4	ori a0,a0,0x10
+001048a8	clear v0
+001048ac	daddu a1,a1,a0
+001048b0	ld v1,0x0(a1)
+001048b4	ori v1,v1,0x1
+001048b8	sd v1,0x0(a1)
+001048bc	ld ra,0x0(sp)
+001048c0	daddiu sp,sp,0x10
+001048c4	jr ra
+001048c8	_ld a0,0x0(a2)
+001048d0	slti v0,a1,0x24
+001048d4	beq v0,zero,0x001048f8
+001048d8	_slti v0,a1,0x28
+001048dc	lw a0,0x0(a0)
+001048e0	slti v0,a0,0x20
+001048e4	bne v0,zero,0x00104878
+001048e8	_clear v1
+001048ec	j 0x0010487c
+001048f0	_andi v0,a0,0x3
+001048f8	bne v0,zero,0x00104868
+001048fc	_lui v1,0x1
+00104900	li v0,0x28
+00104904	beq a1,v0,0x001048dc
+00104908	_nop
+0010490c	lui a0,0x0
+00104910	lui at,0x11
+00104914	daddiu a0,a0,0x0
+00104918	daddiu at,at,-0x1600
+0010491c	dsll32 a0,a0,0x0
+00104920	daddu a0,a0,at
+00104924	lui v0,0x0
+00104928	lui at,0x11
+0010492c	daddiu v0,v0,0x0
+00104930	daddiu at,at,0x21a0
+00104934	dsll32 v0,v0,0x0
+00104938	daddu v0,v0,at
+0010493c	jalr v0
+00104940	_nop
+00104944	nop
+00104948	nop
+0010494c	nop

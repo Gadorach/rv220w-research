@@ -1,0 +1,56 @@
+    26d  0-<
+    2be  -dB
+   18b8 <0>cleanup...
+   18c8 GPIO%02d %d
+   18d8 <1>read...
+   18e8 led module init...
+   1910 license=GPL
+   1920 depends=
+   1930 vermagic=2.6.21.7-Cavium-Octeon mod_unload OCTEON 64BIT 
+   1970 led_blink
+   1b98 scm_led
+   1e81 GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   1ebe GCC: (GNU) 4.1.2 (Cavium Networks Version: 1_6_0, build 34)
+   205d .symtab
+   2065 .strtab
+   206d .shstrtab
+   2077 .MIPS.options
+   2085 .rela.text
+   2090 .rela.exit.text
+   20a0 .rela.init.text
+   20b0 .rela.rodata
+   20bd .rodata.str1.8
+   20cc .rela__ksymtab
+   20db .modinfo
+   20e4 __ksymtab_strings
+   20f6 .rela.data
+   2101 .rela.gnu.linkonce.this_module
+   2120 .bss
+   2125 .comment
+   212e .rela.pdr
+   2138 .mdebug.abi64
+   2be1 __this_module
+   2bef led_blink
+   2bf9 cleanup_module
+   2c08 init_timer
+   2c13 init_waitqueue_head
+   2c27 proc_root
+   2c31 init_module
+   2c3d create_proc_entry
+   2c4f led_on
+   2c56 gpio_config_output
+   2c69 blink_wlan
+   2c74 printk
+   2c7b memset
+   2c82 gpio_config_input_sense
+   2c9a __copy_user
+   2ca6 jiffies
+   2cae sprintf
+   2cb6 led_off
+   2cbe __up
+   2cc3 cvmx_app_init_processor_id
+   2cde remove_proc_entry
+   2cf0 __down_interruptible
+   2d05 strlen
+   2d0c del_timer
+   2d16 __mod_timer

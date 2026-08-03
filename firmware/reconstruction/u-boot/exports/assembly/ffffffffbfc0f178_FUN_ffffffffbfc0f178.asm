@@ -1,0 +1,25 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc0f178 function=FUN_ffffffffbfc0f178
+ffffffffbfc0f178	lbu v1,0xa0c(a0)
+ffffffffbfc0f17c	sll a1,a1,0x2
+ffffffffbfc0f180	addu a1,a1,a0
+ffffffffbfc0f184	mul a0,a2,v1
+ffffffffbfc0f188	sll a3,v1,0x2
+ffffffffbfc0f18c	lw v0,0xc(a1)
+ffffffffbfc0f190	sll a1,v1,0x1
+ffffffffbfc0f194	addu a2,a0,v0
+ffffffffbfc0f198	addu v0,a1,a2
+ffffffffbfc0f19c	addu a0,a2,v1
+ffffffffbfc0f1a0	lbu v0,-0x1(v0)
+ffffffffbfc0f1a4	addu a1,a1,v1
+ffffffffbfc0f1a8	lbu a0,-0x1(a0)
+ffffffffbfc0f1ac	addu a1,a1,a2
+ffffffffbfc0f1b0	addu a3,a3,a2
+ffffffffbfc0f1b4	sll v0,v0,0x18
+ffffffffbfc0f1b8	lbu v1,-0x1(a3)
+ffffffffbfc0f1bc	sll a0,a0,0x10
+ffffffffbfc0f1c0	lbu a1,-0x1(a1)
+ffffffffbfc0f1c4	or v0,v0,a0
+ffffffffbfc0f1c8	sll v1,v1,0x8
+ffffffffbfc0f1cc	or v0,v0,a1
+ffffffffbfc0f1d0	jr ra
+ffffffffbfc0f1d4	_or v0,v1,v0

@@ -1,0 +1,19 @@
+{
+  "schema": "rv220w-bootoctlinux-helper-map-v1",
+  "handler": "0xffffffffbfc1d950",
+  "handler_size": 1860,
+  "helpers": [
+    {"address":"0xffffffffbfc13d10","role":"ELF validation/class detection","confidence":"high"},
+    {"address":"0xffffffffbfc13de8","role":"ELF64 section load/clear","confidence":"high"},
+    {"address":"0xffffffffbfc13f8c","role":"ELF32 section load/clear","confidence":"high"},
+    {"address":"0xffffffffbfc0acec","role":"bootmem allocation","confidence":"high"},
+    {"address":"0xffffffffbfc0ac08","role":"bootmem descriptor validation/access","confidence":"medium"},
+    {"address":"0xffffffffbfc03f70","role":"coremask validation/override","confidence":"high"},
+    {"address":"0xffffffffbfc03ea4","role":"requested core-count reduction","confidence":"high"},
+    {"address":"0xffffffffbfc04134","role":"per-core stack allocation","confidence":"high"},
+    {"address":"0xffffffffbfc04678","role":"boot descriptor and cvmx_bootinfo construction","confidence":"high"},
+    {"address":"0xffffffffbfc2bc94","role":"network shutdown before handoff","confidence":"high"}
+  ],
+  "next_scope": "single-core independent Linux ELF loader in RAM",
+  "hardware_tested": false
+}

@@ -1,0 +1,12 @@
+U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+
+CUST_RV200W board revision major:1, minor:0, serial #:
+OCTEON CN5010-SCP pass 1.1, Core clock: 400 MHz, DDR clock: 266 MHz (532 Mhz data rate)
+DRAM: 128 MB
+Flash: 32 MB
+*** Warning - bad CRC, using default environment
+
+rv200w# bootoct 0xbdc80000 forceboot
+Bootloader: Booting Octeon Executive application at 0xbdc80000, core mask: 0x1, stack size: 0x100000, heap size: 0x300000
+ERROR CREATING TLB MAPPING (read only)
+ERROR: Unable to properly load application

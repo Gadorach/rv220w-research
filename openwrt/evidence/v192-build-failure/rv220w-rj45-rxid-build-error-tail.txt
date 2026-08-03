@@ -1,0 +1,75 @@
+make[6]: *** [/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/Makefile:1959: .] Error 2
+make[5]: *** [Makefile:224: __sub-make] Error 2
+make[5]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94'
+make[4]: *** [Makefile:24: /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.modules] Error 2
+make[4]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux/octeon'
+make[3]: *** [Makefile:12: compile] Error 2
+make[3]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux'
+time: target/linux/compile#743.59#55.01#152.65
+    ERROR: target/linux failed to build.
+make[2]: *** [target/Makefile:32: target/linux/compile] Error 1
+make[2]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
+make[1]: *** [target/Makefile:25: /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/target-mips64_octeonplus_64_musl/stamp/.target_compile] Error 2
+make[1]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
+make: *** [/home/gadorach/src/rv220w-openwrt/sources/openwrt/include/toplevel.mk:233: world] Error 2
+Parallel build failed; rerunning serially with V=s for diagnostics.
+make[2]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/scripts/config'
+make[2]: 'conf' is up to date.
+make[2]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/scripts/config'
+make[1]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
+make[2]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
++ mkdir -p /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/target-mips64_octeonplus_64_musl
++ cd /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/target-mips64_octeonplus_64_musl
++ mkdir -p bin lib stamp usr/include usr/lib
+mkdir -p /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/stamp
+touch /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/target-mips64_octeonplus_64_musl/.prepared
+make[3]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux'
+make[4]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux/octeon'
+rm -f /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/localversion
+/home/gadorach/src/rv220w-openwrt/sources/openwrt/scripts/kconfig.pl  + /home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux/generic/config-6.12 /home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux/octeon/config-6.12 > /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target
+awk '/^(#[[:space:]]+)?CONFIG_KERNEL/{sub("CONFIG_KERNEL_","CONFIG_");print}' /home/gadorach/src/rv220w-openwrt/sources/openwrt/.config >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target
+echo "# CONFIG_KALLSYMS_EXTRA_PASS is not set" >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target
+echo "# CONFIG_KALLSYMS_ALL is not set" >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target
+echo "CONFIG_KALLSYMS_UNCOMPRESSED=y" >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target
+/home/gadorach/src/rv220w-openwrt/sources/openwrt/scripts/package-metadata.pl kconfig /home/gadorach/src/rv220w-openwrt/sources/openwrt/tmp/.packageinfo /home/gadorach/src/rv220w-openwrt/sources/openwrt/.config 6.12 > /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.override
+/home/gadorach/src/rv220w-openwrt/sources/openwrt/scripts/kconfig.pl 'm+' '+' /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.target /dev/null /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.override > /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set
+mv /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.old
+grep -v INITRAMFS /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.old > /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set
+echo 'CONFIG_INITRAMFS_SOURCE=""' >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set
+echo '# CONFIG_INITRAMFS_FORCE is not set' >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set
+echo "# CONFIG_INITRAMFS_PRESERVE_MTIME is not set" >> /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set
+rm -rf /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/modules
+cmp -s /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.prev || { cp /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config; cp /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.prev; }
+export MAKEFLAGS= ; [ -d /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/user_headers ] || make -C /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94 KCFLAGS="-fmacro-prefix-map=/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl=target-mips64_octeonplus_64_musl -fno-caller-saves " HOSTCFLAGS="-O2 -I/home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/host/include -Wall -Wmissing-prototypes -Wstrict-prototypes" CROSS_COMPILE="mips64-openwrt-linux-musl-" ARCH="mips" KBUILD_HAVE_NLS=no KBUILD_BUILD_USER="" KBUILD_BUILD_HOST="" KBUILD_BUILD_TIMESTAMP="Mon Jun 29 12:59:20 2026" KBUILD_BUILD_VERSION="0" KBUILD_HOSTLDFLAGS="-L/home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/host/lib" CONFIG_SHELL="bash" V=''  cmd_syscalls=  CC="mips64-openwrt-linux-musl-gcc" KERNELRELEASE=6.12.94  INSTALL_HDR_PATH=/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/user_headers headers_install
+grep '=[ym]' /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.config.set | LC_ALL=C sort | /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/host/bin/mkhash md5 > /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.vermagic
+touch /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.configured
+rm -f /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/vmlinux /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/System.map
+make -C /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94 KCFLAGS="-fmacro-prefix-map=/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl=target-mips64_octeonplus_64_musl -fno-caller-saves " HOSTCFLAGS="-O2 -I/home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/host/include -Wall -Wmissing-prototypes -Wstrict-prototypes" CROSS_COMPILE="mips64-openwrt-linux-musl-" ARCH="mips" KBUILD_HAVE_NLS=no KBUILD_BUILD_USER="" KBUILD_BUILD_HOST="" KBUILD_BUILD_TIMESTAMP="Mon Jun 29 12:59:20 2026" KBUILD_BUILD_VERSION="0" KBUILD_HOSTLDFLAGS="-L/home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/host/lib" CONFIG_SHELL="bash" V=''  cmd_syscalls=  CC="mips64-openwrt-linux-musl-gcc" KERNELRELEASE=6.12.94 all modules
+make[5]: Entering directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94'
+  CC      arch/mips/cavium-octeon/setup.o
+arch/mips/cavium-octeon/setup.c: In function 'device_tree_init':
+arch/mips/cavium-octeon/setup.c:1218:14: error: too few arguments to function 'early_init_dt_verify'
+ 1218 |         if (!early_init_dt_verify(initial_boot_params))
+      |              ^~~~~~~~~~~~~~~~~~~~
+In file included from arch/mips/cavium-octeon/setup.c:29:
+./include/linux/of_fdt.h:75:13: note: declared here
+   75 | extern bool early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys);
+      |             ^~~~~~~~~~~~~~~~~~~~
+make[9]: *** [scripts/Makefile.build:229: arch/mips/cavium-octeon/setup.o] Error 1
+make[8]: *** [scripts/Makefile.build:466: arch/mips/cavium-octeon] Error 2
+make[7]: *** [scripts/Makefile.build:466: arch/mips] Error 2
+make[6]: *** [/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/Makefile:1959: .] Error 2
+make[5]: *** [Makefile:224: __sub-make] Error 2
+make[5]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94'
+make[4]: *** [Makefile:24: /home/gadorach/src/rv220w-openwrt/sources/openwrt/build_dir/target-mips64_octeonplus_64_musl/linux-octeon_generic/linux-6.12.94/.modules] Error 2
+make[4]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux/octeon'
+make[3]: *** [Makefile:12: compile] Error 2
+make[3]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt/target/linux'
+time: target/linux/compile#1.14#0.41#1.70
+    ERROR: target/linux failed to build.
+make[2]: *** [target/Makefile:32: target/linux/compile] Error 1
+make[2]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
+make[1]: *** [target/Makefile:25: /home/gadorach/src/rv220w-openwrt/sources/openwrt/staging_dir/target-mips64_octeonplus_64_musl/stamp/.target_compile] Error 2
+make[1]: Leaving directory '/home/gadorach/src/rv220w-openwrt/sources/openwrt'
+make: *** [/home/gadorach/src/rv220w-openwrt/sources/openwrt/include/toplevel.mk:233: world] Error 2
+[rv220w:error] OpenWrt build mode 'rv220w-rj45-initramfs' failed

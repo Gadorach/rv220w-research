@@ -1,0 +1,19 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc1f7a4 function=FUN_ffffffffbfc1f7a4
+ffffffffbfc1f7a4	addiu sp,sp,-0x130
+ffffffffbfc1f7a8	daddu a2,a1,zero
+ffffffffbfc1f7ac	sd gp,0x120(sp)
+ffffffffbfc1f7b0	lui gp,0x2
+ffffffffbfc1f7b4	addu gp,gp,t9
+ffffffffbfc1f7b8	daddu a1,a0,zero
+ffffffffbfc1f7bc	addiu gp,gp,0x3f3c
+ffffffffbfc1f7c0	lw t9,0x920(gp)
+ffffffffbfc1f7c4	sd ra,0x128(sp)
+ffffffffbfc1f7c8	jalr t9
+ffffffffbfc1f7cc	_daddu a0,sp,zero
+ffffffffbfc1f7d0	lw t9,0x758(gp)
+ffffffffbfc1f7d4	jalr t9
+ffffffffbfc1f7d8	_daddu a0,sp,zero
+ffffffffbfc1f7dc	ld ra,0x128(sp)
+ffffffffbfc1f7e0	ld gp,0x120(sp)
+ffffffffbfc1f7e4	jr ra
+ffffffffbfc1f7e8	_addiu sp,sp,0x130

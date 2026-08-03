@@ -1,0 +1,28 @@
+RV220W platform update evidence inputs
+======================================
+
+Full preserved NOR dump SHA-256:
+03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5
+
+Extracted 512 KiB boot-chain SHA-256:
+0630714e3e86edfeeed064088266c59524d970e0b74780e903b68b45e8982e7d
+
+Extracted 0x50000-byte U-Boot region SHA-256:
+1b68453e055dee56a8724b17a927df36ff201a44c8e450c5d17a3b8e9117000d
+
+U-Boot Ghidra analysis:
+- language: MIPS:BE:64:default
+- boot-chain image base: 0xffffffffbfc00000
+- U-Boot region link address: 0xffffffffbfc30000
+- recovered _gp: 0xffffffffbfc436e0
+- functions: 737
+- successful decompilations: 737
+- failures: 0
+- recovered command records: 58
+
+Stock module Ghidra analysis:
+- bcm5398.ko
+- mii.ko
+- cavium-ethernet.ko
+- scm-led.ko
+- push_button.ko

@@ -19,11 +19,13 @@ if test (count $argv) -eq 0
         '  collect-snapshot   Retrieve a read-only discovery snapshot over SSH' \
         '  collect-mdio       Run/retrieve a read-only MDIO scan over UART (SSH optional)' \
         '  collect-b53        Run/retrieve a passive B53 topology snapshot over UART' \
-        '  collect-conduit    Collect paired DSA and raw B53 conduit-state snapshots' \
+        '  collect-conduit    Collect DSA plus optional raw B53 conduit-state snapshots' \
+        '  collect-rj45       Collect production-safe RJ45 status without raw MDIO' \
         '  compare-b53        Compare two B53 snapshots, focused on ports 0/5/8' \
         '  b53-eap            Read/change BCM53115 standalone-port EAP mode over UART' \
         '  b53-vlan           Read/change BCM53115 VLAN/PVID diagnostic state over UART' \
         '  collect-dsa        Retrieve a DSA validation snapshot over UART' \
+        '  nor-stage          Back up/write/verify the guarded 22 MiB NOR OpenWrt slot' \
         '  verify             Verify generated artifacts and manifests'
     exit 2
 end
@@ -60,6 +62,8 @@ switch $action
         exec "$root/scripts/collect-b53.fish" $argv
     case collect-conduit
         exec "$root/scripts/collect-conduit.fish" $argv
+    case collect-rj45
+        exec "$root/scripts/collect-rj45.fish" $argv
     case compare-b53
         exec "$root/scripts/compare-b53.fish" $argv
     case b53-eap
@@ -68,6 +72,8 @@ switch $action
         exec "$root/scripts/b53-vlan.fish" $argv
     case collect-dsa
         exec "$root/scripts/collect-dsa.fish" $argv
+    case nor-stage
+        exec "$root/scripts/nor-stage.fish" $argv
     case verify
         exec "$root/scripts/verify-artifacts.fish" $argv
     case '*'

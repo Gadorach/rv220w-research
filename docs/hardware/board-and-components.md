@@ -51,3 +51,8 @@ Trace and observe:
 - BCM53115 reset,
 - Mini PCI reset,
 - J2 candidate `SRST_N` and `TRST_N`.
+
+## Trace-level notes
+
+Current continuity and BootBus latch observations are retained in
+[`../../hardware/measurements/netlist-and-continuity-notes.md`](../../hardware/measurements/netlist-and-continuity-notes.md).

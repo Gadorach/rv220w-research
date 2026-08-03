@@ -1,14 +1,22 @@
 {
   "name": "rv220w-research",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "organized_from": "rv220w-research(1).7z",
-  "snapshot_date": "2026-07-27",
+  "snapshot_date": "2026-08-02",
   "product": "Cisco RV220W Wireless-N Network Security Firewall",
   "pcb_revision": "YK910A-1.6",
   "full_flash_size": 33554432,
   "full_flash_crc32": "ce96f3e0",
   "full_flash_sha256": "03a21d769306feaf3d09ed41749786b5e24caa9c6feb62e6fdf1230e5d324cc5",
   "stock_firmware": "1.0.4.17",
-  "status": "hardware-proven OpenWrt TFTP RAM boot with all five RJ45 ports operational; no LuCI, WLAN, or persistent flash attempt",
-  "openwrt_toolkit_version": "1.9.0"
+  "status": "hardware-proven persistent LuCI OpenWrt initramfs in NOR with all five RJ45 ports; automatic boot through validated combined boot-policy patch; Wi-Fi and persistent overlay incomplete",
+  "openwrt_toolkit_version": "1.10.3",
+  "bootchain_reconstruction_version": "1.4.0-r1",
+  "bootchain_combined_sector0_crc32": "b77a94de",
+  "persistent_openwrt_slot_offset": "0x00080000",
+  "persistent_openwrt_slot_size": 23068672,
+  "current_luci_elf_size": 18179536,
+  "current_luci_elf_copy_length_hex": "0x11565d0",
+  "runtime_configuration_persistent": false,
+  "wifi_supported": false
 }

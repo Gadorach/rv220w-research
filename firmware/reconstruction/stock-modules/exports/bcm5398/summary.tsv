@@ -1,0 +1,9 @@
+key	value
+module	bcm5398
+analysis_version	rv220w-stock-modules-v1.0.0
+program	bcm5398.ko
+processor	MIPS:BE:64:64-32addr
+function_count	25
+decompile_success	25
+decompile_failure	0
+external_count	0

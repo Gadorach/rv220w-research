@@ -6,7 +6,8 @@ argparse \
     't/timeout=' \
     'o/output-dir=' \
     'b/bus=' \
-    'f/force-upload' -- $argv; or exit 2
+    'f/force-upload' \
+    'r/require-b53' -- $argv; or exit 2
 set -l label conduit
 if test (count $argv) -ge 1
     set label $argv[1]
@@ -31,4 +32,16 @@ if set -q _flag_output_dir
 end
 rv_info "Collecting raw BCM53115 state for conduit label '$label'"
 command $b53_cmd
-or rv_die 'B53 half of conduit-state collection failed.'
+set -l b53_status $status
+switch $b53_status
+    case 0
+        rv_info 'Paired DSA and raw B53 collection completed.'
+    case 3
+        if set -q _flag_require_b53
+            rv_die 'Raw B53 collection is unavailable and --require-b53 was requested.'
+        end
+        rv_warn 'Raw B53 collection skipped: the running production image excludes mdio-tools/mdio-netlink diagnostics.'
+        printf '%s\n' 'b53_collection=skipped' 'reason=production image excludes mdio diagnostics'
+    case '*'
+        rv_die 'B53 half of conduit-state collection failed for a reason other than unavailable production diagnostics.'
+end

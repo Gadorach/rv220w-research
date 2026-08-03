@@ -1,0 +1,47 @@
+# rv220w-stock-modules-v1.0.0 module=cavium-ethernet entry=001030f0 function=local_cavium_ethernet_text_002ee0
+001030f0	lui v0,0xfff0
+001030f4	clear t0
+001030f8	ori v0,v0,0x23
+001030fc	clear v1
+00103100	dsll32 v0,v0,0xb
+00103104	daddiu sp,sp,-0x20
+00103108	sd s1,0x8(sp)
+0010310c	ori a0,v0,0x1808
+00103110	sd s0,0x0(sp)
+00103114	dins v1,a1,0x8,0x5
+00103118	sd ra,0x18(sp)
+0010311c	dins t0,a3,0x0,0x10
+00103120	sd s2,0x10(sp)
+00103124	dins v1,a2,0x0,0x5
+00103128	sd t0,0x0(a0)
+0010312c	ori a1,v0,0x1800
+00103130	ori v0,v0,0xf8
+00103134	daddu s0,a0,zero
+00103138	ld a2,0x0(v0)
+0010313c	lui s1,0x0
+00103140	lui at,0x11
+00103144	daddiu s1,s1,0x0
+00103148	daddiu at,at,0x2020
+0010314c	dsll32 s1,s1,0x0
+00103150	daddu s1,s1,at
+00103154	sd v1,0x0(a1)
+00103158	ld v1,0x0(v0)
+0010315c	j 0x00103178
+00103160	_lw v0,0x24(gp)
+00103168	ld t0,0x0(s0)
+0010316c	lwc2 s1,0xa(t0)
+00103170	ld ra,0x18(sp)
+00103174	lw v0,0x24(gp)
+00103178	dext v0,v0,0x8,0x14
+0010317c	bne v0,zero,0x00103168
+00103180	_nop
+00103184	jalr s1
+00103188	_nop
+0010318c	ld t0,0x0(s0)
+00103190	swc2 hint17,-0x8(t0)
+00103194	ld ra,0x18(sp)
+00103198	ld s2,0x10(sp)
+0010319c	ld s1,0x8(sp)
+001031a0	ld s0,0x0(sp)
+001031a4	jr ra
+001031a8	_daddiu sp,sp,0x20

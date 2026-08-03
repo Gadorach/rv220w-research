@@ -1,41 +1,40 @@
 # Platform overview
 
-## Goal
-
-Preserve and understand the Cisco RV220W well enough to recover the original firmware, boot modern Linux safely from RAM, and develop maintainable OpenWrt support without risking the stock boot chain.
-
-## Confirmed platform
+## Platform
 
 - Cisco RV220W-A V01, PCB `YK910A-1.6`.
 - Cavium OCTEON Plus CN5010-SCP pass 1.1, one active core at 400 MHz.
 - 128 MiB DDR2.
-- 32 MiB x16 CFI NOR at U-Boot address `0xbdc00000`.
-- Broadcom BCM53115 five-port Gigabit switch.
-- Broadcom BCM4322 Mini PCI WLAN module, PCI ID `14e4:432b`.
-- U-Boot 1.1.1 development build, revision `193M`.
-- Stock Linux 2.6.21.7-Cavium-Octeon, big-endian MIPS64.
-- JP1 primary UART at 115200 8N1.
+- 32 MiB x16 CFI parallel NOR at `0xbdc00000`.
+- Broadcom BCM53115 Gigabit switch.
+- Broadcom BCM4322 Mini PCI WLAN, PCI ID `14e4:432b`.
+- U-Boot 1.1.1 development build revision `193M`.
+- JP1 UART at 115200 8N1.
 
-## Current modern OpenWrt result
+## Current OpenWrt architecture
 
-A modern OpenWrt initramfs image now boots completely through the stock U-Boot TFTP path and runs entirely from RAM. The current `rj45-full` profile initializes all five RJ45 ports using upstream-style B53/DSA support plus focused Octeon and B53 patches.
+OpenWrt 25.12.5 with Linux 6.12.94 is stored as an ELF in the 22 MiB
+`openwrt-slot` beginning at NOR offset `0x00080000`. U-Boot cannot execute this
+Linux ELF directly in place with `bootoct`; it copies the exact ELF byte count
+to RAM at `0x05500000` and launches it with `bootoctlinux`.
 
-The wired topology is hardware-proven as:
+The combined boot-policy patch is a prerequisite for automatic boot. It stops
+the vendor late-init routine from replacing the saved `bootcmd` and skips only
+the invalid-proprietary-image HTTP recovery branch. Physical-button Sercomm
+recovery remains functional.
+
+## Wired topology
 
 ```text
-LAN1-LAN4 -> switch ports 1-4 -> CPU port 8 -> eth0 -> br-lan
-WAN        -> switch port 0   -> CPU port 5 -> eth1 -> wan
+LAN1-LAN4 -> switch ports 1-4 -> CPU port 8 -> Octeon eth0 -> br-lan
+WAN        -> switch port 0   -> CPU port 5 -> Octeon eth1 -> wan
 ```
 
-No persistent flash installation has been attempted. LuCI is not included, and the BCM4322 radio is not yet operational.
+Both CPU links use `rgmii-rxid`. LuCI is LAN-only at
+`http://192.168.240.2/` in the current profile.
 
-## Evidence vocabulary
+## Persistence boundary
 
-- **Observed:** directly photographed, measured, or captured.
-- **Hardware-proven:** reproduced on the physical RV220W through live boot or traffic testing.
-- **Inferred:** the best current explanation, but not yet directly validated.
-- **Unknown:** insufficient evidence.
-
-## Preservation rule
-
-The stock boot chain and full verified flash image remain the recovery baseline. Until a separate persistent-installation project is qualified, all OpenWrt work must continue through RAM-only TFTP boot with no `saveenv`, erase, copy-to-NOR, or Linux MTD write operation.
+The firmware ELF is persistent in NOR, but it is an initramfs image. Runtime
+configuration is volatile and returns to image defaults at every boot. A
+persistent writable overlay and supported sysupgrade format remain future work.

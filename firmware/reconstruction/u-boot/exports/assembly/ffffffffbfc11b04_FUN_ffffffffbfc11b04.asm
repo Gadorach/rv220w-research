@@ -1,0 +1,55 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc11b04 function=FUN_ffffffffbfc11b04
+ffffffffbfc11b04	addiu sp,sp,-0x10
+ffffffffbfc11b08	sd gp,0x0(sp)
+ffffffffbfc11b0c	lui gp,0x3
+ffffffffbfc11b10	sd ra,0x8(sp)
+ffffffffbfc11b14	addu gp,gp,t9
+ffffffffbfc11b18	beq a0,zero,0xffffffffbfc11b2c
+ffffffffbfc11b1c	_addiu gp,gp,0x1bdc
+ffffffffbfc11b20	lw t2,0x110(a0)
+ffffffffbfc11b24	b 0xffffffffbfc11b8c
+ffffffffbfc11b28	_clear t1
+ffffffffbfc11b2c	lw a0,0x14(gp)
+ffffffffbfc11b30	lw a1,0x14(gp)
+ffffffffbfc11b34	lw t9,0x92c(gp)
+ffffffffbfc11b38	addiu a0,a0,-0x53f8
+ffffffffbfc11b3c	b 0xffffffffbfc11bbc
+ffffffffbfc11b40	_addiu a1,a1,-0x5448
+ffffffffbfc11b44	addu v1,a0,v0
+ffffffffbfc11b48	addiu a3,v1,0x4
+ffffffffbfc11b4c	lw v0,0xc(a3)
+ffffffffbfc11b50	xor v0,a2,v0
+ffffffffbfc11b54	swc2 load,0xd(v0)
+ffffffffbfc11b58	nop
+ffffffffbfc11b5c	lw v0,0x4(a3)
+ffffffffbfc11b60	lw v1,0x4(v1)
+ffffffffbfc11b64	subu v0,a1,v0
+ffffffffbfc11b68	addu t0,v0,v1
+ffffffffbfc11b6c	sltu v0,t0,v1
+ffffffffbfc11b70	bne v0,zero,0xffffffffbfc11b8c
+ffffffffbfc11b74	_nop
+ffffffffbfc11b78	lw v0,0x8(a3)
+ffffffffbfc11b7c	addu v0,v1,v0
+ffffffffbfc11b80	sltu v0,t0,v0
+ffffffffbfc11b84	bne v0,zero,0xffffffffbfc11bcc
+ffffffffbfc11b88	_ld ra,0x8(sp)
+ffffffffbfc11b8c	sll v1,t1,0x5
+ffffffffbfc11b90	sll v0,t1,0x2
+ffffffffbfc11b94	addu v0,v0,v1
+ffffffffbfc11b98	slt v1,t1,t2
+ffffffffbfc11b9c	addiu v0,v0,0x10
+ffffffffbfc11ba0	bne v1,zero,0xffffffffbfc11b44
+ffffffffbfc11ba4	_addiu t1,t1,0x1
+ffffffffbfc11ba8	lw a0,0x14(gp)
+ffffffffbfc11bac	lw a1,0x14(gp)
+ffffffffbfc11bb0	lw t9,0x92c(gp)
+ffffffffbfc11bb4	addiu a0,a0,-0x53f8
+ffffffffbfc11bb8	addiu a1,a1,-0x53d8
+ffffffffbfc11bbc	jalr t9
+ffffffffbfc11bc0	_nop
+ffffffffbfc11bc4	clear t0
+ffffffffbfc11bc8	ld ra,0x8(sp)
+ffffffffbfc11bcc	daddu v0,t0,zero
+ffffffffbfc11bd0	ld gp,0x0(sp)
+ffffffffbfc11bd4	jr ra
+ffffffffbfc11bd8	_addiu sp,sp,0x10

@@ -1,11 +1,12 @@
 # OpenWrt documentation
 
-The current implementation lives under [`../../openwrt/`](../../openwrt/). These repository-level pages summarize the proven state without duplicating every version-specific implementation note.
+The integrated implementation is under [`../../openwrt/`](../../openwrt/).
 
-- [`current-status.md`](current-status.md) — current features and limitations.
-- [`promotion-plan.md`](promotion-plan.md) — completed stages and future gates.
-- [`cachyos-distrobox-build.md`](cachyos-distrobox-build.md) — supported build workflow.
-- [`tftp-live-boot.md`](tftp-live-boot.md) — proven RAM-boot procedure.
-- [`squashfs-live-design.md`](squashfs-live-design.md) — retained RAM-only SquashFS design and its current qualification state.
+- [`current-status.md`](current-status.md) — hardware-proven behavior and limitations.
+- [`installation.md`](installation.md) — required boot-chain patch, NOR write, and environment order.
+- [`build-and-ramboot.md`](build-and-ramboot.md) — supported CachyOS/Distrobox build and TFTP recovery path.
+- [`flash-layout-and-images.md`](flash-layout-and-images.md) — current MTD policy and image format.
+- [`remaining-work.md`](remaining-work.md) — unfinished platform work only.
 
-Detailed code-level evidence is indexed in [`../../openwrt/docs/README.md`](../../openwrt/docs/README.md).
+Versioned plans, failed attempts, stage notes, and prior workflow documents are
+kept under [`../history/openwrt/`](../history/openwrt/).

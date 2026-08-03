@@ -1,0 +1,17 @@
+RV220W combined boot-policy patch flasher v1.0.0
+Offline artifact verification: PASS
+Target: combined
+Source identity: /mnt/data/rv220w-combined-boot-policy-patch-flasher-v1.0.0/artifacts/rv220w-boot-sector0-combined.bin
+Flash write range: 0xbdc00000-0xbdc1ffff
+Erase/program size: 0x20000 (131072 bytes)
+Combined target changes:
+  0x13138: 04 41 00 03 -> 10 00 00 03 (skip invalid-magic HTTP recovery)
+  0x13168: 03 20 00 08 -> 03 e0 00 08 (do not overwrite bootcmd)
+Physical active-low recovery-button download path is not modified.
+No environment save and no automatic reset will occur.
+
+Dry run only. Hardware was not contacted.
+To test the complete non-destructive staging path, use:
+  --stage-only
+To execute the flash operation, use:
+  --execute --external-recovery-ready --confirm RV220W_FLASH_COMBINED_BOOT_POLICY_PATCHES

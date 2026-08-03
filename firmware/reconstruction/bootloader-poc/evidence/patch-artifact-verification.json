@@ -1,0 +1,68 @@
+{
+  "schema": "rv220w-patch-artifact-verification-v2",
+  "hardware_written": true,
+  "artifacts": [
+    {
+      "file": "rv220w-boot-chain-no-force-bootcmd.bin",
+      "size": 524288,
+      "sha256": "c23dfa057e58fe4b075eb82e0f410b57f39a0436e5c87c5817eade1ef03f8972",
+      "changed_byte_count": 1,
+      "first_changed_offset": 78185,
+      "last_changed_offset": 78185,
+      "changed_offsets_exact": [
+        78185
+      ],
+      "manifest": "rv220w-boot-chain-no-force-bootcmd.bin.json",
+      "hardware_status": "written and validated as intermediate bootcmd-only state",
+      "sector0_crc32": "36db247b"
+    },
+    {
+      "file": "rv220w-boot-chain-no-force-with-recovery-bypass.bin",
+      "size": 524288,
+      "sha256": "df830b85dffa1de0eab2e85d754fc451fbd344c0cfc248e4d0f29df7f12c9186",
+      "changed_byte_count": 3,
+      "first_changed_offset": 78136,
+      "last_changed_offset": 78185,
+      "changed_offsets_exact": [
+        78136,
+        78137,
+        78185
+      ],
+      "manifest": "rv220w-boot-chain-no-force-with-recovery-bypass.bin.json",
+      "hardware_status": "written and validated as final combined state",
+      "sector0_crc32": "b77a94de"
+    },
+    {
+      "file": "rv220w-boot-chain-openwrt-policy-poc.bin",
+      "size": 524288,
+      "sha256": "acac5b4583a55e87a40201b2ad815e6a2b4b9257ca3dd048ca1a3483a342d492",
+      "changed_byte_count": 134,
+      "first_changed_offset": 78136,
+      "last_changed_offset": 222280,
+      "changed_offsets_exact": null,
+      "manifest": "rv220w-boot-chain-openwrt-policy-poc.bin.json",
+      "hardware_status": "not written as a complete artifact"
+    },
+    {
+      "file": "rv220w-u-boot-redirect-openwrt-env.bin",
+      "size": 327680,
+      "sha256": "53a3ac86ab465cab999adc465f553ac2e25fc3b38077dbd00d12d08eae114e41",
+      "changed_byte_count": 153,
+      "first_changed_offset": 25520,
+      "last_changed_offset": 25672,
+      "changed_offsets_exact": null,
+      "manifest": "rv220w-u-boot-redirect-openwrt-env.bin.json",
+      "hardware_status": "not written as a complete artifact"
+    }
+  ],
+  "hardware_validation_date": "2026-08-02",
+  "hardware_validated_artifact": "rv220w-boot-chain-no-force-with-recovery-bypass.bin",
+  "validated_sector0": {
+    "size": 131072,
+    "crc32": "b77a94de",
+    "http_branch": "10000003",
+    "bootcmd_word": "03e00008",
+    "full_compare_passed": true,
+    "sector_reprotected": true
+  }
+}

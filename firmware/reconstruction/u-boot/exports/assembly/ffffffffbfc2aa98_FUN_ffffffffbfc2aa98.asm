@@ -1,0 +1,27 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc2aa98 function=FUN_ffffffffbfc2aa98
+ffffffffbfc2aa98	addiu sp,sp,-0x10
+ffffffffbfc2aa9c	sd gp,0x0(sp)
+ffffffffbfc2aaa0	lui gp,0x2
+ffffffffbfc2aaa4	sd ra,0x8(sp)
+ffffffffbfc2aaa8	addu gp,gp,t9
+ffffffffbfc2aaac	addiu gp,gp,-0x73b8
+ffffffffbfc2aab0	rdhwr v1,HW_RESIM31
+ffffffffbfc2aab4	li v0,0x1
+ffffffffbfc2aab8	dsll v0,v0,0x1f
+ffffffffbfc2aabc	daddu v1,v1,v0
+ffffffffbfc2aac0	rdhwr v0,HW_RESIM30
+ffffffffbfc2aac4	bne v0,zero,0xffffffffbfc2aaf4
+ffffffffbfc2aac8	_ld ra,0x8(sp)
+ffffffffbfc2aacc	rdhwr v0,HW_RESIM31
+ffffffffbfc2aad0	sltu v0,v1,v0
+ffffffffbfc2aad4	beq v0,zero,0xffffffffbfc2aac0
+ffffffffbfc2aad8	_lw a0,0x14(gp)
+ffffffffbfc2aadc	lw t9,0x92c(gp)
+ffffffffbfc2aae0	jalr t9
+ffffffffbfc2aae4	_addiu a0,a0,0x1958
+ffffffffbfc2aae8	lui v0,0x8000
+ffffffffbfc2aaec	b 0xffffffffbfc2aab4
+ffffffffbfc2aaf0	_daddiu v1,v0,-0x1
+ffffffffbfc2aaf4	ld gp,0x0(sp)
+ffffffffbfc2aaf8	jr ra
+ffffffffbfc2aafc	_addiu sp,sp,0x10

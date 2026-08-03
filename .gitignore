@@ -20,3 +20,9 @@ firmware/filesystems/data-jffs2/
 evidence/photos/original/
 evidence/photos/stitched/
 evidence/photos/annotated/
+# Integrated build outputs
+openwrt/.work/
+openwrt/artifacts/
+openwrt/backups/
+**/__pycache__/
+*.pyc

@@ -1,0 +1,7 @@
+key	value
+analysis_version	v1.1.0
+program	rv220w-boot-chain.bin
+processor	MIPS:BE:64:default
+function_count	737
+decompile_success	737
+decompile_failure	0

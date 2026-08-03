@@ -13,9 +13,9 @@ import subprocess
 import sys
 from typing import NoReturn
 
-VERSION = "1.3.2"
+VERSION = "1.4.0"
 EXPECTED_REF = "v25.12.5"
-VERSIONS = ("1.2.0", "1.3.0", "1.3.1", "1.3.2")
+VERSIONS = ("1.2.0", "1.3.0", "1.3.1", "1.3.2", "1.4.0")
 
 
 def run(cmd: list[str], *, cwd: pathlib.Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -120,11 +120,28 @@ def verify(tree: pathlib.Path) -> None:
         die("DTS still deletes the NOR trigger child")
 
     image_makefile = (tree / "target/linux/octeon/image/Makefile").read_text(encoding="utf-8")
-    if "IMAGES :=" not in image_makefile:
-        die("RV220W profile unexpectedly declares installable images")
-    cmdline = next((line for line in image_makefile.splitlines() if line.startswith("RV220W_CMDLINE:=")), "")
-    if not cmdline or cmdline.count(")ro") != 7:
-        die("RV220W command line does not preserve all seven read-only partitions")
+    if image_makefile.count("IMAGES :=") < 2:
+        die("RV220W profiles unexpectedly declare installable images")
+    if "Device/cisco_rv220w_flash_stage" not in image_makefile:
+        die("RV220W NOR-writer device profile is missing")
+    if "TARGET_DEVICES += cisco_rv220w_flash_stage" not in image_makefile:
+        die("RV220W NOR-writer device is not registered")
+
+    lines = image_makefile.splitlines()
+    normal_cmdline = next((line for line in lines if line.startswith("RV220W_CMDLINE:=")), "")
+    writer_cmdline = next((line for line in lines if line.startswith("RV220W_FLASH_STAGE_CMDLINE:=")), "")
+    if not normal_cmdline or normal_cmdline.count(")ro") != 7:
+        die("RV220W normal command line does not preserve all seven read-only partitions")
+    if "22m(openwrt-slot)" not in writer_cmdline:
+        die("RV220W NOR-writer command line lacks the 22 MiB openwrt-slot")
+    if writer_cmdline.count("22m(openwrt-slot)") != 1:
+        die("RV220W NOR-writer command line has an ambiguous openwrt-slot")
+    if writer_cmdline.count(")ro") != 5:
+        die("RV220W NOR-writer command line does not keep every non-slot partition read-only")
+    for forbidden in ("boot-chain)", "stock-data)", "legacy-env-gap)", "vendor-tail)", "uboot-env)"):
+        # These regions must only occur in their explicitly read-only form.
+        if forbidden.replace(")", ")ro") not in writer_cmdline:
+            die(f"RV220W NOR-writer command line does not protect {forbidden[:-1]}")
 
     validate_nested_patch(tree / "target/linux/octeon/patches-6.12/405-rv220w-guard-ubnt-pruning.patch")
     validate_nested_patch(tree / "target/linux/octeon/patches-6.12/410-cisco-rv220w-dtb-makefile.patch")
@@ -160,6 +177,7 @@ def main() -> int:
         ("1.2.0", "1.3.0"): toolkit / "openwrt/platform/openwrt-rv220w-platform-v1.2.0-to-v1.3.0.patch",
         ("1.3.0", "1.3.1"): toolkit / "openwrt/platform/openwrt-rv220w-platform-v1.3.0-to-v1.3.1.patch",
         ("1.3.1", "1.3.2"): toolkit / "openwrt/platform/openwrt-rv220w-platform-v1.3.1-to-v1.3.2.patch",
+        ("1.3.2", "1.4.0"): toolkit / "openwrt/platform/openwrt-rv220w-platform-v1.3.2-to-v1.4.0.patch",
     }
     for required_patch in (*full_patches.values(), *upgrades.values()):
         if not required_patch.is_file():

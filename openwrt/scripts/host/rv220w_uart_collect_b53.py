@@ -40,6 +40,10 @@ class UartError(RuntimeError):
     """Expected UART collection failure."""
 
 
+class B53Unavailable(UartError):
+    """The target intentionally lacks the raw MDIO diagnostic stack."""
+
+
 def utc_stamp() -> str:
     return dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
@@ -324,16 +328,52 @@ def choose_remote_script(shell: UartShell, fallback: pathlib.Path, force_upload:
     return upload_script(shell, fallback)
 
 
+def preflight_mdio(shell: UartShell) -> None:
+    result = shell.run(
+        "if command -v mdio >/dev/null 2>&1; then "
+        "printf 'mdio=available\\n'; else printf 'mdio=missing\\n'; fi; "
+        "if grep -q '^mdio_netlink ' /proc/modules 2>/dev/null; then "
+        "printf 'mdio_netlink=loaded\\n'; else printf 'mdio_netlink=not-loaded-or-built-in\\n'; fi"
+    )
+    if result.status != 0:
+        raise UartError(f"could not inspect target MDIO prerequisites:\n{result.output}")
+    if "mdio=missing" in result.output:
+        raise B53Unavailable(
+            "target command 'mdio' is absent; the v1.9.3+ production profile "
+            "intentionally excludes mdio-tools and kmod-mdio-netlink"
+        )
+
+
+def retrieve_failed_report(shell: UartShell, label: str) -> str:
+    pattern = f"/tmp/rv220w-b53-{label}-*.txt"
+    result = shell.run(
+        f"rv_report=$(ls -1t {pattern} 2>/dev/null | head -n 1); "
+        "if [ -n \"$rv_report\" ]; then printf 'report=%s\\n' \"$rv_report\"; "
+        "cat \"$rv_report\"; fi",
+        timeout=60.0,
+    )
+    return result.output.strip()
+
+
 def collect(shell: UartShell, remote_script: str, label: str, bus: str) -> tuple[str, str]:
+    shell.run(f"rm -f /tmp/rv220w-b53-{label}-*.txt")
     run = shell.run(
         f"{remote_script} {shell_quote(label)} {shell_quote(bus)}",
         timeout=180.0,
     )
     if run.status != 0:
-        raise UartError(f"target B53 scanner failed with status {run.status}:\n{run.output}")
+        detail = retrieve_failed_report(shell, label)
+        combined = run.output.strip()
+        if detail:
+            combined = f"{combined}\n--- target report ---\n{detail}".strip()
+        raise UartError(f"target B53 scanner failed with status {run.status}:\n{combined}")
     matches = REMOTE_OUTPUT_RE.findall(run.output)
     if not matches:
-        raise UartError(f"target did not return an B53 output path:\n{run.output}")
+        detail = retrieve_failed_report(shell, label)
+        raise UartError(
+            f"target did not return a B53 output path:\n{run.output}"
+            + (f"\n--- target report ---\n{detail}" if detail else "")
+        )
     remote_output = matches[-1]
 
     report = shell.run(f"cat {shell_quote(remote_output)}", timeout=60.0)
@@ -397,6 +437,7 @@ def main() -> int:
 
         shell = UartShell(serial_handle, args.timeout, transcript)
         shell.synchronize()
+        preflight_mdio(shell)
         remote_script = choose_remote_script(shell, scan_script, args.force_upload)
         remote_output, report = collect(shell, remote_script, label, bus)
 
@@ -420,6 +461,9 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
+    except B53Unavailable as exc:
+        print(f"B53_UNAVAILABLE: {exc}", file=sys.stderr)
+        raise SystemExit(3)
     except UartError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         raise SystemExit(1)

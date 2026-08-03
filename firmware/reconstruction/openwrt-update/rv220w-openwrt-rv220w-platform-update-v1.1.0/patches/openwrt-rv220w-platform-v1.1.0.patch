@@ -1,0 +1,197 @@
+diff --git a/target/linux/octeon/base-files/etc/board.d/01_network b/target/linux/octeon/base-files/etc/board.d/01_network
+index 10af4e8..d286355 100644
+--- a/target/linux/octeon/base-files/etc/board.d/01_network
++++ b/target/linux/octeon/base-files/etc/board.d/01_network
+@@ -7,6 +7,10 @@
+ board_config_update
+ 
+ case "$(board_name)" in
++cisco,rv220w)
++	# Proven RAM-boot path: eth0 reaches the BCM53115 fabric; eth1 remains the WAN candidate.
++	ucidef_set_interfaces_lan_wan "eth0" "eth1"
++	;;
+ itus,shield-router|\
+ ubnt,erlite|\
+ ubnt,usg)
+diff --git a/target/linux/octeon/base-files/lib/preinit/01_sysinfo b/target/linux/octeon/base-files/lib/preinit/01_sysinfo
+index 53ac1fe..6baaef1 100644
+--- a/target/linux/octeon/base-files/lib/preinit/01_sysinfo
++++ b/target/linux/octeon/base-files/lib/preinit/01_sysinfo
+@@ -9,7 +9,8 @@ do_sysinfo_octeon() {
+ 	# same supposedly unique board ID as the EdgeRouter. This is bad, so
+ 	# we override what cpuinfo gives us using the device tree as a hint.
+ 	case "$of_machine" in
+-	"cisco,vedge1000"*)
++	"cisco,vedge1000"*|\
++	"cisco,rv220w"*)
+ 		return 0
+ 	esac
+ 
+diff --git a/target/linux/octeon/image/Makefile b/target/linux/octeon/image/Makefile
+index 7b20247..77fc90e 100644
+--- a/target/linux/octeon/image/Makefile
++++ b/target/linux/octeon/image/Makefile
+@@ -33,6 +33,21 @@ define Device/generic
+ endef
+ TARGET_DEVICES += generic
+ 
++RV220W_CMDLINE:=-mtdparts=phys_mapped_flash:512k(boot-chain)ro,6m(stock-kernel)ro,16m(stock-rootfs)ro,1m(stock-data)ro,128k(legacy-env-gap)ro,8448k(vendor-tail)ro,128k(uboot-env)ro console=ttyS0,115200 loglevel=8 ignore_loglevel usbcore.nousb
++define Device/cisco_rv220w
++  DEVICE_VENDOR := Cisco
++  DEVICE_MODEL := RV220W
++  BOARD_NAME := cisco,rv220w
++  DEVICE_DTS := cn5010_cisco_rv220w
++  DEVICE_PACKAGES += -kmod-usb-dwc3-octeon
++  KERNEL := kernel-bin | strip-kernel | patch-cmdline | append-dtb-to-elf
++  KERNEL_DEPENDS := $$(wildcard $(DTS_DIR)/$(DEVICE_DTS).dts)
++  CMDLINE := $(RV220W_CMDLINE)
++  SUPPORTED_DEVICES += cisco,rv220w
++  IMAGES :=
++endef
++TARGET_DEVICES += cisco_rv220w
++
+ ITUSROUTER_CMDLINE:=console=ttyS0,115200 root=/dev/mmcblk1p2 rootfstype=squashfs,ext4,f2fs rootwait
+ define Device/itus_shield-router
+   DEVICE_VENDOR := Itus Networks
+diff --git a/target/linux/octeon/patches-6.12/400-ubnt_dts_pruning.patch b/target/linux/octeon/patches-6.12/400-ubnt_dts_pruning.patch
+index abc9f39..09aa83b 100644
+--- a/target/linux/octeon/patches-6.12/400-ubnt_dts_pruning.patch
++++ b/target/linux/octeon/patches-6.12/400-ubnt_dts_pruning.patch
+@@ -27,6 +27,11 @@ Date:   Tue Jun 17 13:58:19 2025 +0200
+ +
+ +int __init ubnt_prune_device_tree(void)
+ +{
+++	if (octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E300 &&
+++	    octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E200 &&
+++	    octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E220)
+++		return 0;
+++
+ +	/* MMC on UBNT */
+ +	pr_info("UBNT board DTS pruning...\n");
+ +	if (octeon_bootinfo->board_type == CVMX_BOARD_TYPE_UBNT_E300) {
+diff --git a/target/linux/octeon/patches-6.12/410-cisco-rv220w-dts.patch b/target/linux/octeon/patches-6.12/410-cisco-rv220w-dts.patch
+new file mode 100644
+index 0000000..6584f57
+--- /dev/null
++++ b/target/linux/octeon/patches-6.12/410-cisco-rv220w-dts.patch
+@@ -0,0 +1,120 @@
++--- a/arch/mips/boot/dts/cavium-octeon/Makefile
+++++ b/arch/mips/boot/dts/cavium-octeon/Makefile
++@@ -2 +2,2 @@
++-dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb
+++dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb \
+++	cn5010_cisco_rv220w.dtb
++--- /dev/null
+++++ b/arch/mips/boot/dts/cavium-octeon/cn5010_cisco_rv220w.dts
++@@ -0,0 +1,111 @@
+++// SPDX-License-Identifier: GPL-2.0
+++/*
+++ * Cisco RV220W conservative RAM-validation device tree.
+++ *
+++ * Proven facts are enabled.  The BCM53115 management node and the active-low
+++ * reset/recovery button are represented but disabled until Linux-side control
+++ * is tested.  U-Boot's working switch configuration is intentionally retained.
+++ */
+++
+++/include/ "octeon_3xxx.dtsi"
+++
+++/ {
+++	model = "Cisco RV220W";
+++	compatible = "cisco,rv220w", "cavium,octeon-3860";
+++
+++	aliases {
+++		serial0 = &uart0;
+++		pip = &pip;
+++		smi0 = &smi0;
+++		twsi0 = &twsi0;
+++		ethernet0 = &rgmii0;
+++		ethernet1 = &rgmii1;
+++		ethernet2 = &rgmii2;
+++	};
+++
+++	chosen {
+++		stdout-path = "serial0:115200n8";
+++	};
+++
+++	/* U-Boot configures and samples GPIO 1, entering recovery when low. */
+++	rv220w-reset-keys {
+++		compatible = "gpio-keys";
+++		status = "disabled";
+++
+++		reset {
+++			label = "reset/recovery";
+++			linux,code = <0x198>; /* KEY_RESTART */
+++			gpios = <&gpio 1 1>; /* GPIO_ACTIVE_LOW */
+++			debounce-interval = <60>;
+++		};
+++	};
+++};
+++
+++&uart0 {
+++	status = "okay";
+++};
+++
+++&twsi0 {
+++	status = "okay";
+++};
+++
+++&smi0 {
+++	status = "okay";
+++
+++	/*
+++	 * Confirmed by U-Boot and stock bcm5398/mii modules:
+++	 * Broadcom pseudo-PHY management address 0x1e.  Keep disabled until the
+++	 * exact CPU/IMP and WAN/LAN internal port map is proven for B53/DSA.
+++	 */
+++	switch@1e {
+++		compatible = "brcm,bcm53115";
+++		reg = <0x1e>;
+++		status = "disabled";
+++	};
+++};
+++
+++&pip {
+++	status = "okay";
+++
+++	interface@0 {
+++		status = "okay";
+++
+++		rgmii0: ethernet@0 {
+++			status = "okay";
+++			rx-delay = <0>;
+++			tx-delay = <0>;
+++			fixed-link {
+++				speed = <1000>;
+++				full-duplex;
+++			};
+++		};
+++
+++		rgmii1: ethernet@1 {
+++			status = "okay";
+++			rx-delay = <0>;
+++			tx-delay = <0>;
+++			fixed-link {
+++				speed = <1000>;
+++				full-duplex;
+++			};
+++		};
+++
+++		rgmii2: ethernet@2 {
+++			status = "okay";
+++		};
+++	};
+++};
+++
+++/* The generic USB node hangs this board in octeon_usb_probe(). */
+++&usbn {
+++	status = "disabled";
+++};
+++
+++/*
+++ * Keep the DT BootBus node disabled for the first board-specific boot.  The
+++ * proven legacy Octeon phys_mapped_flash path preserves U-Boot timing and reads
+++ * the 32 MiB x16 NOR correctly.  All command-line partitions are read-only.
+++ */
+++&bootbus {
+++	status = "disabled";
+++};

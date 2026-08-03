@@ -1,5 +1,100 @@
 # Changelog
 
+
+## 1.10.3 integrated documentation revision — 2026-08-02
+
+- Documented the separately validated combined boot-policy patch as a mandatory prerequisite for persistent firmware promotion.
+- Recorded automatic OpenWrt boot from NOR through manifest-sized `cp.b` plus `bootoctlinux`.
+- Recorded saved environment persistence and retained physical-button recovery.
+- Moved stage/version-specific documentation to the repository history section.
+- No functional toolkit code or slot-image format change from v1.10.3.
+
+## 1.10.3
+
+- Record the successful verified 22 MiB NOR write and the failed direct-flash
+  `bootoct` experiment.
+- Correct the boot method: copy the exact Linux ELF from memory-mapped NOR to
+  the proven `0x05500000` RAM staging address, then run `bootoctlinux`.
+- Add `./rv220w.fish nor-stage boot-plan`, derived from `source_size` in the
+  slot manifest and compatible with existing v1.10.0/v1.10.2 artifacts.
+- Update generated manifests with RAM-copy metadata and explicit rejection of
+  direct Octeon Executive execution.
+- No image rebuild, NOR rewrite, U-Boot environment change, or kernel/platform
+  change is required.
+
+## 1.10.2 — 2026-07-28
+
+- Records successful build and TFTP/RAM boot of the dedicated v1.10.1 NOR-writer image with the expected single writable 22 MiB `openwrt-slot`.
+- Fixes the actual host-side write/restore transfer: OpenSSH 9+ `scp` defaulted to SFTP, but the intentionally minimal Dropbear image has no `/usr/libexec/sftp-server`.
+- Replaces `scp` with byte-exact `cat | ssh` streaming into a private `/tmp` partial file followed by an atomic rename.
+- Checks both sides of the Fish pipeline and removes partial/remote images on transfer or writer failure.
+- Isolates expected per-boot Dropbear host keys from the user's persistent `known_hosts`, while disabling PTY allocation for binary streams.
+- Preserves the mandatory pre-write backup, local manifest/SHA-256 validation, target-side exact-size/hash/ELF validation, slot-only MTD write, complete read-back SHA-256, separate restore token, and no-reboot/no-saveenv policy.
+- Confirms the two captured 22 MiB pre-write backups are byte-identical with SHA-256 `47b546d826e9016d3fa0a8e08356e1ba614cba7290d11eba79a6bd80e0671c6d`.
+- No NOR erase or write occurred in the failed v1.10.1 attempt. This hotfix is host-side only; the already running v1.10.1 writer image can be reused.
+
+## 1.10.1 — 2026-07-28
+
+- Records the successful v1.10.0 LuCI build and TFTP/RAM boot. The generated
+  ELF is 18,179,536 bytes and the padded NOR-slot artifact is exactly 22 MiB.
+- Fixes `verify_nor_writer_config()`: the dedicated writer is intentionally
+  LuCI-free, so it now validates the proven RJ45 base rather than requiring
+  `luci-light` and uHTTPd.
+- Requires the writer-specific `mtd` package and
+  `cisco_rv220w_flash_stage` target after `defconfig`.
+- Explicitly rejects accidental selection of the normal RV220W target or
+  LuCI/uHTTPd packages in the writer image.
+- Removes the misleading `+ LuCI` text from the NOR-writer banner.
+- Changes no kernel patch, DTS, OpenWrt platform integration, partition map,
+  writer command, confirmation token, boot command, or flash-write policy.
+
+## 1.10.0 — 2026-07-28
+
+- Freeze v1.9.3 as the validated five-RJ45 RAM baseline.
+- Add `rj45-luci` with `luci-light`/uHTTPd bound to `192.168.240.2:80` on LAN only.
+- Add OpenWrt platform integration v1.4.0 with a normal all-read-only RV220W target and a separate RAM-boot `cisco_rv220w_flash_stage` target.
+- The writer target exposes only a 22 MiB `openwrt-slot`; boot chain, stock-data, legacy gap, vendor tail and U-Boot environment remain read-only.
+- Add an exact-size 22 MiB `0xff`-padded NOR-slot artifact builder and JSON/SHA-256 manifest.
+- Add a dedicated non-LuCI target `rv220w-nor-stage` and host `nor-stage` workflow with exact board/profile/MTD geometry checks, mandatory backup, separate write/restore confirmation tokens, local SHA-256 validation and full post-write read-back verification.
+- Originally proposed direct `bootoct` first boot; hardware testing later proved this invalid for the Linux ELF and v1.10.3 supersedes it with NOR-to-RAM copy plus `bootoctlinux`.
+- Correct NAND terminology: the RV220W uses 32 MiB x16 parallel CFI NOR.
+- Make `collect-conduit` skip absent production MDIO diagnostics cleanly unless `--require-b53`.
+- Preflight B53 MDIO support before UART upload and retrieve target failure reports when available.
+- Add `collect-rj45` production-safe acceptance collection without raw MDIO.
+- Delete stale serial-fallback build logs before each build and stamp current logs with build metadata.
+- Document the secondary-IMP counter-accounting limitation: DSA `wan` and end-to-end traffic are authoritative when Octeon `eth1` RX/B53 port-5 Tx remain zero.
+- Preserve run12 v1.9.3 DSA evidence and record passed WAN isolation.
+
+## 1.9.3 - 2026-07-28
+
+- Fix patch 999 for the Linux 6.12 `early_init_dt_verify(void *, phys_addr_t)` API.
+- Pass `initial_boot_params` and `__pa(initial_boot_params)` after Octeon FDT fixups.
+- Add an API-arity regression test that applies the patch and compiles a minimal Linux-shaped fixture.
+- Preserve the v1.9.2 stable patch context, production DTS, BootBus NOR ownership, full-RJ45 topology, firewall policy and RAM-only operation unchanged.
+- Archive the operator-provided v1.9.2 compile-failure logs.
+
+## 1.9.2 - 2026-07-28
+
+- Correct patch 999 so its `setup.c` hunk applies after OpenWrt's earlier `400-ubnt_dts_pruning.patch`.
+- Restrict the FDT-CRC hunk context to the stable `octeon_fill_mac_addresses()` / `unflatten_and_copy_device_tree()` tail.
+- Restrict the BootBus match-table hunk context to the stable `of_flash_match[]` declaration, eliminating the observed fuzz dependency.
+- Add a realistic post-OpenWrt-patch fixture test and reject reintroduction of the conflicting prune-block context.
+- Preserve the v1.9.1 production DTS, BootBus NOR ownership, fixed MAC links, firewall policy, five-port DSA topology and RAM-only policy unchanged.
+
+## 1.9.1 - 2026-07-27
+
+- Added a dedicated production full-RJ45 DTS with fixed Octeon MAC links.
+- Added patch 999 to refresh the post-fixup FDT CRC and give the Octeon
+  BootBus flash driver an explicit compatible.
+- Retained the NOR trigger node while eliminating the intentionally failing
+  generic physmap probe.
+- Removed MDIO-netlink and raw switch-register tooling from the production
+  image; diagnostic profiles remain unchanged.
+- Corrected firewall status reporting, removed default IPsec WAN-to-LAN
+  exceptions, bound Dropbear to LAN, and expanded standard status output.
+- Recorded the user's informal confirmation that all five RJ45 ports and LAN
+  DHCP worked on the v1.9.0 hardware boot.
+
 ## 1.9.0 — 2026-07-27
 
 - Preserved the complete run9 DSA and B53 evidence proving that the failed `wan@eth1` state used PVID 0 on port 0 while CPU port 5 was absent from the selected VLAN table entry.
@@ -54,8 +149,6 @@
 - Added isolated WAN address `192.168.241.2/24` with no routing, NAT, DHCP, DNS or firewall policy.
 - Added dual-profile build/TFTP aliases, UART evidence collection, conservative stale-DTS recovery for both generated templates, tests and complete stage documentation.
 - Preserved OpenWrt core unchanged; the two proven Octeon patches and the generic B53 multi-conduit patch are installed through the normal Octeon target patch set.
-
-# Changelog
 
 ## 1.7.6
 

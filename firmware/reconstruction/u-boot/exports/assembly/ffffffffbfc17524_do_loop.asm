@@ -1,0 +1,99 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc17524 function=do_loop
+ffffffffbfc17524	addiu sp,sp,-0x30
+ffffffffbfc17528	slti a2,a2,0x3
+ffffffffbfc1752c	sd gp,0x18(sp)
+ffffffffbfc17530	lui gp,0x3
+ffffffffbfc17534	sd s0,0x0(sp)
+ffffffffbfc17538	addu gp,gp,t9
+ffffffffbfc1753c	sd ra,0x20(sp)
+ffffffffbfc17540	addiu gp,gp,-0x3e44
+ffffffffbfc17544	sd s2,0x10(sp)
+ffffffffbfc17548	daddu s0,a3,zero
+ffffffffbfc1754c	beq a2,zero,0xffffffffbfc17570
+ffffffffbfc17550	_sd s1,0x8(sp)
+ffffffffbfc17554	lw a1,0x10(a0)
+ffffffffbfc17558	lw a0,0x14(gp)
+ffffffffbfc1755c	lw t9,0x92c(gp)
+ffffffffbfc17560	jalr t9
+ffffffffbfc17564	_addiu a0,a0,-0x5320
+ffffffffbfc17568	b 0xffffffffbfc17690
+ffffffffbfc1756c	_ld ra,0x20(sp)
+ffffffffbfc17570	lw t9,0x408(gp)
+ffffffffbfc17574	li a1,0x4
+ffffffffbfc17578	jalr t9
+ffffffffbfc1757c	_lw a0,0x0(a3)
+ffffffffbfc17580	bltz v0,0xffffffffbfc1768c
+ffffffffbfc17584	_daddu s1,v0,zero
+ffffffffbfc17588	lw t9,0x1d0(gp)
+ffffffffbfc1758c	clear a1
+ffffffffbfc17590	lw a0,0x4(s0)
+ffffffffbfc17594	jalr t9
+ffffffffbfc17598	_li a2,0x10
+ffffffffbfc1759c	clear a1
+ffffffffbfc175a0	lw a0,0x8(s0)
+ffffffffbfc175a4	li a2,0x10
+ffffffffbfc175a8	lw t9,0x1d0(gp)
+ffffffffbfc175ac	jalr t9
+ffffffffbfc175b0	_daddu s2,v0,zero
+ffffffffbfc175b4	daddu a1,v0,zero
+ffffffffbfc175b8	li v0,0x1
+ffffffffbfc175bc	bne a1,v0,0xffffffffbfc175f8
+ffffffffbfc175c0	_li v0,0x4
+ffffffffbfc175c4	bne s1,v0,0xffffffffbfc175d8
+ffffffffbfc175c8	_li v0,0x2
+ffffffffbfc175cc	lw v0,0x0(s2)
+ffffffffbfc175d0	b 0xffffffffbfc175cc
+ffffffffbfc175d4	_nop
+ffffffffbfc175d8	bne s1,v0,0xffffffffbfc175ec
+ffffffffbfc175dc	_nop
+ffffffffbfc175e0	lhu v0,0x0(s2)
+ffffffffbfc175e4	b 0xffffffffbfc175e0
+ffffffffbfc175e8	_nop
+ffffffffbfc175ec	lbu v0,0x0(s2)
+ffffffffbfc175f0	b 0xffffffffbfc175ec
+ffffffffbfc175f4	_nop
+ffffffffbfc175f8	bne s1,v0,0xffffffffbfc1762c
+ffffffffbfc175fc	_li v0,0x2
+ffffffffbfc17600	li a2,-0x1
+ffffffffbfc17604	daddu a0,s2,zero
+ffffffffbfc17608	b 0xffffffffbfc17618
+ffffffffbfc1760c	_daddu v1,a1,zero
+ffffffffbfc17610	lw v0,0x0(a0)
+ffffffffbfc17614	addiu a0,a0,0x4
+ffffffffbfc17618	addiu v1,v1,-0x1
+ffffffffbfc1761c	bne v1,a2,0xffffffffbfc17610
+ffffffffbfc17620	_nop
+ffffffffbfc17624	b 0xffffffffbfc17608
+ffffffffbfc17628	_daddu a0,s2,zero
+ffffffffbfc1762c	bne s1,v0,0xffffffffbfc17660
+ffffffffbfc17630	_nop
+ffffffffbfc17634	li a2,-0x1
+ffffffffbfc17638	daddu a0,s2,zero
+ffffffffbfc1763c	b 0xffffffffbfc1764c
+ffffffffbfc17640	_daddu v1,a1,zero
+ffffffffbfc17644	lhu v0,0x0(a0)
+ffffffffbfc17648	addiu a0,a0,0x2
+ffffffffbfc1764c	addiu v1,v1,-0x1
+ffffffffbfc17650	bne v1,a2,0xffffffffbfc17644
+ffffffffbfc17654	_nop
+ffffffffbfc17658	b 0xffffffffbfc1763c
+ffffffffbfc1765c	_daddu a0,s2,zero
+ffffffffbfc17660	daddu a0,s2,zero
+ffffffffbfc17664	daddu v1,a1,zero
+ffffffffbfc17668	b 0xffffffffbfc17678
+ffffffffbfc1766c	_li a2,-0x1
+ffffffffbfc17670	lbu v0,0x0(a0)
+ffffffffbfc17674	addiu a0,a0,0x1
+ffffffffbfc17678	addiu v1,v1,-0x1
+ffffffffbfc1767c	bne v1,a2,0xffffffffbfc17670
+ffffffffbfc17680	_nop
+ffffffffbfc17684	b 0xffffffffbfc17664
+ffffffffbfc17688	_daddu a0,s2,zero
+ffffffffbfc1768c	ld ra,0x20(sp)
+ffffffffbfc17690	li v0,0x1
+ffffffffbfc17694	ld gp,0x18(sp)
+ffffffffbfc17698	ld s2,0x10(sp)
+ffffffffbfc1769c	ld s1,0x8(sp)
+ffffffffbfc176a0	ld s0,0x0(sp)
+ffffffffbfc176a4	jr ra
+ffffffffbfc176a8	_addiu sp,sp,0x30

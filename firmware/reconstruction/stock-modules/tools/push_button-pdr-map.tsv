@@ -1,0 +1,6 @@
+section	offset	name
+.text	0x90	local_push_button_proc_write_or_ack
+.text	0x148	local_push_button_proc_read
+.exit.text	0x0	local_push_button_exit_text_000000
+.init.text	0x0	local_push_button_init_text_000000
+.text	0x3b8	local_push_button_timer_callback

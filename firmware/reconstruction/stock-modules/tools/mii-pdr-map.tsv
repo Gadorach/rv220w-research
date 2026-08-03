@@ -1,0 +1,5 @@
+section	offset	name
+.text	0x0	local_mii_text_000000
+.text	0xb8	local_mii_text_0000b8
+.exit.text	0x0	local_mii_exit_text_000000
+.init.text	0x0	local_mii_init_text_000000

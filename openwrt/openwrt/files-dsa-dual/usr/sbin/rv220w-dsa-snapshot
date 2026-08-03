@@ -6,7 +6,12 @@ stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || printf unknown)
 out="/tmp/rv220w-dsa-${label}-${stamp}.txt"
 
 profile=lan-only
-[ -e /sys/class/net/wan ] && profile=dual-conduit
+if [ -r /etc/rv220w-build-profile ]; then
+    detected=$(awk -F= '$1 == "profile" { print substr($0, index($0, "=") + 1); exit }' /etc/rv220w-build-profile 2>/dev/null || true)
+    [ -n "$detected" ] && profile=$detected
+elif [ -e /sys/class/net/wan ]; then
+    profile=dual-conduit
+fi
 
 exec 3>&1
 {
@@ -94,10 +99,35 @@ exec 3>&1
 	done
 
 	echo
+	echo '=== PRODUCTION_ACCEPTANCE ==='
+	printf 'kernel_tainted='
+	cat /proc/sys/kernel/tainted 2>/dev/null || echo unknown
+	if [ -r /sys/firmware/fdt ]; then
+		printf 'raw_fdt=available magic='
+		hexdump -n 4 -e '4/1 "%02x"' /sys/firmware/fdt 2>/dev/null || true
+		echo
+	else
+		echo 'raw_fdt=unavailable'
+	fi
+	cat /proc/mtd 2>/dev/null || true
+	if nft list table inet fw4 >/dev/null 2>&1; then
+		echo 'firewall=loaded'
+	else
+		echo 'firewall=not-loaded'
+	fi
+	echo '-- DHCP leases --'
+	cat /tmp/dhcp.leases 2>/dev/null || true
+	echo '-- relevant dmesg --'
+	dmesg | grep -E 'WARNING:|BUG:|Oops|Call Trace|deprecated link status|physmap-flash.*(failed|Can.t)|CRC check failed|mdio_netlink|taint' || true
+	echo 'counter_note=DSA wan and end-to-end traffic are authoritative; Octeon eth1 RX and B53 p05 Tx may remain zero on the secondary IMP'
+
+	echo
 	echo '=== UCI ==='
 	uci show network 2>&1 || true
+	uci show firewall 2>&1 || true
 	ubus call network.interface.lan status 2>&1 || true
 	ubus call network.interface.wan status 2>&1 || true
+	ubus call network.interface.wan6 status 2>&1 || true
 
 	echo
 	echo '=== END ==='

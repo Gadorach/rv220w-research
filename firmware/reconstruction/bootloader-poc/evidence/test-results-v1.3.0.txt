@@ -1,0 +1,9 @@
+boot-chain byte proof regression passed
+vendor boot-chain patch regression passed
+stage2 SHA-256 and CRC-32 vectors passed
+stage2 verification passed: size=89152 entry=0xffffffff84000000 load=0xffffffff84000000-0xffffffff84004adb
+sha256=01bbb7bc287dc7d7693392a35e82bb787c17c803eff290c7623e24ea35ae1175
+stage2 static policy regression passed
+D-Link Cavium donor report regression passed
+stage2 donor-derived inspection policy regression passed
+all RV220W bootloader PoC tests passed

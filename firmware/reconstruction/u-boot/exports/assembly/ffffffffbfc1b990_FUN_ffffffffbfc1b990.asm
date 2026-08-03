@@ -1,0 +1,18 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc1b990 function=FUN_ffffffffbfc1b990
+ffffffffbfc1b990	lw v0,0x0(a1)
+ffffffffbfc1b994	ld v1,0x8(a1)
+ffffffffbfc1b998	ld a2,0x10(a1)
+ffffffffbfc1b99c	ld a3,0x18(a1)
+ffffffffbfc1b9a0	ld t0,0x20(a1)
+ffffffffbfc1b9a4	ld t1,0x28(a1)
+ffffffffbfc1b9a8	sw v0,0x0(a0)
+ffffffffbfc1b9ac	sw v1,0x4(a0)
+ffffffffbfc1b9b0	sw a2,0x8(a0)
+ffffffffbfc1b9b4	sw a3,0xc(a0)
+ffffffffbfc1b9b8	sw t0,0x10(a0)
+ffffffffbfc1b9bc	sw t1,0x14(a0)
+ffffffffbfc1b9c0	lw v1,0x4(a1)
+ffffffffbfc1b9c4	ld v0,0x30(a1)
+ffffffffbfc1b9c8	sw v1,0x18(a0)
+ffffffffbfc1b9cc	jr ra
+ffffffffbfc1b9d0	_sw v0,0x1c(a0)

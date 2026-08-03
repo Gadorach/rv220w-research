@@ -1,0 +1,6 @@
+section	offset	name
+.exit.text	0x0	local_scm_led_exit_text_000000
+.text	0xf0	local_led_proc_read
+.init.text	0x0	local_scm_led_init_text_000000
+.text	0x5e8	local_led_proc_write
+.text	0xd70	local_led_timer_callback

@@ -4,7 +4,7 @@ argparse 'j/jobs=' 'c/clean' 'v/verbose' -- $argv; or exit 2
 
 if test (count $argv) -lt 1
     echo 'Usage: ./rv220w.fish build MODE [--jobs N] [--clean]' >&2
-    echo 'MODE: initramfs | rv220w-initramfs | discovery | dsa-lan | dsa-dual | rj45-full | rv220w-rj45-initramfs | rv220w-dsa-dual-rxid | rv220w-dsa-dual-wan-txid | rv220w-dsa-dual-wan-rgmii | squashfs | squashfs-live | menuconfig | kernel | clean' >&2
+    echo 'MODE: initramfs | rv220w-initramfs | discovery | dsa-lan | dsa-dual | rj45-full | rj45-luci | nor-writer | rv220w-rj45-initramfs | rv220w-dsa-dual-rxid | rv220w-dsa-dual-wan-txid | rv220w-dsa-dual-wan-rgmii | squashfs | squashfs-live | menuconfig | kernel | clean' >&2
     exit 2
 end
 
@@ -17,6 +17,10 @@ else if test "$mode" = dsa-dual
     set mode rv220w-dsa-dual-rxid
 else if test "$mode" = rj45-full; or test "$mode" = rj45
     set mode rv220w-rj45-initramfs
+else if test "$mode" = rj45-luci; or test "$mode" = luci
+    set mode rv220w-rj45-luci-initramfs
+else if test "$mode" = nor-writer
+    set mode rv220w-nor-writer-initramfs
 end
 set -l jobs (nproc)
 set -q _flag_jobs; and set jobs $_flag_jobs

@@ -1,0 +1,15 @@
+__copy_user
+__down_interruptible
+__mod_timer
+__up
+create_proc_entry
+del_timer
+init_timer
+init_waitqueue_head
+jiffies
+memset
+printk
+proc_root
+remove_proc_entry
+sprintf
+strlen

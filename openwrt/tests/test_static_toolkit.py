@@ -7,6 +7,7 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+HISTORY_DOCS = ROOT.parent / "docs" / "history" / "openwrt" / "toolkit-v1.10.3"
 
 
 def fail(message: str) -> None:
@@ -109,7 +110,7 @@ prepare_inner = (ROOT / "scripts/inner/prepare-sources.sh").read_text(encoding="
 if "install-rv220w-platform.py" not in prepare_inner:
     fail("prepare-sources does not automatically install the RV220W platform")
 
-platform_patch = ROOT / "openwrt/platform/openwrt-rv220w-platform-v1.3.2.patch"
+platform_patch = ROOT / "openwrt/platform/openwrt-rv220w-platform-v1.4.0.patch"
 if not platform_patch.is_file():
     fail("missing full OpenWrt RV220W platform patch")
 patch_text = platform_patch.read_text(encoding="utf-8")
@@ -127,9 +128,9 @@ if "400-ubnt_dts_pruning.patch b/target/linux/octeon/patches-6.12/400-ubnt_dts_p
     fail("platform patch still edits OpenWrt's nested 400-ubnt_dts_pruning.patch")
 
 platform_installer = (ROOT / "scripts/inner/install-rv220w-platform.py").read_text(encoding="utf-8")
-for required in ('VERSION = "1.3.2"', '("1.3.1", "1.3.2")', "openwrt-rv220w-platform-v1.3.1-to-v1.3.2.patch"):
+for required in ('VERSION = "1.4.0"', '("1.3.2", "1.4.0")', "openwrt-rv220w-platform-v1.3.2-to-v1.4.0.patch"):
     if required not in platform_installer:
-        fail(f"v1.3.2 platform installer token missing: {required}")
+        fail(f"v1.4.0 platform installer token missing: {required}")
 
 tftp = (ROOT / "scripts/host/rv220w_tftp_boot.py").read_text(encoding="utf-8")
 if "--tftp-no-blocksize" in tftp:
@@ -214,8 +215,8 @@ if "Image file not found:" not in wrapper:
     fail("positional image failures do not report the requested pathname")
 
 # v1.4.0 read-only discovery profile checks.
-if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.9.0":
-    fail("toolkit VERSION is not 1.9.0")
+if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.10.3":
+    fail("toolkit VERSION is not 1.10.3")
 
 discovery_seed = ROOT / "config/openwrt-rv220w-discovery-initramfs.config"
 if not discovery_seed.is_file():
@@ -290,8 +291,8 @@ print("v1.4.1 discovery hotfix checks passed")
 
 
 # v1.5.0 direct read-only MDIO identity stage checks.
-if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.9.0":
-    fail("toolkit VERSION is not 1.9.0")
+if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.10.3":
+    fail("toolkit VERSION is not 1.10.3")
 
 mdio_scan = ROOT / "openwrt/files-discovery/usr/sbin/rv220w-mdio-scan"
 if not mdio_scan.is_file():
@@ -410,8 +411,8 @@ print("v1.5.2 robust UART framing checks passed")
 
 
 # v1.6.0 selector-safe passive B53 topology stage checks.
-if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.9.0":
-    fail("toolkit VERSION is not 1.9.0")
+if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.10.3":
+    fail("toolkit VERSION is not 1.10.3")
 
 b53_scan = ROOT / "openwrt/files-discovery/usr/sbin/rv220w-b53-snapshot"
 if not b53_scan.is_file():
@@ -502,7 +503,7 @@ if "case collect-b53" not in entry or "scripts/collect-b53.fish" not in entry:
 if "read-only discovery profile v1.8.0" not in build_inner:
     fail("future discovery rebuilds do not identify v1.8.0")
 
-stage_doc = ROOT / "docs/RV220W-V1.6.0-PASSIVE-B53-STAGE.md"
+stage_doc = HISTORY_DOCS / "RV220W-V1.6.0-PASSIVE-B53-STAGE.md"
 if not stage_doc.is_file():
     fail("missing v1.6.0 passive B53 stage documentation")
 
@@ -517,7 +518,7 @@ for helper_text, helper_name in ((uart_text, "MDIO"), (b53_uart_text, "B53")):
     for required in ("octal_escape", "printf '%b'", "size=(\\d+)", "/bin/sh -n"):
         if required not in helper_text:
             fail(f"{helper_name} UART helper lacks decoder-free upload token: {required}")
-hotfix_doc = ROOT / "docs/RV220W-V1.6.1-UART-OCTAL-UPLOAD-HOTFIX.md"
+hotfix_doc = HISTORY_DOCS / "RV220W-V1.6.1-UART-OCTAL-UPLOAD-HOTFIX.md"
 if not hotfix_doc.is_file():
     fail("missing v1.6.1 UART octal-upload hotfix documentation")
 print("v1.6.1 decoder-free UART upload checks passed")
@@ -538,7 +539,7 @@ for helper_text, helper_name in ((uart_text, "MDIO"), (b53_uart_text, "B53")):
     if "chunk_size = 128" in helper_text:
         fail(f"{helper_name} UART helper retains oversized v1.6.1 chunks")
 subprocess.run([sys.executable, str(ROOT / "tests/test_uart_octal_upload.py")], check=True)
-hotfix_doc = ROOT / "docs/RV220W-V1.6.2-UART-SHORT-COMMAND-HOTFIX.md"
+hotfix_doc = HISTORY_DOCS / "RV220W-V1.6.2-UART-SHORT-COMMAND-HOTFIX.md"
 if not hotfix_doc.is_file():
     fail("missing v1.6.2 bounded UART-command hotfix documentation")
 print("v1.6.2 bounded UART upload checks passed")
@@ -565,8 +566,8 @@ for path in [
     ROOT / "openwrt/files-dsa-lan/usr/sbin/rv220w-dsa-snapshot",
     ROOT / "scripts/collect-dsa.fish",
     ROOT / "scripts/host/rv220w_uart_collect_dsa.py",
-    ROOT / "docs/RV220W-STAGE5-B53-TOPOLOGY.md",
-    ROOT / "docs/RV220W-V1.7.0-LAN-DSA-VALIDATION.md",
+    HISTORY_DOCS / "RV220W-STAGE5-B53-TOPOLOGY.md",
+    HISTORY_DOCS / "RV220W-V1.7.0-LAN-DSA-VALIDATION.md",
 ]:
     if not path.is_file():
         fail(f"missing v1.7.0 file: {path.relative_to(ROOT)}")
@@ -591,7 +592,7 @@ dsa_snapshot_text = (ROOT / "openwrt/files-dsa-lan/usr/sbin/rv220w-dsa-snapshot"
 for token in ("tag-driver availability", "tag_brcm.ko", "/etc/modules.d/*"):
     if token not in dsa_snapshot_text:
         fail(f"DSA snapshot lacks v1.7.1 diagnostic token: {token}")
-hotfix_doc = ROOT / "docs/RV220W-V1.7.1-BRCM-TAG-AUTOLOAD-HOTFIX.md"
+hotfix_doc = HISTORY_DOCS / "RV220W-V1.7.1-BRCM-TAG-AUTOLOAD-HOTFIX.md"
 if not hotfix_doc.is_file():
     fail("missing v1.7.1 Broadcom tag autoload documentation")
 print("v1.7.1 Broadcom tag-driver autoload checks passed")
@@ -618,7 +619,7 @@ for token in (
     'kernel_patch_sources=(',
     '996-octeon-dsa-conduit-length-error.patch',
     'cmp -s "${kernel_patch_sources[$patch_index]}" "${kernel_patch_targets[$patch_index]}"',
-    'Re-run the v1.9.0 updater',
+    'Re-run the v1.10.3 updater',
     'local backup= source_sha= restore_rc=0',
 ):
     if token not in build_text:
@@ -641,7 +642,7 @@ for token in ("netdev_of_node=", "parent_of_node="):
     if token not in snapshot_text:
         fail(f"DSA snapshot lacks OF-node diagnostic: {token}")
 subprocess.run([sys.executable, str(ROOT / "tests/test_dsa_kernel_patch.py")], check=True)
-hotfix_doc = ROOT / "docs/RV220W-V1.7.3-OCTEON-KERNEL-PATCH-CORRECTION.md"
+hotfix_doc = HISTORY_DOCS / "RV220W-V1.7.3-OCTEON-KERNEL-PATCH-CORRECTION.md"
 if not hotfix_doc.is_file():
     fail("missing v1.7.3 kernel-patch correction documentation")
 print("v1.7.3 Octeon kernel-patch correction checks passed")
@@ -668,7 +669,7 @@ for token in ("re.MULTILINE", "DTS model is not the canonical Cisco RV220W platf
     if token not in platform_installer:
         fail(f"v1.7.4 platform verifier lacks structural model check: {token}")
 subprocess.run([sys.executable, str(ROOT / "tests/test_source_dts_repair.py")], check=True)
-hotfix_doc = ROOT / "docs/RV220W-V1.7.4-UPDATER-DTS-RECOVERY-HOTFIX.md"
+hotfix_doc = HISTORY_DOCS / "RV220W-V1.7.4-UPDATER-DTS-RECOVERY-HOTFIX.md"
 if not hotfix_doc.is_file():
     fail("missing v1.7.4 updater/DTS recovery documentation")
 print("v1.7.4 updater and stale-DTS recovery checks passed")
@@ -707,7 +708,7 @@ if "file setsid" not in common_text:
 provision_text = (ROOT / "scripts/inner/provision-openwrt-box.sh").read_text(encoding="utf-8")
 if "ccache util-linux" not in provision_text:
     fail("build-box provisioning does not install util-linux")
-if not (ROOT / "docs/RV220W-V1.7.5-NONINTERACTIVE-BUILD-GUARD.md").is_file():
+if not (HISTORY_DOCS / "RV220W-V1.7.5-NONINTERACTIVE-BUILD-GUARD.md").is_file():
     fail("missing v1.7.5 noninteractive build documentation")
 subprocess.run([sys.executable, str(ROOT / "tests/test_noninteractive_make_guard.py")], check=True)
 print("v1.7.5 noninteractive build guard checks passed")
@@ -733,11 +734,11 @@ for token in (
     "996-octeon-dsa-conduit-length-error.patch",
     "kernel_patch_sources=(",
     "kernel_patch_targets=(",
-    "Installed DSA kernel patch differs from toolkit v1.9.0",
+    "Installed DSA kernel patch differs from toolkit v1.10.3",
 ):
     if token not in build_text:
         fail(f"v1.7.6 build preflight lacks token: {token}")
-if not (ROOT / "docs/RV220W-V1.7.6-OCTEON-DSA-RX-LENGTH-HOTFIX.md").is_file():
+if not (HISTORY_DOCS / "RV220W-V1.7.6-OCTEON-DSA-RX-LENGTH-HOTFIX.md").is_file():
     fail("missing v1.7.6 Octeon DSA RX documentation")
 subprocess.run([sys.executable, str(ROOT / "tests/test_dsa_kernel_patch.py")], check=True)
 print("v1.7.6 Octeon DSA tagged-RX compatibility checks passed")
@@ -745,8 +746,8 @@ print("v1.7.6 Octeon DSA tagged-RX compatibility checks passed")
 
 
 # v1.8.0 dual-conduit DSA/WAN stage checks.
-if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.9.0":
-    fail("toolkit VERSION is not 1.9.0")
+if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.10.3":
+    fail("toolkit VERSION is not 1.10.3")
 for path in (
     ROOT / "config/openwrt-rv220w-dsa-dual-initramfs.config",
     ROOT / "openwrt/dsa-dual/cn5010_cisco_rv220w-dsa-dual.dts.in",
@@ -755,8 +756,8 @@ for path in (
     ROOT / "openwrt/files-dsa-dual/etc/init.d/rv220w-dsa-affinity",
     ROOT / "openwrt/files-dsa-dual/etc/hotplug.d/net/20-rv220w-dsa-affinity",
     ROOT / "openwrt/files-dsa-dual/etc/uci-defaults/98-rv220w-dsa-dual-network",
-    ROOT / "docs/RV220W-STAGE6-LAN-DSA-HARDWARE-VALIDATION.md",
-    ROOT / "docs/RV220W-V1.8.0-DUAL-CONDUIT-WAN-VALIDATION.md",
+    HISTORY_DOCS / "RV220W-STAGE6-LAN-DSA-HARDWARE-VALIDATION.md",
+    HISTORY_DOCS / "RV220W-V1.8.0-DUAL-CONDUIT-WAN-VALIDATION.md",
 ):
     if not path.is_file():
         fail(f"missing v1.8.0 file: {path.relative_to(ROOT)}")
@@ -807,7 +808,7 @@ if 'if [[ ${RV220W_CLEAN:-0} == 1 && "$mode" != clean ]]; then' in build_text:
 common_text = (ROOT / "scripts/lib/common.fish").read_text(encoding="utf-8")
 if "file setsid flock" not in common_text:
     fail("build-box readiness does not require both setsid and flock")
-if not (ROOT / "docs/RV220W-V1.8.1-PRE-DEFCONFIG-MENUCONFIG-RACE-HOTFIX.md").is_file():
+if not (HISTORY_DOCS / "RV220W-V1.8.1-PRE-DEFCONFIG-MENUCONFIG-RACE-HOTFIX.md").is_file():
     fail("missing v1.8.1 build-race hotfix documentation")
 subprocess.run([sys.executable, str(ROOT / "tests/test_build_config_order.py")], check=True)
 print("v1.8.1 pre-defconfig menuconfig-race hotfix checks passed")
@@ -819,7 +820,7 @@ for path in (
     ROOT / "scripts/compare-b53.fish",
     ROOT / "scripts/host/compare_rv220w_b53_snapshots.py",
     ROOT / "openwrt/files-dsa-dual/usr/sbin/rv220w-b53-snapshot",
-    ROOT / "docs/RV220W-V1.8.2-B53-CONDUIT-REGISTER-DIAGNOSTICS.md",
+    HISTORY_DOCS / "RV220W-V1.8.2-B53-CONDUIT-REGISTER-DIAGNOSTICS.md",
 ):
     if not path.is_file():
         fail(f"missing v1.8.2 diagnostic file: {path.relative_to(ROOT)}")
@@ -842,7 +843,7 @@ for path in (
     ROOT / "scripts/b53-eap.fish",
     ROOT / "scripts/host/rv220w_uart_b53_eap.py",
     ROOT / "openwrt/files-dsa-dual/usr/sbin/rv220w-b53-eap-mode",
-    ROOT / "docs/RV220W-V1.8.3-EAP-MODE-VALIDATION.md",
+    HISTORY_DOCS / "RV220W-V1.8.3-EAP-MODE-VALIDATION.md",
 ):
     if not path.is_file():
         fail(f"missing v1.8.3 EAP validation file: {path.relative_to(ROOT)}")
@@ -878,7 +879,7 @@ for path in (
     ROOT / "scripts/b53-vlan.fish",
     ROOT / "scripts/host/rv220w_uart_b53_vlan.py",
     ROOT / "openwrt/files-dsa-dual/usr/sbin/rv220w-b53-vlan-state",
-    ROOT / "docs/RV220W-V1.8.4-VLAN-PVID-VALIDATION.md",
+    HISTORY_DOCS / "RV220W-V1.8.4-VLAN-PVID-VALIDATION.md",
 ):
     if not path.is_file():
         fail(f"missing v1.8.4 VLAN/PVID validation file: {path.relative_to(ROOT)}")
@@ -908,16 +909,16 @@ subprocess.run([sys.executable, str(ROOT / "tests/test_b53_vlan_state.py")], che
 print("v1.8.4 BCM53115 VLAN/PVID validation checks passed")
 
 # v1.9.0 first full-RJ45 candidate checks.
-if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.9.0":
-    fail("toolkit VERSION is not 1.9.0")
+if (ROOT / "VERSION").read_text(encoding="utf-8").strip() != "1.10.3":
+    fail("toolkit VERSION is not 1.10.3")
 for path in (
     ROOT / "openwrt/dsa-dual/998-b53-enable-dt-cpu-ports.patch",
     ROOT / "config/openwrt-rv220w-rj45-initramfs.config",
     ROOT / "openwrt/files-rj45-full/etc/uci-defaults/98-rv220w-rj45-network",
     ROOT / "openwrt/files-rj45-full/etc/uci-defaults/99-rv220w-rj45-services",
     ROOT / "openwrt/files-rj45-full/usr/sbin/rv220w-rj45-status",
-    ROOT / "docs/RV220W-RUN9-VLAN-PVID-PROOF.md",
-    ROOT / "docs/RV220W-V1.9.0-FULL-RJ45-CANDIDATE.md",
+    HISTORY_DOCS / "RV220W-RUN9-VLAN-PVID-PROOF.md",
+    HISTORY_DOCS / "RV220W-V1.9.0-FULL-RJ45-CANDIDATE.md",
     ROOT / "evidence/run9-vlan-pvid/README.md",
 ):
     if not path.is_file():
@@ -929,7 +930,7 @@ for token in (
     "rv220w-rj45-initramfs)",
     "openwrt-rv220w-rj45-initramfs.config",
     "rv220w-openwrt-rv220w-rj45-initramfs",
-    "Re-run the v1.9.0 updater",
+    "Re-run the v1.10.3 updater",
 ):
     if token not in build_text:
         fail(f"v1.9.0 build helper lacks token: {token}")
@@ -939,3 +940,34 @@ for forbidden in ("Re-run the v1.8.4 updater", "differs from toolkit v1.8.4"):
 subprocess.run([sys.executable, str(ROOT / "tests/test_b53_dt_cpu_ports_patch.py")], check=True)
 subprocess.run([sys.executable, str(ROOT / "tests/test_rj45_full_profile.py")], check=True)
 print("v1.9.0 first full-RJ45 candidate checks passed")
+
+
+# v1.9.1 production cleanup assets.
+for required_path in (
+    ROOT / "openwrt/production/cn5010_cisco_rv220w-production.dts.in",
+    ROOT / "openwrt/production/999-octeon-production-dt-flash-cleanups.patch",
+    HISTORY_DOCS / "RV220W-V1.9.1-PRODUCTION-CLEANUP.md",
+    ROOT / "tests/test_v191_production_cleanup.py",
+):
+    if not required_path.is_file():
+        fail(f"missing v1.9.1 production asset: {required_path}")
+
+
+# v1.9.2 patch-context hotfix assets.
+for required_path in (
+    HISTORY_DOCS / "RV220W-V1.9.2-PATCH999-CONTEXT-HOTFIX.md",
+    ROOT / "tests/test_v192_patch999_context.py",
+):
+    if not required_path.is_file():
+        fail(f"missing v1.9.2 hotfix asset: {required_path}")
+
+
+# v1.9.3 FDT verification API hotfix assets.
+for required_path in (
+    HISTORY_DOCS / "RV220W-V1.9.3-FDT-VERIFY-API-HOTFIX.md",
+    ROOT / "tests/test_v193_fdt_verify_api.py",
+    ROOT / "evidence/v192-build-failure/README.md",
+):
+    if not required_path.is_file():
+        fail(f"missing v1.9.3 hotfix asset: {required_path}")
+subprocess.run([sys.executable, str(ROOT / "tests/test_v193_fdt_verify_api.py")], check=True)

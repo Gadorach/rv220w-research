@@ -1,0 +1,168 @@
+
+Relocation section '.rela.text' at offset 0x1100 contains 24 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000004  000000130000001d R_MIPS_HIGHEST         0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  0000001300000005 R_MIPS_HI16            0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000000c  000000130000001c R_MIPS_HIGHER          0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000001300000006 R_MIPS_LO16            0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000044  000000160000001d R_MIPS_HIGHEST         0000000000000000 TF1_cvm_oct_mdio_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000048  0000001600000005 R_MIPS_HI16            0000000000000000 TF1_cvm_oct_mdio_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000004c  000000160000001c R_MIPS_HIGHER          0000000000000000 TF1_cvm_oct_mdio_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000050  0000001600000006 R_MIPS_LO16            0000000000000000 TF1_cvm_oct_mdio_read + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000068  000000120000001d R_MIPS_HIGHEST         0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000006c  0000001200000005 R_MIPS_HI16            0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000070  000000120000001c R_MIPS_HIGHER          0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000074  0000001200000006 R_MIPS_LO16            0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000bc  000000130000001d R_MIPS_HIGHEST         0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000c0  0000001300000005 R_MIPS_HI16            0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000c4  000000130000001c R_MIPS_HIGHER          0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+00000000000000c8  0000001300000006 R_MIPS_LO16            0000000000000000 local_bh_disable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000100  000000150000001d R_MIPS_HIGHEST         0000000000000000 cvm_oct_mdio_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000104  0000001500000005 R_MIPS_HI16            0000000000000000 cvm_oct_mdio_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000108  000000150000001c R_MIPS_HIGHER          0000000000000000 cvm_oct_mdio_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000010c  0000001500000006 R_MIPS_LO16            0000000000000000 cvm_oct_mdio_write + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000120  000000120000001d R_MIPS_HIGHEST         0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000124  0000001200000005 R_MIPS_HI16            0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000128  000000120000001c R_MIPS_HIGHER          0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000012c  0000001200000006 R_MIPS_LO16            0000000000000000 local_bh_enable + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.exit.text' at offset 0x1340 contains 8 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  000000040000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000004  0000000400000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  000000040000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000000c  0000000400000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000018  000000140000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000001c  0000001400000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  000000140000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000024  0000001400000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.init.text' at offset 0x1400 contains 8 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000004  000000040000001d R_MIPS_HIGHEST         0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  0000000400000005 R_MIPS_HI16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000000c  000000040000001c R_MIPS_HIGHER          0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000000400000006 R_MIPS_LO16            0000000000000000 .rodata.str1.8 + 18
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  000000140000001d R_MIPS_HIGHEST         0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000024  0000001400000005 R_MIPS_HI16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000028  000000140000001c R_MIPS_HIGHER          0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+000000000000002c  0000001400000006 R_MIPS_LO16            0000000000000000 printk + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela__ksymtab' at offset 0x14c0 contains 4 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000000100000012 R_MIPS_64              0000000000000000 .text + b8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000008  0000000500000012 R_MIPS_64              0000000000000000 __ksymtab_strings + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000010  0000000100000012 R_MIPS_64              0000000000000000 .text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000018  0000000500000012 R_MIPS_64              0000000000000000 __ksymtab_strings + 10
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.gnu.linkonce.this_module' at offset 0x1520 contains 2 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000170  0000001100000012 R_MIPS_64              0000000000000000 init_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000298  0000001000000012 R_MIPS_64              0000000000000000 cleanup_module + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+
+Relocation section '.rela.pdr' at offset 0x1550 contains 4 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000000100000002 R_MIPS_32              0000000000000000 .text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000020  0000000100000002 R_MIPS_32              0000000000000000 .text + b8
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000040  0000000200000002 R_MIPS_32              0000000000000000 .exit.text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      
+0000000000000060  0000000300000002 R_MIPS_32              0000000000000000 .init.text + 0
+                    Type2: R_MIPS_NONE      
+                    Type3: R_MIPS_NONE      

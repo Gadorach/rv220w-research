@@ -1,0 +1,1009 @@
+function_entry	function_name	string
+ffffffffbfc00f08	FUN_ffffffffbfc00f08	### ERROR ### Please RESET the board ###\n
+ffffffffbfc00fb4	FUN_ffffffffbfc00fb4	U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+ffffffffbfc00fb4	FUN_ffffffffbfc00fb4	\n\n%s\n\n
+ffffffffbfc00ff4	FUN_ffffffffbfc00ff4	baudrate
+ffffffffbfc01070	FUN_ffffffffbfc01070	hanging...\n
+ffffffffbfc01298	board_init_r	Flash: 
+ffffffffbfc01298	board_init_r	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc01298	board_init_r	IPD backpressure workaround verified, took %d loops\n
+ffffffffbfc01298	board_init_r	IPD backpressure workaround FAILED verfication. Adjust octeon_ipd_bp_enable() for this chip!\n
+ffffffffbfc01298	board_init_r	IPD backpressure workaround FAILED. Adjust octeon_ipd_bp_enable() for this chip!\n
+ffffffffbfc01298	board_init_r	Clearing DRAM.....
+ffffffffbfc01298	board_init_r	!Core is not in the exception handler. Focus not changed.
+ffffffffbfc01298	board_init_r	 done\n
+ffffffffbfc01298	board_init_r	FATAL: Error initializing free memory list\n
+ffffffffbfc01298	board_init_r	octeon_reserved_mem_load_size
+ffffffffbfc01298	board_init_r	octeon_reserved_mem_load_base
+ffffffffbfc01298	board_init_r	__tmp_load
+ffffffffbfc01298	board_init_r	ERROR: Unable to allocate bootloader reserved memory (addr: 0x%x, size: 0x%x).\n
+ffffffffbfc01298	board_init_r	loadaddr
+ffffffffbfc01298	board_init_r	WARNING: No reserved memory for image loading.\n
+ffffffffbfc01298	board_init_r	octeon_reserved_mem_linux_size
+ffffffffbfc01298	board_init_r	octeon_reserved_mem_linux_base
+ffffffffbfc01298	board_init_r	__tmp_reserved_linux
+ffffffffbfc01298	board_init_r	ERROR: Unable to allocate linux reserved memory (addr: 0x%x, size: 0x%x).\n
+ffffffffbfc01298	board_init_r	numcores
+ffffffffbfc01298	board_init_r	ethaddr
+ffffffffbfc01298	board_init_r	ipaddr
+ffffffffbfc01298	board_init_r	pci_console_active
+ffffffffbfc01298	board_init_r	Using PCI console, serial port disabled.\n
+ffffffffbfc01298	board_init_r	stdin
+ffffffffbfc01298	board_init_r	stdout
+ffffffffbfc01298	board_init_r	stderr
+ffffffffbfc01298	board_init_r	PCI CONS
+ffffffffbfc01298	board_init_r	serial
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_NULL
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_NIAGARA
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBH3000
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBT5800
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBH5600
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_MAX
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_NB5
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_RV320W
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_PRIVATE_MAX
+ffffffffbfc01298	board_init_r	Unsupported Board
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_SIM
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBT3000
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_KODAMA
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_NAC38
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_THUNDER
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_TRANTOR
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBH3100
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_HIKARI
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CN3010_EVB_HS5
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CN3005_EVB_HS5
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_KBP
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CN3020_EVB_HS5
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_NICPRO2
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBH5601
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_EBH5200
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_BBGW_REF
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_DEFINED_MIN
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_WSX16
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_NS0216
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_WMR500
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_RV100W
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_RV200W
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_DEFINED_MAX
+ffffffffbfc01298	board_init_r	CVMX_BOARD_TYPE_CUST_PRIVATE_MIN
+ffffffffbfc01298	board_init_r	%s board revision major:%d, minor:%d, serial #: %s\n
+ffffffffbfc01298	board_init_r	CN3010
+ffffffffbfc01298	board_init_r	OCTEON %s-%s revision: %d, Core clock: %d MHz, DDR clock: %d MHz (%d Mhz data rate)\n
+ffffffffbfc01298	board_init_r	WARNING: loadaddr not set, defaulting to %s.  Please either define a load reserved block or set the loadaddr environment variable.\n
+ffffffffbfc01298	board_init_r	env_addr
+ffffffffbfc01298	board_init_r	env_size
+ffffffffbfc01298	board_init_r	flash_base_addr
+ffffffffbfc01298	board_init_r	flash_size
+ffffffffbfc01298	board_init_r	uboot_flash_addr
+ffffffffbfc01298	board_init_r	uboot_flash_size
+ffffffffbfc01298	board_init_r	flash_unused_addr
+ffffffffbfc01298	board_init_r	flash_unused_size
+ffffffffbfc01298	board_init_r	bootfile
+ffffffffbfc01298	board_init_r	Net:   
+ffffffffbfc03650	FUN_ffffffffbfc03650	fileaddr
+ffffffffbfc03650	FUN_ffffffffbfc03650	filesize
+ffffffffbfc03650	FUN_ffffffffbfc03650	WARNING: Data loaded outside of the reserved load area, memory corruption may occur.\n
+ffffffffbfc03650	FUN_ffffffffbfc03650	WARNING: Please refer to the bootloader memory map documentation for more information.\n
+ffffffffbfc03758	FUN_ffffffffbfc03758	ERROR copying memory using TLB mappings, cur_len: %d !\n
+ffffffffbfc03c80	FUN_ffffffffbfc03c80	coremask_override
+ffffffffbfc03ea4	FUN_ffffffffbfc03ea4	####################################################################################\n
+ffffffffbfc03ea4	FUN_ffffffffbfc03ea4	### Warning: only %02d cores available, not running with requested number of cores ###\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	ERROR: Can't boot cores that don't exist! (available coremask: 0x%x)\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	Notice: coremask changed to 0x%x based on coremask_override of 0x%x\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	WARNING:\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	WARNING: You have changed the coremask_override and are running code on non-functional cores.\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	WARNING: The program may crash and/or produce unreliable results.\n
+ffffffffbfc03f70	FUN_ffffffffbfc03f70	%sProtect Flash Sectors %d-%d in Bank # %d\n
+ffffffffbfc04134	FUN_ffffffffbfc04134	ERROR allocating stack for core: %d\n
+ffffffffbfc0422c	FUN_ffffffffbfc0422c	cvmx_ptr_to_phys() passed a NULL pointer\n
+ffffffffbfc04310	FUN_ffffffffbfc04310	__bootloader_env
+ffffffffbfc04678	FUN_ffffffffbfc04678	ERROR allocating memory for boot descriptor block\n
+ffffffffbfc04678	FUN_ffffffffbfc04678	ERROR allocating memory for cvmx bootinfo block\n
+ffffffffbfc04678	FUN_ffffffffbfc04678	ERROR: unable to allocate memory for argument data\n
+ffffffffbfc04678	FUN_ffffffffbfc04678	pci_console_active
+ffffffffbfc04678	FUN_ffffffffbfc04678	icache_prefetch_disable
+ffffffffbfc0500c	FUN_ffffffffbfc0500c	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0500c	FUN_ffffffffbfc0500c	BIST FAILURE: %s, error bits: 0x%qx\n
+ffffffffbfc05078	FUN_ffffffffbfc05078	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc05078	FUN_ffffffffbfc05078	BIST FAILURE: %s, error bits: 0x%qx\n
+ffffffffbfc050e4	FUN_ffffffffbfc050e4	BIST FAILURE: %s, error bits ((bist_val & mask) ^ expected): 0x%qx\n
+ffffffffbfc05354	FUN_ffffffffbfc05354	ERROR: unsupported Octeon model\n
+ffffffffbfc05748	FUN_ffffffffbfc05748	WARNING: L2D ECC errors detected!\n
+ffffffffbfc05748	FUN_ffffffffbfc05748	WARNING: L2T ECC errors detected!\n
+ffffffffbfc05748	FUN_ffffffffbfc05748	WARNING: DDR ECC errors detected!\n
+ffffffffbfc05930	FUN_ffffffffbfc05930	COP0_CVMMEMCTL_REG
+ffffffffbfc05930	FUN_ffffffffbfc05930	COP0_CACHEERR_REG
+ffffffffbfc05930	FUN_ffffffffbfc05930	GMX0_BIST
+ffffffffbfc05930	FUN_ffffffffbfc05930	GMX1_BIST
+ffffffffbfc05930	FUN_ffffffffbfc05930	IPD_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	KEY_BIST_REG
+ffffffffbfc05930	FUN_ffffffffbfc05930	L2D_BST0
+ffffffffbfc05930	FUN_ffffffffbfc05930	L2C_BST0
+ffffffffbfc05930	FUN_ffffffffbfc05930	L2C_BST1
+ffffffffbfc05930	FUN_ffffffffbfc05930	L2C_BST2
+ffffffffbfc05930	FUN_ffffffffbfc05930	CIU_BIST
+ffffffffbfc05930	FUN_ffffffffbfc05930	PKO_REG_BIST_RESULT
+ffffffffbfc05930	FUN_ffffffffbfc05930	NPI_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	PIP_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	coremask_override
+ffffffffbfc05930	FUN_ffffffffbfc05930	BIST FAILURE: POW_BIST_STAT: 0x%08x\n
+ffffffffbfc05930	FUN_ffffffffbfc05930	RNM_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	SPX0_BIST_STAT
+ffffffffbfc05930	FUN_ffffffffbfc05930	SPX1_BIST_STAT
+ffffffffbfc05930	FUN_ffffffffbfc05930	TIM_REG_BIST_RESULT
+ffffffffbfc05930	FUN_ffffffffbfc05930	TRA_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	MIO_BOOT_BIST_STAT
+ffffffffbfc05930	FUN_ffffffffbfc05930	IOB_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	DFA_BST0
+ffffffffbfc05930	FUN_ffffffffbfc05930	DFA_BST1
+ffffffffbfc05930	FUN_ffffffffbfc05930	FPA_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	ZIP_CMD_BIST_RESULT
+ffffffffbfc05930	FUN_ffffffffbfc05930	USBNX_BIST_STATUS(0)
+ffffffffbfc05930	FUN_ffffffffbfc05930	AGL_GMX_BIST
+ffffffffbfc05930	FUN_ffffffffbfc05930	MIXX_BIST(0)
+ffffffffbfc05930	FUN_ffffffffbfc05930	NPEI_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	RAD_REG_BIST_RESULT
+ffffffffbfc05930	FUN_ffffffffbfc05930	PCSX0_BIST_STATUS_REG(0)
+ffffffffbfc05930	FUN_ffffffffbfc05930	PCSX1_BIST_STATUS_REG(1)
+ffffffffbfc05930	FUN_ffffffffbfc05930	PEXP_NPEI_BIST_STATUS
+ffffffffbfc05930	FUN_ffffffffbfc05930	BIST Errors found.\n
+ffffffffbfc05930	FUN_ffffffffbfc05930	'1' bits above indicate unexpected BIST status.\n
+ffffffffbfc05930	FUN_ffffffffbfc05930	BIST check passed.\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	ddr_verbose
+ffffffffbfc06970	FUN_ffffffffbfc06970	ERROR: DDR Reference Clock not specified.\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	clkr: %2lu, en: %2d, clkf: %4lu, pll_MHz: %4lu, ddr_hertz: %8lu, error: %8d\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	clkr: %2lu, en: %2d, clkf: %4lu, pll_MHz: %4lu, ddr_hertz: %8lu, error: %8d <==\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	ERROR: Can not compute a legal DDR clock speed configuration.\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	ddr_sil_mode
+ffffffffbfc06970	FUN_ffffffffbfc06970	Parameter found in environment. ddr_sil_mode = %d\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	Enabled
+ffffffffbfc06970	FUN_ffffffffbfc06970	Disabled
+ffffffffbfc06970	FUN_ffffffffbfc06970	DDR Interface %d: %s,  Mask 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	DDR Interface %d: %s, Target DCLK: %d\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	Enabling DCLK PLL
+ffffffffbfc06970	FUN_ffffffffbfc06970	DDR Interface %d: %s\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	Performing LMC1 DCLK Offsetting Sequence
+ffffffffbfc06970	FUN_ffffffffbfc06970	Performing DRESET Initialization Sequence
+ffffffffbfc06970	FUN_ffffffffbfc06970	BIST ERROR: 0x%llx\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	CSRD2E = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	CSRE2D = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	MWF    = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	MWD    = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	MWC    = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	MRF    = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	MRD    = 0x%x\n
+ffffffffbfc06970	FUN_ffffffffbfc06970	Performing LMCX Initialization Sequence
+ffffffffbfc078a4	FUN_ffffffffbfc078a4	Reading simulated SPD %p\n
+ffffffffbfc078a4	FUN_ffffffffbfc078a4	Unbuffered
+ffffffffbfc078a4	FUN_ffffffffbfc078a4	DIMM %d: DDR2 %s, %s
+ffffffffbfc078a4	FUN_ffffffffbfc078a4	  %s\n
+ffffffffbfc079dc	FUN_ffffffffbfc079dc	twsii write (2byte) failed\n
+ffffffffbfc07b14	FUN_ffffffffbfc07b14	Measured DDR clock %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	\nInitializing DDR interface %d, DDR Clock %d, DDR Reference Clock %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ERROR: No dimms specified in the dimm_config_table.\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ERROR: Install DIMMs in pairs for 128-bit interface\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_safe
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_safe = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ERROR: DIMM 0 not detected.\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_narrow
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment: ddr_narrow, forcing narrow ddr interface\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported number of Col Bits: %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported number of Row Bits: %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ERROR: Unsupported Octeon model: 0x%x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	NOTICE: Memory size reduced by half on 2 rank memory configs.\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	row bits: %d, col bits: %d, banks: %d, ranks: %d, dram width: %d, size: %d MB\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN31XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN30XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN58XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN56XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN52XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN50XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CN38XX DRAM Interface width: %d bits %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CAS Latency was not specified by SPD: %#04x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CL%d Minimum Clock Rate                        : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	WARNING!!!!!!: DDR Clock Rate (tCLK) exceeds DIMM specifications!!!!!!!!\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported refresh rate: %#04x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR Clock Rate (tCLK)                         : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	CAS Latency                                   : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Refresh Rate (tREFI)                          : %6d ns\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Minimum Row Precharge Time (tRP)              : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Minimum Row Active to Row Active delay (tRRD) : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Minimum RAS to CAS delay (tRCD)               : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Minimum Active to Precharge Time (tRAS)       : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Write Recovery Time (tWR)                     : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Internal write to read command delay (tWTR)   : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Device Min Auto-refresh Active/Command (tRFC) : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported number of banks %d. Must be 4 or 8.\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported number of ranks: %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Unsupported SDRAM Width, %d.  Must be 8 or 16.\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_board_delay
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Overriding internal board delay (%d ps).\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_board_delay = %d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Board delay                                   : %6d ps\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Error!!!  Board delay was not specified!!!\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_tskw
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_tskw = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_silo_hc
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_silo_hc = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_silo_qc
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_silo_qc = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_dic
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_dic = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_qs_dic
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_qs_dic = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_odt_ena
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_odt_ena = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_odt_mask
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_odt_mask = 0x%x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_odt_mask1
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_odt_mask1 = 0x%x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_rodt_ctl
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_rodt_ctl = 0x%x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_2t
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_2t = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_burst8
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_burst8 = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_delay_clk
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_delay_clk = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_delay_cmd
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_delay_cmd = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_delay_dq
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_delay_dq = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	delay_clk                                     : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	delay_cmd                                     : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	delay_dq                                      : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	sil_mode                                      : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR Fixed Reference Clock Hertz               : %8d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	clkf                                          : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	clkr                                          : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN2                                           : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN4                                           : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN6                                           : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN8                                           : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN12                                          : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	EN16                                          : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	LMC PLL Frequency                             : %6d MHz\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Calculated DClk Frequency                     : %8d Hz\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR PMOS dat                                  : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR NMOS dat                                  : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	bunk_enable                                   : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	burst8                                        : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr2t                                         : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	tskw                                          : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	silo_hc                                       : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	silo_qc                                       : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	sil_lat                                       : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	r2r_slot                                      : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	odt_ena                                       : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	qs_dic                                        : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	dic                                           : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ctl_odt_mask                                  : %08x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ctl_odt_mask1                                 : %08x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ctl_rodt_ctl                                  : %08x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_rodt
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_rodt = %s\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	strong
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	RODT enable                                   : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	RODT pctl                                     : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	RODT nctl                                     : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR PMOS control                              : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	DDR NMOS control                              : %6d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	ddr_read_level
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Parameter found in environment. ddr_read_level = %d\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Read Level Rank Status                        : %#6x\n
+ffffffffbfc07c5c	FUN_ffffffffbfc07c5c	Rank(%d) Read Level Deskew Bytes 8:0           : %#x %#x %#x %#x %#x %#x %#x %#x %#x\n
+ffffffffbfc0a3f0	FUN_ffffffffbfc0a3f0	WARNING:\n
+ffffffffbfc0a688	FUN_ffffffffbfc0a688	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0a688	FUN_ffffffffbfc0a688	List of currently allocated named bootmem blocks:\n
+ffffffffbfc0a688	FUN_ffffffffbfc0a688	Name: %s, address: 0x%08qx, size: 0x%08qx, index: %d\n
+ffffffffbfc0a688	FUN_ffffffffbfc0a688	No named bootmem blocks exist.\n
+ffffffffbfc0a7c0	FUN_ffffffffbfc0a7c0	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0a948	FUN_ffffffffbfc0a948	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0ac08	FUN_ffffffffbfc0ac08	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0acec	FUN_ffffffffbfc0acec	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0acec	FUN_ffffffffbfc0acec	Internal bootmem_alloc() error: ent: 0x%llx, next: 0x%llx\n
+ffffffffbfc0af78	FUN_ffffffffbfc0af78	ERROR: Incompatible bootmem descriptor version: %d.%d at addr: %p\n
+ffffffffbfc0b144	FUN_ffffffffbfc0b144	cvmx_phys_to_ptr() passed a zero address\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	\n\n\nPrinting bootmem block list, descriptor: %p,  head is 0x%qx\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	Descriptor version: %d.%d\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	Warning: Bootmem descriptor version is newer than expected\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	mem list is empty!\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	Block address: 0x%08qx, size: 0x%08qx, next: 0x%08qx\n
+ffffffffbfc0b2dc	FUN_ffffffffbfc0b2dc	WARNING:\n\n
+ffffffffbfc0b3d4	FUN_ffffffffbfc0b3d4	ERROR: no memory for cvmx_bootmem descriptor provided\n
+ffffffffbfc0b3d4	FUN_ffffffffbfc0b3d4	ERROR: requested memory size too large, truncating to maximum size\n
+ffffffffbfc0b3d4	FUN_ffffffffbfc0b3d4	FATAL ERROR: unable to allocate memory for bootmem descriptor!\n
+ffffffffbfc0b610	FUN_ffffffffbfc0b610	%d.%d
+ffffffffbfc0b610	FUN_ffffffffbfc0b610	CN%s%s-%s pass %s
+ffffffffbfc0bcb4	FUN_ffffffffbfc0bcb4	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0bdd0	FUN_ffffffffbfc0bdd0	%x:%x:%x:%x:%x:%x
+ffffffffbfc0be94	FUN_ffffffffbfc0be94	%d.%d.%d.%d
+ffffffffbfc0c340	FUN_ffffffffbfc0c340	## Warning: gatewayip needed but not set\n
+ffffffffbfc0c490	FUN_ffffffffbfc0c490	bad length %d < %d\n
+ffffffffbfc0c490	FUN_ffffffffbfc0c490	invalid RARP header\n
+ffffffffbfc0c490	FUN_ffffffffbfc0c490	len bad %d < %d\n
+ffffffffbfc0c490	FUN_ffffffffbfc0c490	checksum bad\n
+ffffffffbfc0c490	FUN_ffffffffbfc0c490	 ICMP Host Redirect to 
+ffffffffbfc0cba4	FUN_ffffffffbfc0cba4	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0cc08	FUN_ffffffffbfc0cc08	netretry
+ffffffffbfc0cd60	FUN_ffffffffbfc0cd60	\nARP Retry count exceeded; starting again\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	gatewayip
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	netmask
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	nvlan
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	serverip
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	*** ERROR: No ethernet found.\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	*** ERROR: `ethaddr' not set\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	*** ERROR: `eth%daddr' not set\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	*** ERROR: `serverip' not set\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	*** ERROR: `ipaddr' not set\n
+ffffffffbfc0ce74	FUN_ffffffffbfc0ce74	\nAbort\n
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	%02lX%02lX%02lX%02lX.img
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	*** Warning: no boot file name; using '%s'\n
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	Using %s device\n
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	TFTP from server 
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	; our IP address is 
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	; sending through gateway 
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	Filename '%s'.
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	 Size is 0x%x Bytes = 
+ffffffffbfc0d7c0	FUN_ffffffffbfc0d7c0	Load address: 0x%lx\n
+ffffffffbfc0da64	FUN_ffffffffbfc0da64	\nRetry count exceeded; starting again\n
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	blksize
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	\n\t %lu MB received\n\t 
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	\nTFTP error: First block is not block 1 (%ld)\nStarting again\n\n
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	\ndone\n
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	\nTFTP error: '%s' (%d)\n
+ffffffffbfc0dafc	FUN_ffffffffbfc0dafc	Starting again\n\n
+ffffffffbfc0def0	FUN_ffffffffbfc0def0	*** WARNING: %s is too long (%d - max: %d) - truncated\n
+ffffffffbfc0dfe8	FUN_ffffffffbfc0dfe8	BOOTP broadcast %d\n
+ffffffffbfc0e264	FUN_ffffffffbfc0e264	bootfile
+ffffffffbfc0e264	FUN_ffffffffbfc0e264	Host Name
+ffffffffbfc0e264	FUN_ffffffffbfc0e264	Root Path
+ffffffffbfc0e264	FUN_ffffffffbfc0e264	NIS Domain Name
+ffffffffbfc0e264	FUN_ffffffffbfc0e264	autoload
+ffffffffbfc0e5e8	FUN_ffffffffbfc0e5e8	\nRetry count exceeded; starting again\n
+ffffffffbfc0e690	FUN_ffffffffbfc0e690	RARP broadcast %d\n
+ffffffffbfc0e7b8	FUN_ffffffffbfc0e7b8	autoload
+ffffffffbfc0e820	FUN_ffffffffbfc0e820	\nRetry count exceeded; starting again\n
+ffffffffbfc0e9e0	FUN_ffffffffbfc0e9e0	unknown
+ffffffffbfc0ea0c	FUN_ffffffffbfc0ea0c	ethact
+ffffffffbfc0ea0c	FUN_ffffffffbfc0ea0c	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0eae4	FUN_ffffffffbfc0eae4	ethact
+ffffffffbfc0ec2c	FUN_ffffffffbfc0ec2c	ethact
+ffffffffbfc0ece4	FUN_ffffffffbfc0ece4	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	disable_networking
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	No ethernet found.\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	Networking disabled by 'disable_networking' env variable.\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	ethprime
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	 [PRIME]
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	ethaddr
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	eth%daddr
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	\nWarning: %s MAC addresses don't match:\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	Address in SROM is         %02X:%02X:%02X:%02X:%02X:%02X\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	Address in environment is  %02X:%02X:%02X:%02X:%02X:%02X\n
+ffffffffbfc0ee1c	FUN_ffffffffbfc0ee1c	ethact
+ffffffffbfc0f640	rv220w_flash_probe_ids	Manu.id(0x%x) Dev.id1(0x%x) Dev.id2(0x%x) Dev.id3(0x%x),tst.value 0x%x\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Flash %s error at address %lx\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Command Sequence Error.\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Flash %s timeout at address %lx data %lx\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Block Erase Error.\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Locking Error\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Block locked.\n
+ffffffffbfc0f748	FUN_ffffffffbfc0f748	Vpp Low Error.\n
+ffffffffbfc0fb24	FUN_ffffffffbfc0fb24	8bit write error(1): flash addr 0x%08x: 0x%x, new val: 0x%x\n
+ffffffffbfc0fb24	FUN_ffffffffbfc0fb24	8bit write error(2): flash addr 0x%08x: 0x%x, new val: 0x%x\n
+ffffffffbfc0fb24	FUN_ffffffffbfc0fb24	16bit write error: flash: 0x%x, new val: 0x%x\n
+ffffffffbfc0fb24	FUN_ffffffffbfc0fb24	write
+ffffffffbfc0ff6c	FUN_ffffffffbfc0ff6c	Error writing addr: 0x%x\n
+ffffffffbfc0ff6c	FUN_ffffffffbfc0ff6c	!Core is not in the exception handler. Focus not changed.
+ffffffffbfc10214	FUN_ffffffffbfc10214	missing or unknown FLASH type\n
+ffffffffbfc10214	FUN_ffffffffbfc10214	CFI conformant FLASH (portwidth:%d x chipwidth: %d)
+ffffffffbfc10214	FUN_ffffffffbfc10214	  Size: %ld MB in %d Sectors\n
+ffffffffbfc10214	FUN_ffffffffbfc10214	 Erase timeout %ld ms, write timeout %ld ms, buffer write timeout %ld ms, buffer size %d\n
+ffffffffbfc10214	FUN_ffffffffbfc10214	  Sector Start Addresses:
+ffffffffbfc10214	FUN_ffffffffbfc10214	 (RO)
+ffffffffbfc10214	FUN_ffffffffbfc10214	     
+ffffffffbfc10214	FUN_ffffffffbfc10214	 %08lX%s
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	Can't erase unknown flash type - aborted\n
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	- no sectors to erase\n
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	- Warning: %d protected sectors will not be erased!\n
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	erase
+ffffffffbfc1037c	FUN_ffffffffbfc1037c	 done\n
+ffffffffbfc1060c	FUN_ffffffffbfc1060c	Is samsung k8q2815uqb 16M Flash\n
+ffffffffbfc1060c	FUN_ffffffffbfc1060c	%d erase regions found, only %d used\n
+ffffffffbfc1060c	FUN_ffffffffbfc1060c	## Unknown FLASH on Bank %d - Size = 0x%08lx = %ld MB\n
+ffffffffbfc11b04	FUN_ffffffffbfc11b04	pci_hose_phys_to_bus: %s\n
+ffffffffbfc11b04	FUN_ffffffffbfc11b04	invalid hose
+ffffffffbfc11b04	FUN_ffffffffbfc11b04	invalid physical address
+ffffffffbfc11bdc	FUN_ffffffffbfc11bdc	Found VIA southbridge, enabling IDE controller\n
+ffffffffbfc12748	FUN_ffffffffbfc12748	## Command too long!\n
+ffffffffbfc12748	FUN_ffffffffbfc12748	setenv
+ffffffffbfc12748	FUN_ffffffffbfc12748	** Too many args (max. %d) **\n
+ffffffffbfc12748	FUN_ffffffffbfc12748	Unknown command '%s' - try 'help'\n
+ffffffffbfc12748	FUN_ffffffffbfc12748	Usage:\n%s\n
+ffffffffbfc12ac8	do_run	Usage:\n%s\n
+ffffffffbfc12ac8	do_run	## Error: "%s" not defined\n
+ffffffffbfc12fcc	rv220w_read_base_mac_from_flash	\n\n\nsystem LOSS MAC address,please ASSIGN MAC at flash offset 0x6ff00\n
+ffffffffbfc13084	rv220w_board_late_init	ethact
+ffffffffbfc13084	rv220w_board_late_init	octeth0
+ffffffffbfc13084	rv220w_board_late_init	PUSH_BUTTON--> %d\n
+ffffffffbfc13084	rv220w_board_late_init	\n\n\nbutton pushed,download mode\n
+ffffffffbfc13084	rv220w_board_late_init	bootcmd
+ffffffffbfc13084	rv220w_board_late_init	cp.b BDC80000 0x2a00000 580000;bootoctlinux 0x2a00200 mtdparts=phys_mapped_flash:512k(bootloader)ro,6M(kernel),16M(rootfs),1024k(data),128k(bootload-env)
+ffffffffbfc13170	FUN_ffffffffbfc13170	bootdelay
+ffffffffbfc13170	FUN_ffffffffbfc13170	bootcmd
+ffffffffbfc13170	FUN_ffffffffbfc13170	<INTERRUPT>\n
+ffffffffbfc13410	FUN_ffffffffbfc13410	verify
+ffffffffbfc13410	FUN_ffffffffbfc13410	Bad magic number\n
+ffffffffbfc13410	FUN_ffffffffbfc13410	Bad header crc\n
+ffffffffbfc13410	FUN_ffffffffbfc13410	Bad data crc\n
+ffffffffbfc13410	FUN_ffffffffbfc13410	Bad image type\n
+ffffffffbfc13410	FUN_ffffffffbfc13410	Empty Script\n
+ffffffffbfc13614	do_autoscr	## Executing script at %08lx\n
+ffffffffbfc13690	do_go	Usage:\n%s\n
+ffffffffbfc13690	do_go	## Starting application at 0x%08lX ...\n
+ffffffffbfc13690	do_go	## Application terminated, rc = 0x%lX\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: Bad gzipped data\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: gunzip out of data in header\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: inflateInit2() returned %d\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: inflate() returned %d\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: Destination not large enough\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: Source truncated\n
+ffffffffbfc13760	FUN_ffffffffbfc13760	Error: inflateEnd() returned %d\n
+ffffffffbfc13bf0	do_coninfo	List of available devices:\n
+ffffffffbfc13bf0	do_coninfo	%-8s %08x %c%c%c 
+ffffffffbfc13bf0	do_coninfo	stdin
+ffffffffbfc13bf0	do_coninfo	stdout
+ffffffffbfc13d10	FUN_ffffffffbfc13d10	## No elf image at address 0x%08lx\n
+ffffffffbfc13d10	FUN_ffffffffbfc13d10	ELF file is 32 bit\n
+ffffffffbfc13d10	FUN_ffffffffbfc13d10	ELF file is 64 bit\n
+ffffffffbfc13d10	FUN_ffffffffbfc13d10	ERROR: invalid elf class\n
+ffffffffbfc13d10	FUN_ffffffffbfc13d10	## Not an Executable elf image at address 0x%08lx\n
+ffffffffbfc13de8	FUN_ffffffffbfc13de8	Clear
+ffffffffbfc13de8	FUN_ffffffffbfc13de8	%sing %s @ 0x%08qx (0x%lx bytes)\n
+ffffffffbfc13f8c	FUN_ffffffffbfc13f8c	Clear
+ffffffffbfc13f8c	FUN_ffffffffbfc13f8c	%sing %s @ 0x%08lx (%ld bytes)\n
+ffffffffbfc140ec	do_bootelf	## Starting application at 0x%08lx ...\n
+ffffffffbfc140ec	do_bootelf	## Application terminated, rc = 0x%lx\n
+ffffffffbfc14250	FUN_ffffffffbfc14250	Error: end address not on sector boundary\n
+ffffffffbfc14250	FUN_ffffffffbfc14250	Error: end sector precedes start sector\n
+ffffffffbfc14250	FUN_ffffffffbfc14250	Error: cannot span across banks when they are mapped in reverse order\n
+ffffffffbfc143bc	FUN_ffffffffbfc143bc	%sProtected %d sectors\n
+ffffffffbfc143bc	FUN_ffffffffbfc143bc	Error: start and/or end address not on sector boundary\n
+ffffffffbfc14688	FUN_ffffffffbfc14688	Erased %d sectors\n
+ffffffffbfc14688	FUN_ffffffffbfc14688	Error: start and/or end address not on sector boundary\n
+ffffffffbfc14764	do_flinfo	\nBank # %ld: 
+ffffffffbfc14764	do_flinfo	Only FLASH Banks # 1 ... # %d supported\n
+ffffffffbfc1480c	do_erase	Bad sector specification\n
+ffffffffbfc1480c	do_erase	Erase Flash Sectors %d-%d in Bank # %d 
+ffffffffbfc1480c	do_erase	Only FLASH Banks # 1 ... # %d supported\n
+ffffffffbfc1480c	do_erase	Erase Flash Bank # %ld 
+ffffffffbfc1480c	do_erase	Usage:\n%s\n
+ffffffffbfc14a84	do_protect	%sProtect Flash Bank # %ld\n
+ffffffffbfc14a84	do_protect	Bad sector specification\n
+ffffffffbfc14a84	do_protect	%sProtect Flash Sectors %d-%d in Bank # %d\n
+ffffffffbfc14a84	do_protect	Only FLASH Banks # 1 ... # %d supported\n
+ffffffffbfc14a84	do_protect	missing or unknown FLASH type\n
+ffffffffbfc14a84	do_protect	Usage:\n%s\n
+ffffffffbfc14f38	FUN_ffffffffbfc14f38	Unknown operator '%s'\n
+ffffffffbfc15194	do_itest	Usage:\n%s\n
+ffffffffbfc15194	do_itest	Invalid data width specifier\n
+ffffffffbfc158e8	do_loadb	download_baudrate
+ffffffffbfc158e8	do_loadb	## Switching baudrate to %d bps for kermit download...\n
+ffffffffbfc158e8	do_loadb	## Ready for binary (kermit) download to 0x%08lX at %d bps...\n
+ffffffffbfc158e8	do_loadb	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc158e8	do_loadb	## Total Size      = 0x%08x = %d Bytes\n
+ffffffffbfc158e8	do_loadb	filesize
+ffffffffbfc158e8	do_loadb	fileaddr
+ffffffffbfc158e8	do_loadb	## Binary (kermit) download aborted\n
+ffffffffbfc158e8	do_loadb	## Start Addr      = 0x%08lX\n
+ffffffffbfc158e8	do_loadb	## Switching to baudrate to %d bps....\n
+ffffffffbfc15f64	do_loads	loads_echo
+ffffffffbfc15f64	do_loads	## Ready for S-Record download ...\n
+ffffffffbfc15f64	do_loads	\n## First Load Addr = 0x%08lX\n## Last  Load Addr = 0x%08lX\n## Total Size      = 0x%08lX = %ld Bytes\n
+ffffffffbfc15f64	do_loads	filesize
+ffffffffbfc15f64	do_loads	0x%lX
+ffffffffbfc15f64	do_loads	fileaddr
+ffffffffbfc15f64	do_loads	## S-Record download aborted\n
+ffffffffbfc15f64	do_loads	## Start Addr      = 0x%08lX\n
+ffffffffbfc16380	do_read_cmp	Usage:\n%s\n
+ffffffffbfc16380	do_read_cmp	Looking for value other than 0x%x, addr: 0x%x\n
+ffffffffbfc16380	do_read_cmp	Found 0x%x at addr %p\n
+ffffffffbfc16458	do_gpio	{use this command to control gpio OUTPUT value or read it}\n\n
+ffffffffbfc16458	do_gpio	flash_unused_addr
+ffffffffbfc16458	do_gpio	read gpio %d,value is :%d\n
+ffffffffbfc16458	do_gpio	set gpio %d with value  :%d\n
+ffffffffbfc16458	do_gpio	command:gpio r gpio_number  or gpio w gpio_number value\n 
+ffffffffbfc1661c	do_namedfree	Usage:\n%s\n
+ffffffffbfc1661c	do_namedfree	Error freeing block: %s\n
+ffffffffbfc166b0	do_base	Base Address64: 0x%16qx, 
+ffffffffbfc166b0	do_base	Base Address: 0x%08lx\n
+ffffffffbfc16738	do_write64l	Usage:\n%s\n
+ffffffffbfc16738	do_write64l	writing 0x%x to addr: 0x%qx\n
+ffffffffbfc167fc	do_write64s	Usage:\n%s\n
+ffffffffbfc167fc	do_write64s	writing 0x%x to addr: 0x%qx\n
+ffffffffbfc168c4	do_write64	Usage:\n%s\n
+ffffffffbfc168c4	do_write64	writing 0x%qx to addr: 0x%qx\n
+ffffffffbfc16998	do_read64s	Usage:\n%s\n
+ffffffffbfc16998	do_read64s	attempting to read from addr: 0x%qx\n
+ffffffffbfc16998	do_read64s	0x%qx: 0x%x\n
+ffffffffbfc16a4c	do_read64l	Usage:\n%s\n
+ffffffffbfc16a4c	do_read64l	attempting to read from addr: 0x%qx\n
+ffffffffbfc16a4c	do_read64l	0x%qx: 0x%x\n
+ffffffffbfc16afc	do_read64	Usage:\n%s\n
+ffffffffbfc16afc	do_read64	attempting to read from addr: 0x%qx\n
+ffffffffbfc16afc	do_read64	0x%qx: 0x%qx\n
+ffffffffbfc16bac	do_namedalloc	named_block_addr
+ffffffffbfc16bac	do_namedalloc	named_block_size
+ffffffffbfc16bac	do_namedalloc	Usage:\n%s\n
+ffffffffbfc16bac	do_namedalloc	Allocated 0x%qx bytes at address: 0x%qx, name: %s\n
+ffffffffbfc16bac	do_namedalloc	Named allocation failed!\n
+ffffffffbfc16bac	do_namedalloc	0x%qX
+ffffffffbfc16d50	do_crc32	Usage:\n%s\n
+ffffffffbfc16d50	do_crc32	CRC32 for %08lx ... %08lx ==> %08lx\n
+ffffffffbfc16e74	do_mtest	Reading...
+ffffffffbfc16e74	do_mtest	Too many errors, aborting test\n
+ffffffffbfc16e74	do_mtest	\nMem error @ 0x%08X: found %08lX, expected %08lX\n
+ffffffffbfc17070	do_write64b	Usage:\n%s\n
+ffffffffbfc17070	do_write64b	writing 0x%x to addr: 0x%qx\n
+ffffffffbfc17140	do_read64b	Usage:\n%s\n
+ffffffffbfc17140	do_read64b	attempting to read from addr: 0x%qx\n
+ffffffffbfc17140	do_read64b	0x%qx: 0x%x\n
+ffffffffbfc172d8	FUN_ffffffffbfc172d8	Usage:\n%s\n
+ffffffffbfc172d8	FUN_ffffffffbfc172d8	%08lx:
+ffffffffbfc172d8	FUN_ffffffffbfc172d8	 %08x
+ffffffffbfc172d8	FUN_ffffffffbfc172d8	 %04x
+ffffffffbfc172d8	FUN_ffffffffbfc172d8	 %02x
+ffffffffbfc176ac	do_cp	Usage:\n%s\n
+ffffffffbfc176ac	do_cp	Zero length ???\n
+ffffffffbfc176ac	do_cp	Copy to Flash... 
+ffffffffbfc176ac	do_cp	done\n
+ffffffffbfc17888	do_cmp	Usage:\n%s\n
+ffffffffbfc17888	do_cmp	word at 0x%08lx (0x%08lx) != word at 0x%08lx (0x%08lx)\n
+ffffffffbfc17888	do_cmp	halfword at 0x%08lx (0x%04x) != halfword at 0x%08lx (0x%04x)\n
+ffffffffbfc17888	do_cmp	%2u-%2u =     %u    selector = %s
+ffffffffbfc17888	do_cmp	Total of %ld %s%s were the same\n
+ffffffffbfc17888	do_cmp	byte at 0x%08lx (0x%02x) != byte at 0x%08lx (0x%02x)\n
+ffffffffbfc17aa4	do_mw	Usage:\n%s\n
+ffffffffbfc17c88	do_md	Usage:\n%s\n
+ffffffffbfc17c88	do_md	%08lx:
+ffffffffbfc17c88	do_md	 %04x
+ffffffffbfc17c88	do_md	 %02x
+ffffffffbfc17c88	do_md	 %08x
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%u.     (%04hx)                 -- %s --\n
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	PHY control register
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	PHY status register
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	  (%04hx:%04hx) %u.
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u,%2u =   b%u%u    speed selection = %s Mbps
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u    = %5u    duplex = %s
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	IEEE 802.3
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u-%2u = %5u    selector = %s
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	IEEE 802.9 ISLAN-16T
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u-%2u =     %u    selector = %s
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u   
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	%2u-%2u
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	reset
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	 = %5u    %s
+ffffffffbfc17f30	FUN_ffffffffbfc17f30	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc1827c	rv220w_bcm53115_set_enabled	\nenable 53115 ... 
+ffffffffbfc1827c	rv220w_bcm53115_set_enabled	\ndisable 53115 ... 
+ffffffffbfc1827c	rv220w_bcm53115_set_enabled	Done\n
+ffffffffbfc183dc	do_bcmmii	read page:%x,reg:%x >>
+ffffffffbfc183dc	do_bcmmii	%04X\n
+ffffffffbfc183dc	do_bcmmii	write page:%x,reg:%x,data:%x
+ffffffffbfc183dc	do_bcmmii	Usage:\n%s\n
+ffffffffbfc1855c	do_mii	PHY 0x%02X: OUI = 0x%04X, Model = 0x%02X, Rev = 0x%02X, %3dbaseT, %s\n
+ffffffffbfc1855c	do_mii	Error reading from the PHY addr=%02x reg=%02x\n
+ffffffffbfc1855c	do_mii	addr=%02x reg=%02x data=
+ffffffffbfc1855c	do_mii	%04X\n
+ffffffffbfc1855c	do_mii	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc1855c	do_mii	Error writing to the PHY addr=%02x reg=%02x\n
+ffffffffbfc1855c	do_mii	The MII dump command only formats the standard MII registers, 0-5.\n
+ffffffffbfc1855c	do_mii	Usage:\n%s\n
+ffffffffbfc18a00	do_sleep	Usage:\n%s\n
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	Usage:\n%s\n
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	gatewayip
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	netmask
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	hostname
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	rootpath
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	ipaddr
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	serverip
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	dnsip
+ffffffffbfc18ac0	FUN_ffffffffbfc18ac0	domain
+ffffffffbfc18fd4	do_saveenv	Flash
+ffffffffbfc18fd4	do_saveenv	Saving Environment to %s...\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	loadaddr
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	loadaddr not set due to load reserved memory allocated at 0x%x.\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	Please refer to the bootloader SDK documentation.\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	stdin
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	stdout
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	stderr
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	Can't delete "%s"\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	baudrate
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	## Baudrate %d bps not supported\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	## Switch baudrate to %d bps and press ENTER ...\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	console_uart
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	## Error: environment overflow, "%s" deleted\n
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	ethaddr
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	ipaddr
+ffffffffbfc190f4	FUN_ffffffffbfc190f4	bootfile
+ffffffffbfc198f4	do_askenv	Usage:\n%s\n
+ffffffffbfc198f4	do_askenv	Please enter '%s':
+ffffffffbfc19af0	do_setenv	Usage:\n%s\n
+ffffffffbfc19bb4	do_printenv	\n ** Abort\n
+ffffffffbfc19bb4	do_printenv	\nEnvironment size: %d/%d bytes\n
+ffffffffbfc19bb4	do_printenv	## Error: "%s" not defined\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  vendor ID =                   0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  device ID =                   0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  command register =            0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  status register =             0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  revision ID =                 0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Build before PCI Rev2.0
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Simple comm. controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Serial bus controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Does not fit any class
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Mass storage controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Network controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Display controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Multimedia device
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Memory controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Bridge device
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Base system peripheral
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Input device
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Docking station
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Processor
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Intelligent controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Satellite controller
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	Cryptographic device
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  class code =                  0x%.2x (%s)\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  sub class code =              0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  programming interface =       0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  cache line =                  0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  latency time =                0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  header type =                 0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  BIST =                        0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 0 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 1 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 2 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 3 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 4 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  base address 5 =              0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  cardBus CIS pointer =         0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  sub system vendor ID =        0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  sub system ID =               0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  expansion ROM base address =  0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  interrupt line =              0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  interrupt pin =               0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  min Grant =                   0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  max Latency =                 0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  primary bus number =          0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  secondary bus number =        0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  subordinate bus number =      0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  secondary latency timer =     0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  IO base =                     0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  IO limit =                    0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  secondary status =            0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  memory base =                 0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  memory limit =                0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  prefetch memory base =        0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  prefetch memory limit =       0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  prefetch memory base upper =  0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  prefetch memory limit upper = 0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  IO base upper 16 bits =       0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  IO limit upper 16 bits =      0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  bridge control =              0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  capabilities =                0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus number =              0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus latency timer =       0x%.2x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus memory base 0 =       0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus memory limit 0 =      0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus memory base 1 =       0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus memory limit 1 =      0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO base 0 =           0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO base high 0 =      0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO limit 0 =          0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO limit high 0 =     0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO base 1 =           0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO base high 1 =      0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO limit 1 =          0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  CardBus IO limit high 1 =     0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  subvendor ID =                0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  subdevice ID =                0x%.4x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	  PC Card 16bit base address =  0x%.8x\n
+ffffffffbfc19e00	FUN_ffffffffbfc19e00	unknown header\n
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Build before PCI Rev2.0
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Simple comm. controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Serial bus controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Does not fit any class
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Mass storage controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Network controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Display controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Multimedia device
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Memory controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Bridge device
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Base system peripheral
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Input device
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Docking station
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Processor
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Intelligent controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Satellite controller
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	Cryptographic device
+ffffffffbfc1ab18	FUN_ffffffffbfc1ab18	0x%.4x     0x%.4x     %-23s 0x%.2x\n
+ffffffffbfc1ad3c	FUN_ffffffffbfc1ad3c	Scanning PCI devices on bus %d\n
+ffffffffbfc1ad3c	FUN_ffffffffbfc1ad3c	BusDevFun  VendorId   DeviceId   Device Class       Sub-Class\n
+ffffffffbfc1ad3c	FUN_ffffffffbfc1ad3c	_____________________________________________________________\n
+ffffffffbfc1ad3c	FUN_ffffffffbfc1ad3c	%02x.%02x.%02x   
+ffffffffbfc1ad3c	FUN_ffffffffbfc1ad3c	\nFound PCI device %02x.%02x.%02x:\n
+ffffffffbfc1af2c	FUN_ffffffffbfc1af2c	%08lx:
+ffffffffbfc1af2c	FUN_ffffffffbfc1af2c	 %08x
+ffffffffbfc1af2c	FUN_ffffffffbfc1af2c	 %04x
+ffffffffbfc1af2c	FUN_ffffffffbfc1af2c	 %02x
+ffffffffbfc1b0c4	do_pci	%08lx:
+ffffffffbfc1b0c4	do_pci	 %08x
+ffffffffbfc1b0c4	do_pci	 %04x
+ffffffffbfc1b0c4	do_pci	 %02x
+ffffffffbfc1b0c4	do_pci	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc1b0c4	do_pci	Usage:\n%s\n
+ffffffffbfc1bc74	FUN_ffffffffbfc1bc74	ERROR clearing memory using TLB mappings!\n
+ffffffffbfc1bdf4	FUN_ffffffffbfc1bdf4	TLB addr: %p\n
+ffffffffbfc1bdf4	FUN_ffffffffbfc1bdf4	TLB[%02d] page0: 0x%qx\n
+ffffffffbfc1bdf4	FUN_ffffffffbfc1bdf4	TLB[%02d] page1: 0x%qx\n
+ffffffffbfc1bdf4	FUN_ffffffffbfc1bdf4	TLB[%02d] pagesize:      0x%08x (%d)\n
+ffffffffbfc1bdf4	FUN_ffffffffbfc1bdf4	TLB[%02d] virt : 0x%qx - 0x%qx\n
+ffffffffbfc1bf6c	FUN_ffffffffbfc1bf6c	octeon_load_app_hi
+ffffffffbfc1bf6c	FUN_ffffffffbfc1bf6c	ERROR: TLB overlap - out of virtual memory in 0x10000000 - 0x20000000 range\n
+ffffffffbfc1bf6c	FUN_ffffffffbfc1bf6c	Bootloader error: out of memory.\n
+ffffffffbfc1bf6c	FUN_ffffffffbfc1bf6c	map_size:%x\n
+ffffffffbfc1c35c	do_bootoct	tack=
+ffffffffbfc1c35c	do_bootoct	debug
+ffffffffbfc1c35c	do_bootoct	setting debug flag!\n
+ffffffffbfc1c35c	do_bootoct	break
+ffffffffbfc1c35c	do_bootoct	coremask=0x
+ffffffffbfc1c35c	do_bootoct	coremask=
+ffffffffbfc1c35c	do_bootoct	forceboot
+ffffffffbfc1c35c	do_bootoct	numcores=
+ffffffffbfc1c35c	do_bootoct	skipcores=
+ffffffffbfc1c35c	do_bootoct	endbootargs
+ffffffffbfc1c35c	do_bootoct	Coremask is empty after coremask_override mask. Nothing to do.\n
+ffffffffbfc1c35c	do_bootoct	Invalid coremask.\n
+ffffffffbfc1c35c	do_bootoct	ERROR: Can't load code on core twice! (provided coremask overlaps previously loaded coremask)\n
+ffffffffbfc1c35c	do_bootoct	Bootloader: Booting Octeon Executive application at 0x%08lx, core mask: 0x%x, stack size: 0x%x, heap size: 0x%x\n
+ffffffffbfc1c35c	do_bootoct	ERROR: heap too small: 0x%x, must be at least 0x%x bytes for temp boot descriptor storage\n
+ffffffffbfc1c35c	do_bootoct	Pointer not to ELF data!\n
+ffffffffbfc1c35c	do_bootoct	Data isn't an ELF32 or ELF64 file!\n
+ffffffffbfc1c35c	do_bootoct	Data isn't in big-endian mode.\n
+ffffffffbfc1c35c	do_bootoct	Data isn't an executable!\n
+ffffffffbfc1c35c	do_bootoct	Data isn't an executable for a MIPS R3000 or R4000!\n
+ffffffffbfc1c35c	do_bootoct	.shstrtab
+ffffffffbfc1c35c	do_bootoct	.cvmx_shared_hw
+ffffffffbfc1c35c	do_bootoct	.cvmx_shared
+ffffffffbfc1c35c	do_bootoct	ERROR CREATING TLB MAPPING (read only)\n
+ffffffffbfc1c35c	do_bootoct	ERROR CREATING TLB MAPPING (CVMX_SHARED)\n
+ffffffffbfc1c35c	do_bootoct	no_mark_private_data
+ffffffffbfc1c35c	do_bootoct	NOTICE: oversize TLB mappings for application used, application can't use 1-1 TLB mappings.\n
+ffffffffbfc1c35c	do_bootoct	ERROR setting up boot descriptor block, core_mask: 0x%qx\n
+ffffffffbfc1c35c	do_bootoct	ERROR setting boot vectors, core_mask: 0x%qx\n
+ffffffffbfc1c35c	do_bootoct	Bootloader: Done loading app on coremask: 0x%x\n
+ffffffffbfc1c35c	do_bootoct	ERROR CREATING TLB MAPPING (rw)\n
+ffffffffbfc1c35c	do_bootoct	ERROR CREATING TLB MAPPING for stack/heap\n
+ffffffffbfc1c35c	do_bootoct	Error: cvmx_shared_hw is no longer supported.\n
+ffffffffbfc1c35c	do_bootoct	ERROR: Unable to properly load application\n
+ffffffffbfc1c35c	do_bootoct	ERROR: unable to find section header string table, aborting\n
+ffffffffbfc1d950	do_bootoctlinux	argv[%d]: %s\n
+ffffffffbfc1d950	do_bootoctlinux	coremask=0x
+ffffffffbfc1d950	do_bootoctlinux	coremask=
+ffffffffbfc1d950	do_bootoctlinux	forceboot
+ffffffffbfc1d950	do_bootoctlinux	debug
+ffffffffbfc1d950	do_bootoctlinux	numcores=
+ffffffffbfc1d950	do_bootoctlinux	skipcores=
+ffffffffbfc1d950	do_bootoctlinux	endbootargs
+ffffffffbfc1d950	do_bootoctlinux	Coremask is empty after coremask_override mask. Nothing to do.\n
+ffffffffbfc1d950	do_bootoctlinux	Invalid coremask.\n
+ffffffffbfc1d950	do_bootoctlinux	__tmp_reserved_linux
+ffffffffbfc1d950	do_bootoctlinux	Allocated memory for ELF segment: addr: 0x%x, size 0x%x\n
+ffffffffbfc1d950	do_bootoctlinux	Skipping non LOAD program header (type 0x%x)\n
+ffffffffbfc1d950	do_bootoctlinux	Attempting to allocate memory for ELF segment: addr: 0x%qx (adjusted to: 0x%qx), size 0x%x\n
+ffffffffbfc1d950	do_bootoctlinux	Allocated memory for ELF segment: addr: 0x%qx, size 0x%x\n
+ffffffffbfc1d950	do_bootoctlinux	Error allocating memory for elf image!\n
+ffffffffbfc1d950	do_bootoctlinux	## ERROR loading File!\n
+ffffffffbfc1d950	do_bootoctlinux	ERROR: Can't load code on core twice! (provided coremask overlaps previously loaded coremask)\n
+ffffffffbfc1d950	do_bootoctlinux	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc1d950	do_bootoctlinux	ERROR setting up boot descriptor block, core_mask: 0x%qx\n
+ffffffffbfc1d950	do_bootoctlinux	ERROR setting boot vectors, core_mask: 0x%qx\n
+ffffffffbfc1d950	do_bootoctlinux	Bootloader: Done loading app on coremask: 0x%x\n
+ffffffffbfc1e094	do_bootoctelf	Warning: No memory size provided, this application won't co-exist with simple exec. applications or Linux.\n
+ffffffffbfc1e094	do_bootoctelf	coremask=0x
+ffffffffbfc1e094	do_bootoctelf	coremask=
+ffffffffbfc1e094	do_bootoctelf	forceboot
+ffffffffbfc1e094	do_bootoctelf	debug
+ffffffffbfc1e094	do_bootoctelf	numcores=
+ffffffffbfc1e094	do_bootoctelf	skipcores=
+ffffffffbfc1e094	do_bootoctelf	Coremask is empty after coremask_override mask. Nothing to do.\n
+ffffffffbfc1e094	do_bootoctelf	Invalid coremask.\n
+ffffffffbfc1e094	do_bootoctelf	Warning: Coremask has %d cores set.  Application must support multiple cores for proper operation.\n
+ffffffffbfc1e094	do_bootoctelf	ERROR: Can't load code on core twice! (provided coremask overlaps previously loaded coremask)\n
+ffffffffbfc1e094	do_bootoctelf	Allocating memory for ELF: Base addr, 0x%x, size: 0x%x\n
+ffffffffbfc1e094	do_bootoctelf	Error allocating memory for ELF image!\n
+ffffffffbfc1e094	do_bootoctelf	ERROR: only loading of 32 bit  ELF images is supported\n
+ffffffffbfc1e094	do_bootoctelf	## ERROR loading File!\n
+ffffffffbfc1e094	do_bootoctelf	## Loading ELF image with entry point: 0x%08lx ...\n
+ffffffffbfc1e094	do_bootoctelf	ERROR setting up boot descriptor block, core_mask: 0x%qx\n
+ffffffffbfc1e094	do_bootoctelf	ERROR setting boot vectors, core_mask: 0x%qx\n
+ffffffffbfc1e094	do_bootoctelf	Bootloader: Done loading app on coremask: 0x%x\n
+ffffffffbfc1e7b0	FUN_ffffffffbfc1e7b0	autoscr
+ffffffffbfc1e8e8	FUN_ffffffffbfc1e8e8	printenv
+ffffffffbfc1e8e8	FUN_ffffffffbfc1e8e8	setenv
+ffffffffbfc1e958	FUN_ffffffffbfc1e958	v200w# 
+ffffffffbfc1e958	FUN_ffffffffbfc1e958	autoscr
+ffffffffbfc1e958	FUN_ffffffffbfc1e958	command:gpio r gpio_number  or gpio w gpio_number value\n 
+ffffffffbfc1e958	FUN_ffffffffbfc1e958	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc1ef1c	do_version	U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+ffffffffbfc1eff8	do_qmark	- No help available.\n
+ffffffffbfc1eff8	do_qmark	Unknown command '%s' - try 'help' without arguments for list of all known commands\n\n
+ffffffffbfc1f440	FUN_ffffffffbfc1f440	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc1f5b4	FUN_ffffffffbfc1f5b4	stdin
+ffffffffbfc1f5b4	FUN_ffffffffbfc1f5b4	stdout
+ffffffffbfc1fa80	FUN_ffffffffbfc1fa80	Cannot initialize the list of devices!\n
+ffffffffbfc1fa80	FUN_ffffffffbfc1fa80	serial
+ffffffffbfc1fcb0	FUN_ffffffffbfc1fcb0	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc20fa4	FUN_ffffffffbfc20fa4	bootdelay=0
+ffffffffbfc21230	FUN_ffffffffbfc21230	*** Warning - bad CRC, using default environment\n\n
+ffffffffbfc21230	FUN_ffffffffbfc21230	bootdelay=0
+ffffffffbfc21354	FUN_ffffffffbfc21354	Erasing Flash...
+ffffffffbfc21354	FUN_ffffffffbfc21354	Writing to Flash... 
+ffffffffbfc21354	FUN_ffffffffbfc21354	done\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Timeout writing to Flash\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Flash not Erased\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Can't write to protected Flash sectors\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Outside available Flash\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Start and/or end address not on sector boundary\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Unknown Vendor of Flash\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	Unknown Type of Flash\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	General Flash Programming Error\n
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	flash.c
+ffffffffbfc217d0	FUN_ffffffffbfc217d0	%s[%d] FIXME: rc=%d\n
+ffffffffbfc220c0	FUN_ffffffffbfc220c0	PHY 1000BT Status read failed\n
+ffffffffbfc220c0	FUN_ffffffffbfc220c0	PHY duplex read failed, assuming half duplex\n
+ffffffffbfc22198	FUN_ffffffffbfc22198	PHY 1000BT Status read failed\n
+ffffffffbfc22198	FUN_ffffffffbfc22198	PHY speed1 read failed, assuming 10bT\n
+ffffffffbfc2225c	FUN_ffffffffbfc2225c	PHY reset timed out\n
+ffffffffbfc227b0	FUN_ffffffffbfc227b0	isassign=0\n
+ffffffffbfc227f0	FUN_ffffffffbfc227f0	isassign=1\n
+ffffffffbfc22834	FUN_ffffffffbfc22834	FWCHKADDISABABA
+ffffffffbfc22834	FUN_ffffffffbfc22834	\n\n\nchecking fw magic ... ...\n
+ffffffffbfc22834	FUN_ffffffffbfc22834	Image name         : %s\n
+ffffffffbfc22834	FUN_ffffffffbfc22834	Image size         : %d bytes\n
+ffffffffbfc22834	FUN_ffffffffbfc22834	Magic Word         : %s\n
+ffffffffbfc22bd4	do_http	cal_net_pkt:%x
+ffffffffbfc22bd4	do_http	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc22c88	do_assign	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc22d1c	do_download	\n[This application is according with GPL rule.]\n\n
+ffffffffbfc22d1c	do_download	flash base:%x\n
+ffffffffbfc22dc4	FUN_ffffffffbfc22dc4	boot enable is %08X\n
+ffffffffbfc23000	FUN_ffffffffbfc23000	 %cB%s
+ffffffffbfc230f4	FUN_ffffffffbfc230f4	U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+ffffffffbfc230f4	FUN_ffffffffbfc230f4	\n\n%s\n\n
+ffffffffbfc23c08	FUN_ffffffffbfc23c08	0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ffffffffbfc23e9c	FUN_ffffffffbfc23e9c	<NULL>
+ffffffffbfc2744c	FUN_ffffffffbfc2744c	in set_reg_sc\n
+ffffffffbfc27acc	do_reset	*** reset failed ***\n
+ffffffffbfc28334	FUN_ffffffffbfc28334	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc285d4	FUN_ffffffffbfc285d4	[DEBUG STUB]Output too long: %d\n
+ffffffffbfc285d4	FUN_ffffffffbfc285d4	0123456789abcdef
+ffffffffbfc286bc	FUN_ffffffffbfc286bc	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc288a0	FUN_ffffffffbfc288a0	!Core XX 
+ffffffffbfc29d5c	octeon_mdio_read_c22	ERROR: miiphy_read_wrapper(0x%x, 0x%x) timed out.\n
+ffffffffbfc29dd8	bcm53115_pseudophy_write64	ERROR: writing switch reg expired (page=%x, reg=%x, datum=%x)\n
+ffffffffbfc29f58	bcm53115_pseudophy_read	ERROR: ading switch reg expired (pagere=%x, reg=%x)\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	disable_networking
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	Networking disabled with 'disable_networking' environment variable, skipping RGMII interface\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	No available MAC addresses for RGMII interface, skipping\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	WARNING:\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	WARNING:OCTEON pass 1 does not support network hardware reset.\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	WARNING:Bootloader networking use will cause unstable operation of any other\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	WARNING:program or OS using the network hardware.\n
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	octeth%d
+ffffffffbfc2a454	FUN_ffffffffbfc2a454	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc2a7b4	FUN_ffffffffbfc2a7b4	%s called with tag switch in progress\n
+ffffffffbfc2a7e4	FUN_ffffffffbfc2a7e4	cvmx_phys_to_ptr() passed a zero address\n
+ffffffffbfc2a8b0	FUN_ffffffffbfc2a8b0	cvmx_ptr_to_phys() passed a NULL pointer\n
+ffffffffbfc2aa98	FUN_ffffffffbfc2aa98	WARNING: Tag switch is taking a long time, possible deadlock\n
+ffffffffbfc2ab00	FUN_ffffffffbfc2ab00	cvmx_pow_work_request_sync
+ffffffffbfc2ab00	FUN_ffffffffbfc2ab00	cvmx_pow_work_request_sync_nocheck
+ffffffffbfc2abb4	FUN_ffffffffbfc2abb4	Down 
+ffffffffbfc2abb4	FUN_ffffffffbfc2abb4	(port %2d)\n
+ffffffffbfc2acd8	FUN_ffffffffbfc2acd8	Error packet received, dropping\n
+ffffffffbfc2add8	FUN_ffffffffbfc2add8	ERROR allocating buffer for packet!\n
+ffffffffbfc2add8	FUN_ffffffffbfc2add8	Failed to send the packet\n
+ffffffffbfc2b09c	FUN_ffffffffbfc2b09c	Error packet received, dropping,%d\n
+ffffffffbfc2b1c4	FUN_ffffffffbfc2b1c4	%s_fpa_alloc_%d
+ffffffffbfc2b1c4	FUN_ffffffffbfc2b1c4	Unable to allocate %lu bytes for FPA pool %ld\n
+ffffffffbfc2b2d4	FUN_ffffffffbfc2b2d4	disable_spi
+ffffffffbfc2b2d4	FUN_ffffffffbfc2b2d4	SPI interface disabled with 'disable_spi' environment variable\n
+ffffffffbfc2b2d4	FUN_ffffffffbfc2b2d4	Warning: Enabling FPA when FPA already enabled.\n
+ffffffffbfc2b654	FUN_ffffffffbfc2b654	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc2b654	FUN_ffffffffbfc2b654	ERROR: TFTP network reset not supported on PASS 1\n
+ffffffffbfc2b654	FUN_ffffffffbfc2b654	Neither interface is RGMII, unable to reset network HW\n
+ffffffffbfc2b654	FUN_ffffffffbfc2b654	Error draining PKO: queue %d doorbell count: %d is not zero\n
+ffffffffbfc2b654	FUN_ffffffffbfc2b654	ERROR: unable to reset packet input!\n
+ffffffffbfc2bc94	FUN_ffffffffbfc2bc94	cvmx_cmd_queues
+ffffffffbfc2bc94	FUN_ffffffffbfc2bc94	FATAL ERROR: Network shutdown failed.  Please reset the board.\n
+ffffffffbfc2c804	FUN_ffffffffbfc2c804	PCI Status: %s %s-bit\n
+ffffffffbfc2c804	FUN_ffffffffbfc2c804	PCI Status: %d MHz (measured %d-%d MHz)\n
+ffffffffbfc2c804	FUN_ffffffffbfc2c804	PCI-X
+ffffffffbfc2c804	FUN_ffffffffbfc2c804	PCI Status: SOFTWARE OVERRIDE to %s %d MHz\n
+ffffffffbfc2cc7c	FUN_ffffffffbfc2cc7c	Starting PCI\n
+ffffffffbfc2cc7c	FUN_ffffffffbfc2cc7c	PCI BAR 0: 0x%08lx, PCI BAR 1: Memory 0x%08lx  PCI 0x%08lx\n
+ffffffffbfc2e45c	FUN_ffffffffbfc2e45c	cvmx_phys_to_ptr() passed a zero address\n
+ffffffffbfc2e518	FUN_ffffffffbfc2e518	cvmx_ptr_to_phys() passed a NULL pointer\n
+ffffffffbfc2e564	FUN_ffffffffbfc2e564	ERROR: cvmx_cmd_queue_shutdown: Unable to get queue information.\n
+ffffffffbfc2e564	FUN_ffffffffbfc2e564	ERROR: cvmx_cmd_queue_shutdown: Queue still has data in it.\n
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	cvmx_cmd_queues
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	ERROR: cvmx_cmd_queue_initialize: Unable to get named block %s.\n
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	ERROR: cvmx_cmd_queue_initialize: Queue already initalized with different max_depth (%d).\n
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	ERROR: cvmx_cmd_queue_initialize: Queue already initalized with different FPA pool (%u).\n
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	ERROR: cvmx_cmd_queue_initialize: Queue already initalized with different FPA pool size (%u).\n
+ffffffffbfc2e6d8	FUN_ffffffffbfc2e6d8	ERROR: cvmx_cmd_queue_initialize: Unable to allocate initial buffer.\n
+ffffffffbfc2f12c	FUN_ffffffffbfc2f12c	Warning: Enabling IPD when IPD already enabled.\n
+ffffffffbfc2f384	FUN_ffffffffbfc2f384	Interface %d has %d ports (%s)\n
+ffffffffbfc2f8cc	FUN_ffffffffbfc2f8cc	%s called with tag switch in progress\n
+ffffffffbfc2f8fc	FUN_ffffffffbfc2f8fc	cvmx_phys_to_ptr() passed a zero address\n
+ffffffffbfc2fa94	FUN_ffffffffbfc2fa94	cvmx_ptr_to_phys() passed a NULL pointer\n
+ffffffffbfc2fc38	FUN_ffffffffbfc2fc38	WARNING: Tag switch is taking a long time, possible deadlock\n
+ffffffffbfc2fca0	FUN_ffffffffbfc2fca0	WARNING: FIX_IPD_PTR_ALIGNMENT buffer allocation failure.\n
+ffffffffbfc2fca0	FUN_ffffffffbfc2fca0	cvmx_pow_work_request_sync
+ffffffffbfc2fca0	FUN_ffffffffbfc2fca0	cvmx_pow_work_request_sync_nocheck
+ffffffffbfc2fca0	FUN_ffffffffbfc2fca0	WARNING: FIX_IPD_PTR_ALIGNMENT get_work() timeout occured.\n
+ffffffffbfc2fca0	FUN_ffffffffbfc2fca0	WARNING: FIX_IPD_PTR_ALIGNMENT failed.\n
+ffffffffbfc30740	FUN_ffffffffbfc30740	cvmx_helper_rgmii_link_set waiting for GMX state machine 1 to be idle\n
+ffffffffbfc30740	FUN_ffffffffbfc30740	cvmx_helper_rgmii_link_set waiting for GMX state machine 2 to be idle\n
+ffffffffbfc30b84	FUN_ffffffffbfc30b84	ERROR: RGMII initialize called in SPI interface\n
+ffffffffbfc30b84	FUN_ffffffffbfc30b84	ERROR: Unsupported Octeon model in %s\n
+ffffffffbfc30b84	FUN_ffffffffbfc30b84	__cvmx_helper_rgmii_probe
+ffffffffbfc314a4	FUN_ffffffffbfc314a4	SGMII%d: Waiting for port %d to be idle\n
+ffffffffbfc32060	FUN_ffffffffbfc32060	UNKNOWN
+ffffffffbfc32240	FUN_ffffffffbfc32240	cvmx_helper_get_interface_index_num: Illegal IPD port number\n
+ffffffffbfc322a0	FUN_ffffffffbfc322a0	cvmx_helper_get_interface_num: Illegal IPD port number\n
+ffffffffbfc324e4	FUN_ffffffffbfc324e4	cvmx_phys_to_ptr() passed a zero address\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	Packet Length:   %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Input Port:  %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    QoS:         %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffers:     %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer Start:%llx\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer I   : %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer Back: %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer Pool: %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer Data: %llx\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	    Buffer Size: %u\n
+ffffffffbfc32538	FUN_ffffffffbfc32538	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc327b0	FUN_ffffffffbfc327b0	__cvmx_helper_setup_gmx: Illegal num_ports\n
+ffffffffbfc33030	FUN_ffffffffbfc33030	## Loading Linux kernel with entry point: 0x%08qx ...\n
+ffffffffbfc33974	FUN_ffffffffbfc33974	SPI%d: Restart %s\n
+ffffffffbfc33b3c	FUN_ffffffffbfc33b3c	SPI%d: Rx is synchronized, start sending calendar data\n
+ffffffffbfc33b3c	FUN_ffffffffbfc33b3c	SPI%d: Waiting to sync on STX[%d] STAT\n
+ffffffffbfc33b3c	FUN_ffffffffbfc33b3c	SPI%d: Timeout\n
+ffffffffbfc33cd0	FUN_ffffffffbfc33cd0	SPI%d: Waiting to see TsClk...\n
+ffffffffbfc33cd0	FUN_ffffffffbfc33cd0	SPI%d: Waiting to see RsClk...\n
+ffffffffbfc33cd0	FUN_ffffffffbfc33cd0	SPI%d: Timeout\n
+ffffffffbfc33e00	FUN_ffffffffbfc33e00	SPI%d: Waiting for training\n
+ffffffffbfc33e00	FUN_ffffffffbfc33e00	SPI%d: Timeout\n
+ffffffffbfc340fc	FUN_ffffffffbfc340fc	SPI%d: Rx is now up\n
+ffffffffbfc340fc	FUN_ffffffffbfc340fc	SPI%d: Tx is now up\n
+ffffffffbfc34860	FUN_ffffffffbfc34860	cvmx_helper_board_get_mii_address: Unknown board type %d\n
+ffffffffbfc34a4c	FUN_ffffffffbfc34a4c	\n[This application is accord with GPL rule.]\n\n\n\n\n
+ffffffffbfc34a4c	FUN_ffffffffbfc34a4c	ERROR:\n
+ffffffffbfc34a4c	FUN_ffffffffbfc34a4c	ERROR: Board type is CVMX_BOARD_TYPE_CN3010_EVB_HS5, but Broadcom PHY found.\n
+ffffffffbfc34a4c	FUN_ffffffffbfc34a4c	ERROR: The board type is mis-configured, and software malfunctions are likely.\n
+ffffffffbfc34a4c	FUN_ffffffffbfc34a4c	ERROR: All boards require a unique board type to identify them.\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Invalid port %llu\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Invalid queue range %llu\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Static priority queues aren't contiguous or don't start at base queue. q: %d, eq: %d\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Unable to allocate output buffer.\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Static priority queues don't start at base queue. sq: %d\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	ERROR: cvmx_pko_config_port: Invalid priority %llu\n
+ffffffffbfc353c8	FUN_ffffffffbfc353c8	cvmx_ptr_to_phys() passed a NULL pointer\n
+ffffffffbfc35b24	FUN_ffffffffbfc35b24	Warning: Enabling PKO when PKO already enabled.\n

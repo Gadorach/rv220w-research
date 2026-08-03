@@ -1,57 +1,37 @@
-# Bootloader and RAM boot
+# Bootloader, RAM boot, and persistent launch
 
-## Confirmed U-Boot environment
+## U-Boot baseline
 
-Important variables include:
+The board uses U-Boot 1.1.1 with 32 MiB of parallel NOR at `0xbdc00000` and a
+validated RAM staging address of `0x05500000`. Ctrl+C during startup reaches the
+`rv200w#` prompt.
 
-```text
-bootdelay=0
-baudrate=115200
-loadaddr=0x5500000
-numcores=1
-flash_base_addr=0xbdc00000
-flash_size=0x2000000
-uboot_flash_addr=0xbdc30000
-uboot_flash_size=0x50000
-env_addr=0xbfbe0000
-env_size=0x20000
-ethact=octeth0
-```
+## TFTP/RAM boot
 
-The stock firmware container starts at `0xbdc80000`; its ELF begins at offset `0x200`.
+The toolkit can interrupt U-Boot, set temporary networking variables, TFTP an
+ELF to RAM, and invoke `bootoctlinux`. This remains the recovery and validation
+path and does not save the environment or write NOR.
 
-## Proven modern RAM-boot contract
+## Persistent launch
 
-The current OpenWrt ELF is loaded by TFTP around `0x05500000` and started with `bootoctlinux`. This path has been proven to boot the complete experimental OpenWrt system and initialize all five RJ45 ports.
-
-The automated helper uses temporary U-Boot variables only:
+The LuCI ELF is stored at `0xbdc80000`, but direct `bootoct` from mapped NOR is
+invalid for this Linux ELF. The working path is:
 
 ```text
-base 0
-setenv autoload no
-setenv ipaddr ...
-setenv serverip ...
-setenv netmask ...
-setenv ethact ...
-tftpboot ...
-bootoctlinux ...
+cp.b 0xbdc80000 0x05500000 <manifest source_size in hex>
+bootoctlinux 0x05500000 console=ttyS0,115200
 ```
 
-It does not call `saveenv`, `erase`, `protect`, `cp` to NOR, or a flash-update script. Power cycling returns to the original firmware.
+After the combined boot-policy patch and a successful manual test, save:
 
-## Current image profile
-
-```fish
-cd openwrt
-./rv220w.fish build rj45-full
-./rv220w.fish tftp-boot \
-    --profile rj45-full \
-    --interface <host-interface> \
-    --configure-interface
+```text
+setenv preboot
+setenv bootdelay 3
+setenv openwrt_boot 'cp.b 0xbdc80000 0x05500000 <source_size_hex>; bootoctlinux 0x05500000 console=ttyS0,115200'
+setenv bootcmd 'run openwrt_boot'
+saveenv
 ```
 
-The profile is an initramfs-based experimental image. It is not a persistent installation image.
-
-## Recovery baseline
-
-Ctrl+C during startup reaches `rv200w#`. Preserve the first 512 KiB boot chain, the final environment sector, and the complete verified flash image until independent flash restore and external-programmer recovery are qualified.
+The validated LuCI image used `<source_size_hex>` = `0x11565d0`. Never reuse
+that value for a different ELF without generating a new boot plan from its
+manifest.

@@ -1,0 +1,64 @@
+{
+  "schema": "rv220w-vendor-bootchain-patch-sites-v2",
+  "baseline": {
+    "combined_name": "rv220w-boot-chain.bin",
+    "combined_size": 524288,
+    "combined_sha256": "0630714e3e86edfeeed064088266c59524d970e0b74780e903b68b45e8982e7d",
+    "upper_name": "rv220w-u-boot.bin",
+    "upper_offset": 196608,
+    "upper_size": 327680,
+    "upper_sha256": "1b68453e055dee56a8724b17a927df36ff201a44c8e450c5d17a3b8e9117000d"
+  },
+  "sites": {
+    "force_bootcmd_tailcall": {
+      "combined_offset": 78184,
+      "virtual_address": "0xffffffffbfc13168",
+      "original_hex": "03200008",
+      "patched_hex": "03e00008",
+      "meaning": "replace jr t9 (setenv tailcall) with jr ra after ra/gp/s0 restore",
+      "risk": "boot-critical; hardware validated only for the exact byte-exact sector path",
+      "hardware_validated": true,
+      "hardware_validation_date": "2026-08-02",
+      "validated_sector_crc32_after_bootcmd_only": "36db247b",
+      "validated_runtime_result": "saved bootcmd persists across saveenv and reset"
+    },
+    "firmware_recovery_branch": {
+      "combined_offset": 78136,
+      "virtual_address": "0xffffffffbfc13138",
+      "original_hex": "04410003",
+      "patched_hex": "10000003",
+      "meaning": "replace bgez v0 with unconditional branch past invalid-firmware do_http; active-low do_download path is earlier and preserved",
+      "risk": "boot-critical; hardware validated only for the exact selective branch replacement",
+      "hardware_validated": true,
+      "hardware_validation_date": "2026-08-02",
+      "validated_combined_sector_crc32": "b77a94de",
+      "validated_runtime_result": "released-button startup boots OpenWrt; held button still enters Sercomm download"
+    },
+    "stock_bootcmd_string": {
+      "combined_offset": 222128,
+      "upper_offset": 25520,
+      "virtual_address": "0xffffffffbfc363b0",
+      "field_size": 154,
+      "original": "cp.b BDC80000 0x2a00000 580000;bootoctlinux 0x2a00200 mtdparts=phys_mapped_flash:512k(bootloader)ro,6M(kernel),16M(rootfs),1024k(data),128k(bootload-env)",
+      "risk": "medium; inside vendor updateable upper region but still boot-critical"
+    },
+    "setenv_wrapper_got": {
+      "combined_offset": 277268,
+      "virtual_address": "0xffffffffbfc43b14",
+      "value": "0xffffffffbfc19b60",
+      "meaning": "GOT target used by both ethact and bootcmd assignments"
+    }
+  },
+  "validated_combined_state": {
+    "flash_range": "0xbdc00000-0xbdc1ffff",
+    "size": 131072,
+    "crc32": "b77a94de",
+    "changed_offsets_from_stock": [
+      "0x13138",
+      "0x13139",
+      "0x13169"
+    ],
+    "normal_openwrt_boot": true,
+    "physical_recovery_button_preserved": true
+  }
+}

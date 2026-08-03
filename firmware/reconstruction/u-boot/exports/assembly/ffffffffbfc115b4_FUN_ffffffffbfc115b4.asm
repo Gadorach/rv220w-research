@@ -1,0 +1,85 @@
+# RV220W U-Boot v1.1.0 entry=ffffffffbfc115b4 function=FUN_ffffffffbfc115b4
+ffffffffbfc115b4	addiu sp,sp,-0x50
+ffffffffbfc115b8	sd gp,0x40(sp)
+ffffffffbfc115bc	lui gp,0x3
+ffffffffbfc115c0	sd s1,0x18(sp)
+ffffffffbfc115c4	addu gp,gp,t9
+ffffffffbfc115c8	sd s5,0x38(sp)
+ffffffffbfc115cc	addiu gp,gp,0x212c
+ffffffffbfc115d0	lw v0,0x14(gp)
+ffffffffbfc115d4	clear s5
+ffffffffbfc115d8	sd s4,0x30(sp)
+ffffffffbfc115dc	daddu s4,a0,zero
+ffffffffbfc115e0	lw s1,0x4aa0(v0)
+ffffffffbfc115e4	sd s3,0x28(sp)
+ffffffffbfc115e8	daddu s3,a1,zero
+ffffffffbfc115ec	sd ra,0x48(sp)
+ffffffffbfc115f0	sd s2,0x20(sp)
+ffffffffbfc115f4	b 0xffffffffbfc116cc
+ffffffffbfc115f8	_sd s0,0x10(sp)
+ffffffffbfc115fc	b 0xffffffffbfc116b8
+ffffffffbfc11600	_lw s2,0x4(s1)
+ffffffffbfc11604	b 0xffffffffbfc116a0
+ffffffffbfc11608	_sll s0,s2,0x10
+ffffffffbfc1160c	bne v0,zero,0xffffffffbfc11630
+ffffffffbfc11610	_lw t9,0xf4(gp)
+ffffffffbfc11614	daddu a0,s0,zero
+ffffffffbfc11618	li a1,0xe
+ffffffffbfc1161c	jalr t9
+ffffffffbfc11620	_daddu a2,sp,zero
+ffffffffbfc11624	lbu v0,0x0(sp)
+ffffffffbfc11628	b 0xffffffffbfc11638
+ffffffffbfc1162c	_andi s5,v0,0x80
+ffffffffbfc11630	beq s5,zero,0xffffffffbfc1169c
+ffffffffbfc11634	_nop
+ffffffffbfc11638	lw t9,0x45c(gp)
+ffffffffbfc1163c	clear a1
+ffffffffbfc11640	addiu a2,sp,0x2
+ffffffffbfc11644	jalr t9
+ffffffffbfc11648	_daddu a0,s0,zero
+ffffffffbfc1164c	daddu a0,s0,zero
+ffffffffbfc11650	lw t9,0x45c(gp)
+ffffffffbfc11654	li a1,0x2
+ffffffffbfc11658	jalr t9
+ffffffffbfc1165c	_addiu a2,sp,0x4
+ffffffffbfc11660	daddu v1,s4,zero
+ffffffffbfc11664	lhu a1,0x2(sp)
+ffffffffbfc11668	b 0xffffffffbfc11690
+ffffffffbfc1166c	_lhu a0,0x4(sp)
+ffffffffbfc11670	bne a1,v0,0xffffffffbfc1168c
+ffffffffbfc11674	_nop
+ffffffffbfc11678	lw v0,0x4(v1)
+ffffffffbfc1167c	bne a0,v0,0xffffffffbfc1168c
+ffffffffbfc11680	_nop
+ffffffffbfc11684	blez s3,0xffffffffbfc116d8
+ffffffffbfc11688	_addiu s3,s3,-0x1
+ffffffffbfc1168c	addiu v1,v1,0x8
+ffffffffbfc11690	lw v0,0x0(v1)
+ffffffffbfc11694	bne v0,zero,0xffffffffbfc11670
+ffffffffbfc11698	_nop
+ffffffffbfc1169c	addiu s0,s0,0x100
+ffffffffbfc116a0	addiu v1,s2,0x1
+ffffffffbfc116a4	sll v0,v1,0x10
+ffffffffbfc116a8	slt v0,s0,v0
+ffffffffbfc116ac	bne v0,zero,0xffffffffbfc1160c
+ffffffffbfc116b0	_dext v0,s0,0x8,0x3
+ffffffffbfc116b4	daddu s2,v1,zero
+ffffffffbfc116b8	lw v0,0x8(s1)
+ffffffffbfc116bc	slt v0,v0,s2
+ffffffffbfc116c0	beq v0,zero,0xffffffffbfc11604
+ffffffffbfc116c4	_nop
+ffffffffbfc116c8	lw s1,0x0(s1)
+ffffffffbfc116cc	bne s1,zero,0xffffffffbfc115fc
+ffffffffbfc116d0	_nop
+ffffffffbfc116d4	li s0,-0x1
+ffffffffbfc116d8	ld ra,0x48(sp)
+ffffffffbfc116dc	daddu v0,s0,zero
+ffffffffbfc116e0	ld gp,0x40(sp)
+ffffffffbfc116e4	ld s5,0x38(sp)
+ffffffffbfc116e8	ld s4,0x30(sp)
+ffffffffbfc116ec	ld s3,0x28(sp)
+ffffffffbfc116f0	ld s2,0x20(sp)
+ffffffffbfc116f4	ld s1,0x18(sp)
+ffffffffbfc116f8	ld s0,0x10(sp)
+ffffffffbfc116fc	jr ra
+ffffffffbfc11700	_addiu sp,sp,0x50

@@ -1,6 +1,6 @@
 #!/bin/sh
-# Normalize the standard OpenWrt DHCP and firewall policy around the RV220W
-# network section names.  Existing stock allow rules are preserved.
+# Normalize DHCP, strict WAN isolation, and LAN-only administration around
+# the RV220W network section names.
 
 find_section_by_option() {
 	config=$1
@@ -81,6 +81,24 @@ if [ -z "$forwarding" ]; then
 	uci set "$forwarding.dest=wan"
 fi
 
+
+# Remove stock WAN-to-LAN IPsec passthrough exceptions.  They can be added by
+# users who explicitly require them, but are not part of the isolated default.
+for rule in $(uci -q show firewall | sed -n "s/^\(firewall\.@rule\[[0-9][0-9]*\]\)=rule$/\1/p"); do
+	case "$(uci -q get "$rule.name")" in
+		Allow-IPSec-ESP|Allow-ISAKMP) uci -q delete "$rule" ;;
+	esac
+done
+
 uci commit firewall
-logger -t rv220w 'full RJ45 services: LAN DHCP enabled; firewall4 zones lan/wan and LAN-to-WAN NAT forwarding enabled'
+
+# Bind Dropbear to the LAN logical interface.  The RAM image still requires
+# the operator to set a password before relying on remote administration.
+dropbear=$(uci -q show dropbear | sed -n "s/^\(dropbear\.@dropbear\[[0-9][0-9]*\]\)=dropbear$/\1/p" | head -n 1)
+if [ -n "$dropbear" ]; then
+	uci set "$dropbear.Interface=lan"
+	uci commit dropbear
+fi
+
+logger -t rv220w 'full RJ45 services: LAN DHCP enabled; strict firewall4 LAN/WAN isolation, LAN-to-WAN NAT, and LAN-only Dropbear enabled'
 exit 0

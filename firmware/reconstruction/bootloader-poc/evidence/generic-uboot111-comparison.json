@@ -1,0 +1,65 @@
+{
+  "schema": "rv220w-generic-uboot111-comparison-v1",
+  "source": "/mnt/data/rv220w-poc-work/uboot111/u-boot-1-U-Boot-1_1_1",
+  "relevant_files": {
+    "common/env_common.c": {
+      "sha256": "1957648d87d5220a93fee40f2e1b4e94bee146d6113919c778a4d229f18122ea",
+      "env_relocate_lines": [
+        199
+      ],
+      "saveenv_lines": [],
+      "bootcmd_lines": [
+        71
+      ],
+      "bootelf_lines": []
+    },
+    "common/env_flash.c": {
+      "sha256": "7c261a753ee2e17e4fd22fc1af9a4202e930b732561f410e087d7b0d56729718",
+      "env_relocate_lines": [],
+      "saveenv_lines": [
+        145,
+        269
+      ],
+      "bootcmd_lines": [],
+      "bootelf_lines": []
+    },
+    "common/main.c": {
+      "sha256": "f5378bf2602fa0da0178f6b69aeb8cdadf4b77d2feefb1d03f9158be610bc57c",
+      "env_relocate_lines": [],
+      "saveenv_lines": [],
+      "bootcmd_lines": [
+        409,
+        411
+      ],
+      "bootelf_lines": []
+    },
+    "common/cmd_elf.c": {
+      "sha256": "6766fe7297aac92c7683b484de04f9add411e90744fd0ea5204f0a87c0b312c9",
+      "env_relocate_lines": [],
+      "saveenv_lines": [],
+      "bootcmd_lines": [],
+      "bootelf_lines": [
+        30,
+        51,
+        215,
+        271,
+        325,
+        326
+      ]
+    }
+  },
+  "vendor_token_hits": {
+    "bootoctlinux": [],
+    "CUST_RV200W": [],
+    "CN5010": [],
+    "OCTEON": [],
+    "Cavium": []
+  },
+  "conclusions": [
+    "Generic env_relocate handles CRC-valid import and bad-CRC fallback.",
+    "Generic saveenv writes the environment; it does not selectively restore bootcmd.",
+    "Generic main_loop consumes bootcmd after board initialization.",
+    "Generic bootelf supplies the ELF-entry calling convention used by the RAM stage2 PoC.",
+    "The generic tree contains no RV220W/CN5010 Octeon board port or bootoctlinux implementation."
+  ]
+}

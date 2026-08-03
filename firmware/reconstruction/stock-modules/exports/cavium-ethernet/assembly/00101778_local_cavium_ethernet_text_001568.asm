@@ -1,0 +1,51 @@
+# rv220w-stock-modules-v1.0.0 module=cavium-ethernet entry=00101778 function=local_cavium_ethernet_text_001568
+00101778	di t1
+0010177c	andi t1,t1,0x1
+00101780	lui v0,0xfff0
+00101784	clear t0
+00101788	ori v0,v0,0x23
+0010178c	clear a0
+00101790	dsll32 v0,v0,0xb
+00101794	dins t0,a3,0x0,0x10
+00101798	dins a0,a1,0x8,0x5
+0010179c	ori a3,v0,0x1808
+001017a0	sd t0,0x0(a3)
+001017a4	ori a1,v0,0x1800
+001017a8	dins a0,a2,0x0,0x5
+001017ac	ori v0,v0,0xf8
+001017b0	ld v1,0x0(v0)
+001017b4	lui v1,0x1
+001017b8	sd a0,0x0(a1)
+001017bc	ori v1,v1,0x86a0
+001017c0	ld a0,0x0(v0)
+001017c4	daddu a1,a3,zero
+001017c8	lui a0,0x2
+001017cc	j 0x001017e0
+001017d0	_li v0,-0x1
+001017d8	beq v0,v1,0x001017f0
+001017dc	_nop
+001017e0	ld t0,0x0(a1)
+001017e4	and a3,t0,a0
+001017e8	bne a3,zero,0x001017d8
+001017ec	_addiu v1,v1,-0x1
+001017f0	mfc0 at,Status
+001017f4	ins at,t1,0x0,0x1
+001017f8	mtc0 at,Status
+001017fc	bne a3,zero,0x0010180c
+00101800	_nop
+00101804	jr ra
+00101808	_nop
+0010180c	lui a0,0x0
+00101810	lui at,0x11
+00101814	daddiu a0,a0,0x0
+00101818	daddiu at,at,-0x1d48
+0010181c	dsll32 a0,a0,0x0
+00101820	daddu a0,a0,at
+00101824	lui t9,0x0
+00101828	lui at,0x11
+0010182c	daddiu t9,t9,0x0
+00101830	daddiu at,at,0x21b0
+00101834	dsll32 t9,t9,0x0
+00101838	daddu t9,t9,at
+0010183c	jr t9
+00101840	_nop

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Conservatively repair stale RV220W build-time DTS substitutions.
 
-The DSA validation builders temporarily substitute either a LAN-only or a
-full dual-conduit generated DTS into OpenWrt's Octeon target overlay.  A killed
+The DSA builders temporarily substitute a LAN-only, dual-conduit validation,
+or full-RJ45 production DTS into OpenWrt's Octeon target overlay.  A killed
 build may leave one of those known generated trees behind.  This helper
 restores the canonical hardware-proven v1.3.2 DTS only when the current file
-is an exact/structural match for a toolkit-generated validation tree.  Unknown
+is an exact/structural match for a toolkit-generated tree.  Unknown
 local edits are never overwritten.
 """
 from __future__ import annotations

@@ -1,0 +1,10 @@
+  ____  __     ______  ___   ___ __        __
+ |  _ \ \ \   / /___ \|___ \ / _ \\ \      / /
+ | |_) | \ \ / /  __) | __) | | | |\ \ /\ / /
+ |  _ <   \ V /  / __/ / __/| |_| | \ V  V /
+ |_| \_\   \_/  |_____|_____|\___/   \_/\_/
+
+ OpenWrt RV220W full-RJ45 + LuCI RAM firmware
+ LuCI HTTP: http://192.168.240.2/ (LAN only)
+ WAN: DHCP/DHCPv6 on the independent eth1 DSA conduit.
+ The standard profile keeps every NOR partition read-only.

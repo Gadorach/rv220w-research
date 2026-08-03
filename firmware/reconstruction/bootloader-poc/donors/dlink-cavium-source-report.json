@@ -1,0 +1,415 @@
+{
+  "schema": "rv220w-dlink-cavium-donor-report-v1",
+  "policy": "facts and hashes only; donor source is not redistributed",
+  "files": {
+    "dwc_version": {
+      "path": "src/sdk/executive/cvmx-version.h",
+      "size": 576,
+      "sha256": "761b97d5ef19eea50f3b0c58bc4b3a2545ebe88de160b2456f41cf1a8da95637"
+    },
+    "dwc_board_enum": {
+      "path": "src/sdk/executive/cvmx-app-init.h",
+      "size": 10511,
+      "sha256": "e741fbf848981205b9f51a4526c9c661c1285f5e7f35c6c83d6e36318200365e"
+    },
+    "dwc_board_helper": {
+      "path": "src/sdk/executive/cvmx-helper-board.c",
+      "size": 19576,
+      "sha256": "087c13a0feab18b87bfdcba518f0b5dfa6a54fa49cc007d4a376c8600ea2bc7b"
+    },
+    "dwc_csr_addresses": {
+      "path": "src/sdk/executive/cvmx-csr-addresses.h",
+      "size": 611445,
+      "sha256": "8ca810712867ef1a34923229c9a0cff26d305515c03f073b3a1996c5999443c2"
+    },
+    "dwc_csr_types": {
+      "path": "src/sdk/executive/cvmx-csr-typedefs.h",
+      "size": 3767256,
+      "sha256": "7dca843851b7b71f0dbe0d166705920f3a3d29201551e3bf91653436b91ff531"
+    },
+    "dwc_flash_setup": {
+      "path": "src/kernel/linux-2.6.21/arch/mips/cavium-octeon/flash_setup.c",
+      "size": 2135,
+      "sha256": "38fa38a9d9124f814280433abef4b68f8ddf4f7a7cff0daae60297db2fcd0837"
+    },
+    "dsr_version": {
+      "path": "src/sdk-2.0/executive/cvmx-version.h",
+      "size": 2309,
+      "sha256": "11cda146a20825a2ecb114f6acfcc7a7d06ad7b0a9c290710eaf429002a774ad"
+    },
+    "dsr_bootloader_header": {
+      "path": "src/sdk-2.0/executive/cvmx-bootloader.h",
+      "size": 5717,
+      "sha256": "990b48177b0e3892fb11a834cea7793a7a92625135c5d4de6ec44a12a0d442db"
+    },
+    "dsr_boot_info": {
+      "path": "src/sdk-2.0/executive/octeon-boot-info.h",
+      "size": 5569,
+      "sha256": "1661ce0f4cc64a7e6d39722003aa1fa337072136b72d190cd02e40d78ca2c5a8"
+    },
+    "dsr_app_init": {
+      "path": "src/sdk-2.0/executive/cvmx-app-init.c",
+      "size": 20393,
+      "sha256": "dbc49235ca0264b57f9202ce6f82d31651ccf53777ba64a081e74977e695d66a"
+    },
+    "dsr_mio_defs": {
+      "path": "src/sdk-2.0/executive/cvmx-mio-defs.h",
+      "size": 282446,
+      "sha256": "dd9bdd49436c57502372be43a526de1bae8ceb3a1bdc9760c6fbefa0f02f2d05"
+    }
+  },
+  "facts": {
+    "dwc_sdk_version": [
+      {
+        "line": 12,
+        "text": "#define OCTEON_SDK_VERSION_STRING   \"Cavium Networks Octeon SDK version 1.7.3, build 264\""
+      }
+    ],
+    "dsr_sdk_version": [
+      {
+        "line": 48,
+        "text": "#define OCTEON_SDK_VERSION_STRING   \"Cavium Networks Octeon SDK version 2.0.0, build 366\""
+      }
+    ],
+    "private_board_enums": [
+      {
+        "line": 187,
+        "text": "CVMX_BOARD_TYPE_CUST_DSR1000N = 20006,"
+      },
+      {
+        "line": 188,
+        "text": "CVMX_BOARD_TYPE_CUST_DSR500N = 20013,"
+      },
+      {
+        "line": 189,
+        "text": "CVMX_BOARD_TYPE_CUST_DSR500 = 20015,"
+      },
+      {
+        "line": 190,
+        "text": "CVMX_BOARD_TYPE_CUST_DSR1000 = 20016,"
+      },
+      {
+        "line": 191,
+        "text": "CVMX_BOARD_TYPE_CUST_DWC1000 = 20017,"
+      },
+      {
+        "line": 245,
+        "text": "ENUM_BRD_TYPE_CASE(CVMX_BOARD_TYPE_CUST_DSR1000N)"
+      },
+      {
+        "line": 246,
+        "text": "ENUM_BRD_TYPE_CASE(CVMX_BOARD_TYPE_CUST_DSR500N)"
+      },
+      {
+        "line": 247,
+        "text": "ENUM_BRD_TYPE_CASE(CVMX_BOARD_TYPE_CUST_DSR500)"
+      },
+      {
+        "line": 248,
+        "text": "ENUM_BRD_TYPE_CASE(CVMX_BOARD_TYPE_CUST_DSR1000)"
+      },
+      {
+        "line": 249,
+        "text": "ENUM_BRD_TYPE_CASE(CVMX_BOARD_TYPE_CUST_DWC1000)"
+      }
+    ],
+    "bcm53115_topology": [
+      {
+        "line": 166,
+        "text": "return -1; /* Port 0, 1 connect to switch */"
+      },
+      {
+        "line": 272,
+        "text": "if (ipd_port == 0 || ipd_port == 1) //BCM53115 in RGMII 0,1"
+      },
+      {
+        "line": 449,
+        "text": "return 3;"
+      }
+    ],
+    "bootbus_addresses": [
+      {
+        "line": 5012,
+        "text": "static inline uint64_t CVMX_MIO_BOOT_REG_CFGX(unsigned long offset)"
+      },
+      {
+        "line": 5023,
+        "text": "cvmx_warn(\"CVMX_MIO_BOOT_REG_CFGX(%lu) is invalid on this chip\\n\", offset);"
+      },
+      {
+        "line": 5028,
+        "text": "static inline uint64_t CVMX_MIO_BOOT_REG_TIMX(unsigned long offset)"
+      },
+      {
+        "line": 5039,
+        "text": "cvmx_warn(\"CVMX_MIO_BOOT_REG_TIMX(%lu) is invalid on this chip\\n\", offset);"
+      }
+    ],
+    "flash_mapping": [
+      {
+        "line": 2,
+        "text": "*   Octeon Bootbus flash setup"
+      },
+      {
+        "line": 39,
+        "text": "cvmx_mio_boot_reg_cfgx_t region_cfg;"
+      },
+      {
+        "line": 40,
+        "text": "region_cfg.u64 = cvmx_read_csr(CVMX_MIO_BOOT_REG_CFG0);"
+      },
+      {
+        "line": 41,
+        "text": "if (region_cfg.s.en) {"
+      },
+      {
+        "line": 49,
+        "text": "flash_map.phys = region_cfg.s.base << 16;"
+      },
+      {
+        "line": 50,
+        "text": "flash_map.size = 0x1fc00000 - flash_map.phys;"
+      },
+      {
+        "line": 51,
+        "text": "flash_map.bankwidth = 1;"
+      },
+      {
+        "line": 52,
+        "text": "flash_map.virt = ioremap(flash_map.phys, flash_map.size);"
+      },
+      {
+        "line": 53,
+        "text": "printk(\"Bootbus flash: Setting flash for %luMB flash at 0x%08lx\\n\", flash_map.size >> 20, flash_map.phys);"
+      }
+    ],
+    "bootloader_header_magic": [
+      {
+        "line": 63,
+        "text": "#define BOOTLOADER_HEADER_MAGIC 0x424f4f54  /* \"BOOT\" in ASCII */"
+      },
+      {
+        "line": 69,
+        "text": "#define BOOTLOADER_HEADER_CURRENT_MAJOR_REV 1"
+      },
+      {
+        "line": 70,
+        "text": "#define BOOTLOADER_HEADER_CURRENT_MINOR_REV 2"
+      },
+      {
+        "line": 123,
+        "text": "BL_HEADER_IMAGE_UNKNOWN = 0x0,"
+      },
+      {
+        "line": 124,
+        "text": "BL_HEADER_IMAGE_STAGE2,  /* Binary bootloader stage2 image (NAND boot) */"
+      },
+      {
+        "line": 125,
+        "text": "BL_HEADER_IMAGE_STAGE3,  /* Binary bootloader stage3 image (NAND boot)*/"
+      },
+      {
+        "line": 126,
+        "text": "BL_HEADER_IMAGE_NOR,     /* Binary bootloader for NOR boot */"
+      },
+      {
+        "line": 127,
+        "text": "BL_HEADER_IMAGE_PCIBOOT,     /* Binary bootloader for PCI boot */"
+      },
+      {
+        "line": 128,
+        "text": "BL_HEADER_IMAGE_UBOOT_ENV,  /* Environment for u-boot */"
+      },
+      {
+        "line": 129,
+        "text": "BL_HEADER_IMAGE_MAX,"
+      },
+      {
+        "line": 131,
+        "text": "BL_HEADER_IMAGE_CUST_RESERVED_MIN = 0x1000,"
+      },
+      {
+        "line": 132,
+        "text": "BL_HEADER_IMAGE_CUST_RESERVED_MAX = 0x1fff,"
+      }
+    ],
+    "boot_descriptor_handoff": [
+      {
+        "line": 102,
+        "text": "static void process_boot_desc_ver_6(octeon_boot_descriptor_t *app_desc_ptr, cvmx_sysinfo_t *sys_info_ptr)"
+      },
+      {
+        "line": 104,
+        "text": "cvmx_bootinfo_t *cvmx_bootinfo_ptr = CASTPTR(cvmx_bootinfo_t, app_desc_ptr->cvmx_desc_vaddr);"
+      },
+      {
+        "line": 112,
+        "text": "if (cvmx_bootinfo_ptr->major_version == 1)"
+      },
+      {
+        "line": 114,
+        "text": "sys_info_ptr->core_mask = cvmx_bootinfo_ptr->core_mask;"
+      },
+      {
+        "line": 115,
+        "text": "sys_info_ptr->heap_base = cvmx_bootinfo_ptr->heap_base;"
+      },
+      {
+        "line": 116,
+        "text": "sys_info_ptr->heap_size = cvmx_bootinfo_ptr->heap_end - cvmx_bootinfo_ptr->heap_base;"
+      },
+      {
+        "line": 117,
+        "text": "sys_info_ptr->stack_top = cvmx_bootinfo_ptr->stack_top;"
+      },
+      {
+        "line": 118,
+        "text": "sys_info_ptr->stack_size = cvmx_bootinfo_ptr->stack_size;"
+      },
+      {
+        "line": 120,
+        "text": "sys_info_ptr->phy_mem_desc_addr = cvmx_bootinfo_ptr->phy_mem_desc_addr;"
+      },
+      {
+        "line": 121,
+        "text": "sys_info_ptr->exception_base_addr = cvmx_bootinfo_ptr->exception_base_addr;"
+      },
+      {
+        "line": 122,
+        "text": "sys_info_ptr->cpu_clock_hz  = cvmx_bootinfo_ptr->eclock_hz;"
+      },
+      {
+        "line": 123,
+        "text": "sys_info_ptr->dram_data_rate_hz  = cvmx_bootinfo_ptr->dclock_hz * 2;"
+      },
+      {
+        "line": 125,
+        "text": "sys_info_ptr->board_type = cvmx_bootinfo_ptr->board_type;"
+      },
+      {
+        "line": 126,
+        "text": "sys_info_ptr->board_rev_major = cvmx_bootinfo_ptr->board_rev_major;"
+      },
+      {
+        "line": 127,
+        "text": "sys_info_ptr->board_rev_minor = cvmx_bootinfo_ptr->board_rev_minor;"
+      },
+      {
+        "line": 128,
+        "text": "memcpy(sys_info_ptr->mac_addr_base, cvmx_bootinfo_ptr->mac_addr_base, 6);"
+      },
+      {
+        "line": 129,
+        "text": "sys_info_ptr->mac_addr_count = cvmx_bootinfo_ptr->mac_addr_count;"
+      },
+      {
+        "line": 130,
+        "text": "memcpy(sys_info_ptr->board_serial_number, cvmx_bootinfo_ptr->board_serial_number, CVMX_BOOTINFO_OCTEON_SERIAL_LEN);"
+      },
+      {
+        "line": 132,
+        "text": "if (cvmx_bootinfo_ptr->flags & OCTEON_BL_FLAG_CONSOLE_UART1)"
+      },
+      {
+        "line": 135,
+        "text": "if (cvmx_bootinfo_ptr->dram_size > 32*1024*1024)"
+      },
+      {
+        "line": 136,
+        "text": "sys_info_ptr->system_dram_size = (uint64_t)cvmx_bootinfo_ptr->dram_size;  /* older bootloaders incorrectly gave this in bytes, so don't convert */"
+      },
+      {
+        "line": 138,
+        "text": "sys_info_ptr->system_dram_size = (uint64_t)cvmx_bootinfo_ptr->dram_size * 1024 * 1024;  /* convert from Megabytes to bytes */"
+      },
+      {
+        "line": 139,
+        "text": "if (cvmx_bootinfo_ptr->minor_version >= 1)"
+      },
+      {
+        "line": 141,
+        "text": "sys_info_ptr->compact_flash_common_base_addr = cvmx_bootinfo_ptr->compact_flash_common_base_addr;"
+      },
+      {
+        "line": 142,
+        "text": "sys_info_ptr->compact_flash_attribute_base_addr = cvmx_bootinfo_ptr->compact_flash_attribute_base_addr;"
+      },
+      {
+        "line": 143,
+        "text": "sys_info_ptr->led_display_base_addr = cvmx_bootinfo_ptr->led_display_base_addr;"
+      },
+      {
+        "line": 145,
+        "text": "else if (sys_info_ptr->board_type == CVMX_BOARD_TYPE_EBT3000 ||"
+      },
+      {
+        "line": 146,
+        "text": "sys_info_ptr->board_type == CVMX_BOARD_TYPE_EBT5800 ||"
+      },
+      {
+        "line": 147,
+        "text": "sys_info_ptr->board_type == CVMX_BOARD_TYPE_EBT5810)"
+      },
+      {
+        "line": 165,
+        "text": "if (cvmx_bootinfo_ptr->minor_version >= 2)"
+      },
+      {
+        "line": 167,
+        "text": "sys_info_ptr->dfa_ref_clock_hz = cvmx_bootinfo_ptr->dfa_ref_clock_hz;"
+      },
+      {
+        "line": 168,
+        "text": "sys_info_ptr->bootloader_config_flags = cvmx_bootinfo_ptr->config_flags;"
+      },
+      {
+        "line": 184,
+        "text": "(int)cvmx_bootinfo_ptr->major_version, (int)cvmx_bootinfo_ptr->minor_version);"
+      },
+      {
+        "line": 297,
+        "text": "process_boot_desc_ver_6(app_desc_ptr,sys_info_ptr);"
+      },
+      {
+        "line": 398,
+        "text": "if (cvmx_sysinfo_get()->board_type != CVMX_BOARD_TYPE_SIM)"
+      },
+      {
+        "line": 517,
+        "text": "if (cvmx_sysinfo_get()->board_type == CVMX_BOARD_TYPE_SIM)"
+      }
+    ]
+  },
+  "complete_uboot_source_present": false,
+  "bootloader_source_scan": {
+    "dwc_path_candidates": [],
+    "dwc_bootoctlinux_content_candidates": [],
+    "dsr_path_candidates": [],
+    "dsr_bootoctlinux_content_candidates": []
+  },
+  "dsr_full_uboot_source_present": false,
+  "dsr_uboot_path_candidates": [],
+  "conclusions": [
+    "DWC SDK 1.7.3 build 264 exactly matches the SDK string embedded in the RV220W boot chain.",
+    "DWC board support confirms three RGMII ports, with Octeon ports 0 and 1 connected to BCM53115 and forced to 1000/full.",
+    "DSR SDK 2.0 is a useful secondary donor for boot headers and generated CSR definitions.",
+    "Neither supplied D-Link package contains a complete U-Boot source tree or bootoctlinux command implementation."
+  ],
+  "source_archives": {
+    "D-Link_DWC-1000_GPL-SRC_v4.1.0.2_10204.tar.bz2": {
+      "size": 219240721,
+      "sha256": "d42760e4004f33d6767feb766afdf83ebf31f55bd4d7ec4f926d75e3efe9d262"
+    },
+    "D-Link_DSR_500_500N_1000_1000N_GPL-SRC_v1.08B51.7z.001": {
+      "size": 327886959,
+      "sha256": "729eec4a058fa490b343384588b53d7d2ffe5c3b5031d1c9bdbcafd925150b67"
+    }
+  },
+  "nested_toolchain_archive": {
+    "path": "tool-chain/tools-linux-octeon-sdk-1.7.3-264.tar.bz2",
+    "size": 118126546,
+    "sha256": "f5cadccd86881826e5cad93e1fb6c82892aaac6919bb577a30fb381e4e9beb9e",
+    "u_boot_or_bootoct_path_matches": [],
+    "interpretation": "compiler/tool archive; no U-Boot or bootoctlinux source path found in archive listing"
+  }
+}
