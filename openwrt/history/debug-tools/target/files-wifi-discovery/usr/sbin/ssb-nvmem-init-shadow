@@ -1,0 +1,81 @@
+#!/bin/sh
+# Explicit BCM4322 OTP shadow/status initialization and before/after capture.
+#
+# This helper is intentionally separate from passive capture.  It will only
+# invoke the kernel module's exact "init-shadow" command after confirming that
+# the device identifies as BCM4322 and chipstatus says stock wl would select
+# OTP rather than external SPROM.  The kernel repeats the same gates.
+set -u
+
+stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || echo unknown)
+found=0
+
+for dev in /sys/bus/pci/devices/*; do
+    [ -d "$dev" ] || continue
+    [ -r "$dev/ssb_otp_info" ] || continue
+    [ -r "$dev/ssb_otp_raw" ] || continue
+    [ -w "$dev/ssb_otp_control" ] || continue
+
+    info=$(cat "$dev/ssb_otp_info" 2>/dev/null) || continue
+    case " $info " in
+        *' chip=0x4322 '*) ;;
+        *) continue ;;
+    esac
+    selector=$(printf '%s\n' "$info" | tr ' ' '\n' | sed -n 's/^bcm4322_sprom_otp_sel=//p' | tail -n 1)
+    source=$(printf '%s\n' "$info" | tr ' ' '\n' | sed -n 's/^bcm4322_stock_source=//p' | tail -n 1)
+    ready=$(printf '%s\n' "$info" | tr ' ' '\n' | sed -n 's/^ready=//p' | tail -n 1)
+    if [ "$selector" != 2 ] || [ "$source" != otp ]; then
+        echo "ssb_nvmem_init_refused=stock-source-not-otp selector=${selector:-unknown} source=${source:-unknown}" >&2
+        exit 3
+    fi
+    if [ "$ready" != 1 ]; then
+        echo "ssb_nvmem_init_refused=otp-not-ready ready=${ready:-unknown}" >&2
+        exit 3
+    fi
+
+    bdf=$(basename "$dev")
+    safe_bdf=$(printf '%s' "$bdf" | tr ':/' '__')
+    prefix="/tmp/ssb-nvmem-init-${safe_bdf}-${stamp}"
+    pre_info="${prefix}.pre.otp-info.txt"
+    pre_raw="${prefix}.pre.otp-raw.hex"
+    post_info="${prefix}.post.otp-info.txt"
+    post_raw="${prefix}.post.otp-raw.hex"
+    sprom_copy="${prefix}.sprom-physical.sysfs.hex"
+
+    cat "$dev/ssb_otp_info" > "$pre_info" || exit 4
+    cat "$dev/ssb_otp_raw" > "$pre_raw" || exit 4
+    if [ -r "$dev/ssb_sprom" ]; then
+        cat "$dev/ssb_sprom" > "$sprom_copy" 2>/dev/null || rm -f "$sprom_copy"
+    fi
+
+    # The only active operation in this helper. The kernel accepts no other
+    # string and issues only the strap-gated OTP INIT opcode.
+    printf '%s\n' 'init-shadow' > "$dev/ssb_otp_control" || {
+        echo 'ssb_nvmem_init_refused=kernel-control-error' >&2
+        exit 5
+    }
+
+    cat "$dev/ssb_otp_info" > "$post_info" || exit 6
+    cat "$dev/ssb_otp_raw" > "$post_raw" || exit 6
+
+    found=1
+    printf 'ssb_nvmem_bdf=%s\n' "$bdf"
+    printf 'otp_init_result=success\n'
+    printf 'otp_init_pre_info_copy=%s\n' "$pre_info"
+    printf 'otp_init_pre_raw_copy=%s\n' "$pre_raw"
+    printf 'otp_init_post_info_copy=%s\n' "$post_info"
+    printf 'otp_init_post_raw_copy=%s\n' "$post_raw"
+    [ -f "$sprom_copy" ] && printf 'sprom_physical_copy=%s\n' "$sprom_copy"
+    printf 'otp_init_pre_info_sha256='; sha256sum "$pre_info" | awk '{print $1}'
+    printf 'otp_init_pre_raw_sha256='; sha256sum "$pre_raw" | awk '{print $1}'
+    printf 'otp_init_post_info_sha256='; sha256sum "$post_info" | awk '{print $1}'
+    printf 'otp_init_post_raw_sha256='; sha256sum "$post_raw" | awk '{print $1}'
+    printf 'otp_init_pre_info='; tr '\n' ' ' < "$pre_info" | sed 's/[[:space:]]*$//'; echo
+    printf 'otp_init_post_info='; tr '\n' ' ' < "$post_info" | sed 's/[[:space:]]*$//'; echo
+    echo
+ done
+
+if [ "$found" -eq 0 ]; then
+    echo 'ssb_nvmem_init=unsupported' >&2
+    exit 2
+fi

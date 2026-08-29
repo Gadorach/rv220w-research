@@ -39,3 +39,5 @@
 ## Distribution policy
 
 Large binary evidence is excluded from the core Git bundle and distributed in overlay archives. Extract all overlays into the same workspace root.
+
+The original 2.0.0 overlay inventories are preserved as `rv220w-research-2.0.0-core-overlay.sha256` and `rv220w-research-2.0.0-full-overlay.sha256`. The repository-root `MANIFEST.core.sha256` now covers only the Git-visible tree, so it can be verified from a clean clone without unavailable preservation overlays.

@@ -1,0 +1,90 @@
+#!/bin/sh
+# RV220W release wireless defaults.
+#
+# Sysupgrade-restored wireless configuration is authoritative.  The only
+# existing configuration we normalize is OpenWrt's own pristine first-boot
+# template: one 2.4 GHz radio, one AP interface, SSID OpenWrt, LAN network,
+# no encryption, and the radio still disabled.  This avoids leaving a fresh
+# device silent while preserving any real administrator configuration.
+
+wireless_config="${RV220W_WIRELESS_CONFIG:-/etc/config/wireless}"
+
+rv220w_first_wifi_device() {
+    uci -q show wireless | sed -n 's/^wireless\.\([^.=]*\)=wifi-device$/\1/p' | head -n1
+}
+
+rv220w_first_wifi_iface() {
+    uci -q show wireless | sed -n 's/^wireless\.\([^.=]*\)=wifi-iface$/\1/p' | head -n1
+}
+
+rv220w_section_count() {
+    uci -q show wireless | grep -c "=$1$" 2>/dev/null || true
+}
+
+rv220w_pristine_openwrt_default() {
+    [ -s "$wireless_config" ] || return 1
+
+    [ "$(rv220w_section_count wifi-device)" = 1 ] || return 1
+    [ "$(rv220w_section_count wifi-iface)" = 1 ] || return 1
+
+    local radio iface disabled mode network ssid encryption iface_disabled
+    radio="$(rv220w_first_wifi_device)"
+    iface="$(rv220w_first_wifi_iface)"
+    [ -n "$radio" ] && [ -n "$iface" ] || return 1
+
+    disabled="$(uci -q get "wireless.$radio.disabled")"
+    mode="$(uci -q get "wireless.$iface.mode")"
+    network="$(uci -q get "wireless.$iface.network")"
+    ssid="$(uci -q get "wireless.$iface.ssid")"
+    encryption="$(uci -q get "wireless.$iface.encryption")"
+    iface_disabled="$(uci -q get "wireless.$iface.disabled")"
+
+    [ "$disabled" = 1 ] || return 1
+    [ "$mode" = ap ] || return 1
+    [ "$network" = lan ] || return 1
+    [ "$ssid" = OpenWrt ] || return 1
+    [ -z "$encryption" ] || [ "$encryption" = none ] || return 1
+    [ -z "$iface_disabled" ] || [ "$iface_disabled" = 1 ] || return 1
+    return 0
+}
+
+fresh=0
+if [ ! -s "$wireless_config" ]; then
+    command -v wifi >/dev/null 2>&1 && wifi config >/dev/null 2>&1 || true
+    fresh=1
+elif rv220w_pristine_openwrt_default; then
+    fresh=1
+fi
+
+if [ "$fresh" != 1 ]; then
+    logger -t rv220w 'Release Wi-Fi defaults: preserving existing administrator wireless configuration'
+    exit 0
+fi
+
+radio="$(rv220w_first_wifi_device)"
+iface="$(rv220w_first_wifi_iface)"
+
+[ -n "$radio" ] || {
+    logger -t rv220w 'Release Wi-Fi defaults: no radio section available; leaving wireless unchanged'
+    exit 0
+}
+
+uci -q set "wireless.$radio.disabled=0"
+uci -q set "wireless.$radio.band=2g"
+uci -q set "wireless.$radio.channel=auto"
+
+if [ -z "$iface" ]; then
+    iface="$(uci -q add wireless wifi-iface)"
+fi
+if [ -n "$iface" ]; then
+    uci -q set "wireless.$iface.device=$radio"
+    uci -q set "wireless.$iface.network=lan"
+    uci -q set "wireless.$iface.mode=ap"
+    uci -q set "wireless.$iface.ssid=OpenWrt"
+    uci -q set "wireless.$iface.encryption=none"
+    uci -q delete "wireless.$iface.disabled" 2>/dev/null || true
+fi
+
+uci -q commit wireless
+logger -t rv220w 'Release Wi-Fi defaults: enabled fresh 2.4 GHz OpenWrt AP'
+exit 0

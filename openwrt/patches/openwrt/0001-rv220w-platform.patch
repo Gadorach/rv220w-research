@@ -1,0 +1,94 @@
+diff --git a/target/linux/octeon/base-files/etc/board.d/01_network b/target/linux/octeon/base-files/etc/board.d/01_network
+index 10af4e8d415c1cfb8e6c48dbad852e6560ace1ee..ea783d7a82530eb29b66f9cd990fb229dbd9498b 100644
+--- a/target/linux/octeon/base-files/etc/board.d/01_network
++++ b/target/linux/octeon/base-files/etc/board.d/01_network
+@@ -7,6 +7,10 @@
+ board_config_update
+ 
+ case "$(board_name)" in
++cisco,rv220w)
++	# Proven RAM-boot path: eth0 reaches the retained BCM53115 fabric.
++	ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "wan"
++	;;
+ itus,shield-router|\
+ ubnt,erlite|\
+ ubnt,usg)
+diff --git a/target/linux/octeon/base-files/lib/preinit/01_sysinfo b/target/linux/octeon/base-files/lib/preinit/01_sysinfo
+index 53ac1fe63a18b7e5451101d4383f0abc5b0881ad..6baaef16ef094784f7baf0bd1899b47bbf079437 100644
+--- a/target/linux/octeon/base-files/lib/preinit/01_sysinfo
++++ b/target/linux/octeon/base-files/lib/preinit/01_sysinfo
+@@ -9,7 +9,8 @@ do_sysinfo_octeon() {
+ 	# same supposedly unique board ID as the EdgeRouter. This is bad, so
+ 	# we override what cpuinfo gives us using the device tree as a hint.
+ 	case "$of_machine" in
+-	"cisco,vedge1000"*)
++	"cisco,vedge1000"*|\
++	"cisco,rv220w"*)
+ 		return 0
+ 	esac
+ 
+diff --git a/target/linux/octeon/image/Makefile b/target/linux/octeon/image/Makefile
+--- a/target/linux/octeon/image/Makefile
++++ b/target/linux/octeon/image/Makefile
+@@ -33,6 +33,61 @@ define Device/generic
+ endef
+ TARGET_DEVICES += generic
+ 
++RV220W_PERSISTENT_CMDLINE:=-mtdparts=phys_mapped_flash:512k(boot-chain)ro,6m(openwrt-kernel),25984k(rootfs),128k(uboot-env)ro root=/dev/mtdblock2 rootfstype=squashfs console=ttyS0,115200 usbcore.nousb
++RV220W_PERSISTENT_WRITER_CMDLINE:=-mtdparts=phys_mapped_flash:512k(boot-chain)ro,6m(openwrt-kernel),25984k(rootfs),128k(uboot-env)ro console=ttyS0,115200 usbcore.nousb
++
++define Build/rv220w-append-dtb-elf
++	rm -f $@.rv220w-dtb $@.rv220w-dtb.verify
++	$(TARGET_CROSS)objcopy \
++		--set-section-flags=.appended_dtb=alloc,contents \
++		--update-section \
++		.appended_dtb=$(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb \
++		$@ $@.rv220w-dtb
++	test -s $@.rv220w-dtb
++	$(TARGET_CROSS)objcopy \
++		--dump-section .appended_dtb=$@.rv220w-dtb.verify \
++		$@.rv220w-dtb
++	cmp -s \
++		$(KDIR)/image-$(firstword $(DEVICE_DTS)).dtb \
++		$@.rv220w-dtb.verify
++	mv $@.rv220w-dtb $@
++	rm -f $@.rv220w-dtb.verify
++endef
++
++define Device/cisco_rv220w_persistent
++  DEVICE_VENDOR := Cisco
++  DEVICE_MODEL := RV220W
++  DEVICE_VARIANT := Persistent SquashFS
++  BOARD_NAME := cisco,rv220w
++  DEVICE_DTS := cn5010_cisco_rv220w
++  DEVICE_PACKAGES += -kmod-usb-dwc3-octeon
++  KERNEL := kernel-bin | strip-kernel | patch-cmdline | rv220w-append-dtb-elf | gzip
++  KERNEL_INSTALL := 1
++  KERNEL_SIZE := 6m
++  KERNEL_DEPENDS := $$(wildcard $(DTS_DIR)/$(DEVICE_DTS).dts)
++  CMDLINE := $(RV220W_PERSISTENT_CMDLINE)
++  SUPPORTED_DEVICES += cisco,rv220w
++  IMAGES := sysupgrade.tar
++  IMAGE/sysupgrade.tar/squashfs := sysupgrade-tar | append-metadata
++  IMAGE/sysupgrade.tar := sysupgrade-tar | append-metadata
++endef
++TARGET_DEVICES += cisco_rv220w_persistent
++
++define Device/cisco_rv220w_persistent_writer
++  DEVICE_VENDOR := Cisco
++  DEVICE_MODEL := RV220W
++  DEVICE_VARIANT := Persistent-layout initramfs
++  BOARD_NAME := cisco,rv220w
++  DEVICE_DTS := cn5010_cisco_rv220w
++  DEVICE_PACKAGES += -kmod-usb-dwc3-octeon
++  KERNEL := kernel-bin | strip-kernel | patch-cmdline | append-dtb-to-elf
++  KERNEL_DEPENDS := $$(wildcard $(DTS_DIR)/$(DEVICE_DTS).dts)
++  CMDLINE := $(RV220W_PERSISTENT_WRITER_CMDLINE)
++  SUPPORTED_DEVICES += cisco,rv220w
++  IMAGES :=
++endef
++TARGET_DEVICES += cisco_rv220w_persistent_writer
++
+ ITUSROUTER_CMDLINE:=console=ttyS0,115200 root=/dev/mmcblk1p2 rootfstype=squashfs,ext4,f2fs rootwait
+ define Device/itus_shield-router
+   DEVICE_VENDOR := Itus Networks

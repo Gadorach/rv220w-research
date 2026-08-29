@@ -1,0 +1,25 @@
+# RV220W SSB PCI SPROM access fix.
+--- a/drivers/ssb/pci.c
++++ b/drivers/ssb/pci.c
+@@ -256,8 +256,19 @@ static int sprom_do_read(struct ssb_bus *bus, u16 *sprom)
+ {
+ 	int i;
+ 
+-	for (i = 0; i < bus->sprom_size; i++)
+-		sprom[i] = ioread16(bus->mmio + bus->sprom_offset + (i * 2));
++	for (i = 0; i < bus->sprom_size; i++) {
++		void __iomem *addr = bus->mmio + bus->sprom_offset + (i * 2);
++
++		/*
++		 * Broadcom's legacy SROM reader performs two consecutive 16-bit
++		 * reads at each SPROM address and retains the second result.  Some
++		 * conventional-PCI host bridges expose stale/erased data on the
++		 * first transaction.  Mirror the vendor read sequence; the first
++		 * access is read-only and deliberately discarded.
++		 */
++		(void)ioread16(addr);
++		sprom[i] = ioread16(addr);
++	}
+ 
+ 	return 0;
+ }

@@ -1,36 +1,26 @@
 # Build and TFTP RAM boot
 
-## Build environment
+## Reproducible source build
 
-The supported workflow is CachyOS with fish and an Ubuntu 24.04 Distrobox.
+The supported host workflow is CachyOS/Arch with fish, Podman, and an Ubuntu 24.04 Distrobox.
 
-```fish
-cd openwrt
-cp config/toolkit.env.fish.example config/toolkit.env.fish
-./rv220w.fish doctor
-./rv220w.fish setup-host
-./rv220w.fish setup-box
-./rv220w.fish prepare-sources
+```console
+make -C openwrt all
 ```
 
-## Current profiles
+`openwrt/source-lock.json` pins OpenWrt and all five feeds. Source preparation checks out those commits before feed installation. Build products are written to `openwrt/build/artifacts/`.
 
-```text
-rj45-full   Routed five-port image, no LuCI, all NOR read-only
-rj45-luci   Routed five-port image with LuCI, all NOR read-only
-nor-writer  RAM-only maintenance image; only openwrt-slot writable
+Public profiles are:
+
+- LAN-only initramfs installer/recovery ELF.
+- Persistent LuCI/Wi-Fi sysupgrade image.
+
+## RAM boot
+
+```console
+make -C openwrt initramfs-liveboot
 ```
 
-Build and RAM-boot the LuCI image:
+If the retained pair exists, the helper prompts to use `prebuilt/`; declining selects source-built artifacts. The host uses `192.168.240.1/24` only for U-Boot TFTP, while OpenWrt starts at `192.168.1.1`.
 
-```fish
-./rv220w.fish build rj45-luci
-./rv220w.fish tftp-boot \
-    --profile rj45-luci \
-    --interface <host-interface> \
-    --configure-interface
-```
-
-TFTP RAM boot remains the primary recovery path even after persistent
-installation. It changes only temporary U-Boot networking variables and invokes
-`bootoctlinux`; it does not write NOR or save the environment.
+TFTP RAM boot does not write NOR. A separate prompt, image validation, and exact `INSTALL RV220W` confirmation guard permanent installation.

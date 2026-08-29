@@ -1,28 +1,19 @@
 # Remaining OpenWrt work
 
-## Storage and upgrades
-
-- Design and validate a persistent SquashFS root plus writable overlay.
-- Define factory and sysupgrade image formats with power-loss-safe rollback.
-- Automate environment updates without hiding the manifest-derived copy length.
-- Qualify interrupted writes and repeated upgrade/restore cycles.
-
 ## Platform services
 
-- Promote status LEDs, reset input, and watchdog behavior.
-- Complete GPIO mapping and safe reset semantics.
+- Define and qualify Linux reset-button behavior and watchdog policy.
+- Complete the remaining GPIO map and safe board-service semantics.
 - Characterize long-duration stability, throughput, thermal behavior, and repeated cold boots.
-- Prepare upstream-quality separation of generic Octeon/B53 fixes and board-specific support.
+- Separate generic Octeon/B53/b43 fixes from board-specific support for upstream review.
 
-## Wireless
+## Release engineering
 
-- Resolve BCM4322 firmware and SPROM/calibration requirements.
-- Validate interface creation, association, security, throughput, and RF behavior.
-- Alternatively qualify a better-supported Mini PCI replacement while preserving the original module evidence.
+- Exercise untouched-stock U-Boot classification on another stock unit while retaining the current fail-closed policy.
+- Add automated CI for static release checks and documentation links.
+- Expand interrupted-write and repeated upgrade/restore testing.
 
-## Validation nuance
+## Wireless follow-up
 
-The combined target and its component destructive transitions are hardware
-validated. The packaged combined wrapper has hardware-validated staging and
-idempotent no-write behavior, but its one-command stock-to-combined destructive
-transition has not been separately repeated.
+- Characterize long-duration b43 stability, throughput, 5 GHz feasibility, and antenna-chain behavior.
+- Evaluate newer Mini PCI alternatives without discarding original-module evidence.

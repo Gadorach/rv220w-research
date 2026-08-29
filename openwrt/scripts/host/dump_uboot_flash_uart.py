@@ -516,6 +516,7 @@ def main() -> int:
             rtscts=False,
             dsrdtr=False,
             xonxoff=False,
+            exclusive=True,
         )
         console = UBootSerial(serial_handle, prompt, raw_log_handle, args.prompt_timeout)
         console.sync_prompt()
@@ -653,7 +654,7 @@ def main() -> int:
                 console.interrupt_and_sync()
             except Exception:
                 pass
-    except (DumpError, OSError, ValueError) as exc:
+    except (DumpError, OSError, ValueError, serial.SerialException) as exc:
         print(f"\nerror: {exc}", file=sys.stderr)
         print("The partial output remains available for a validated resume.", file=sys.stderr)
         return_code = 1

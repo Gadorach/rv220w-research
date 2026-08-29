@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0 - hardware-qualified persistent OpenWrt release
+
+- Replaced the v1.10.3 experimental toolkit with the hardware-qualified `1.16.0-rc7` release tree.
+- Consolidated the active platform delta into four OpenWrt, SSB, Octeon, and b43 patch groups.
+- Added persistent SquashFS/JFFS2, configuration-preserving sysupgrade, BCM4322/b43 Wi-Fi, and front-panel LED policy.
+- Added the guarded initramfs direct installer with rootfs-first/kernel-last writes and SHA-256 readback.
+- Preserved the exact OpenWrt and feed commits used by RC7 and made source preparation replay the lock.
+- Retained the qualified initramfs and sysupgrade images under `prebuilt/` with integrity checks.
+- Archived the final RC7 install transcript and normalized v1.11-v1.15.10 research history without duplicate release ZIPs.
+- Rewrote canonical installation, recovery, flash-layout, wireless, status, and remaining-work documentation.
+
 
 ## 2.0.0 — persistent LuCI, NOR, and boot-chain promotion
 

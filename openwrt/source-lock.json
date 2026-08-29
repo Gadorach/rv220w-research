@@ -1,0 +1,31 @@
+{
+  "feeds": {
+    "luci": {
+      "commit": "128a7812f4be233c5dd7f7466f534fd888785caf",
+      "url": "https://git.openwrt.org/project/luci.git"
+    },
+    "packages": {
+      "commit": "5caa62e0bc9f7fb9b0c12a23267bceb7724214dd",
+      "url": "https://git.openwrt.org/feed/packages.git"
+    },
+    "routing": {
+      "commit": "3d7d0dc7fa43d3eb09498417407e95a6552e5312",
+      "url": "https://git.openwrt.org/feed/routing.git"
+    },
+    "telephony": {
+      "commit": "2618106d5846a4a542fdf5809f0d3ed228ce439b",
+      "url": "https://git.openwrt.org/feed/telephony.git"
+    },
+    "video": {
+      "commit": "094bf58da6682f895255a35a84349a79dab4bf95",
+      "url": "https://github.com/openwrt/video.git"
+    }
+  },
+  "openwrt": {
+    "commit": "f0a60eee2fe051741c643ea6118718aae1ef17fb",
+    "describe": "v25.12.5",
+    "requested_ref": "v25.12.5",
+    "url": "https://github.com/openwrt/openwrt.git"
+  },
+  "release_version": "1.16.0-rc7"
+}

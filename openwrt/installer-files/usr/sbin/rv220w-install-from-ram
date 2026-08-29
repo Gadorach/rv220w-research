@@ -1,0 +1,83 @@
+#!/bin/sh
+# Cisco RV220W direct installer for the release initramfs.
+#
+# This intentionally bypasses OpenWrt's second stage2 ramfs pivot. The caller
+# is already running entirely from the release initramfs, so the NOR rootfs is
+# not mounted and can be written directly while procd/watchdog remain alive.
+
+# OpenWrt's shell libraries are not nounset-clean. In particular,
+# /lib/functions.sh expects IPKG_INSTROOT to exist while it is sourced.
+# Keep explicit validation in this wrapper rather than applying `set -u` to
+# library code outside our control. Initialize the conventional OpenWrt
+# package-root variable as an additional compatibility guard.
+IPKG_INSTROOT="${IPKG_INSTROOT:-}"
+export IPKG_INSTROOT
+
+IMAGE="${1:-}"
+
+fail() {
+	echo "RV220W_DIRECT_INSTALL_ERROR: $*" >&2
+	exit 1
+}
+
+[ -n "$IMAGE" ] || fail "usage: rv220w-install-from-ram /tmp/sysupgrade.tar"
+[ -f "$IMAGE" ] && [ -s "$IMAGE" ] || fail "image is missing or empty: $IMAGE"
+[ -r /etc/rv220w-build ] || fail "release build identity is missing"
+grep -qx 'Profile: initramfs' /etc/rv220w-build || fail "refusing to run outside the RV220W release initramfs"
+
+# The installer must never write the rootfs partition while a persistent
+# SquashFS/overlay installation is mounted. This is a hard safety gate, not a
+# best-effort warning.
+if grep -Eq ' /(rom|overlay) ' /proc/mounts || grep -Eq '^/dev/mtd(block)?[0-9]+ / ' /proc/mounts; then
+	fail "persistent MTD root/overlay is mounted; direct installer is initramfs-only"
+fi
+
+. /lib/functions.sh
+include /lib/upgrade
+
+# This path deliberately keeps the normal OpenWrt userspace supervisor alive.
+# The RV220W exposes a short hardware watchdog interval, so a direct install
+# from the already-running initramfs is safer than killing userspace and doing
+# a second ramfs pivot.
+pid1="$(cat /proc/1/comm 2>/dev/null || true)"
+[ "$pid1" = procd ] || fail "PID 1 is '$pid1', expected procd; refusing a direct flash without the normal supervisor/watchdog service"
+
+for tool in tar mtd sha256sum hexdump awk grep; do
+	command -v "$tool" >/dev/null 2>&1 || fail "required installer tool is missing: $tool"
+done
+
+# Clean onboarding intentionally does not import configuration from whatever
+# Cisco/OpenWrt image is currently in NOR.
+UPGRADE_BACKUP=
+export UPGRADE_BACKUP
+
+board_dir="$(rv220w_sysupgrade_dir "$IMAGE")" || fail "sysupgrade archive has no RV220W board directory"
+rv220w_check_layout || fail "NOR layout does not match the qualified RV220W persistent map"
+
+echo "RV220W_DIRECT_INSTALL_BEGIN"
+echo "RV220W_DIRECT_INSTALL_IMAGE=$IMAGE"
+echo "RV220W_DIRECT_INSTALL_PID1=$pid1"
+echo "RV220W_DIRECT_INSTALL_MEMINFO_BEGIN"
+grep -E '^(MemTotal|MemFree|MemAvailable|Buffers|Cached|Shmem):' /proc/meminfo || true
+echo "RV220W_DIRECT_INSTALL_MEMINFO_END"
+rv220w_validate_upgrade_stream "$IMAGE" "$board_dir" || fail "low-memory image validation failed"
+echo "RV220W_DIRECT_INSTALL_VALIDATION_PASS"
+
+echo "RV220W_DIRECT_INSTALL_ROOTFS_BEGIN"
+rv220w_stream_write_member "$IMAGE" "$board_dir/root" rootfs || fail "rootfs stream/write/readback failed"
+echo "RV220W_DIRECT_INSTALL_ROOTFS_PASS"
+echo "RV220W_DIRECT_INSTALL_MEMINFO_AFTER_ROOTFS_BEGIN"
+grep -E '^(MemFree|MemAvailable|Cached|Shmem):' /proc/meminfo || true
+echo "RV220W_DIRECT_INSTALL_MEMINFO_AFTER_ROOTFS_END"
+
+echo "RV220W_DIRECT_INSTALL_KERNEL_BEGIN"
+rv220w_stream_write_member "$IMAGE" "$board_dir/kernel" openwrt-kernel || fail "kernel stream/write/readback failed"
+echo "RV220W_DIRECT_INSTALL_KERNEL_PASS"
+
+sync
+echo "RV220W_DIRECT_INSTALL_PASS"
+echo "RV220W_DIRECT_INSTALL_REBOOTING"
+sleep 1
+reboot -f
+sleep 5
+echo b 2>/dev/null > /proc/sysrq-trigger

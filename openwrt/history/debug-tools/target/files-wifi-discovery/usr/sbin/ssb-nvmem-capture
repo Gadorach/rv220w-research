@@ -1,0 +1,69 @@
+#!/bin/sh
+# Generic passive SSB PCI NVM evidence capture.
+#
+# Requires the wifi-discovery-only ssb_nvmem_diag module.  Passive OTP evidence
+# comes from that module; physical SPROM evidence uses the existing SSB
+# driver's ssb_sprom sysfs attribute. The module also exposes a read-only
+# paired-16-bit SPROM capture that preserves the first and second consecutive
+# transactions at each word address. This helper never invokes the separate
+# OTP INIT control and never writes PCI config space, SPROM, OTP fuses, radio
+# state, or flash.
+set -u
+
+stamp=$(date -u +%Y%m%dT%H%M%SZ 2>/dev/null || echo unknown)
+found=0
+
+for dev in /sys/bus/pci/devices/*; do
+    [ -d "$dev" ] || continue
+    [ -r "$dev/ssb_otp_info" ] || continue
+    bdf=$(basename "$dev")
+    safe_bdf=$(printf '%s' "$bdf" | tr ':/' '__')
+    prefix="/tmp/ssb-nvmem-${safe_bdf}-${stamp}"
+    info_copy="${prefix}.otp-info.txt"
+    otp_copy="${prefix}.otp-raw.hex"
+    sprom_copy="${prefix}.sprom-physical.sysfs.hex"
+    paired_copy="${prefix}.sprom-paired16.txt"
+
+    if ! cat "$dev/ssb_otp_info" > "$info_copy" 2>/dev/null; then
+        rm -f "$info_copy" "$otp_copy" "$sprom_copy" "$paired_copy"
+        continue
+    fi
+    if ! cat "$dev/ssb_otp_raw" > "$otp_copy" 2>/dev/null; then
+        rm -f "$info_copy" "$otp_copy" "$sprom_copy" "$paired_copy"
+        continue
+    fi
+    if [ -r "$dev/ssb_sprom" ]; then
+        if ! cat "$dev/ssb_sprom" > "$sprom_copy" 2>/dev/null; then
+            rm -f "$sprom_copy"
+            sprom_copy=""
+        fi
+    else
+        sprom_copy=""
+    fi
+    if [ -r "$dev/ssb_sprom_paired16" ]; then
+        if ! cat "$dev/ssb_sprom_paired16" > "$paired_copy" 2>/dev/null; then
+            rm -f "$paired_copy"
+            paired_copy=""
+        fi
+    else
+        paired_copy=""
+    fi
+
+    found=1
+    printf 'ssb_nvmem_bdf=%s\n' "$bdf"
+    printf 'otp_info_copy=%s\n' "$info_copy"
+    printf 'otp_raw_copy=%s\n' "$otp_copy"
+    [ -n "$sprom_copy" ] && printf 'sprom_physical_copy=%s\n' "$sprom_copy"
+    [ -n "$paired_copy" ] && printf 'sprom_paired16_copy=%s\n' "$paired_copy"
+    printf 'otp_info_sha256='; sha256sum "$info_copy" 2>/dev/null | awk '{print $1}'
+    printf 'otp_raw_sha256='; sha256sum "$otp_copy" 2>/dev/null | awk '{print $1}'
+    [ -n "$sprom_copy" ] && { printf 'sprom_physical_sha256='; sha256sum "$sprom_copy" 2>/dev/null | awk '{print $1}'; }
+    [ -n "$paired_copy" ] && { printf 'sprom_paired16_sha256='; sha256sum "$paired_copy" 2>/dev/null | awk '{print $1}'; }
+    printf 'otp_info='; tr '\n' ' ' < "$info_copy" | sed 's/[[:space:]]*$//'; echo
+    [ -w "$dev/ssb_otp_control" ] && printf 'otp_init_control_available=1\n' || printf 'otp_init_control_available=0\n'
+    echo
+ done
+
+if [ "$found" -eq 0 ]; then
+    echo 'ssb_nvmem_capture=unsupported'
+fi

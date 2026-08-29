@@ -31,35 +31,20 @@ branch: 10 00 00 03 at 0xbdc13138
 return: 03 e0 00 08 at 0xbdc13168
 ```
 
-## Flasher location
+## Guarded release tooling
 
-```text
-firmware/reconstruction/bootloader-poc/flash-tools/
-  rv220w-combined-boot-policy-patch-flasher-v1.0.0/
+```console
+make -C openwrt u-boot-verify
+make -C openwrt u-boot-patches
 ```
 
-Run non-destructive checks first:
+The first command performs a read-only bootloader/environment backup and compatibility check. The second provides the current guarded onboarding, repair, and forced-qualified-rewrite workflow. Earlier reconstruction flash tools remain under `firmware/reconstruction/` for provenance.
 
-```fish
-cd firmware/reconstruction/bootloader-poc/flash-tools/rv220w-combined-boot-policy-patch-flasher-v1.0.0
-./flash-combined-boot-policy.fish
-./flash-combined-boot-policy.fish --stage-only
-```
-
-Apply the combined target only with external recovery ready:
-
-```fish
-./flash-combined-boot-policy.fish \
-    --execute \
-    --external-recovery-ready \
-    --confirm RV220W_FLASH_COMBINED_BOOT_POLICY_PATCHES
-```
-
-The flasher recognizes stock, bootcmd-only, HTTP-only, and already-combined
+The helper recognizes stock, bootcmd-only, HTTP-only, and already-combined
 sector identities. It stages the live protected sector in RAM, constructs and
 verifies the target in a second buffer, writes exactly one 128 KiB sector,
 compares the full result, verifies CRC and instruction bytes, and restores
-sector protection.
+sector protection. It can create either a complete 32 MiB backup or a warning-gated 640 KiB backup of the regions it can modify.
 
 ## Hardware validation boundary
 

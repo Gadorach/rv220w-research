@@ -8,9 +8,9 @@ stage notes, failed attempts, and version-specific records are under
 
 - [`../STATUS.md`](../STATUS.md) — concise current state and limitations.
 - [`platform-overview.md`](platform-overview.md) — platform and final boot architecture.
-- [`openwrt/installation.md`](openwrt/installation.md) — mandatory boot-chain-first persistent installation.
+- [`openwrt/installation.md`](openwrt/installation.md) — guarded U-Boot preparation, RAM boot, and direct persistent installation.
 - [`openwrt/current-status.md`](openwrt/current-status.md) — current OpenWrt behavior.
-- [`firmware/bootchain-policy-patch.md`](firmware/bootchain-policy-patch.md) — exact validated patch and flasher.
+- [`firmware/bootchain-policy-patch.md`](firmware/bootchain-policy-patch.md) — exact validated patch and guarded release tooling.
 - [`operations/risk-and-recovery.md`](operations/risk-and-recovery.md) — recovery requirements and stop conditions.
 
 ## OpenWrt

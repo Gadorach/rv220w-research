@@ -1,0 +1,256 @@
+# RV220W Octeon/DSA kernel delta. Historical component patches are retained in history/.
+--- a/arch/mips/cavium-octeon/octeon-platform.c
++++ b/arch/mips/cavium-octeon/octeon-platform.c
+@@ -1143,4 +1143,9 @@ int __init ubnt_prune_device_tree(void)
+ {
++	if (octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E300 &&
++	    octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E200 &&
++	    octeon_bootinfo->board_type != CVMX_BOARD_TYPE_UBNT_E220)
++		return 0;
++
+ 	/* MMC on UBNT */
+ 	pr_info("UBNT board DTS pruning...\n");
+ 	if (octeon_bootinfo->board_type == CVMX_BOARD_TYPE_UBNT_E300) {
+--- a/arch/mips/boot/dts/cavium-octeon/Makefile
++++ b/arch/mips/boot/dts/cavium-octeon/Makefile
+@@ -1,2 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0
+-dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb
++dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb \
++	cn5010_cisco_rv220w.dtb
+--- a/arch/mips/pci/pci-octeon.c
++++ b/arch/mips/pci/pci-octeon.c
+@@ -237,6 +237,16 @@ int __init octeon_pci_pcibios_map_irq(const struct pci_dev *dev,
+ 	int irq_num;
+ 	const char *interrupts;
+ 	int dev_num;
++
++	/*
++	 * Cisco RV220W wires the BCM4322 mini-PCI INTA# signal to
++	 * Octeon PCI_INT0.  The generic slot/pin swizzle maps slot 3
++	 * INTA# to PCI_INT1, which leaves the physically asserted INT0
++	 * line masked.  Keep the correction endpoint- and board-specific.
++	 */
++	if (of_machine_is_compatible("cisco,rv220w") &&
++	    dev->vendor == 0x14e4 && dev->device == 0x432b && slot == 3 && pin == 1)
++		return OCTEON_IRQ_PCI_INT0;
+ 
+ 	/* Get the board specific interrupt mapping */
+ 	interrupts = octeon_get_pci_interrupts();
+--- a/arch/mips/pci/pci-octeon.c
++++ b/arch/mips/pci/pci-octeon.c
+@@ -217,8 +217,8 @@ const char *octeon_get_pci_interrupts(void)
+  *		 as it goes through each bridge.
+  * Returns Interrupt number for the device
+  */
+-int __init octeon_pci_pcibios_map_irq(const struct pci_dev *dev,
++int octeon_pci_pcibios_map_irq(const struct pci_dev *dev,
+ 				      u8 slot, u8 pin)
+ {
+ 	int irq_num;
+ 	const char *interrupts;
+--- a/drivers/staging/octeon/ethernet.c
++++ b/drivers/staging/octeon/ethernet.c
+@@ -826,2 +826,4 @@ static int cvm_oct_probe(struct platform_device *pdev)
+ 
++			dev->dev.of_node = priv->of_node;
++
+ 			INIT_DELAYED_WORK(&priv->port_periodic_work,
+--- a/drivers/staging/octeon/ethernet-rx.c
++++ b/drivers/staging/octeon/ethernet-rx.c
+@@ -18,5 +18,6 @@
+ #include <linux/smp.h>
+ #include <linux/interrupt.h>
++#include <net/dsa.h>
+ #include <net/dst.h>
+ #ifdef CONFIG_XFRM
+ #include <linux/xfrm.h>
+@@ -69,7 +70,11 @@ static inline int cvm_oct_check_rcv_error(struct cvmx_wqe *work)
+ 	else
+ 		port = work->word1.cn38xx.ipprt;
+ 
+-	if ((work->word2.snoip.err_code == 10) && (work->word1.len <= 64))
++	if (work->word2.snoip.err_code == 10 &&
++	    (work->word1.len <= 64 ||
++	     (port < TOTAL_NUMBER_OF_PORTS &&
++	      cvm_oct_device[port] &&
++	      netdev_uses_dsa(cvm_oct_device[port]))))
+ 		/*
+ 		 * Ignore length errors on min size packets. Some
+ 		 * equipment incorrectly pads packets to 64+4FCS
+--- a/drivers/net/dsa/b53/b53_common.c
++++ b/drivers/net/dsa/b53/b53_common.c
+@@ -537,11 +537,90 @@ static int b53_fast_age_vlan(struct b53_device *dev, u16 vid)
+ 	return b53_flush_arl(dev, FAST_AGE_VLAN);
+ }
+ 
++static int b53_multi_cpu_vlan_setup(struct dsa_switch *ds,
++				    int changed_port, int new_cpu_port)
++{
++	struct b53_device *dev = ds->priv;
++	struct dsa_port *dp, *user_dp;
++	u16 cpu_ports = dsa_cpu_ports(ds);
++	unsigned int i;
++	u16 pvlan;
++	int err;
++
++	/*
++	 * Rebuild only the port-based VLAN masks which select a CPU conduit.
++	 * Keep bridge/user-port membership intact on user ports, but make sure
++	 * that exactly one local CPU port is reachable from each user port.
++	 */
++	b53_for_each_port(dev, i) {
++		dp = dsa_to_port(ds, i);
++		if (!dp)
++			continue;
++
++		if (dsa_port_is_user(dp)) {
++			int cpu_port;
++
++			if (i == changed_port)
++				cpu_port = new_cpu_port;
++			else if (dp->cpu_dp)
++				cpu_port = dp->cpu_dp->index;
++			else
++				continue;
++
++			err = b53_read16(dev, B53_PVLAN_PAGE,
++					 B53_PVLAN_PORT_MASK(i), &pvlan);
++			if (err)
++				return err;
++
++			pvlan &= ~cpu_ports;
++			pvlan |= BIT(cpu_port);
++			err = b53_write16(dev, B53_PVLAN_PAGE,
++					  B53_PVLAN_PORT_MASK(i), pvlan);
++			if (err)
++				return err;
++
++			dev->ports[i].vlan_ctl_mask = pvlan;
++			continue;
++		}
++
++		if (!dsa_port_is_cpu(dp))
++			continue;
++
++		pvlan = BIT(i);
++		dsa_switch_for_each_user_port(user_dp, ds) {
++			int cpu_port;
++
++			if (user_dp->index == changed_port)
++				cpu_port = new_cpu_port;
++			else if (user_dp->cpu_dp)
++				cpu_port = user_dp->cpu_dp->index;
++			else
++				continue;
++
++			if (cpu_port == i)
++				pvlan |= BIT(user_dp->index);
++		}
++
++		err = b53_write16(dev, B53_PVLAN_PAGE,
++				  B53_PVLAN_PORT_MASK(i), pvlan);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ void b53_imp_vlan_setup(struct dsa_switch *ds, int cpu_port)
+ {
+ 	struct b53_device *dev = ds->priv;
+ 	unsigned int i;
+ 	u16 pvlan;
++
++	if (hweight16(dsa_cpu_ports(ds)) > 1) {
++		/* Keep the legacy void API: setup callers cannot report errors. */
++		b53_multi_cpu_vlan_setup(ds, -1, -1);
++		return;
++	}
+ 
+ 	/* BCM5325 CPU port is at 8 */
+ 	if ((is5325(dev) || is5365(dev)) && cpu_port == B53_CPU_PORT_25)
+@@ -2473,6 +2533,29 @@ static bool b53_possible_cpu_port(struct dsa_switch *ds, int port)
+ 	return false;
+ }
+ 
++static int b53_port_change_conduit(struct dsa_switch *ds, int port,
++				   struct net_device *conduit,
++				   struct netlink_ext_ack *extack)
++{
++	struct dsa_port *cpu_dp;
++
++	if (netif_is_lag_master(conduit)) {
++		NL_SET_ERR_MSG_MOD(extack,
++				   "LAG DSA conduits are not supported");
++		return -EOPNOTSUPP;
++	}
++
++	cpu_dp = conduit->dsa_ptr;
++	if (!cpu_dp || cpu_dp->ds != ds || !dsa_port_is_cpu(cpu_dp) ||
++	    !b53_possible_cpu_port(ds, cpu_dp->index)) {
++		NL_SET_ERR_MSG_MOD(extack,
++				   "Interface is not a local B53 CPU conduit");
++		return -EINVAL;
++	}
++
++	return b53_multi_cpu_vlan_setup(ds, port, cpu_dp->index);
++}
++
+ static bool b53_can_enable_brcm_tags(struct dsa_switch *ds, int port,
+ 				     enum dsa_tag_protocol tag_protocol)
+ {
+@@ -2699,6 +2782,7 @@ static const struct phylink_mac_ops b53_phylink_mac_ops = {
+ 
+ static const struct dsa_switch_ops b53_switch_ops = {
+ 	.get_tag_protocol	= b53_get_tag_protocol,
++	.port_change_conduit	= b53_port_change_conduit,
+ 	.setup			= b53_setup,
+ 	.teardown		= b53_teardown,
+ 	.get_strings		= b53_get_strings,
+--- a/drivers/net/dsa/b53/b53_common.c
++++ b/drivers/net/dsa/b53/b53_common.c
+@@ -925,6 +925,17 @@ static int b53_setup(struct dsa_switch *ds)
+ 	unsigned int port;
+ 	int ret;
+ 
++	/*
++	 * Static chip data describes the usual enabled ports, but firmware may
++	 * expose an additional valid CPU conduit.  Include every DSA CPU port
++	 * before the default PVID/VLAN setup iterates enabled_ports, otherwise
++	 * the secondary conduit can retain a stale PVID and remain outside the
++	 * default VLAN entry even though its port-based VLAN mask is correct.
++	 *
++	 * num_ports already spans the highest hardware port for B53 devices.
++	 */
++	dev->enabled_ports |= (u16)dsa_cpu_ports(ds);
++
+ 	/* Request bridge PVID untagged when DSA_TAG_PROTO_NONE is set
+ 	 * which forces the CPU port to be tagged in all VLANs.
+ 	 */
+--- a/arch/mips/cavium-octeon/setup.c
++++ b/arch/mips/cavium-octeon/setup.c
+@@ -1228,5 +1228,11 @@ void __init device_tree_init(void)
+ 	if (fill_mac)
+ 		octeon_fill_mac_addresses();
++
++	/* Octeon fixups mutate the flat tree after OF recorded its CRC. */
++	if (!early_init_dt_verify(initial_boot_params,
++				  __pa(initial_boot_params)))
++		panic("Corrupt Device Tree after Octeon fixups.");
++
+ 	unflatten_and_copy_device_tree();
+ 	init_octeon_system_type();
+ }
+--- a/arch/mips/cavium-octeon/flash_setup.c
++++ b/arch/mips/cavium-octeon/flash_setup.c
+@@ -122,5 +122,8 @@ static int octeon_flash_probe(struct platform_device *pdev)
+ 
+ static const struct of_device_id of_flash_match[] = {
++	{
++		.compatible = "cavium,octeon-3860-bootbus-flash",
++	},
+ 	{
+ 		.compatible = "cfi-flash",
+ 	},

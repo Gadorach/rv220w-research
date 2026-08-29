@@ -1,0 +1,39 @@
+--- a/drivers/net/wireless/broadcom/b43/debugfs.h
++++ b/drivers/net/wireless/broadcom/b43/debugfs.h
+@@ -76,5 +76,6 @@ struct b43_dfsentry {
+ 	bool rxiq_fault_verify_retained_attempted;
+ 	bool rxiq_fault_verify_retained_verified;
++	u32 rxiq_fault_verify_retained_generation;
+ 	bool rxiq_fault_verify_retained_mac_suspend_verified;
+ 	bool rxiq_fault_verify_retained_mac_resume_verified;
+ 	int rxiq_fault_verify_retained_rc;
+--- a/drivers/net/wireless/broadcom/b43/debugfs.c
++++ b/drivers/net/wireless/broadcom/b43/debugfs.c
+@@ -803,6 +803,7 @@ static ssize_t nphy_rxiq_fault_read_file(struct b43_wldev *dev,
+        fappend("retained_state_verified=%u\n", e->rxiq_fault_retained_state_verified);
+        fappend("verify_retained_attempted=%u\n", e->rxiq_fault_verify_retained_attempted);
+        fappend("verify_retained_verified=%u\n", e->rxiq_fault_verify_retained_verified);
++       fappend("verify_retained_generation=%u\n", e->rxiq_fault_verify_retained_generation);
+        fappend("verify_retained_mac_suspend_verified=%u\n", e->rxiq_fault_verify_retained_mac_suspend_verified);
+        fappend("verify_retained_mac_resume_verified=%u\n", e->rxiq_fault_verify_retained_mac_resume_verified);
+        fappend("verify_retained_rc=%d\n", e->rxiq_fault_verify_retained_rc);
+@@ -1119,6 +1120,7 @@ static int nphy_rxiq_fault_write_file(struct b43_wldev *dev,
+                    !e->rxiq_fault_integration_complete)
+                        return -EOPNOTSUPP;
+ 
++               e->rxiq_fault_verify_retained_generation++;
+                e->rxiq_fault_verify_retained_attempted = true;
+                e->rxiq_fault_verify_retained_verified = false;
+                e->rxiq_fault_verify_retained_mac_suspend_verified = false;
+@@ -1168,4 +1170,4 @@ static int nphy_rxiq_fault_write_file(struct b43_wldev *dev,
+                e->rxiq_fault_verify_retained_verified = (rc == 0 && resume_ok);
+                e->rxiq_fault_verify_retained_rc = rc;
+-               return rc ? rc : count;
++               return rc;
+        }
+@@ -1625,4 +1627,4 @@ static int nphy_rxiq_fault_write_file(struct b43_wldev *dev,
+        e->rxiq_fault_last_rc = rc;
+ 
+-       return rc ? rc : count;
++       return rc;
+ }

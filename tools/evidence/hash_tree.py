@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import subprocess
 from pathlib import Path
 
 
@@ -19,11 +20,19 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('root', type=Path, nargs='?', default=Path('.'))
     p.add_argument('--output', type=Path, default=Path('SHA256SUMS'))
+    p.add_argument('--git', action='store_true', help='hash only tracked and unignored files visible to Git')
     args = p.parse_args()
     root = args.root.resolve()
     out = args.output.resolve()
     lines: list[str] = []
-    for path in sorted(root.rglob('*')):
+    if args.git:
+        raw = subprocess.check_output(
+            ['git', '-C', str(root), 'ls-files', '-z', '--cached', '--others', '--exclude-standard']
+        )
+        paths = [root / name.decode() for name in raw.split(b'\0') if name]
+    else:
+        paths = list(root.rglob('*'))
+    for path in sorted(paths):
         if not path.is_file() or path.resolve() == out:
             continue
         rel = path.resolve().relative_to(root)

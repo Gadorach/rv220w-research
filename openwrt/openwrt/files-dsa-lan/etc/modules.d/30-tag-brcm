@@ -1,2 +1,0 @@
-# BCM53115 CPU port 8 requires the Broadcom DSA tag protocol before B53 probes.
-tag_brcm

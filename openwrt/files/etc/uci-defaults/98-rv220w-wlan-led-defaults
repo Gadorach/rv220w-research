@@ -1,0 +1,19 @@
+#!/bin/sh
+# Configure the RV220W mainboard WLAN GPIO LED as normal AP traffic activity.
+# Preserve an administrator's existing LED policy across sysupgrade.
+if uci -q show system | grep -Fq "sysfs='rv220w:green:wlan'"; then
+    logger -t rv220w 'WLAN LED defaults: existing rv220w:green:wlan policy preserved'
+    exit 0
+fi
+
+section="$(uci -q add system led)"
+[ -n "$section" ] || exit 0
+uci -q set "system.$section.name=WiFi"
+uci -q set "system.$section.sysfs=rv220w:green:wlan"
+uci -q set "system.$section.trigger=netdev"
+uci -q set "system.$section.dev=phy0-ap0"
+uci -q add_list "system.$section.mode=tx"
+uci -q add_list "system.$section.mode=rx"
+uci -q commit system
+logger -t rv220w 'WLAN LED defaults: netdev TX/RX on phy0-ap0'
+exit 0

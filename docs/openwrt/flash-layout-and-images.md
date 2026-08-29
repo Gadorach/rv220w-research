@@ -1,32 +1,17 @@
 # Flash layout and image policy
 
-The board uses 32 MiB x16 parallel CFI NOR, not NAND.
-
-## Writer partition policy
+The RV220W uses 32 MiB x16 parallel CFI NOR with 128 KiB erase blocks.
 
 ```text
-0x00000000  0x00080000  boot-chain       read-only except focused sector-0 patch tool
-0x00080000  0x01600000  openwrt-slot     writable only in nor-writer profile
-0x01680000  0x00100000  stock-data       read-only
-0x01780000  0x00020000  legacy-env-gap   read-only
-0x017a0000  0x00840000  vendor-tail      read-only
-0x01fe0000  0x00020000  uboot-env        read-only from Linux
+offset      size        name              policy
+0x00000000  0x00080000  boot-chain        preserved; focused U-Boot tool only
+0x00080000  0x00600000  openwrt-kernel    gzip-compressed ELF
+0x00680000  0x01960000  rootfs            SquashFS plus split JFFS2 overlay
+0x01fe0000  0x00020000  uboot-env          preserved; U-Boot helper only
 ```
 
-Normal OpenWrt profiles expose every region read-only. The dedicated writer
-exposes only `openwrt-slot` for writes.
+The full OpenWrt layout reclaims the old stock data partition, legacy gap, and erased vendor tail into `rootfs`. A complete stock backup is therefore the only full Cisco-firmware rollback source.
 
-## Current payload
+The standard sysupgrade tar contains exactly `CONTROL`, `kernel`, and `root` under `sysupgrade-cisco,rv220w/`. First installation runs from initramfs and writes rootfs first, verifies it, then writes kernel last. Normal later sysupgrade preserves configuration through the platform JFFS2 insertion path.
 
-The slot artifact is exactly 22 MiB and contains the LuCI initramfs ELF followed
-by `0xff` padding. The JSON manifest records:
-
-- source ELF path and SHA-256;
-- exact `source_size`;
-- padded slot size and SHA-256;
-- NOR source address;
-- validated RAM destination;
-- generated U-Boot copy and launch commands.
-
-The current design is not a persistent SquashFS/overlay installation and is not
-a supported sysupgrade target.
+The retained `prebuilt/` directory contains only the initramfs ELF and sysupgrade tar needed by the guided workflow. `prebuilt/SHA256SUMS` is authoritative for those files.

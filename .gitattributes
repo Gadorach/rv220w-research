@@ -1,0 +1,6 @@
+# Raw UART evidence is byte-preserved rather than line-normalized or diffed.
+evidence/openwrt/v1.16.0-rc7/liveboot-install-transcript.txt -text -diff
+
+# Patch payload whitespace is part of the represented source/context.
+openwrt/patches/** whitespace=-trailing-space,-space-before-tab
+openwrt/history/** whitespace=-trailing-space,-space-before-tab

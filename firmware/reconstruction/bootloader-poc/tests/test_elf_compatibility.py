@@ -16,7 +16,10 @@ def synthetic(note_size: int) -> bytes:
     return bytes(data)
 
 def main():
-    subprocess.run([sys.executable,str(TOOL),str(ELF)],check=True)
+    if ELF.is_file():
+        subprocess.run([sys.executable,str(TOOL),str(ELF)],check=True)
+    else:
+        print('stage2 ELF compatibility check skipped: external reconstruction artifact is not installed')
     with tempfile.TemporaryDirectory() as td:
         good=pathlib.Path(td)/'good.elf'; bad=pathlib.Path(td)/'bad.elf'
         good.write_bytes(synthetic(0)); bad.write_bytes(synthetic(16))

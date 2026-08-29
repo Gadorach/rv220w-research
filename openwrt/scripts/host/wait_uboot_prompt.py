@@ -45,6 +45,7 @@ def main() -> int:
             rtscts=False,
             dsrdtr=False,
             xonxoff=False,
+            exclusive=True,
         ) as ser:
             ser.reset_input_buffer()
             ser.write(b"\r")
@@ -79,8 +80,9 @@ def main() -> int:
                     ser.flush()
                     last_interrupt = now
                 time.sleep(0.002)
-    except OSError as exc:
-        print(f"error: {exc}", file=sys.stderr)
+    except (OSError, serial.SerialException) as exc:
+        print(f"error: unable to use UART {args.port}: {exc}", file=sys.stderr)
+        print("Close any serial terminal or other process using the selected adapter and retry.", file=sys.stderr)
         return 1
     finally:
         if log:

@@ -2,36 +2,22 @@
 
 ## U-Boot baseline
 
-The board uses U-Boot 1.1.1 with 32 MiB of parallel NOR at `0xbdc00000` and a
-validated RAM staging address of `0x05500000`. Ctrl+C during startup reaches the
-`rv200w#` prompt.
+The board uses U-Boot 1.1.1 with 32 MiB of parallel NOR at `0xbdc00000` and qualified RAM staging addresses at `0x05500000` and `0x06500000`. Ctrl+C during startup reaches the `rv200w#` prompt.
 
 ## TFTP/RAM boot
 
-The toolkit can interrupt U-Boot, set temporary networking variables, TFTP an
-ELF to RAM, and invoke `bootoctlinux`. This remains the recovery and validation
-path and does not save the environment or write NOR.
+The release helper interrupts U-Boot, sets temporary networking variables, TFTP-loads the installer ELF, and invokes `bootoctlinux`. This is a non-persistent recovery and validation path until the operator accepts the separate install prompt.
 
 ## Persistent launch
 
-The LuCI ELF is stored at `0xbdc80000`, but direct `bootoct` from mapped NOR is
-invalid for this Linux ELF. The working path is:
+The 6 MiB kernel partition begins at `0xbdc80000` and contains a gzip-compressed ELF. The qualified environment uses:
 
 ```text
-cp.b 0xbdc80000 0x05500000 <manifest source_size in hex>
-bootoctlinux 0x05500000 console=ttyS0,115200
+cp.b 0xbdc80000 0x05500000 0x600000
+gunzip 0x05500000 0x600000 0x06500000 0x1a00000
+bootoctlinux 0x06500000 console=ttyS0,115200
 ```
 
-After the combined boot-policy patch and a successful manual test, save:
+The fixed partition copy length replaces the old initramfs design's image-specific ELF byte count. The combined boot-policy patch and environment remain prerequisites for automatic startup.
 
-```text
-setenv preboot
-setenv bootdelay 3
-setenv openwrt_boot 'cp.b 0xbdc80000 0x05500000 <source_size_hex>; bootoctlinux 0x05500000 console=ttyS0,115200'
-setenv bootcmd 'run openwrt_boot'
-saveenv
-```
-
-The validated LuCI image used `<source_size_hex>` = `0x11565d0`. Never reuse
-that value for a different ELF without generating a new boot plan from its
-manifest.
+Use `make -C openwrt u-boot-verify` for a read-only check and `make -C openwrt u-boot-patches` for the guarded backup/repair workflow.

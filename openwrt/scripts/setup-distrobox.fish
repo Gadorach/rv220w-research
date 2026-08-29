@@ -29,7 +29,7 @@ else if not rv_box_is_compatible
     rv_warn "Existing container $RV220W_BOX is incompatible: $identity"
     set -l runtime (rv_box_runtime_summary)
     test -n "$runtime"; and rv_warn "Runtime object: $runtime"
-    rv_die "This toolkit requires Ubuntu 24.04 with apt-get. Re-run: ./rv220w.fish setup-box --recreate"
+    rv_die "This toolkit requires Ubuntu 24.04 with apt-get. Run: make recreate-box"
 end
 
 if test $create_needed -eq 1
@@ -48,7 +48,7 @@ if not set -q _flag_dry_run
     or begin
         set -l identity (rv_box_identity)
         test -n "$identity"; or set identity unknown
-        rv_die "Created/reused box has an unexpected base system ($identity). Check RV220W_BOX_IMAGE and rerun setup-box --recreate"
+        rv_die "Created/reused box has an unexpected base system ($identity). Check RV220W_BOX_IMAGE and run make recreate-box"
     end
 end
 
@@ -61,11 +61,19 @@ if set -q _flag_dry_run
     exit 0
 end
 
-rv_box_enter bash "$provision"
-or rv_die 'Distrobox provisioning failed'
+mkdir -p "$RV220W_WORKSPACE/logs"
+set -l provision_log "$RV220W_WORKSPACE/logs/distrobox-provision.log"
+rv_info "Provision log: $provision_log"
+rv_box_enter bash "$provision" 2>&1 | tee "$provision_log"
+set -l provision_pipeline $pipestatus
+set -l provision_status $provision_pipeline[1]
+if test "$provision_status" -ne 0
+    rv_warn "Distrobox provisioning command exited with status $provision_status"
+    rv_die "Distrobox provisioning failed; inspect: $provision_log"
+end
 
 rv_box_is_provisioned
-or rv_die 'Provisioning command completed, but required compilers/Perl modules are still missing'
+or rv_die "Provisioning command completed, but required build commands are still missing. Inspect: $provision_log"
 
 set -l identity (rv_box_identity)
 rv_info "Distrobox is ready: $identity"

@@ -1,0 +1,1206 @@
+--- a/drivers/net/wireless/broadcom/b43/main.c
++++ b/drivers/net/wireless/broadcom/b43/main.c
+@@ -29,6 +29,7 @@
+ #include <linux/io.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/slab.h>
++#include <linux/mtd/mtd.h>
+ #include <linux/unaligned.h>
+ 
+ #include "b43.h"
+@@ -99,6 +100,26 @@ static int b43_modparam_pio;
+ module_param_named(pio, b43_modparam_pio, int, 0644);
+ MODULE_PARM_DESC(pio, "Use PIO accesses by default: 0=DMA, 1=PIO");
+ 
++static char b43_modparam_macaddr[3 * ETH_ALEN];
++module_param_string(macaddr, b43_modparam_macaddr,
++		    sizeof(b43_modparam_macaddr), 0444);
++MODULE_PARM_DESC(macaddr, "Override permanent MAC address (xx:xx:xx:xx:xx:xx)");
++
++static char b43_modparam_macaddr_mtd[64];
++module_param_string(macaddr_mtd, b43_modparam_macaddr_mtd,
++		    sizeof(b43_modparam_macaddr_mtd), 0444);
++MODULE_PARM_DESC(macaddr_mtd, "MTD partition containing a base MAC address");
++
++static unsigned long b43_modparam_macaddr_mtd_offset;
++module_param_named(macaddr_mtd_offset, b43_modparam_macaddr_mtd_offset,
++		   ulong, 0444);
++MODULE_PARM_DESC(macaddr_mtd_offset, "Byte offset of base MAC inside macaddr_mtd");
++
++static unsigned int b43_modparam_macaddr_increment;
++module_param_named(macaddr_increment, b43_modparam_macaddr_increment,
++		   uint, 0444);
++MODULE_PARM_DESC(macaddr_increment, "48-bit increment applied to MTD base MAC");
++
+ static int modparam_allhwsupport = 1;
+ module_param_named(allhwsupport, modparam_allhwsupport, int, 0444);
+ MODULE_PARM_DESC(allhwsupport, "Enable support for all hardware (even it if overlaps with the brcmsmac driver)");
+@@ -5565,6 +5586,12 @@ static struct b43_wl *b43_wireless_init(struct b43_bus_dev *dev)
+ 	struct ieee80211_hw *hw;
+ 	struct b43_wl *wl;
+ 	char chip_name[6];
++	u8 override_addr[ETH_ALEN];
++	u8 mtd_addr[ETH_ALEN];
++	struct mtd_info *mtd;
++	size_t mtd_retlen;
++	unsigned int carry, i;
++	int mtd_err;
+ 	int queue_num;
+ 
+ 	hw = ieee80211_alloc_hw(sizeof(*wl), &b43_hw_ops);
+@@ -5592,10 +5620,69 @@ static struct b43_wl *b43_wireless_init(struct b43_bus_dev *dev)
+ 	wl->hw_registered = false;
+ 	hw->max_rates = 2;
+ 	SET_IEEE80211_DEV(hw, dev->dev);
+-	if (is_valid_ether_addr(sprom->et1mac))
++	if (b43_modparam_macaddr[0]) {
++		if (!mac_pton(b43_modparam_macaddr, override_addr) ||
++		    !is_valid_ether_addr(override_addr)) {
++			b43err(NULL, "Invalid macaddr module parameter '%s'\\n",
++			       b43_modparam_macaddr);
++			ieee80211_free_hw(hw);
++			return ERR_PTR(-EINVAL);
++		}
++		SET_IEEE80211_PERM_ADDR(hw, override_addr);
++		b43info(NULL, "Using module-supplied permanent MAC address %pM\\n",
++			override_addr);
++	} else if (b43_modparam_macaddr_mtd[0]) {
++		mtd = get_mtd_device_nm(b43_modparam_macaddr_mtd);
++		if (IS_ERR(mtd)) {
++			mtd_err = PTR_ERR(mtd);
++			b43err(NULL, "Unable to open MAC MTD source '%s': %d\\n",
++			       b43_modparam_macaddr_mtd, mtd_err);
++			ieee80211_free_hw(hw);
++			return ERR_PTR(mtd_err);
++		}
++		mtd_retlen = 0;
++		mtd_err = mtd_read(mtd, b43_modparam_macaddr_mtd_offset,
++				   ETH_ALEN, &mtd_retlen, mtd_addr);
++		put_mtd_device(mtd);
++		if (mtd_err || mtd_retlen != ETH_ALEN) {
++			b43err(NULL,
++			       "Unable to read MAC MTD source '%s' at 0x%lx: err=%d len=%zu\\n",
++			       b43_modparam_macaddr_mtd,
++			       b43_modparam_macaddr_mtd_offset, mtd_err, mtd_retlen);
++			ieee80211_free_hw(hw);
++			return ERR_PTR(mtd_err ? mtd_err : -EIO);
++		}
++		if (!is_valid_ether_addr(mtd_addr)) {
++			b43err(NULL, "Invalid base MAC %pM from MTD source '%s'\\n",
++			       mtd_addr, b43_modparam_macaddr_mtd);
++			ieee80211_free_hw(hw);
++			return ERR_PTR(-EINVAL);
++		}
++
++		carry = b43_modparam_macaddr_increment;
++		for (i = ETH_ALEN; i-- > 0 && carry; ) {
++			unsigned int sum = mtd_addr[i] + (carry & 0xff);
++
++			mtd_addr[i] = sum & 0xff;
++			carry = (carry >> 8) + (sum >> 8);
++		}
++		if (carry || !is_valid_ether_addr(mtd_addr)) {
++			b43err(NULL, "Invalid/overflowed MTD-derived MAC address %pM\\n",
++			       mtd_addr);
++			ieee80211_free_hw(hw);
++			return ERR_PTR(-ERANGE);
++		}
++		SET_IEEE80211_PERM_ADDR(hw, mtd_addr);
++		b43info(NULL,
++			"Using MTD-derived permanent MAC address %pM (source=%s offset=0x%lx increment=%u)\\n",
++			mtd_addr, b43_modparam_macaddr_mtd,
++			b43_modparam_macaddr_mtd_offset,
++			b43_modparam_macaddr_increment);
++	} else if (is_valid_ether_addr(sprom->et1mac)) {
+ 		SET_IEEE80211_PERM_ADDR(hw, sprom->et1mac);
+-	else
++	} else {
+ 		SET_IEEE80211_PERM_ADDR(hw, sprom->il0mac);
++	}
+ 
+ 	/* Initialize struct b43_wl */
+ 	wl->hw = hw;
+--- a/drivers/net/wireless/broadcom/b43/debugfs.h
++++ b/drivers/net/wireless/broadcom/b43/debugfs.h
+@@ -51,6 +51,40 @@ struct b43_dfsentry {
+ 	struct b43_dfs_file file_txpower_g;
+ 	struct b43_dfs_file file_restart;
+ 	struct b43_dfs_file file_loctls;
++	struct b43_dfs_file file_capabilities;
++	struct b43_dfs_file file_nphy_rxdiag;
++	struct b43_dfs_file file_nphy_calstate;
++	struct b43_dfs_file file_nphy_rxiq_cal;
++	s16 rxiq_diag_saved[4];
++	s16 rxiq_diag_after[4];
++	int rxiq_diag_last_rc;
++	bool rxiq_diag_saved_valid;
++	bool rxiq_diag_active;
++	bool rxiq_diag_cleanup_complete;
++	bool rxiq_diag_restore_verified;
++	bool rxiq_diag_run_mac_suspend_verified;
++	bool rxiq_diag_run_mac_resume_verified;
++	bool rxiq_diag_restore_mac_suspend_verified;
++	bool rxiq_diag_restore_mac_resume_verified;
++	u32 rxiq_diag_cleanup_fail_mask;
++	int rxiq_diag_primary_rc;
++	u8 rxiq_diag_failure_stage;
++	u16 rxiq_diag_gain_saved[2];
++	u16 rxiq_diag_gain_observed[2];
++	u16 rxiq_diag_radio_spare_saved[2];
++	u16 rxiq_diag_radio_spare_observed[2];
++	u32 rxiq_diag_deaf_before;
++	u32 rxiq_diag_deaf_after;
++	u32 rxiq_diag_pass_i_pwr[2][3];
++	u32 rxiq_diag_pass_q_pwr[2][3];
++	s32 rxiq_diag_pass_iq_prod[2][3];
++	u32 rxiq_diag_pass_power[2][3];
++	u16 rxiq_diag_pass_packed_gain[2][4];
++	u32 rxiq_diag_final_i_pwr[2];
++	u32 rxiq_diag_final_q_pwr[2];
++	s32 rxiq_diag_final_iq_prod[2];
++	u8 rxiq_diag_calc_error[2];
++	u8 rxiq_diag_calc_applied_mask;
+ 
+ 	struct b43_txstatus_log txstatlog;
+ 
+--- a/drivers/net/wireless/broadcom/b43/debugfs.c
++++ b/drivers/net/wireless/broadcom/b43/debugfs.c
+@@ -345,6 +345,565 @@ static int mmio32write__write_file(struct b43_wldev *dev,
+ 	return 0;
+ }
+ 
++#include <linux/delay.h>
++#include "phy_n.h"
++#include "radio_2056.h"
++
++static ssize_t capabilities_read_file(struct b43_wldev *dev,
++				      char *buf, size_t bufsize)
++{
++	struct b43_bus_dev *bus = dev->dev;
++	struct ssb_sprom *sprom = bus->bus_sprom;
++	struct b43_phy *phy = &dev->phy;
++	ssize_t count = 0;
++
++	fappend("driver=b43\n");
++	fappend("permanent_mac=%pM\n", dev->wl->hw->wiphy->perm_addr);
++	fappend("bus_type=%u\n", bus->bus_type);
++	fappend("board_vendor=0x%04x\n", bus->board_vendor);
++	fappend("board_type=0x%04x\n", bus->board_type);
++	fappend("board_rev=0x%04x\n", bus->board_rev);
++	fappend("chip_id=0x%04x\n", bus->chip_id);
++	fappend("chip_rev=%u\n", bus->chip_rev);
++	fappend("chip_pkg=%u\n", bus->chip_pkg);
++	fappend("core_id=0x%04x\n", bus->core_id);
++	fappend("core_rev=%u\n", bus->core_rev);
++	if (sprom) {
++		fappend("sprom_revision=%u\n", sprom->revision);
++		fappend("sprom_il0mac=%pM\n", sprom->il0mac);
++		fappend("sprom_et1mac=%pM\n", sprom->et1mac);
++		fappend("sprom_boardflags_lo=0x%04x\n", sprom->boardflags_lo);
++		fappend("sprom_boardflags_hi=0x%04x\n", sprom->boardflags_hi);
++		fappend("sprom_boardflags2_lo=0x%04x\n", sprom->boardflags2_lo);
++		fappend("sprom_boardflags2_hi=0x%04x\n", sprom->boardflags2_hi);
++	}
++	fappend("status=%d\n", b43_status(dev));
++	fappend("requested_transfer=%s\n", dev->use_pio ? "pio" : "dma");
++	fappend("active_transfer=%s\n",
++		b43_using_pio_transfers(dev) ? "pio" : "dma");
++	fappend("qos_enabled=%u\n", dev->qos_enabled);
++	fappend("hwcrypto_enabled=%u\n", dev->hwcrypto_enabled);
++	fappend("radio_hw_enable=%u\n", dev->radio_hw_enable);
++	fappend("phy_type=%u\n", phy->type);
++	fappend("phy_rev=%u\n", phy->rev);
++	fappend("phy_analog=%u\n", phy->analog);
++	fappend("radio_manuf=0x%04x\n", phy->radio_manuf);
++	fappend("radio_ver=0x%04x\n", phy->radio_ver);
++	fappend("radio_rev=%u\n", phy->radio_rev);
++	fappend("supports_2ghz=%u\n", phy->supports_2ghz);
++	fappend("supports_5ghz=%u\n", phy->supports_5ghz);
++	fappend("radio_on=%u\n", phy->radio_on);
++	fappend("hardware_power_control=%u\n", phy->hardware_power_control);
++	fappend("desired_txpower_dbm=%d\n", phy->desired_txpower);
++	fappend("channel=%u\n", phy->channel);
++
++	return count;
++}
++
++/*
++ * Receive-only N-PHY diagnostic.  The IQ estimator is the same hardware
++ * block used by b43_nphy_rx_iq_est(); reading this debugfs file starts one
++ * estimator run and snapshots receiver/RF state.  It does not request a
++ * scan, association, transmit frame, RF override, or calibration sequence.
++ */
++static ssize_t nphy_rxdiag_read_file(struct b43_wldev *dev,
++				     char *buf, size_t bufsize)
++{
++	struct b43_phy *phy = &dev->phy;
++	ssize_t count = 0;
++	u32 i0 = 0, q0 = 0, i1 = 0, q1 = 0;
++	s32 iq0 = 0, iq1 = 0;
++	u16 cmd;
++	int i;
++	bool complete = false;
++
++	if (phy->type != B43_PHYTYPE_N)
++		return -ENODEV;
++
++	fappend("status=%d\n", b43_status(dev));
++	fappend("phy_rev=%u\n", phy->rev);
++	fappend("radio_ver=0x%04x\n", phy->radio_ver);
++	fappend("radio_rev=%u\n", phy->radio_rev);
++	fappend("channel=%u\n", phy->channel);
++	fappend("radio_on=%u\n", phy->radio_on);
++	fappend("transfer=%s\n", b43_using_pio_transfers(dev) ? "pio" : "dma");
++	fappend("bbcfg=0x%04x\n", b43_phy_read(dev, B43_NPHY_BBCFG));
++	fappend("bandctl=0x%04x\n", b43_phy_read(dev, B43_NPHY_BANDCTL));
++	fappend("phy_channel_reg=0x%04x\n", b43_phy_read(dev, B43_NPHY_CHANNEL));
++	fappend("classctl=0x%04x\n", b43_phy_read(dev, B43_NPHY_CLASSCTL));
++	fappend("rfseqca=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFSEQCA));
++	fappend("rfseqmode=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFSEQMODE));
++	fappend("rfseqst=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFSEQST));
++	fappend("rfctl_cmd=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_CMD));
++	fappend("rfctl_over=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_OVER));
++	fappend("rfctl_intc1=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_INTC1));
++	fappend("rfctl_intc2=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_INTC2));
++	fappend("rfctl_rssio1=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_RSSIO1));
++	fappend("rfctl_rssio2=0x%04x\n", b43_phy_read(dev, B43_NPHY_RFCTL_RSSIO2));
++	fappend("afectl_c1=0x%04x\n", b43_phy_read(dev, B43_NPHY_AFECTL_C1));
++	fappend("afectl_c2=0x%04x\n", b43_phy_read(dev, B43_NPHY_AFECTL_C2));
++	fappend("afectl_over1=0x%04x\n", b43_phy_read(dev, B43_NPHY_AFECTL_OVER1));
++	fappend("afectl_over=0x%04x\n", b43_phy_read(dev, B43_NPHY_AFECTL_OVER));
++	fappend("c1_initgain=0x%04x\n", b43_phy_read(dev, B43_NPHY_C1_INITGAIN));
++	fappend("c2_initgain=0x%04x\n", b43_phy_read(dev, B43_NPHY_C2_INITGAIN));
++	fappend("c1_clip1=0x%04x\n", b43_phy_read(dev, B43_NPHY_C1_CLIP1THRES));
++	fappend("c2_clip1=0x%04x\n", b43_phy_read(dev, B43_NPHY_C2_CLIP1THRES));
++	if (phy->radio_ver == 0x2056) {
++		fappend("radio2056_syn_com_ctrl=0x%04x\n",
++			b43_radio_read(dev, B2056_SYN_COM_CTRL));
++		fappend("radio2056_syn_com_pu=0x%04x\n",
++			b43_radio_read(dev, B2056_SYN_COM_PU));
++		fappend("radio2056_rx0_com_pu=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_COM_PU));
++		fappend("radio2056_rx1_com_pu=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_COM_PU));
++		fappend("radio2056_rx0_lnaa_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_LNAA_MASTER));
++		fappend("radio2056_rx1_lnaa_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_LNAA_MASTER));
++		fappend("radio2056_rx0_lnag_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_LNAG_MASTER));
++		fappend("radio2056_rx1_lnag_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_LNAG_MASTER));
++		fappend("radio2056_rx0_mixg_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_MIXG_MASTER));
++		fappend("radio2056_rx1_mixg_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_MIXG_MASTER));
++		fappend("radio2056_rx0_tia_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_TIA_MASTER));
++		fappend("radio2056_rx1_tia_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_TIA_MASTER));
++		fappend("radio2056_rx0_lpf_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX0 | B2056_RX_BB_LPF_MASTER));
++		fappend("radio2056_rx1_lpf_master=0x%04x\n",
++			b43_radio_read(dev, B2056_RX1 | B2056_RX_BB_LPF_MASTER));
++	}
++
++	if (b43_status(dev) != B43_STAT_STARTED) {
++		fappend("iq_estimator=not-started\n");
++		return count;
++	}
++
++	/* Mirror b43_nphy_rx_iq_est() without altering RF/FEM overrides. */
++	b43_phy_write(dev, B43_NPHY_IQEST_SAMCNT, 4096);
++	b43_phy_maskset(dev, B43_NPHY_IQEST_WT,
++			~B43_NPHY_IQEST_WT_VAL, 32);
++	b43_phy_mask(dev, B43_NPHY_IQEST_CMD, ~B43_NPHY_IQEST_CMD_MODE);
++	b43_phy_set(dev, B43_NPHY_IQEST_CMD, B43_NPHY_IQEST_CMD_START);
++	for (i = 1000; i; i--) {
++		cmd = b43_phy_read(dev, B43_NPHY_IQEST_CMD);
++		if (!(cmd & B43_NPHY_IQEST_CMD_START)) {
++			i0 = (b43_phy_read(dev, B43_NPHY_IQEST_IPACC_HI0) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_IPACC_LO0);
++			q0 = (b43_phy_read(dev, B43_NPHY_IQEST_QPACC_HI0) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_QPACC_LO0);
++			iq0 = (b43_phy_read(dev, B43_NPHY_IQEST_IQACC_HI0) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_IQACC_LO0);
++			i1 = (b43_phy_read(dev, B43_NPHY_IQEST_IPACC_HI1) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_IPACC_LO1);
++			q1 = (b43_phy_read(dev, B43_NPHY_IQEST_QPACC_HI1) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_QPACC_LO1);
++			iq1 = (b43_phy_read(dev, B43_NPHY_IQEST_IQACC_HI1) << 16) |
++				b43_phy_read(dev, B43_NPHY_IQEST_IQACC_LO1);
++			complete = true;
++			break;
++		}
++		udelay(10);
++	}
++	fappend("iq_estimator_complete=%u\n", complete);
++	fappend("iq_samples=4096\n");
++	fappend("iq_i0_pwr=%u\n", i0);
++	fappend("iq_q0_pwr=%u\n", q0);
++	fappend("iq_iq0_prod=%d\n", iq0);
++	fappend("iq_i1_pwr=%u\n", i1);
++	fappend("iq_q1_pwr=%u\n", q1);
++	fappend("iq_iq1_prod=%d\n", iq1);
++	fappend("iq_core0_avg=%llu\n",
++		(unsigned long long)(((u64)i0 + q0) / 4096));
++	fappend("iq_core1_avg=%llu\n",
++		(unsigned long long)(((u64)i1 + q1) / 4096));
++	fappend("rx_iq_cal_rev3plus_implemented=0\n");
++
++	return count;
++}
++
++/*
++ * Software-only N-PHY calibration state.  This deliberately performs no
++ * PHY/radio/MMIO reads and does not start an estimator or calibration.  It
++ * is separate from nphy_rxdiag so a bad/new hardware register read can never
++ * hide the software cache/chanspec evidence behind one all-or-nothing read.
++ */
++static ssize_t nphy_calstate_read_file(struct b43_wldev *dev,
++                                      char *buf, size_t bufsize)
++{
++       struct b43_phy *phy = &dev->phy;
++       struct b43_phy_n *nphy;
++       ssize_t count = 0;
++
++       if (phy->type != B43_PHYTYPE_N)
++               return -ENODEV;
++       nphy = phy->n;
++       if (!nphy)
++               return -ENODEV;
++
++       fappend("calstate_source=software-only\n");
++       fappend("status=%d\n", b43_status(dev));
++       fappend("phy_rev=%u\n", phy->rev);
++       fappend("channel=%u\n", phy->channel);
++       fappend("rx_iq_cal_rev3plus_implemented=%u\n", phy->rev >= 3 ? 0 : 1);
++       fappend("rx_iq_cache_2g_a0=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_2G.a0);
++       fappend("rx_iq_cache_2g_a0_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_2G.a0);
++       fappend("rx_iq_cache_2g_b0=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_2G.b0);
++       fappend("rx_iq_cache_2g_b0_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_2G.b0);
++       fappend("rx_iq_cache_2g_a1=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_2G.a1);
++       fappend("rx_iq_cache_2g_a1_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_2G.a1);
++       fappend("rx_iq_cache_2g_b1=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_2G.b1);
++       fappend("rx_iq_cache_2g_b1_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_2G.b1);
++       fappend("rx_iq_cache_5g_a0=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_5G.a0);
++       fappend("rx_iq_cache_5g_a0_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_5G.a0);
++       fappend("rx_iq_cache_5g_b0=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_5G.b0);
++       fappend("rx_iq_cache_5g_b0_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_5G.b0);
++       fappend("rx_iq_cache_5g_a1=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_5G.a1);
++       fappend("rx_iq_cache_5g_a1_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_5G.a1);
++       fappend("rx_iq_cache_5g_b1=0x%04x\n", (u16)nphy->cal_cache.rxcal_coeffs_5G.b1);
++       fappend("rx_iq_cache_5g_b1_signed=%d\n", (int)nphy->cal_cache.rxcal_coeffs_5G.b1);
++       fappend("iqcal_2g_center_freq=%u\n", (unsigned int)nphy->iqcal_chanspec_2G.center_freq);
++       fappend("iqcal_2g_channel_type=%u\n", (unsigned int)nphy->iqcal_chanspec_2G.channel_type);
++       fappend("rssical_2g_center_freq=%u\n", (unsigned int)nphy->rssical_chanspec_2G.center_freq);
++       fappend("rssical_2g_channel_type=%u\n", (unsigned int)nphy->rssical_chanspec_2G.channel_type);
++       fappend("iqcal_5g_center_freq=%u\n", (unsigned int)nphy->iqcal_chanspec_5G.center_freq);
++       fappend("iqcal_5g_channel_type=%u\n", (unsigned int)nphy->iqcal_chanspec_5G.channel_type);
++       fappend("rssical_5g_center_freq=%u\n", (unsigned int)nphy->rssical_chanspec_5G.center_freq);
++       fappend("rssical_5g_channel_type=%u\n", (unsigned int)nphy->rssical_chanspec_5G.channel_type);
++       fappend("nphy_measure_hold=0x%02x\n", (unsigned int)nphy->measure_hold);
++       fappend("nphy_mute=%u\n", (unsigned int)nphy->mute);
++       fappend("nphy_perical=%u\n", (unsigned int)nphy->perical);
++       fappend("nphy_phyrxchain=0x%02x\n", (unsigned int)nphy->phyrxchain);
++       fappend("nphy_hw_phyrxchain=0x%02x\n", (unsigned int)nphy->hw_phyrxchain);
++       fappend("nphy_hw_phytxchain=0x%02x\n", (unsigned int)nphy->hw_phytxchain);
++       fappend("nphy_rxcalparams=0x%08x\n", nphy->rxcalparams);
++       fappend("nphy_hang_avoid=%u\n", (unsigned int)nphy->hang_avoid);
++       fappend("nphy_gain_boost=%u\n", (unsigned int)nphy->gain_boost);
++       fappend("nphy_elna_gain_config=%u\n", (unsigned int)nphy->elna_gain_config);
++       fappend("nphy_ipa2g_on=%u\n", (unsigned int)nphy->ipa2g_on);
++       fappend("nphy_ipa5g_on=%u\n", (unsigned int)nphy->ipa5g_on);
++       fappend("nphy_txpwrctrl=%u\n", (unsigned int)nphy->txpwrctrl);
++       fappend("nphy_txrx_chain=%u\n", (unsigned int)nphy->txrx_chain);
++       fappend("nphy_deaf_count=%u\n", nphy->deaf_count);
++       fappend("nphy_txiqlocal_coeffsvalid=%u\n", (unsigned int)nphy->txiqlocal_coeffsvalid);
++
++       return count;
++}
++
++static void rxiq_diag_store_comp(s16 dst[4],
++                                const struct b43_phy_n_iq_comp *src)
++{
++       dst[0] = src->a0;
++       dst[1] = src->b0;
++       dst[2] = src->a1;
++       dst[3] = src->b1;
++}
++
++static void rxiq_diag_load_comp(struct b43_phy_n_iq_comp *dst,
++                               const s16 src[4])
++{
++       dst->a0 = src[0];
++       dst->b0 = src[1];
++       dst->a1 = src[2];
++       dst->b1 = src[3];
++}
++
++/*
++ * Runtime PHY/radio calibration is only allowed with the MAC fully
++ * suspended. The generic debugfs wrapper serializes us with wl->mutex, but
++ * it deliberately does not suspend the MAC. Keep suspend nesting at exactly
++ * 0 -> 1 -> 0 and fail closed unless firmware acknowledges suspension and
++ * the MAC re-enables afterward.
++ */
++static int rxiq_diag_mac_suspend(struct b43_wldev *dev)
++{
++       u32 macctl, irq_reason;
++
++       if (dev->mac_suspended != 0)
++               return -EBUSY;
++       if (!(b43_read32(dev, B43_MMIO_MACCTL) & B43_MACCTL_ENABLED))
++               return -EIO;
++
++       b43_mac_suspend(dev);
++       macctl = b43_read32(dev, B43_MMIO_MACCTL);
++       irq_reason = b43_read32(dev, B43_MMIO_GEN_IRQ_REASON);
++       if (dev->mac_suspended == 1 &&
++           !(macctl & B43_MACCTL_ENABLED) &&
++           (irq_reason & B43_IRQ_MAC_SUSPENDED))
++               return 0;
++
++       /* b43_mac_suspend() increments the nesting count even on timeout. */
++       if (dev->mac_suspended == 1)
++               b43_mac_enable(dev);
++       return -ETIMEDOUT;
++}
++
++static bool rxiq_diag_mac_resume(struct b43_wldev *dev)
++{
++       if (dev->mac_suspended != 1)
++               return false;
++
++       b43_mac_enable(dev);
++       return dev->mac_suspended == 0 &&
++              (b43_read32(dev, B43_MMIO_MACCTL) & B43_MACCTL_ENABLED);
++}
++
++static ssize_t nphy_rxiq_cal_read_file(struct b43_wldev *dev,
++                                      char *buf, size_t bufsize)
++{
++       struct b43_dfsentry *e = dev->dfsentry;
++       struct b43_phy_n_iq_comp live;
++       ssize_t count = 0;
++
++       if (dev->phy.type != B43_PHYTYPE_N)
++               return -ENODEV;
++       b43_nphy_rxiq_read_diag(dev, &live);
++
++       fappend("diag=rv220w-rev4-bcm2056-rxiq\n");
++       fappend("stock_rxcalparams=0x010100b5\n");
++       fappend("status=%d\n", b43_status(dev));
++       fappend("phy_rev=%u\n", dev->phy.rev);
++       fappend("radio_ver=0x%04x\n", dev->phy.radio_ver);
++       fappend("radio_rev=%u\n", dev->phy.radio_rev);
++       fappend("channel=%u\n", dev->phy.channel);
++       fappend("transfer=%s\n",
++               b43_using_pio_transfers(dev) ? "pio" : "dma");
++       fappend("saved_valid=%u\n", e->rxiq_diag_saved_valid);
++       fappend("active=%u\n", e->rxiq_diag_active);
++       fappend("last_rc=%d\n", e->rxiq_diag_last_rc);
++       fappend("cleanup_complete=%u\n", e->rxiq_diag_cleanup_complete);
++       fappend("restore_verified=%u\n", e->rxiq_diag_restore_verified);
++       fappend("run_mac_suspend_verified=%u\n",
++               e->rxiq_diag_run_mac_suspend_verified);
++       fappend("run_mac_resume_verified=%u\n",
++               e->rxiq_diag_run_mac_resume_verified);
++       fappend("restore_mac_suspend_verified=%u\n",
++               e->rxiq_diag_restore_mac_suspend_verified);
++       fappend("restore_mac_resume_verified=%u\n",
++               e->rxiq_diag_restore_mac_resume_verified);
++       fappend("cleanup_fail_mask=0x%08x\n", e->rxiq_diag_cleanup_fail_mask);
++       fappend("primary_rc=%d\n", e->rxiq_diag_primary_rc);
++       fappend("failure_stage=%u\n", e->rxiq_diag_failure_stage);
++       fappend("gain_saved0=0x%04x\n", e->rxiq_diag_gain_saved[0]);
++       fappend("gain_saved1=0x%04x\n", e->rxiq_diag_gain_saved[1]);
++       fappend("gain_observed0=0x%04x\n", e->rxiq_diag_gain_observed[0]);
++       fappend("gain_observed1=0x%04x\n", e->rxiq_diag_gain_observed[1]);
++       fappend("radio_spare_saved0=0x%04x\n", e->rxiq_diag_radio_spare_saved[0]);
++       fappend("radio_spare_saved1=0x%04x\n", e->rxiq_diag_radio_spare_saved[1]);
++       fappend("radio_spare_observed0=0x%04x\n", e->rxiq_diag_radio_spare_observed[0]);
++       fappend("radio_spare_observed1=0x%04x\n", e->rxiq_diag_radio_spare_observed[1]);
++       fappend("deaf_before=%u\n", e->rxiq_diag_deaf_before);
++       fappend("deaf_after=%u\n", e->rxiq_diag_deaf_after);
++       fappend("radio_spare_low2_observed0=0x%x\n",
++               e->rxiq_diag_radio_spare_observed[0] & 0x3);
++       fappend("radio_spare_low2_observed1=0x%x\n",
++               e->rxiq_diag_radio_spare_observed[1] & 0x3);
++       fappend("core0_pass0_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[0][0]);
++       fappend("core0_pass0_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[0][0]);
++       fappend("core0_pass0_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[0][0]);
++       fappend("core0_pass0_power=%u\n", e->rxiq_diag_pass_power[0][0]);
++       fappend("core0_pass1_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[0][1]);
++       fappend("core0_pass1_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[0][1]);
++       fappend("core0_pass1_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[0][1]);
++       fappend("core0_pass1_power=%u\n", e->rxiq_diag_pass_power[0][1]);
++       fappend("core0_pass2_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[0][2]);
++       fappend("core0_pass2_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[0][2]);
++       fappend("core0_pass2_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[0][2]);
++       fappend("core0_pass2_power=%u\n", e->rxiq_diag_pass_power[0][2]);
++       fappend("core1_pass0_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[1][0]);
++       fappend("core1_pass0_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[1][0]);
++       fappend("core1_pass0_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[1][0]);
++       fappend("core1_pass0_power=%u\n", e->rxiq_diag_pass_power[1][0]);
++       fappend("core1_pass1_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[1][1]);
++       fappend("core1_pass1_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[1][1]);
++       fappend("core1_pass1_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[1][1]);
++       fappend("core1_pass1_power=%u\n", e->rxiq_diag_pass_power[1][1]);
++       fappend("core1_pass2_i_pwr=%u\n", e->rxiq_diag_pass_i_pwr[1][2]);
++       fappend("core1_pass2_q_pwr=%u\n", e->rxiq_diag_pass_q_pwr[1][2]);
++       fappend("core1_pass2_iq_prod=%d\n", e->rxiq_diag_pass_iq_prod[1][2]);
++       fappend("core1_pass2_power=%u\n", e->rxiq_diag_pass_power[1][2]);
++       fappend("core0_pass0_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[0][0]);
++       fappend("core0_pass1_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[0][1]);
++       fappend("core0_pass2_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[0][2]);
++       fappend("core0_pass3_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[0][3]);
++       fappend("core1_pass0_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[1][0]);
++       fappend("core1_pass1_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[1][1]);
++       fappend("core1_pass2_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[1][2]);
++       fappend("core1_pass3_packed_gain=0x%04x\n", e->rxiq_diag_pass_packed_gain[1][3]);
++       fappend("core0_final_i_pwr=%u\n", e->rxiq_diag_final_i_pwr[0]);
++       fappend("core0_final_q_pwr=%u\n", e->rxiq_diag_final_q_pwr[0]);
++       fappend("core0_final_iq_prod=%d\n", e->rxiq_diag_final_iq_prod[0]);
++       fappend("core1_final_i_pwr=%u\n", e->rxiq_diag_final_i_pwr[1]);
++       fappend("core1_final_q_pwr=%u\n", e->rxiq_diag_final_q_pwr[1]);
++       fappend("core1_final_iq_prod=%d\n", e->rxiq_diag_final_iq_prod[1]);
++       fappend("core0_calc_error=%u\n", e->rxiq_diag_calc_error[0]);
++       fappend("core1_calc_error=%u\n", e->rxiq_diag_calc_error[1]);
++       fappend("calc_applied_mask=0x%02x\n", e->rxiq_diag_calc_applied_mask);
++       fappend("saved_a0=%d\n", e->rxiq_diag_saved[0]);
++       fappend("saved_b0=%d\n", e->rxiq_diag_saved[1]);
++       fappend("saved_a1=%d\n", e->rxiq_diag_saved[2]);
++       fappend("saved_b1=%d\n", e->rxiq_diag_saved[3]);
++       fappend("after_a0=%d\n", e->rxiq_diag_after[0]);
++       fappend("after_b0=%d\n", e->rxiq_diag_after[1]);
++       fappend("after_a1=%d\n", e->rxiq_diag_after[2]);
++       fappend("after_b1=%d\n", e->rxiq_diag_after[3]);
++       fappend("current_a0=%d\n", live.a0);
++       fappend("current_b0=%d\n", live.b0);
++       fappend("current_a1=%d\n", live.a1);
++       fappend("current_b1=%d\n", live.b1);
++
++       return count;
++}
++
++static int nphy_rxiq_cal_write_file(struct b43_wldev *dev,
++                                    const char *buf, size_t count)
++{
++       struct b43_dfsentry *e = dev->dfsentry;
++       struct b43_phy_n_iq_comp before, after, saved;
++       struct b43_nphy_rxiq_diag_status diag_status = { };
++       bool cleanup_complete = false;
++       bool resume_ok;
++       int rc;
++
++       if (sysfs_streq(buf, "run")) {
++               if (e->rxiq_diag_active)
++                       return -EBUSY;
++               if (b43_status(dev) != B43_STAT_STARTED ||
++                   dev->phy.type != B43_PHYTYPE_N || dev->phy.rev != 4 ||
++                   dev->phy.radio_ver != 0x2056 || dev->phy.radio_rev != 3 ||
++                   (dev->phy.channel < 1 || dev->phy.channel > 11) || !b43_using_pio_transfers(dev))
++                       return -EOPNOTSUPP;
++
++               e->rxiq_diag_saved_valid = false;
++               e->rxiq_diag_active = false;
++               e->rxiq_diag_restore_verified = false;
++               e->rxiq_diag_cleanup_complete = false;
++               e->rxiq_diag_run_mac_suspend_verified = false;
++               e->rxiq_diag_run_mac_resume_verified = false;
++               e->rxiq_diag_restore_mac_suspend_verified = false;
++               e->rxiq_diag_restore_mac_resume_verified = false;
++               e->rxiq_diag_cleanup_fail_mask = 0;
++               e->rxiq_diag_primary_rc = 0;
++               e->rxiq_diag_failure_stage = 0;
++               memset(e->rxiq_diag_gain_saved, 0, sizeof(e->rxiq_diag_gain_saved));
++               memset(e->rxiq_diag_gain_observed, 0, sizeof(e->rxiq_diag_gain_observed));
++               memset(e->rxiq_diag_radio_spare_saved, 0, sizeof(e->rxiq_diag_radio_spare_saved));
++               memset(e->rxiq_diag_radio_spare_observed, 0, sizeof(e->rxiq_diag_radio_spare_observed));
++               e->rxiq_diag_deaf_before = 0;
++               e->rxiq_diag_deaf_after = 0;
++               memset(e->rxiq_diag_pass_i_pwr, 0, sizeof(e->rxiq_diag_pass_i_pwr));
++               memset(e->rxiq_diag_pass_q_pwr, 0, sizeof(e->rxiq_diag_pass_q_pwr));
++               memset(e->rxiq_diag_pass_iq_prod, 0, sizeof(e->rxiq_diag_pass_iq_prod));
++               memset(e->rxiq_diag_pass_power, 0, sizeof(e->rxiq_diag_pass_power));
++               memset(e->rxiq_diag_pass_packed_gain, 0, sizeof(e->rxiq_diag_pass_packed_gain));
++               memset(e->rxiq_diag_final_i_pwr, 0, sizeof(e->rxiq_diag_final_i_pwr));
++               memset(e->rxiq_diag_final_q_pwr, 0, sizeof(e->rxiq_diag_final_q_pwr));
++               memset(e->rxiq_diag_final_iq_prod, 0, sizeof(e->rxiq_diag_final_iq_prod));
++               memset(e->rxiq_diag_calc_error, 0, sizeof(e->rxiq_diag_calc_error));
++               e->rxiq_diag_calc_applied_mask = 0;
++
++               /* Establish rollback data before any calibration mutation. */
++               b43_nphy_rxiq_read_diag(dev, &before);
++               after = before;
++               rxiq_diag_store_comp(e->rxiq_diag_saved, &before);
++               rxiq_diag_store_comp(e->rxiq_diag_after, &after);
++               e->rxiq_diag_saved_valid = true;
++
++               rc = rxiq_diag_mac_suspend(dev);
++               e->rxiq_diag_run_mac_suspend_verified = (rc == 0);
++               if (rc) {
++                       e->rxiq_diag_last_rc = rc;
++                       e->rxiq_diag_run_mac_resume_verified =
++                               dev->mac_suspended == 0 &&
++                               (b43_read32(dev, B43_MMIO_MACCTL) &
++                                B43_MACCTL_ENABLED);
++                       return rc;
++               }
++
++               rc = b43_nphy_rxiq_cal_diag(dev, &before, &after,
++                                           &cleanup_complete, &diag_status);
++               e->rxiq_diag_cleanup_fail_mask = diag_status.cleanup_fail_mask;
++               e->rxiq_diag_primary_rc = diag_status.primary_rc;
++               e->rxiq_diag_failure_stage = diag_status.failure_stage;
++               e->rxiq_diag_gain_saved[0] = diag_status.gain_saved[0];
++               e->rxiq_diag_gain_saved[1] = diag_status.gain_saved[1];
++               e->rxiq_diag_gain_observed[0] = diag_status.gain_observed[0];
++               e->rxiq_diag_gain_observed[1] = diag_status.gain_observed[1];
++               e->rxiq_diag_radio_spare_saved[0] = diag_status.radio_spare_saved[0];
++               e->rxiq_diag_radio_spare_saved[1] = diag_status.radio_spare_saved[1];
++               e->rxiq_diag_radio_spare_observed[0] = diag_status.radio_spare_observed[0];
++               e->rxiq_diag_radio_spare_observed[1] = diag_status.radio_spare_observed[1];
++               e->rxiq_diag_deaf_before = diag_status.deaf_before;
++               e->rxiq_diag_deaf_after = diag_status.deaf_after;
++               memcpy(e->rxiq_diag_pass_i_pwr, diag_status.pass_i_pwr, sizeof(e->rxiq_diag_pass_i_pwr));
++               memcpy(e->rxiq_diag_pass_q_pwr, diag_status.pass_q_pwr, sizeof(e->rxiq_diag_pass_q_pwr));
++               memcpy(e->rxiq_diag_pass_iq_prod, diag_status.pass_iq_prod, sizeof(e->rxiq_diag_pass_iq_prod));
++               memcpy(e->rxiq_diag_pass_power, diag_status.pass_power, sizeof(e->rxiq_diag_pass_power));
++               memcpy(e->rxiq_diag_pass_packed_gain, diag_status.pass_packed_gain, sizeof(e->rxiq_diag_pass_packed_gain));
++               memcpy(e->rxiq_diag_final_i_pwr, diag_status.final_i_pwr, sizeof(e->rxiq_diag_final_i_pwr));
++               memcpy(e->rxiq_diag_final_q_pwr, diag_status.final_q_pwr, sizeof(e->rxiq_diag_final_q_pwr));
++               memcpy(e->rxiq_diag_final_iq_prod, diag_status.final_iq_prod, sizeof(e->rxiq_diag_final_iq_prod));
++               memcpy(e->rxiq_diag_calc_error, diag_status.calc_error, sizeof(e->rxiq_diag_calc_error));
++               e->rxiq_diag_calc_applied_mask = diag_status.calc_applied_mask;
++               resume_ok = rxiq_diag_mac_resume(dev);
++               e->rxiq_diag_run_mac_resume_verified = resume_ok;
++               if (!resume_ok && !rc)
++                       rc = -EIO;
++
++               rxiq_diag_store_comp(e->rxiq_diag_saved, &before);
++               rxiq_diag_store_comp(e->rxiq_diag_after, &after);
++               e->rxiq_diag_last_rc = rc;
++               e->rxiq_diag_cleanup_complete = cleanup_complete;
++               e->rxiq_diag_active =
++                       (rc == 0 && cleanup_complete && resume_ok);
++               return rc;
++       }
++
++       if (sysfs_streq(buf, "restore")) {
++               if (!e->rxiq_diag_saved_valid)
++                       return -ENOENT;
++               if (b43_status(dev) != B43_STAT_STARTED ||
++                   dev->phy.type != B43_PHYTYPE_N || dev->phy.rev != 4 ||
++                   dev->phy.radio_ver != 0x2056 || dev->phy.radio_rev != 3 ||
++                   (dev->phy.channel < 1 || dev->phy.channel > 11) || !b43_using_pio_transfers(dev))
++                       return -EOPNOTSUPP;
++
++               e->rxiq_diag_restore_verified = false;
++               e->rxiq_diag_restore_mac_suspend_verified = false;
++               e->rxiq_diag_restore_mac_resume_verified = false;
++               rxiq_diag_load_comp(&saved, e->rxiq_diag_saved);
++
++               rc = rxiq_diag_mac_suspend(dev);
++               e->rxiq_diag_restore_mac_suspend_verified = (rc == 0);
++               if (rc) {
++                       e->rxiq_diag_last_rc = rc;
++                       e->rxiq_diag_restore_mac_resume_verified =
++                               dev->mac_suspended == 0 &&
++                               (b43_read32(dev, B43_MMIO_MACCTL) &
++                                B43_MACCTL_ENABLED);
++                       return rc;
++               }
++
++               rc = b43_nphy_rxiq_restore_diag(dev, &saved);
++               resume_ok = rxiq_diag_mac_resume(dev);
++               e->rxiq_diag_restore_mac_resume_verified = resume_ok;
++               if (!resume_ok && !rc)
++                       rc = -EIO;
++               e->rxiq_diag_last_rc = rc;
++               e->rxiq_diag_restore_verified = (rc == 0 && resume_ok);
++               if (!rc && resume_ok)
++                       e->rxiq_diag_active = false;
++               return rc;
++       }
++
++       return -EINVAL;
++}
++
+ static ssize_t txstat_read_file(struct b43_wldev *dev,
+ 				char *buf, size_t bufsize)
+ {
+@@ -624,6 +672,10 @@ B43_DEBUGFS_FOPS(mmio32write, NULL, mmio32write__write_file);
+ B43_DEBUGFS_FOPS(txstat, txstat_read_file, NULL);
+ B43_DEBUGFS_FOPS(restart, NULL, restart_write_file);
+ B43_DEBUGFS_FOPS(loctls, loctls_read_file, NULL);
++B43_DEBUGFS_FOPS(capabilities, capabilities_read_file, NULL);
++B43_DEBUGFS_FOPS(nphy_rxdiag, nphy_rxdiag_read_file, NULL);
++B43_DEBUGFS_FOPS(nphy_calstate, nphy_calstate_read_file, NULL);
++B43_DEBUGFS_FOPS(nphy_rxiq_cal, nphy_rxiq_cal_read_file, nphy_rxiq_cal_write_file);
+ 
+ 
+ bool b43_debug(struct b43_wldev *dev, enum b43_dyndbg feature)
+@@ -717,5 +766,9 @@ void b43_debugfs_add_device(struct b43_wldev *dev)
+ 	ADD_FILE(txstat, 0400);
+ 	ADD_FILE(restart, 0200);
+ 	ADD_FILE(loctls, 0400);
++	ADD_FILE(capabilities, 0400);
++	ADD_FILE(nphy_rxdiag, 0400);
++	ADD_FILE(nphy_calstate, 0400);
++	ADD_FILE(nphy_rxiq_cal, 0600);
+ 
+ #undef ADD_FILE
+--- a/drivers/net/wireless/broadcom/b43/phy_n.h
++++ b/drivers/net/wireless/broadcom/b43/phy_n.h
+@@ -897,6 +897,38 @@ struct b43_phy_n_iq_comp {
+ 	s16 a1;
+ 	s16 b1;
+ };
++
++struct b43_nphy_rxiq_diag_status {
++	u32 cleanup_fail_mask;
++	int primary_rc;
++	u8 failure_stage;
++	u16 gain_saved[2];
++	u16 gain_observed[2];
++	u16 radio_spare_saved[2];
++	u16 radio_spare_observed[2];
++	u32 deaf_before;
++	u32 deaf_after;
++	u32 pass_i_pwr[2][3];
++	u32 pass_q_pwr[2][3];
++	s32 pass_iq_prod[2][3];
++	u32 pass_power[2][3];
++	u16 pass_packed_gain[2][4];
++	u32 final_i_pwr[2];
++	u32 final_q_pwr[2];
++	s32 final_iq_prod[2];
++	u8 calc_error[2];
++	u8 calc_applied_mask;
++};
++
++int b43_nphy_rxiq_cal_diag(struct b43_wldev *dev,
++			   struct b43_phy_n_iq_comp *before,
++			   struct b43_phy_n_iq_comp *after,
++			   bool *cleanup_complete,
++			   struct b43_nphy_rxiq_diag_status *diag);
++int b43_nphy_rxiq_restore_diag(struct b43_wldev *dev,
++			       const struct b43_phy_n_iq_comp *saved);
++void b43_nphy_rxiq_read_diag(struct b43_wldev *dev,
++			     struct b43_phy_n_iq_comp *comp);
+ 
+ struct b43_phy_n_rssical_cache {
+ 	u16 rssical_radio_regs_2G[2];
+--- a/drivers/net/wireless/broadcom/b43/phy_n.c
++++ b/drivers/net/wireless/broadcom/b43/phy_n.c
+@@ -5770,1 +5770,408 @@
++/*
++ * RV220W rev4/BCM2056 RX-IQ reconstruction diagnostic.
++ *
++ * This intentionally does not replace b43_nphy_rev3_cal_rx_iq().  It is
++ * reachable only through the explicit debugfs diagnostic gate.  The sequence
++ * mirrors the Broadcom 5.60.120.9 rev3-6 path observed on the RV220W and the
++ * existing b43 rev2 implementation, with stock-RV220W corrections:
++ *   - measured power is indexed by gain pass, not RX core;
++ *   - fourth-pass HPF adjustment uses signal bit-width (fls), not popcount;
++ *   - D6/E2 are temporary low-two-bit selectors and cleanup clears those
++ *     bits rather than restoring/comparing an entire readback value.
++ *
++ * The shipping Broadcom N-PHY state initializes rxcalparams to 0x010100B5.
++ * b43 currently leaves nphy->rxcalparams at zero on this target, so this
++ * diagnostic uses that stock value locally without changing normal b43 state.
++ */
++#define B43_NPHY_RXIQ_DIAG_RXCALPARAMS	0x010100B5
++
++void b43_nphy_rxiq_read_diag(struct b43_wldev *dev,
++			     struct b43_phy_n_iq_comp *comp)
++{
++	b43_nphy_rx_iq_coeffs(dev, false, comp);
++}
++
++int b43_nphy_rxiq_restore_diag(struct b43_wldev *dev,
++			       const struct b43_phy_n_iq_comp *saved)
++{
++	struct b43_phy_n_iq_comp restore;
++	struct b43_phy_n_iq_comp verify;
++
++	if (!saved || dev->phy.type != B43_PHYTYPE_N)
++		return -EINVAL;
++
++	restore = *saved;
++	b43_nphy_rx_iq_coeffs(dev, true, &restore);
++	b43_nphy_rx_iq_coeffs(dev, false, &verify);
++	if (verify.a0 != saved->a0 || verify.b0 != saved->b0 ||
++	    verify.a1 != saved->a1 || verify.b1 != saved->b1)
++		return -EIO;
++
++	return 0;
++}
++
++/* Diagnostic form of CalcRxIqComp. The normal b43 helper stays untouched.
++ * This preserves the upstream coefficient math while exposing the final
++ * 16384-sample estimator and the reason it would silently restore old
++ * coefficients.
++ */
++static int b43_nphy_calc_rx_iq_comp_diag(struct b43_wldev *dev, u8 mask,
++					 int core,
++					 struct b43_nphy_rxiq_diag_status *diag)
++{
++	struct nphy_iq_est est;
++	struct b43_phy_n_iq_comp old;
++	struct b43_phy_n_iq_comp new = { };
++	s32 iq;
++	u32 ii, qq;
++	int iq_nbits, qq_nbits;
++	int arsh, brsh;
++	u16 tmp, a, b;
++	u32 radicand;
++
++	if (!mask || core < 0 || core > 1 || !diag)
++		return -EINVAL;
++
++	b43_nphy_rx_iq_coeffs(dev, false, &old);
++	b43_nphy_rx_iq_coeffs(dev, true, &new);
++	b43_nphy_rx_iq_est(dev, &est, 0x4000, 32, false);
++	new = old;
++
++	if (core == 0) {
++		iq = est.iq0_prod;
++		ii = est.i0_pwr;
++		qq = est.q0_pwr;
++	} else {
++		iq = est.iq1_prod;
++		ii = est.i1_pwr;
++		qq = est.q1_pwr;
++	}
++	diag->final_i_pwr[core] = ii;
++	diag->final_q_pwr[core] = qq;
++	diag->final_iq_prod[core] = iq;
++
++	if (ii + qq < 2) {
++		diag->calc_error[core] = 1;
++		b43_nphy_rx_iq_coeffs(dev, true, &old);
++		return -ERANGE;
++	}
++
++	iq_nbits = fls(abs(iq));
++	qq_nbits = fls(qq);
++	arsh = iq_nbits - 20;
++	if (arsh >= 0) {
++		a = -((iq << (30 - iq_nbits)) + (ii >> (1 + arsh)));
++		tmp = ii >> arsh;
++	} else {
++		a = -((iq << (30 - iq_nbits)) + (ii << (-1 - arsh)));
++		tmp = ii << -arsh;
++	}
++	if (!tmp) {
++		diag->calc_error[core] = 2;
++		b43_nphy_rx_iq_coeffs(dev, true, &old);
++		return -ERANGE;
++	}
++	a /= tmp;
++
++	brsh = qq_nbits - 11;
++	b = qq << (31 - qq_nbits);
++	if (brsh >= 0)
++		tmp = ii >> brsh;
++	else
++		tmp = ii << -brsh;
++	if (!tmp) {
++		diag->calc_error[core] = 3;
++		b43_nphy_rx_iq_coeffs(dev, true, &old);
++		return -ERANGE;
++	}
++	radicand = b / tmp - a * a;
++	b = int_sqrt(radicand) - (1 << 10);
++
++	if (core == 0 && (mask & 0x1)) {
++		new.a0 = a & 0x3FF;
++		new.b0 = b & 0x3FF;
++	} else if (core == 1 && (mask & 0x2)) {
++		new.a1 = a & 0x3FF;
++		new.b1 = b & 0x3FF;
++	} else {
++		diag->calc_error[core] = 4;
++		b43_nphy_rx_iq_coeffs(dev, true, &old);
++		return -EINVAL;
++	}
++
++	b43_nphy_rx_iq_coeffs(dev, true, &new);
++	diag->calc_applied_mask |= BIT(core);
++	return 0;
++}
++
++int b43_nphy_rxiq_cal_diag(struct b43_wldev *dev,
++			   struct b43_phy_n_iq_comp *before,
++			   struct b43_phy_n_iq_comp *after,
++			   bool *cleanup_complete,
++			   struct b43_nphy_rxiq_diag_status *diag)
++{
++	static const u16 lna[3] = { 3, 3, 1 };
++	static const u16 hpf1[3] = { 7, 2, 0 };
++	static const u16 hpf2[3] = { 2, 0, 0 };
++	const u32 rxcalparams = B43_NPHY_RXIQ_DIAG_RXCALPARAMS;
++	struct b43_phy_n *nphy = dev->phy.n;
++	struct nphy_txgains target;
++	struct nphy_iqcal_params cal_params[2];
++	struct nphy_iq_est est;
++	u16 gain_save[2], gain_verify[2], cal_gain[2];
++	u16 radio_spare1, radio_spare2;
++	u32 deaf_before;
++	bool carrier_held = false;
++	bool restore_ok = true;
++	bool playtone = true;
++	int ret = 0;
++	int core;
++
++	if (cleanup_complete)
++		*cleanup_complete = false;
++	if (diag)
++		memset(diag, 0, sizeof(*diag));
++	if (!before || !after || !nphy || !diag)
++		return -EINVAL;
++	if (dev->phy.type != B43_PHYTYPE_N || dev->phy.rev != 4 ||
++	    dev->phy.radio_ver != 0x2056 || dev->phy.radio_rev != 3 ||
++	    b43_current_band(dev->wl) != NL80211_BAND_2GHZ ||
++	    (dev->phy.channel < 1 || dev->phy.channel > 11))
++		return -EOPNOTSUPP;
++
++	b43_nphy_rx_iq_coeffs(dev, false, before);
++	*after = *before;
++	target = b43_nphy_get_tx_gains(dev);
++	deaf_before = nphy->deaf_count;
++	radio_spare1 = b43_radio_read(dev, B2055_C1_GENSPARE2);
++	radio_spare2 = b43_radio_read(dev, B2055_C2_GENSPARE2);
++	diag->radio_spare_saved[0] = radio_spare1;
++	diag->radio_spare_saved[1] = radio_spare2;
++	diag->deaf_before = deaf_before;
++
++	b43_nphy_stay_in_carrier_search(dev, true);
++	carrier_held = true;
++	b43_ntab_read_bulk(dev, B43_NTAB16(7, 0x110), 2, gain_save);
++	diag->gain_saved[0] = gain_save[0];
++	diag->gain_saved[1] = gain_save[1];
++	for (core = 0; core < 2; core++) {
++		b43_nphy_iq_cal_gain_params(dev, core, target,
++					    &cal_params[core]);
++		cal_gain[core] = cal_params[core].cal_gain;
++	}
++	b43_ntab_write_bulk(dev, B43_NTAB16(7, 0x110), 2, cal_gain);
++
++	for (core = 0; core < 2; core++) {
++		u16 rfctl_rx, rfctl_tx, afectl_core;
++		u16 saved_rfseqca, saved_afectl, saved_afectl_over;
++		u16 saved_rfctl_rx, saved_rfctl_tx;
++		u32 power[3] = { 0, 0, 0 };
++		int pass;
++
++		if (core == 0) {
++			rfctl_rx = B43_NPHY_RFCTL_INTC1;
++			rfctl_tx = B43_NPHY_RFCTL_INTC2;
++			afectl_core = B43_NPHY_AFECTL_C1;
++		} else {
++			rfctl_rx = B43_NPHY_RFCTL_INTC2;
++			rfctl_tx = B43_NPHY_RFCTL_INTC1;
++			afectl_core = B43_NPHY_AFECTL_C2;
++		}
++
++		saved_rfseqca = b43_phy_read(dev, B43_NPHY_RFSEQCA);
++		saved_afectl = b43_phy_read(dev, afectl_core);
++		saved_afectl_over = b43_phy_read(dev, B43_NPHY_AFECTL_OVER);
++		saved_rfctl_rx = b43_phy_read(dev, rfctl_rx);
++		saved_rfctl_tx = b43_phy_read(dev, rfctl_tx);
++
++		b43_phy_maskset(dev, B43_NPHY_RFSEQCA,
++				~B43_NPHY_RFSEQCA_RXDIS & 0xFFFF,
++				((1 - core) << B43_NPHY_RFSEQCA_RXDIS_SHIFT));
++		b43_phy_maskset(dev, B43_NPHY_RFSEQCA,
++				~B43_NPHY_RFSEQCA_TXEN, (1 - core));
++		b43_phy_set(dev, afectl_core, 0x0006);
++		b43_phy_set(dev, B43_NPHY_AFECTL_OVER, 0x0006);
++		/* Stock rev3-6 uses the 2 GHz RFCTL pair 0x110/0x114. */
++		b43_phy_write(dev, rfctl_rx, 0x110);
++		b43_phy_write(dev, rfctl_tx, 0x114);
++
++		if (rxcalparams & 0x10000) {
++			b43_radio_maskset(dev, B2055_C1_GENSPARE2, 0xFC,
++					 (core + 1));
++			b43_radio_maskset(dev, B2055_C2_GENSPARE2, 0xFC,
++					 (2 - core));
++		}
++
++		for (pass = 0; pass < 4; pass++) {
++			u16 cur_lna, cur_hpf1, cur_hpf2;
++			u16 packed_gain;
++			int cur_hpf, index, use;
++
++			if (pass < 3) {
++				cur_lna = lna[pass];
++				cur_hpf1 = hpf1[pass];
++				cur_hpf2 = hpf2[pass];
++			} else {
++				if (power[1] > 10000) {
++					use = 1;
++					index = 2;
++					cur_hpf = hpf1[index];
++				} else if (power[0] > 10000) {
++					use = 1;
++					index = 1;
++					cur_hpf = hpf1[index];
++				} else {
++					use = 2;
++					index = 0;
++					cur_hpf = hpf2[index];
++				}
++				cur_lna = lna[index];
++				cur_hpf1 = hpf1[index];
++				cur_hpf2 = hpf2[index];
++				cur_hpf += 13 - fls(power[index]);
++				cur_hpf = clamp_val(cur_hpf, 0, 10);
++				if (use == 1)
++					cur_hpf1 = cur_hpf;
++				else
++					cur_hpf2 = cur_hpf;
++			}
++
++			packed_gain = (cur_hpf2 << 8) | (cur_hpf1 << 4) |
++				      (cur_lna << 2);
++			diag->pass_packed_gain[core][pass] = packed_gain;
++			b43_nphy_rf_ctl_override(dev, 0x400, packed_gain, 3,
++						 false);
++			b43_nphy_force_rf_sequence(dev, B43_RFSEQ_RESET2RX);
++			if (b43_phy_read(dev, B43_NPHY_RFSEQST) &
++			    B43_NPHY_RFSEQTR_RST2RX) {
++				ret = -ETIMEDOUT;
++				diag->failure_stage = core ? 3 : 1;
++				break;
++			}
++			b43_nphy_stop_playback(dev);
++
++			if (playtone) {
++				ret = b43_nphy_tx_tone(dev, 4000,
++						       rxcalparams & 0xFFFF,
++						       false, false, true);
++				playtone = false;
++			} else {
++				b43_nphy_run_samples(dev, 160, 0xFFFF, 0,
++						     false, false, true);
++			}
++			if (ret) {
++				diag->failure_stage = core ? 4 : 2;
++				break;
++			}
++
++			if (pass < 3) {
++				u32 real, imag;
++				s32 iqprod;
++
++				b43_nphy_rx_iq_est(dev, &est, 1024, 32, false);
++				if (core == 0) {
++					real = est.i0_pwr;
++					imag = est.q0_pwr;
++					iqprod = est.iq0_prod;
++				} else {
++					real = est.i1_pwr;
++					imag = est.q1_pwr;
++					iqprod = est.iq1_prod;
++				}
++				diag->pass_i_pwr[core][pass] = real;
++				diag->pass_q_pwr[core][pass] = imag;
++				diag->pass_iq_prod[core][pass] = iqprod;
++				power[pass] = DIV_ROUND_CLOSEST(real, 1024) +
++					      DIV_ROUND_CLOSEST(imag, 1024) + 1;
++				diag->pass_power[core][pass] = power[pass];
++			} else {
++				ret = b43_nphy_calc_rx_iq_comp_diag(dev, 1 << core,
++								core, diag);
++				if (ret) {
++					diag->failure_stage = core ? 7 : 6;
++					break;
++				}
++			}
++			b43_nphy_stop_playback(dev);
++		}
++
++		b43_nphy_stop_playback(dev);
++		/* Stock wl.ko clears only the temporary low-two-bit selectors. */
++		b43_radio_mask(dev, B2055_C1_GENSPARE2, 0xFFFC);
++		b43_radio_mask(dev, B2055_C2_GENSPARE2, 0xFFFC);
++		b43_phy_write(dev, rfctl_tx, saved_rfctl_tx);
++		b43_phy_write(dev, rfctl_rx, saved_rfctl_rx);
++		b43_phy_write(dev, B43_NPHY_AFECTL_OVER, saved_afectl_over);
++		b43_phy_write(dev, afectl_core, saved_afectl);
++		b43_phy_write(dev, B43_NPHY_RFSEQCA, saved_rfseqca);
++
++		if (b43_phy_read(dev, rfctl_tx) != saved_rfctl_tx)
++			diag->cleanup_fail_mask |= BIT(core * 5 + 0);
++		if (b43_phy_read(dev, rfctl_rx) != saved_rfctl_rx)
++			diag->cleanup_fail_mask |= BIT(core * 5 + 1);
++		if (b43_phy_read(dev, B43_NPHY_AFECTL_OVER) != saved_afectl_over)
++			diag->cleanup_fail_mask |= BIT(core * 5 + 2);
++		if (b43_phy_read(dev, afectl_core) != saved_afectl)
++			diag->cleanup_fail_mask |= BIT(core * 5 + 3);
++		if (b43_phy_read(dev, B43_NPHY_RFSEQCA) != saved_rfseqca)
++			diag->cleanup_fail_mask |= BIT(core * 5 + 4);
++		if (diag->cleanup_fail_mask & (0x1F << (core * 5)))
++			restore_ok = false;
++		if (ret)
++			break;
++	}
++
++	b43_nphy_rf_ctl_override(dev, 0x400, 0, 3, true);
++	b43_nphy_force_rf_sequence(dev, B43_RFSEQ_RESET2RX);
++	if (b43_phy_read(dev, B43_NPHY_RFSEQST) &
++	    B43_NPHY_RFSEQTR_RST2RX) {
++		diag->cleanup_fail_mask |= BIT(10);
++		restore_ok = false;
++	}
++	b43_ntab_write_bulk(dev, B43_NTAB16(7, 0x110), 2, gain_save);
++	/* Match the stock RV220W cleanup invariant exactly: D6/E2 are
++	 * low-two-bit temporary controls, not full-value saved state. */
++	b43_radio_mask(dev, B2055_C1_GENSPARE2, 0xFFFC);
++	b43_radio_mask(dev, B2055_C2_GENSPARE2, 0xFFFC);
++	if (carrier_held)
++		b43_nphy_stay_in_carrier_search(dev, false);
++
++	b43_ntab_read_bulk(dev, B43_NTAB16(7, 0x110), 2, gain_verify);
++	diag->gain_observed[0] = gain_verify[0];
++	diag->gain_observed[1] = gain_verify[1];
++	diag->radio_spare_observed[0] =
++		b43_radio_read(dev, B2055_C1_GENSPARE2);
++	diag->radio_spare_observed[1] =
++		b43_radio_read(dev, B2055_C2_GENSPARE2);
++	diag->deaf_after = nphy->deaf_count;
++	if (gain_verify[0] != gain_save[0])
++		diag->cleanup_fail_mask |= BIT(11);
++	if (gain_verify[1] != gain_save[1])
++		diag->cleanup_fail_mask |= BIT(12);
++	if (diag->radio_spare_observed[0] & 0x0003)
++		diag->cleanup_fail_mask |= BIT(13);
++	if (diag->radio_spare_observed[1] & 0x0003)
++		diag->cleanup_fail_mask |= BIT(14);
++	if (nphy->deaf_count != deaf_before)
++		diag->cleanup_fail_mask |= BIT(15);
++	if (diag->cleanup_fail_mask)
++		restore_ok = false;
++
++	diag->primary_rc = ret;
++	if (!restore_ok && !ret) {
++		diag->failure_stage = 5;
++		ret = -EIO;
++	}
++
++	/* Snapshot the coefficients produced by the reconstruction before the
++	 * fail-closed rollback restores the original tuple. */
++	b43_nphy_rx_iq_coeffs(dev, false, after);
++	if (ret)
++		b43_nphy_rx_iq_coeffs(dev, true, before);
++	if (cleanup_complete)
++		*cleanup_complete = restore_ok;
++
++	return ret;
++}
++
+ const struct b43_phy_operations b43_phyops_n = {

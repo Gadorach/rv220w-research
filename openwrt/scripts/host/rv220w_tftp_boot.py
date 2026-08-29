@@ -28,6 +28,8 @@ from typing import BinaryIO
 PROMPT = b"rv200w# "
 ELF_MAGIC = b"\x7fELF"
 CONSERVATIVE_RAM_END = 0x07F00000
+PLATFORM_BASE_MAC_FLASH_ADDR = 0xBDC6FF00
+PLATFORM_BASE_MAC_BYTES = 6
 
 
 class BootError(RuntimeError):
@@ -77,6 +79,15 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--load-address", type=auto_int, default=0x05500000)
     p.add_argument("--ethact", action="append", default=[], help="U-Boot interface to try; repeatable. Default: octeth0, octeth1, octeth2")
     p.add_argument("--bootargs", default="console=ttyS0,115200")
+    p.add_argument(
+        "--derive-stock-wlan-mac",
+        action="store_true",
+        help=(
+            "read the six-byte protected platform MAC at U-Boot flash address "
+            "0xbdc6ff00, derive stock WLAN identity as base+4, and append "
+            "rv220w.wlan_mac/rv220w.b43_pio boot arguments"
+        ),
+    )
     p.add_argument("--serial-baud", type=int, default=115200)
     p.add_argument("--tftp-timeout", type=float, default=240.0)
     p.add_argument("--boot-timeout", type=float, default=300.0)
@@ -317,6 +328,7 @@ class Console:
     def wait_prompt(self, timeout: float, echo: bool = True) -> bytes:
         deadline = time.monotonic() + timeout
         buf = bytearray()
+        cmdline_checked = False
         while time.monotonic() < deadline:
             data = self.read_some()
             if data:
@@ -371,28 +383,54 @@ class Console:
 
     def command(self, command: str, timeout: float = 10.0) -> bytes:
         verb = command.strip().split(maxsplit=1)[0].lower()
-        allowed = {"base", "setenv", "tftpboot"}
+        allowed = {"base", "setenv", "tftpboot", "md.b"}
         if verb not in allowed:
             raise BootError(f"refusing non-whitelisted prompt command: {command}")
+        if verb == "md.b" and command.strip().lower() != "md.b 0xbdc6ff00 6":
+            raise BootError(f"refusing non-whitelisted memory read: {command}")
         self.ser.reset_input_buffer()
         self.write(command.encode("ascii") + b"\r")
         return self.wait_prompt(timeout)
 
-    def boot(self, command: str, timeout: float) -> None:
+    def boot(self, command: str, timeout: float, expected_kernel_args: tuple[str, ...] = ()) -> bytes:
         if not command.startswith("bootoctlinux "):
             raise BootError("refusing unexpected boot command")
         self.ser.reset_input_buffer()
         self.write(command.encode("ascii") + b"\r")
         deadline = time.monotonic() + timeout
         buf = bytearray()
+        cmdline_checked = False
         while time.monotonic() < deadline:
             data = self.read_some()
             if data:
                 buf.extend(data)
                 check_unsafe_uboot(bytes(buf[-4096:]))
+                if expected_kernel_args and not cmdline_checked and b"Kernel command line:" in buf:
+                    ok, line = verify_kernel_cmdline_capture(bytes(buf), expected_kernel_args)
+                    if line is not None:
+                        cmdline_checked = True
+                        if not ok:
+                            missing = [token for token in expected_kernel_args if token not in line]
+                            raise BootError(
+                                "Octeon handoff dropped required Linux bootarg(s): "
+                                + ", ".join(missing)
+                            )
+                        print(
+                            "\n[rv220w] Linux command-line handoff verified: "
+                            + " ".join(expected_kernel_args),
+                            file=sys.stderr,
+                        )
             else:
                 time.sleep(0.002)
+        if expected_kernel_args and not cmdline_checked:
+            ok, line = verify_kernel_cmdline_capture(bytes(buf), expected_kernel_args)
+            if not ok:
+                if line is None:
+                    raise BootError("Linux kernel command line was not observed during boot capture")
+                missing = [token for token in expected_kernel_args if token not in line]
+                raise BootError("Octeon handoff dropped required Linux bootarg(s): " + ", ".join(missing))
         print("\n[rv220w] boot capture timeout reached; log closed without sending input", file=sys.stderr)
+        return bytes(buf)
 
 
 def tftp_transfer(console: Console, filename: str, image_size: int, load_address: int, server_if: ipaddress.IPv4Interface, device_ip: ipaddress.IPv4Address, interfaces: list[str], timeout: float) -> str:
@@ -431,6 +469,90 @@ def tftp_transfer(console: Console, filename: str, image_size: int, load_address
     raise BootError("TFTP failed on all requested ethact values:\n  " + "\n  ".join(errors))
 
 
+def parse_uboot_mac_dump(response: bytes) -> str:
+    """Parse the exact six-byte md.b response used for the protected base MAC."""
+    text = response.decode("ascii", errors="ignore")
+    wanted = f"{PLATFORM_BASE_MAC_FLASH_ADDR:08x}"
+    for raw_line in text.splitlines():
+        line = raw_line.strip().lower()
+        match = re.match(r"^(?:0x)?([0-9a-f]{8,16})\s*:\s*(.*)$", line)
+        if not match:
+            continue
+        address = match.group(1)[-8:]
+        if address != wanted:
+            continue
+        octets = re.findall(r"(?<![0-9a-f])([0-9a-f]{2})(?![0-9a-f])", match.group(2))
+        if len(octets) < PLATFORM_BASE_MAC_BYTES:
+            raise BootError("U-Boot base-MAC dump contained fewer than six bytes")
+        octets = octets[:PLATFORM_BASE_MAC_BYTES]
+        mac = ":".join(octets)
+        validate_unicast_mac(mac, "platform base MAC")
+        return mac
+    raise BootError("could not parse protected platform base MAC from U-Boot md.b output")
+
+
+def validate_unicast_mac(mac: str, label: str = "MAC") -> None:
+    if not re.fullmatch(r"[0-9a-fA-F]{2}(?::[0-9a-fA-F]{2}){5}", mac):
+        raise BootError(f"invalid {label}: {mac}")
+    raw = bytes.fromhex(mac.replace(":", ""))
+    if raw == b"\x00" * 6 or raw == b"\xff" * 6 or raw[0] & 1:
+        raise BootError(f"invalid {label}: {mac}")
+
+
+def add_to_mac(mac: str, delta: int) -> str:
+    validate_unicast_mac(mac)
+    value = int(mac.replace(":", ""), 16)
+    value = (value + delta) & ((1 << 48) - 1)
+    derived = ":".join(f"{value:012x}"[i : i + 2] for i in range(0, 12, 2))
+    validate_unicast_mac(derived, "derived WLAN MAC")
+    return derived
+
+
+def derive_stock_wlan_mac(console: Console) -> tuple[str, str]:
+    response = console.command(
+        f"md.b 0x{PLATFORM_BASE_MAC_FLASH_ADDR:08x} {PLATFORM_BASE_MAC_BYTES}"
+    )
+    base = parse_uboot_mac_dump(response)
+    return base, add_to_mac(base, 4)
+
+
+def bootargs_with_stock_wlan_mac(bootargs: str, wlan_mac: str) -> str:
+    if any(token == "endbootargs" for token in bootargs.split()):
+        raise BootError("bootargs must not contain endbootargs; the host inserts the Octeon delimiter")
+    for key in ("rv220w.wlan_mac=", "rv220w.b43_pio=", "b43.macaddr=", "b43.pio="):
+        if any(token.startswith(key) for token in bootargs.split()):
+            raise BootError(f"refusing conflicting user boot argument: {key[:-1]}")
+    return (bootargs.strip() + f" rv220w.wlan_mac={wlan_mac} rv220w.b43_pio=0").strip()
+
+
+def build_bootoctlinux_command(boot_address: int, bootargs: str, *, kernel_args_only: bool = False) -> str:
+    command = f"bootoctlinux 0x{boot_address:08x}"
+    cleaned = bootargs.strip()
+    if cleaned:
+        # Cavium bootoctlinux parses arguments before `endbootargs` as its own
+        # boot options.  Arguments after the marker are forwarded to Linux.
+        # v1.14.17 incorrectly emitted custom kernel tokens as separate boot
+        # options, which U-Boot showed as argv[3]/argv[4] but Linux discarded.
+        if kernel_args_only:
+            command += " endbootargs"
+        command += " " + cleaned
+    return command
+
+
+def verify_kernel_cmdline_capture(capture: bytes, expected_tokens: tuple[str, ...]) -> tuple[bool, str | None]:
+    if not expected_tokens:
+        return True, None
+    text = capture.decode("utf-8", errors="replace")
+    lines = [line for line in text.splitlines() if "Kernel command line:" in line]
+    if not lines:
+        return False, None
+    line = lines[-1]
+    missing = [token for token in expected_tokens if token not in line]
+    if missing:
+        return False, line
+    return True, line
+
+
 def main() -> int:
     args = parse_args()
     args.image = args.image.resolve()
@@ -463,6 +585,7 @@ def main() -> int:
         "netmask": str(server_if.network.netmask),
         "ethact_attempts": interfaces,
         "no_boot": args.no_boot,
+        "derive_stock_wlan_mac": args.derive_stock_wlan_mac,
         "flash_writes": False,
     }
     print(json.dumps(plan, indent=2), file=sys.stderr)
@@ -495,6 +618,7 @@ def main() -> int:
             rtscts=False,
             dsrdtr=False,
             xonxoff=False,
+            exclusive=True,
         )
         console = Console(serial_handle, serial_log)
         if args.already_at_prompt:
@@ -508,12 +632,26 @@ def main() -> int:
         if args.no_boot:
             print("[rv220w] --no-boot selected; remaining at U-Boot prompt", file=sys.stderr)
             return 0
+        effective_bootargs = args.bootargs
+        if args.derive_stock_wlan_mac:
+            base_mac, wlan_mac = derive_stock_wlan_mac(console)
+            print(f"[rv220w] protected platform base MAC: {base_mac}", file=sys.stderr)
+            print(f"[rv220w] derived stock WLAN MAC (+4): {wlan_mac}", file=sys.stderr)
+            effective_bootargs = bootargs_with_stock_wlan_mac(effective_bootargs, wlan_mac)
         boot_address = args.load_address + image_offset
-        command = f"bootoctlinux 0x{boot_address:08x}"
-        if args.bootargs.strip():
-            command += " " + args.bootargs.strip()
+        command = build_bootoctlinux_command(
+            boot_address,
+            effective_bootargs,
+            kernel_args_only=args.derive_stock_wlan_mac,
+        )
+        expected_kernel_args: tuple[str, ...] = ()
+        if args.derive_stock_wlan_mac:
+            expected_kernel_args = (
+                f"rv220w.wlan_mac={wlan_mac}",
+                "rv220w.b43_pio=0",
+            )
         print(f"[rv220w] executing: {command}", file=sys.stderr)
-        console.boot(command, args.boot_timeout)
+        console.boot(command, args.boot_timeout, expected_kernel_args)
         return 0
     except KeyboardInterrupt:
         print("\n[rv220w] interrupted", file=sys.stderr)

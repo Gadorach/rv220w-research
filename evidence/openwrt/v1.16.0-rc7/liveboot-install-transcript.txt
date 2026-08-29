@@ -1,0 +1,333 @@
+
+
+
+BusyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+Cisco RV220W OpenWrt installer / recovery RAM boot
+LAN: 192.168.1.1
+Production LuCI/Wi-Fi intentionally not loaded in initramfs.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@OpenWrt:~# grep -E '^(MemTotal|MemFree|MemAvailable|Buffers|Cached|Shmem):'
+ /proc/meminfo
+MemTotal:          92020 kB
+MemFree:           62684 kB
+MemAvailable:      38824 kB
+Buffers:               0 kB
+Cached:            10660 kB
+Shmem:             10660 kB
+root@OpenWrt:~# wget -O /tmp/rv220w-openwrt-release-sysupgrade.tar http://192.16
+8.1.2:8000/rv220w-openwrt-release-sysupgrade.tar
+Downloading 'http://192.168.1.2:8000/rv220w-openwrt-release-sysupgrade.tar'
+Connecting to 192.168.1.2:8000
+Writing to '/tmp/rv220w-openwrt-release-sysupgrade.tar'
+/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA
+Download completed (10936608 bytes)
+root@OpenWrt:~# sha256sum /tmp/rv220w-openwrt-release-sysupgrade.tar
+00189a8d712226f73e4c52260f103be04014e2cc0fd50eb3c294043503a683af  /tmp/rv220w-openwrt-release-sysupgrade.tar
+root@OpenWrt:~# sysupgrade -T /tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W low-memory image validation: kernel=5355234 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+root@OpenWrt:~# sysupgrade -n /tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W low-memory image validation: kernel=5355234 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+Thu Jan  1 11:20:14 GMT 1970 upgrade: Commencing upgrade. Closing all shell sessions.
+
+
+
+BusyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+Cisco RV220W OpenWrt installer / recovery RAM boot
+LAN: 192.168.1.1
+Production LuCI/Wi-Fi intentionally not loaded in initramfs.
+Use the host-side make initramfs-liveboot workflow for permanent installation.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@OpenWrt:~# grep -E '^(MemTotal|MemFree|MemAvailable|Buffers|Cached|Shmem):'
+ /proc/meminfo
+MemTotal:          92020 kB
+MemFree:           62672 kB
+MemAvailable:      38812 kB
+Buffers:               0 kB
+Cached:            10668 kB
+Shmem:             10668 kB
+root@OpenWrt:~# wget -O /tmp/rv220w-openwrt-release-sysupgrade.tar http://192.16
+8.1.2:8000/rv220w-openwrt-release-sysupgrade.tar
+Downloading 'http://192.168.1.2:8000/rv220w-openwrt-release-sysupgrade.tar'
+Connecting to 192.168.1.2:8000
+Writing to '/tmp/rv220w-openwrt-release-sysupgrade.tar'
+/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA
+Download completed (10936608 bytes)
+root@OpenWrt:~# sha256sum /tmp/rv220w-openwrt-release-sysupgrade.tar
+2608b64c6c8d193122af4a6ecc89559b1874d173bc2a5a4bb4ec76883a2b1d75  /tmp/rv220w-openwrt-release-sysupgrade.tar
+root@OpenWrt:~# sysupgrade -T /tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W low-memory image validation: kernel=5355228 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+root@OpenWrt:~# 
+
+
+BusyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+Cisco RV220W OpenWrt installer / recovery RAM boot
+LAN: 192.168.1.1
+Production LuCI/Wi-Fi intentionally not loaded in initramfs.
+Use the host-side make initramfs-liveboot workflow for permanent installation.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@OpenWrt:~# grep -E '^(MemTotal|MemFree|MemAvailable|Buffers|Cached|Shmem):'
+ /proc/meminfo
+MemTotal:          92020 kB
+MemFree:           62844 kB
+MemAvailable:      38984 kB
+Buffers:               0 kB
+Cached:            10664 kB
+Shmem:             10664 kB
+root@OpenWrt:~# wget -O /tmp/rv220w-openwrt-release-sysupgrade.tar http://192.16
+8.1.2:8000/rv220w-openwrt-release-sysupgrade.tar
+Downloading 'http://192.168.1.2:8000/rv220w-openwrt-release-sysupgrade.tar'
+Connecting to 192.168.1.2:8000
+Writing to '/tmp/rv220w-openwrt-release-sysupgrade.tar'
+/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA
+Download completed (10936608 bytes)
+root@OpenWrt:~# sha256sum /tmp/rv220w-openwrt-release-sysupgrade.tar
+2608b64c6c8d193122af4a6ecc89559b1874d173bc2a5a4bb4ec76883a2b1d75  /tmp/rv220w-openwrt-release-sysupgrade.tar
+root@OpenWrt:~# sysupgrade -T /tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W low-memory image validation: kernel=5355228 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+root@OpenWrt:~# /usr/sbin/rv220w-install-from-ram /tmp/rv220w-openwrt-release-sy
+supgrade.tar
+/usr/sbin/rv220w-install-from-ram: /lib/functions.sh: line 546: IPKG_INSTROOT: parameter not set
+root@OpenWrt:~# 
+
+
+BusyBox v1.37.0 (2026-06-29 12:59:20 UTC) built-in shell (ash)
+
+Cisco RV220W OpenWrt installer / recovery RAM boot
+LAN: 192.168.1.1
+Production LuCI/Wi-Fi intentionally not loaded in initramfs.
+Use the host-side make initramfs-liveboot workflow for permanent installation.
+
+ === WARNING! =====================================
+ There is no root password defined on this device!
+ Use the "passwd" command to set up a new password
+ in order to prevent unauthorized SSH logins.
+ --------------------------------------------------
+
+
+ OpenWrt recently switched to the "apk" package manager!
+
+ OPKG Command           APK Equivalent      Description
+ ------------------------------------------------------------------
+ opkg install <pkg>     apk add <pkg>       Install a package
+ opkg remove <pkg>      apk del <pkg>       Remove a package
+ opkg upgrade           apk upgrade         Upgrade all packages
+ opkg files <pkg>       apk info -L <pkg>   List package contents
+ opkg list-installed    apk info            List installed packages
+ opkg update            apk update          Update package lists
+ opkg search <pkg>      apk search <pkg>    Search for packages
+ ------------------------------------------------------------------
+
+For more information visit:
+https://openwrt.org/docs/guide-user/additional-software/opkg-to-apk-cheatsheet
+
+root@OpenWrt:~# grep -E '^(MemTotal|MemFree|MemAvailable|Buffers|Cached|Shmem):'
+ /proc/meminfo
+MemTotal:          92020 kB
+MemFree:           62644 kB
+MemAvailable:      38784 kB
+Buffers:               0 kB
+Cached:            10664 kB
+Shmem:             10664 kB
+root@OpenWrt:~# wget -O /tmp/rv220w-openwrt-release-sysupgrade.tar http://192.16
+8.1.2:8000/rv220w-openwrt-release-sysupgrade.tar
+Downloading 'http://192.168.1.2:8000/rv220w-openwrt-release-sysupgrade.tar'
+Connecting to 192.168.1.2:8000
+Writing to '/tmp/rv220w-openwrt-release-sysupgrade.tar'
+/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA/tmp/rv220w-openwrt- 100% |*******************************| 10680k  0:00:00 ETA
+Download completed (10936608 bytes)
+root@OpenWrt:~# sha256sum /tmp/rv220w-openwrt-release-sysupgrade.tar
+2608b64c6c8d193122af4a6ecc89559b1874d173bc2a5a4bb4ec76883a2b1d75  /tmp/rv220w-openwrt-release-sysupgrade.tar
+root@OpenWrt:~# sysupgrade -T /tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W low-memory image validation: kernel=5355228 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+root@OpenWrt:~# /usr/sbin/rv220w-install-from-ram /tmp/rv220w-openwrt-release-sy
+supgrade.tar
+RV220W_DIRECT_INSTALL_BEGIN
+RV220W_DIRECT_INSTALL_IMAGE=/tmp/rv220w-openwrt-release-sysupgrade.tar
+RV220W_DIRECT_INSTALL_PID1=procd
+RV220W_DIRECT_INSTALL_MEMINFO_BEGIN
+MemTotal:          92020 kB
+MemFree:           51476 kB
+MemAvailable:      27620 kB
+Buffers:               0 kB
+Cached:            21352 kB
+Shmem:             21352 kB
+RV220W_DIRECT_INSTALL_MEMINFO_END
+RV220W low-memory image validation: kernel=5355228 root-member=5574656 squashfs-bytes-used=5574020 padding=636
+RV220W_DIRECT_INSTALL_VALIDATION_PASS
+RV220W_DIRECT_INSTALL_ROOTFS_BEGIN
+Unlocking rootfs ...
+Unlocking rootfs ...
+Erasing rootfs ...
+Unlocking rootfs ...
+
+Writing from <stdin> to rootfs ...  [ ][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w]    
+RV220W rootfs stream/readback SHA-256 verified: a9c72ed1a77867c1c58c948d90b633101118d679b5ed2ca5ae08fa4fd0502d37
+RV220W_DIRECT_INSTALL_ROOTFS_PASS
+RV220W_DIRECT_INSTALL_MEMINFO_AFTER_ROOTFS_BEGIN
+MemFree:           50976 kB
+MemAvailable:      27120 kB
+Cached:            21352 kB
+Shmem:             21352 kB
+RV220W_DIRECT_INSTALL_MEMINFO_AFTER_ROOTFS_END
+RV220W_DIRECT_INSTALL_KERNEL_BEGIN
+Unlocking openwrt-kernel ...
+Unlocking openwrt-kernel ...
+Erasing openwrt-kernel ...
+Unlocking openwrt-kernel ...
+
+Writing from <stdin> to openwrt-kernel ...  [ ][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w][e][w]    
+RV220W openwrt-kernel stream/readback SHA-256 verified: 8429aa356b72b0d64ad04219dfb25dda5a45bcde68f110cf00c908d92584f48f
+RV220W_DIRECT_INSTALL_KERNEL_PASS
+RV220W_DIRECT_INSTALL_PASS
+RV220W_DIRECT_INSTALL_REBOOTING
+[ 1907.596403] bcm53xx 8001180000001800:1e lan1: Link is Down
+[ 1907.602738] br-lan: port 4(lan4) entered disabled state
+[ 1907.608588] br-lan: port 3(lan3) entered disabled state
+[ 1907.614259] br-lan: port 2(lan2) entered disabled state
+[ 1907.620017] br-lan: port 1(lan1) entered disabled state
+[ 1907.630771] bcm53xx 8001180000001800:1e wan: Link is Down
+[ 1907.668817] eth0: Link down
+[ 1907.672227] eth1: Link down
+[ 1907.699815] reboot: Restarting system
+
+
+U-Boot 1.1.1 (Development build, svnversion: 193M) (Build time: Jun 14 2012 - 15:20:38)
+
+CUST_RV200W board revision major:1, minor:0, serial #: 
+OCTEON CN5010-SCP pass 1.1, Core clock: 400 MHz, DDR clock: 266 MHz (532 Mhz data rate)
+CL5 Minimum Clock Rate                        :   3000 ps
+DDR Clock Rate (tCLK)                         :   3759 ps
+CAS Latency                                   :      5
+Refresh Rate (tREFI)                          :   7812 ns
+Minimum Row Precharge Time (tRP)              :  15000 ps
+Minimum Row Active to Row Active delay (tRRD) :  10000 ps
+Minimum RAS to CAS delay (tRCD)               :  15000 ps
+Minimum Active to Precharge Time (tRAS)       :  45000 ps
+Write Recovery Time (tWR)                     :  20000 ps
+Internal write to read command delay (tWTR)   :  15000 ps
+Device Min Auto-refresh Active/Command (tRFC) : 105000 ps
+Board delay                                   :   2700 ps
+PAL rev: 0.00, MCU rev: 0.00, CPU voltage: 0.00
+in set_reg_sc
+DRAM:  128 MB
+Manu.id(0xc2) Dev.id1(0x227e) Dev.id2(0x2222) Dev.id3(0x2201),tst.value 0x1000
+Flash: 32 MB
+Clearing DRAM...... done
+BIST check passed.
+Starting PCI
+PCI Status: PCI 32-bit
+PCI BAR 0: 0x00000000, PCI BAR 1: Memory 0x00000000  PCI 0xf8000000
+Net:   octeth0, octeth1, octeth2
+
+disable 53115 ... Done
+in set_reg_sc
+PUSH_BUTTON--> 1
+
+
+
+checking fw magic ... ...
+Image name         : ’£Ð»ÞÍÜÚgw¿ûý¾÷¾ïÇç½÷ÜÝvýIrÐ€6àÿÿÿÿ€
+£ 
+Image size         : -1786783083 bytes
+ 2  1  0 
+Interface 0 has 3 ports (RGMII)
+Uncompressing 0x600000@0x5500000 to 0x1a00000@0x6500000
+Uncompressed 0xc34768 bytes
+argv[2]: console=ttyS0,115200
+ELF file is 64 bit
+Attempting to allocate memory for ELF segment: addr: 0xffffffff81100000 (adjusted to: 0x0000000001100000), size 0xd92650
+Allocated memory for ELF segment: addr: 0xffffffff81100000, size 0xd92650
+Loading .text @ 0xffffffff81100000 (0x8cf000 bytes)
+Loading __ex_table @ 0xffffffff819cf000 (0x2c10 bytes)
+Loading .rodata @ 0xffffffff819d2000 (0x1f1150 bytes)
+Loading .pci_fixup @ 0xffffffff81bc3150 (0x38e8 bytes)
+Loading __ksymtab @ 0xffffffff81bc6a38 (0x175e0 bytes)
+Loading __ksymtab_gpl @ 0xffffffff81bde018 (0x17070 bytes)
+Loading __ksymtab_strings @ 0xffffffff81bf5088 (0x245bd bytes)
+Loading __param @ 0xffffffff81c19648 (0x1ba8 bytes)
+Loading .data @ 0xffffffff81c1c000 (0xcee40 bytes)
+Loading .init.text @ 0xffffffff81ceb000 (0x2e3b4 bytes)
+Loading .init.data @ 0xffffffff81d193c0 (0x10988 bytes)
+Loading .data..percpu @ 0xffffffff81d2a000 (0x7ea0 bytes)
+Loading .appended_dtb @ 0xffffffff81d31ea0 (0x1396 bytes)
+Clearing .bss @ 0xffffffff81e40000 (0x52650 bytes)
+## Loading Linux kernel with entry point: 0xffffffff819c5350 ...
+Bootloader: Done loading app on coremask: 0x1
+[    0.000000] Linux version 6.12.94 (gadorach@Latitude-E5570) (mips64-openwrt-linux-musl-gcc (OpenWrt GCC 14.3.0 r33051-f5dae5ece4) 14.3.0, GNU ld (GNU Binutils) 2.44) #0 SMP Mon Jun 29 12:59:20 2026
+[    0.000000] CVMSEG size: 0 cache lines (0 bytes)
+[    0.000000] printk: legacy bootconsole [early0] enabled
+[    0.000000] CPU0 revision is: 000d0601 (Cavium Octeon+)
+[    0.000000] Kernel sections are not in the memory maps
+[    0.000000] Wasting 278528 bytes for tracking 4352 unused p

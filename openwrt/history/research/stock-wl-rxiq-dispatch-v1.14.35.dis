@@ -1,0 +1,80 @@
+
+/mnt/data/wl-stock.ko:	file format elf64-mips
+
+Disassembly of section .text:
+
+000000000011e578 <wlc_phy_cal_rxiq_nphy>:
+  11e578: 67 bd fe 50  	daddiu	$sp, $sp, -0x1b0 <wlc_stf_tempsense_upd+0xffffffffffeaedb0>
+  11e57c: 31 29 00 ff  	andi	$9, $9, 0xff <aes_ccmp_cal_params+0xff>
+  11e580: ff b1 01 68  	sd	$17, 0x168($sp)
+  11e584: 31 08 00 ff  	andi	$8, $8, 0xff <aes_ccmp_cal_params+0xff>
+  11e588: ff bf 01 a8  	sd	$ra, 0x1a8($sp)
+  11e58c: 00 80 88 2d  	move	$17, $4
+  11e590: ff be 01 a0  	sd	$fp, 0x1a0($sp)
+  11e594: ff b7 01 98  	sd	$23, 0x198($sp)
+  11e598: ff b6 01 90  	sd	$22, 0x190($sp)
+  11e59c: ff b5 01 88  	sd	$21, 0x188($sp)
+  11e5a0: ff b4 01 80  	sd	$20, 0x180($sp)
+  11e5a4: ff b3 01 78  	sd	$19, 0x178($sp)
+  11e5a8: ff b2 01 70  	sd	$18, 0x170($sp)
+  11e5ac: ff b0 01 60  	sd	$16, 0x160($sp)
+  11e5b0: 8c 83 00 b4  	lw	$3, 0xb4($4)
+  11e5b4: ff a9 01 50  	sd	$9, 0x150($sp)
+  11e5b8: ff a7 00 c0  	sd	$7, 0xc0($sp)
+  11e5bc: 2c 62 00 07  	sltiu	$2, $3, 0x7 <aes_ccmp_cal_params+0x7>
+  11e5c0: ff a5 00 b0  	sd	$5, 0xb0($sp)
+  11e5c4: 14 40 00 1e  	bnez	$2, 0x11e640 <wlc_phy_cal_rxiq_nphy+0xc8>
+  11e5c8: ff a6 00 b8  	sd	$6, 0xb8($sp)
+  11e5cc: 00 00 40 2d  	move	$8, $zero
+  11e5d0: 9f a7 00 c0  	lwu	$7, 0xc0($sp)
+  11e5d4: 02 20 20 2d  	move	$4, $17
+  11e5d8: df a5 00 b0  	ld	$5, 0xb0($sp)
+  11e5dc: 3c 02 00 00  	lui	$2, 0x0 <aes_ccmp_cal_params>
+		000000000011e5dc:  R_MIPS_HIGHEST/R_MIPS_NONE/R_MIPS_NONE	.text+0x11d370
+  11e5e0: 3c 01 00 00  	lui	$1, 0x0 <aes_ccmp_cal_params>
+		000000000011e5e0:  R_MIPS_HI16/R_MIPS_NONE/R_MIPS_NONE	.text+0x11d370
+  11e5e4: 64 42 00 00  	daddiu	$2, $2, 0x0 <aes_ccmp_cal_params>
+		000000000011e5e4:  R_MIPS_HIGHER/R_MIPS_NONE/R_MIPS_NONE	.text+0x11d370
+  11e5e8: 64 21 00 00  	daddiu	$1, $1, 0x0 <aes_ccmp_cal_params>
+		000000000011e5e8:  R_MIPS_LO16/R_MIPS_NONE/R_MIPS_NONE	.text+0x11d370
+  11e5ec: 00 02 10 3c  	dsll32	$2, $2, 0x0 <aes_ccmp_cal_params>
+  11e5f0: 00 41 10 2d  	daddu	$2, $2, $1
+  11e5f4: df a6 00 b8  	ld	$6, 0xb8($sp)
+  11e5f8: 00 07 38 3c  	dsll32	$7, $7, 0x0 <aes_ccmp_cal_params>
+  11e5fc: 00 40 f8 09  	jalr	$2
+  11e600: df a9 01 50  	ld	$9, 0x150($sp)
+  11e604: df bf 01 a8  	ld	$ra, 0x1a8($sp)
+  11e608: 00 40 80 2d  	move	$16, $2
+  11e60c: df be 01 a0  	ld	$fp, 0x1a0($sp)
+  11e610: 02 00 10 2d  	move	$2, $16
+  11e614: df b7 01 98  	ld	$23, 0x198($sp)
+  11e618: df b6 01 90  	ld	$22, 0x190($sp)
+  11e61c: df b5 01 88  	ld	$21, 0x188($sp)
+  11e620: df b4 01 80  	ld	$20, 0x180($sp)
+  11e624: df b3 01 78  	ld	$19, 0x178($sp)
+  11e628: df b2 01 70  	ld	$18, 0x170($sp)
+  11e62c: df b1 01 68  	ld	$17, 0x168($sp)
+  11e630: df b0 01 60  	ld	$16, 0x160($sp)
+  11e634: 03 e0 00 08  	jr	$ra
+  11e638: 67 bd 01 b0  	daddiu	$sp, $sp, 0x1b0 <aes_ccmp_cal_params+0x1b0>
+  11e63c: 00 00 00 00  	nop <aes_ccmp_cal_params>
+  11e640: 2c 62 00 03  	sltiu	$2, $3, 0x3 <aes_ccmp_cal_params+0x3>
+  11e644: 10 40 ff e2  	beqz	$2, 0x11e5d0 <wlc_phy_cal_rxiq_nphy+0x58>
+  11e648: 97 a3 00 c2  	lhu	$3, 0xc2($sp)
+  11e64c: 00 a0 10 2d  	move	$2, $5
+  11e650: b3 a2 00 36  	sdl	$2, 0x36($sp)
+  11e654: 24 05 00 01  	addiu	$5, $zero, 0x1 <aes_ccmp_cal_params+0x1>
+  11e658: b7 a2 00 3d  	sdr	$2, 0x3d($sp)
+  11e65c: 97 a2 00 c0  	lhu	$2, 0xc0($sp)
+  11e660: a7 a3 00 48  	sh	$3, 0x48($sp)
+  11e664: a7 a2 00 46  	sh	$2, 0x46($sp)
+  11e668: 3c 02 00 00  	lui	$2, 0x0 <aes_ccmp_cal_params>
+		000000000011e668:  R_MIPS_HIGHEST/R_MIPS_NONE/R_MIPS_NONE	.rodata+0x122df0
+  11e66c: 3c 01 00 00  	lui	$1, 0x0 <aes_ccmp_cal_params>
+		000000000011e66c:  R_MIPS_HI16/R_MIPS_NONE/R_MIPS_NONE	.rodata+0x122df0
+  11e670: 64 42 00 00  	daddiu	$2, $2, 0x0 <aes_ccmp_cal_params>
+		000000000011e670:  R_MIPS_HIGHER/R_MIPS_NONE/R_MIPS_NONE	.rodata+0x122df0
+  11e674: 00 02 10 3c  	dsll32	$2, $2, 0x0 <aes_ccmp_cal_params>
+  11e678: 00 41 10 2d  	daddu	$2, $2, $1
+  11e67c: 94 42 00 00  	lhu	$2, 0x0($2)
+		000000000011e67c:  R_MIPS_LO16/R_MIPS_NONE/R_MIPS_NONE	.rodata+0x122df0
